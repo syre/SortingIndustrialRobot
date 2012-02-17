@@ -1,0 +1,1 @@
+Folk skal have grønt lys før committer. Medmindre god grund og TYDELIGT markeret i commit.
