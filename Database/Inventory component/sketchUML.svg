@@ -143,6 +143,34 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5128"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5153"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5207"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5238"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -152,8 +180,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.13"
-     inkscape:cx="134.96001"
-     inkscape:cy="-128.17109"
+     inkscape:cx="61.751264"
+     inkscape:cy="-84.414946"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -339,13 +367,13 @@
          style="font-size:10px">Part of</tspan></text>
     <g
        id="g4525"
-       transform="translate(0,-5.0000026)">
+       transform="translate(130,-10.00002)">
       <rect
          ry="10"
          y="1067.3622"
          x="-80"
-         height="115"
-         width="120"
+         height="115.00002"
+         width="140"
          id="rect2813-8"
          style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
       <text
@@ -358,11 +386,11 @@
            y="1087.3622"
            x="-75"
            id="tspan3591-2"
-           sodipodi:role="line">User</tspan></text>
+           sodipodi:role="line">Users</tspan></text>
       <path
          sodipodi:nodetypes="cc"
          id="path3593-4"
-         d="M -80.088496,1092.8489 40,1092.3622"
+         d="M -80.088496,1092.8489 60,1092.3622"
          style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <text
          id="text3598-5"
@@ -385,7 +413,7 @@
            id="tspan4318-2"
            y="1172.3622"
            x="-75"
-           sodipodi:role="line">Permissions</tspan></text>
+           sodipodi:role="line">Permission : FK</tspan></text>
     </g>
     <text
        xml:space="preserve"
@@ -399,7 +427,7 @@
          y="1032.3622">More specific:</tspan></text>
     <g
        id="g4515"
-       transform="translate(-30,149.99998)">
+       transform="translate(120,144.99996)">
       <rect
          ry="10"
          y="1087.3622"
@@ -418,7 +446,7 @@
            y="1107.3622"
            x="95"
            id="tspan3591-2-1"
-           sodipodi:role="line">Producer</tspan></text>
+           sodipodi:role="line">Producers</tspan></text>
       <path
          sodipodi:nodetypes="cc"
          id="path3593-4-4"
@@ -445,7 +473,7 @@
     </g>
     <g
        id="g4503"
-       transform="translate(-190,-40.000003)">
+       transform="translate(-40,-45.00002)">
       <rect
          ry="10"
          y="1102.3622"
@@ -464,7 +492,7 @@
            y="1122.3622"
            x="255"
            id="tspan3591-2-1-7"
-           sodipodi:role="line">Component</tspan></text>
+           sodipodi:role="line">Components</tspan></text>
       <path
          sodipodi:nodetypes="cc"
          id="path3593-4-4-6"
@@ -499,18 +527,18 @@
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:none"
-       d="m 120,1212.3622 0,25"
+       d="m 270,1207.3622 0,25"
        id="path3656-5"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="130"
+       x="280"
        y="1217.3622"
        id="text4306-4"><tspan
          sodipodi:role="line"
          id="tspan4308-3"
-         x="130"
+         x="280"
          y="1217.3622"
          style="font-size:10px">Got</tspan></text>
     <rect
@@ -518,13 +546,13 @@
        id="rect4589"
        width="13.330982"
        height="13.368546"
-       x="844.48303"
-       y="657.02802"
+       x="965.35193"
+       y="530.84235"
        transform="matrix(0.6113507,0.79135979,-0.60313298,0.79764065,0,0)"
        ry="0" />
     <g
        id="g4503-1"
-       transform="translate(-50,-40.000003)">
+       transform="translate(100,-45.00002)">
       <rect
          ry="10"
          y="1102.3622"
@@ -584,7 +612,7 @@
          y="732.36218">General:</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:none"
-       d="m 260,1202.3622 0,80 -80,0"
+       d="m 410,1197.3622 0,80 -80,0"
        id="path3656-5-7"
        sodipodi:nodetypes="cc" />
     <rect
@@ -592,9 +620,87 @@
        id="rect4589-9"
        width="13.330982"
        height="13.368546"
-       x="953.96039"
-       y="535.87579"
+       x="1074.8292"
+       y="409.69016"
        transform="matrix(0.6113507,0.79135979,-0.60313298,0.79764065,0,0)"
        ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="420"
+       y="1217.3622"
+       id="text4306-4-2"><tspan
+         sodipodi:role="line"
+         id="tspan4308-3-4"
+         x="420"
+         y="1217.3622"
+         style="font-size:10px">Got</tspan></text>
+    <g
+       id="g4525-8"
+       transform="translate(-40.000035,4.9999997)">
+      <rect
+         ry="10"
+         y="1067.3622"
+         x="-80"
+         height="75.000015"
+         width="120"
+         id="rect2813-8-6"
+         style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+      <text
+         id="text3589-8-5"
+         y="1087.3622"
+         x="-75"
+         style="font-size:24px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           style="font-size:18px"
+           y="1087.3622"
+           x="-75"
+           id="tspan3591-2-0"
+           sodipodi:role="line">Permissions</tspan></text>
+      <path
+         sodipodi:nodetypes="cc"
+         id="path3593-4-9"
+         d="M -80.088496,1092.8489 40,1092.3622"
+         style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         id="text3598-5-0"
+         y="1112.3622"
+         x="-75"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="1112.3622"
+           x="-75"
+           id="tspan3600-5-0"
+           sodipodi:role="line">ID : PK</tspan><tspan
+           id="tspan4318-2-3"
+           y="1132.3622"
+           x="-75"
+           sodipodi:role="line">Name</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:none"
+       d="m 29.999955,1112.3622 -29.999990283002,0"
+       id="path3656-5-8"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.77996671;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect4589-4"
+       width="13.330982"
+       height="13.368546"
+       x="888.25684"
+       y="-943.94733"
+       transform="matrix(-0.79135979,0.6113507,-0.79764065,-0.60313298,0,0)"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="9.9999647"
+       y="1102.3622"
+       id="text4306-4-4"><tspan
+         sodipodi:role="line"
+         id="tspan4308-3-6"
+         x="9.9999647"
+         y="1102.3622"
+         style="font-size:10px">Got</tspan></text>
   </g>
 </svg>
