@@ -1,5 +1,4 @@
--- revision 1.0
--- mangler at tilføje READ, UPDATE og DELETE til Position table mm.
+-- eksempler på CRUD-scripts, mangler at tilføje READ, UPDATE og DELETE til Position table mm.
 
 -- CREATE
 CREATE TABLE BoxDimensions
