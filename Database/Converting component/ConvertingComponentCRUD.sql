@@ -9,8 +9,9 @@ Depth float)
 
 CREATE TABLE Position
 (BoxID int REFERENCES BoxDimensions(BoxID),
-Angle int,
-Distance float)
+X int,
+Y int,
+Z int)
 
 INSERT BoxDimensions ([Length],[Width],[Depth]) VALUES (100.0,200.0,300.0)
 
