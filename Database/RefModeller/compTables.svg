@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="400"
+   height="400"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="compTables.svg"
+   inkscape:export-filename="C:\Users\Salizer\Desktop\compTables.png"
+   inkscape:export-xdpi="200"
+   inkscape:export-ydpi="200">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <inkscape:perspective
+       id="perspective5454"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5609"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5808"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5808-9"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective5808-4"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3731"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3996"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4051"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.13"
+     inkscape:cx="711.73477"
+     inkscape:cy="-211.37406"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="706"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2816"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-652.36218)">
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="-124.77876"
+       y="161.9469"
+       id="text5519"
+       transform="translate(0,652.36218)"><tspan
+         sodipodi:role="line"
+         id="tspan5521"
+         x="-124.77876"
+         y="161.9469" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="-81.415932"
+       y="160.17699"
+       id="text5523"
+       transform="translate(0,652.36218)"><tspan
+         sodipodi:role="line"
+         id="tspan5525"
+         x="-81.415932"
+         y="160.17699" /></text>
+    <g
+       id="g4172"
+       transform="translate(-20,330)">
+      <rect
+         ry="10"
+         y="762.36218"
+         x="310"
+         height="190"
+         width="180"
+         id="rect4901"
+         style="fill:#729fcf;fill-opacity:1;fill-rule:evenodd;stroke:#204a87;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         id="text4903"
+         y="782.36218"
+         x="320"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           style="font-size:16px"
+           y="782.36218"
+           x="320"
+           id="tspan4905"
+           sodipodi:role="line">Converting component</tspan></text>
+      <g
+         transform="translate(520,-10)"
+         id="g5435">
+        <rect
+           style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect4907"
+           width="140"
+           height="130"
+           x="-200"
+           y="160"
+           transform="translate(0,652.36218)"
+           ry="10" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="832.36218"
+           id="text4909"><tspan
+             sodipodi:role="line"
+             id="tspan4911"
+             x="-190"
+             y="832.36218">BoxDimensions</tspan></text>
+        <path
+           style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -200,190 140,0"
+           id="path4913"
+           transform="translate(0,652.36218)" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="862.36218"
+           id="text5425"><tspan
+             sodipodi:role="line"
+             x="-190"
+             y="862.36218"
+             id="tspan5433">boxID : PK</tspan><tspan
+             id="tspan5509"
+             sodipodi:role="line"
+             x="-190"
+             y="882.36218">length</tspan><tspan
+             id="tspan5511"
+             sodipodi:role="line"
+             x="-190"
+             y="902.36218">width</tspan><tspan
+             id="tspan5513"
+             sodipodi:role="line"
+             x="-190"
+             y="922.36218">depth</tspan></text>
+      </g>
+      <g
+         id="g5435-5"
+         transform="translate(790,0)">
+        <rect
+           style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect4907-4"
+           width="140"
+           height="130"
+           x="-200"
+           y="160"
+           transform="translate(0,652.36218)"
+           ry="10" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="832.36218"
+           id="text4909-3"><tspan
+             sodipodi:role="line"
+             id="tspan4911-1"
+             x="-190"
+             y="832.36218">Position</tspan></text>
+        <path
+           style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -200,190 140,0"
+           id="path4913-2"
+           transform="translate(0,652.36218)" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="862.36218"
+           id="text5425-3"><tspan
+             sodipodi:role="line"
+             x="-190"
+             y="862.36218"
+             id="tspan5431-1">x</tspan><tspan
+             id="tspan5500"
+             sodipodi:role="line"
+             x="-190"
+             y="882.36218">y</tspan><tspan
+             id="tspan5502"
+             sodipodi:role="line"
+             x="-190"
+             y="902.36218">z</tspan><tspan
+             sodipodi:role="line"
+             x="-190"
+             y="922.36218"
+             id="tspan5433-1">boxID : FK</tspan></text>
+      </g>
+      <path
+         sodipodi:nodetypes="cc"
+         id="path5517"
+         d="m 460,872.36218 130,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         id="text5527"
+         y="867.36218"
+         x="465"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="867.36218"
+           x="465"
+           id="tspan5529"
+           sodipodi:role="line">1</tspan></text>
+      <text
+         id="text5531"
+         y="867.36218"
+         x="570"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="867.36218"
+           x="570"
+           id="tspan5533"
+           sodipodi:role="line">1</tspan></text>
+      <text
+         id="text5535"
+         y="852.36218"
+         x="500"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="852.36218"
+           x="500"
+           id="tspan5537"
+           sodipodi:role="line">&lt; has</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="318.58408"
+       y="718.58405"
+       id="text3703"
+       transform="translate(0,652.36218)"><tspan
+         sodipodi:role="line"
+         id="tspan3705"
+         x="318.58408"
+         y="718.58405" /></text>
+    <g
+       id="g4098"
+       transform="translate(240,300)">
+      <rect
+         ry="10"
+         y="1032.3622"
+         x="40"
+         height="510"
+         width="500"
+         id="rect4901-8"
+         style="fill:#729fcf;fill-opacity:1;fill-rule:evenodd;stroke:#204a87;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         id="text4903-7"
+         y="1052.3622"
+         x="50"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           style="font-size:16px"
+           y="1052.3622"
+           x="50"
+           id="tspan4905-4"
+           sodipodi:role="line">Inventory component</tspan></text>
+      <g
+         transform="translate(500,260)"
+         id="g5435-7">
+        <rect
+           style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect4907-7"
+           width="140"
+           height="130"
+           x="-200"
+           y="160"
+           transform="translate(0,652.36218)"
+           ry="10" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="832.36218"
+           id="text4909-9"><tspan
+             sodipodi:role="line"
+             id="tspan4911-3"
+             x="-190"
+             y="832.36218">Users</tspan></text>
+        <path
+           style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -200,190 140,0"
+           id="path4913-1"
+           transform="translate(0,652.36218)" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="862.36218"
+           id="text5425-9"><tspan
+             id="tspan5513-0"
+             sodipodi:role="line"
+             x="-190"
+             y="862.36218">ID : PK</tspan><tspan
+             id="tspan5977"
+             sodipodi:role="line"
+             x="-190"
+             y="882.36218">Name</tspan><tspan
+             id="tspan5979"
+             sodipodi:role="line"
+             x="-190"
+             y="902.36218">Description</tspan><tspan
+             id="tspan5981"
+             sodipodi:role="line"
+             x="-190"
+             y="922.36218">Permission : FK</tspan></text>
+      </g>
+      <g
+         id="g5788">
+        <g
+           transform="translate(260,260)"
+           id="g5435-5-2">
+          <rect
+             ry="10"
+             transform="translate(0,652.36218)"
+             y="160"
+             x="-200"
+             height="90"
+             width="140"
+             id="rect4907-4-8"
+             style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+          <text
+             id="text4909-3-6"
+             y="832.36218"
+             x="-190"
+             style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="832.36218"
+               x="-190"
+               id="tspan4911-1-0"
+               sodipodi:role="line">Permissions</tspan></text>
+          <path
+             transform="translate(0,652.36218)"
+             id="path4913-2-2"
+             d="m -200,190 140,0"
+             style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          <text
+             id="text5425-3-4"
+             y="862.36218"
+             x="-190"
+             style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               id="tspan5433-1-0"
+               y="862.36218"
+               x="-190"
+               sodipodi:role="line">ID : PK</tspan><tspan
+               id="tspan5966"
+               y="882.36218"
+               x="-190"
+               sodipodi:role="line">Name</tspan></text>
+        </g>
+      </g>
+      <path
+         sodipodi:nodetypes="cc"
+         id="path5517-9"
+         d="m 200,1142.3622 100,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         id="text5527-0"
+         y="1137.3622"
+         x="205"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="1137.3622"
+           x="205"
+           id="tspan5529-0"
+           sodipodi:role="line">1</tspan></text>
+      <text
+         id="text5531-6"
+         y="1137.3622"
+         x="285"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="1137.3622"
+           x="285"
+           id="tspan5533-1"
+           sodipodi:role="line">n</tspan></text>
+      <text
+         id="text5535-3"
+         y="1122.3622"
+         x="230"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="1122.3622"
+           x="230"
+           id="tspan5537-8"
+           sodipodi:role="line">&lt; has</tspan></text>
+      <g
+         transform="translate(505,460)"
+         id="g2915">
+        <g
+           transform="translate(-180,-200)"
+           id="g5788-9">
+          <g
+             id="g5435-5-2-3"
+             transform="translate(260,260)">
+            <rect
+               style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+               id="rect4907-4-8-4"
+               width="140"
+               height="110"
+               x="-200"
+               y="160"
+               ry="10"
+               transform="translate(0,652.36218)" />
+            <text
+               xml:space="preserve"
+               style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               x="-190"
+               y="832.36218"
+               id="text4909-3-6-4"><tspan
+                 sodipodi:role="line"
+                 id="tspan4911-1-0-6"
+                 x="-190"
+                 y="832.36218">Producers</tspan></text>
+            <path
+               style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+               d="m -200,190 140,0"
+               id="path4913-2-2-0"
+               transform="translate(0,652.36218)" />
+            <text
+               xml:space="preserve"
+               style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               x="-190"
+               y="862.36218"
+               id="text5425-3-4-6"><tspan
+                 sodipodi:role="line"
+                 x="-190"
+                 y="862.36218"
+                 id="tspan5433-1-0-4">ID : PK</tspan><tspan
+                 sodipodi:role="line"
+                 x="-190"
+                 y="882.36218"
+                 id="tspan5919">Name</tspan><tspan
+                 sodipodi:role="line"
+                 x="-190"
+                 y="902.36218"
+                 id="tspan5923">Description</tspan></text>
+          </g>
+        </g>
+      </g>
+      <g
+         id="g5788-6"
+         transform="translate(0,160)">
+        <g
+           transform="translate(260,260)"
+           id="g5435-5-2-37">
+          <rect
+             ry="10"
+             transform="translate(0,652.36218)"
+             y="160"
+             x="-200"
+             height="130"
+             width="140"
+             id="rect4907-4-8-8"
+             style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+          <text
+             id="text4909-3-6-8"
+             y="832.36218"
+             x="-190"
+             style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="832.36218"
+               x="-190"
+               id="tspan4911-1-0-2"
+               sodipodi:role="line">Components</tspan></text>
+          <path
+             transform="translate(0,652.36218)"
+             id="path4913-2-2-9"
+             d="m -200,190 140,0"
+             style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          <text
+             id="text5425-3-4-1"
+             y="862.36218"
+             x="-190"
+             style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               id="tspan5433-1-0-8"
+               y="862.36218"
+               x="-190"
+               sodipodi:role="line">ID : PK</tspan><tspan
+               id="tspan5936"
+               y="882.36218"
+               x="-190"
+               sodipodi:role="line">Name</tspan><tspan
+               id="tspan5938"
+               y="902.36218"
+               x="-190"
+               sodipodi:role="line">Description</tspan><tspan
+               id="tspan5940"
+               y="922.36218"
+               x="-190"
+               sodipodi:role="line">Producer :  FK</tspan></text>
+        </g>
+      </g>
+      <g
+         id="g5788-0"
+         transform="translate(0,320)">
+        <g
+           transform="translate(260,260)"
+           id="g5435-5-2-7">
+          <rect
+             ry="10"
+             transform="translate(0,652.36218)"
+             y="160"
+             x="-200"
+             height="130"
+             width="140"
+             id="rect4907-4-8-6"
+             style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+          <text
+             id="text4909-3-6-3"
+             y="832.36218"
+             x="-190"
+             style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="832.36218"
+               x="-190"
+               id="tspan4911-1-0-61"
+               sodipodi:role="line">Software</tspan></text>
+          <path
+             transform="translate(0,652.36218)"
+             id="path4913-2-2-5"
+             d="m -200,190 140,0"
+             style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          <text
+             id="text5425-3-4-4"
+             y="862.36218"
+             x="-190"
+             style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               id="tspan5433-1-0-3"
+               y="862.36218"
+               x="-190"
+               sodipodi:role="line">ID : PK</tspan><tspan
+               id="tspan5951"
+               y="882.36218"
+               x="-190"
+               sodipodi:role="line">Name</tspan><tspan
+               id="tspan5953"
+               y="902.36218"
+               x="-190"
+               sodipodi:role="line">Description</tspan><tspan
+               id="tspan5955"
+               y="922.36218"
+               x="-190"
+               sodipodi:role="line">Producer</tspan></text>
+        </g>
+      </g>
+      <path
+         sodipodi:nodetypes="cccc"
+         transform="translate(0,652.36218)"
+         id="path2927"
+         d="m 200,810 50,0 0,-80 135,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         transform="translate(0,652.36218)"
+         id="path2929"
+         d="m 200,650 50,0 0,80"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         id="text3707"
+         y="1377.3622"
+         x="370"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="1377.3622"
+           x="370"
+           id="tspan3709"
+           sodipodi:role="line">1</tspan></text>
+      <text
+         id="text3711"
+         y="1457.3622"
+         x="205"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="1457.3622"
+           x="205"
+           id="tspan3713"
+           sodipodi:role="line">n</tspan></text>
+      <text
+         id="text3715"
+         y="1297.3622"
+         x="205"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="1297.3622"
+           x="205"
+           id="tspan3717"
+           sodipodi:role="line">n</tspan></text>
+      <text
+         id="text3719"
+         y="1362.3622"
+         x="290"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="1362.3622"
+           x="290"
+           id="tspan3721"
+           sodipodi:role="line">has &gt;</tspan></text>
+    </g>
+    <rect
+       style="fill:#729fcf;fill-opacity:1;fill-rule:evenodd;stroke:#204a87;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect4901-7"
+       width="180"
+       height="570"
+       x="840"
+       y="902.36218"
+       ry="10" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="850"
+       y="922.36218"
+       id="text4903-4"><tspan
+         sodipodi:role="line"
+         id="tspan4905-0"
+         x="850"
+         y="922.36218"
+         style="font-size:16px">System log component</tspan></text>
+    <g
+       id="g3975">
+      <g
+         id="g5435-5-1"
+         transform="translate(1050,130)">
+        <rect
+           style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect4907-4-5"
+           width="140"
+           height="150"
+           x="-200"
+           y="160"
+           transform="translate(0,652.36218)"
+           ry="10" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="832.36218"
+           id="text4909-3-2"><tspan
+             sodipodi:role="line"
+             id="tspan4911-1-7"
+             x="-190"
+             y="832.36218">NormalEvent</tspan></text>
+        <path
+           style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -200,190 140,0"
+           id="path4913-2-6"
+           transform="translate(0,652.36218)" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="862.36218"
+           id="text5425-3-1"><tspan
+             sodipodi:role="line"
+             x="-190"
+             y="862.36218"
+             id="tspan5433-1-2">LogID : PK</tspan><tspan
+             id="tspan3965"
+             sodipodi:role="line"
+             x="-190"
+             y="882.36218">LogEvent</tspan><tspan
+             id="tspan3969"
+             sodipodi:role="line"
+             x="-190"
+             y="902.36218">LogTime</tspan><tspan
+             id="tspan3971"
+             sodipodi:role="line"
+             x="-190"
+             y="922.36218">Description</tspan><tspan
+             id="tspan3973"
+             sodipodi:role="line"
+             x="-190"
+             y="942.36218">Position</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="translate(0,180)"
+       id="g3975-1">
+      <g
+         id="g5435-5-1-8"
+         transform="translate(1050,130)">
+        <rect
+           style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect4907-4-5-9"
+           width="140"
+           height="150"
+           x="-200"
+           y="160"
+           transform="translate(0,652.36218)"
+           ry="10" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="832.36218"
+           id="text4909-3-2-2"><tspan
+             sodipodi:role="line"
+             id="tspan4911-1-7-7"
+             x="-190"
+             y="832.36218">NormalEvent</tspan></text>
+        <path
+           style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -200,190 140,0"
+           id="path4913-2-6-9"
+           transform="translate(0,652.36218)" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="862.36218"
+           id="text5425-3-1-5"><tspan
+             sodipodi:role="line"
+             x="-190"
+             y="862.36218"
+             id="tspan5433-1-2-4">LogID : PK</tspan><tspan
+             id="tspan3965-3"
+             sodipodi:role="line"
+             x="-190"
+             y="882.36218">LogEvent</tspan><tspan
+             id="tspan3969-1"
+             sodipodi:role="line"
+             x="-190"
+             y="902.36218">LogTime</tspan><tspan
+             id="tspan3971-2"
+             sodipodi:role="line"
+             x="-190"
+             y="922.36218">Description</tspan><tspan
+             id="tspan3973-3"
+             sodipodi:role="line"
+             x="-190"
+             y="942.36218">Position</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="translate(0,360)"
+       id="g3975-1-3">
+      <g
+         id="g5435-5-1-8-4"
+         transform="translate(1050,130)">
+        <rect
+           style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect4907-4-5-9-1"
+           width="140"
+           height="150"
+           x="-200"
+           y="160"
+           transform="translate(0,652.36218)"
+           ry="10" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="832.36218"
+           id="text4909-3-2-2-1"><tspan
+             sodipodi:role="line"
+             id="tspan4911-1-7-7-3"
+             x="-190"
+             y="832.36218">NormalEvent</tspan></text>
+        <path
+           style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -200,190 140,0"
+           id="path4913-2-6-9-8"
+           transform="translate(0,652.36218)" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-190"
+           y="862.36218"
+           id="text5425-3-1-5-7"><tspan
+             sodipodi:role="line"
+             x="-190"
+             y="862.36218"
+             id="tspan5433-1-2-4-4">LogID : PK</tspan><tspan
+             id="tspan3965-3-2"
+             sodipodi:role="line"
+             x="-190"
+             y="882.36218">LogEvent</tspan><tspan
+             id="tspan3969-1-7"
+             sodipodi:role="line"
+             x="-190"
+             y="902.36218">LogTime</tspan><tspan
+             id="tspan3971-2-7"
+             sodipodi:role="line"
+             x="-190"
+             y="922.36218">Description</tspan><tspan
+             id="tspan3973-3-9"
+             sodipodi:role="line"
+             x="-190"
+             y="942.36218">Position</tspan></text>
+      </g>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 850,550 -140,0"
+       id="path4204"
+       transform="translate(0,652.36218)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 852.21239,369.9115 810,370 l 0,180"
+       id="path4206"
+       transform="translate(0,652.36218)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 849.55753,729.20354 810,730 810,550"
+       id="path4208"
+       transform="translate(0,652.36218)" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="715"
+       y="1197.3622"
+       id="text4210"><tspan
+         sodipodi:role="line"
+         id="tspan4212"
+         x="715"
+         y="1197.3622">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="825"
+       y="1377.3622"
+       id="text4214"><tspan
+         sodipodi:role="line"
+         id="tspan4216"
+         x="825"
+         y="1377.3622">n</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="825"
+       y="1197.3622"
+       id="text4218"><tspan
+         sodipodi:role="line"
+         id="tspan4220"
+         x="825"
+         y="1197.3622">n</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="825"
+       y="1017.3622"
+       id="text4222"><tspan
+         sodipodi:role="line"
+         id="tspan4224"
+         x="825"
+         y="1017.3622">n</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="740"
+       y="1182.3622"
+       id="text4226"><tspan
+         sodipodi:role="line"
+         id="tspan4228"
+         x="740"
+         y="1182.3622">&lt; has</tspan></text>
+  </g>
+</svg>
