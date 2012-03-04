@@ -1,0 +1,26 @@
+Styre robotten Manualt/Automatisk.
+Brugergrænseflade for robotten (GUI).
+
+Info herunder:
+1.Hvem har betjent robotten for en uge siden, for 2 timer siden, for...?
+2.Hvad har vi på lageret, hvor på lageret, hvor meget?
+3.Hvad er der sket idag, igår for en uge siden, track and trace på alt.
+4.Hvis der skulle opstå fejl-> Hvor i systemet? Hvornår? Hvem? hvorfor?
+  Evt.fejlkode og beep lyd(IBM).
+5.Aflæs status Hvad sker der nu????ligenu..
+Rettigheder=> teknikker, medarbejder, programmør. 
+
+
+
+Udvidelse
+Hændelser(loggen) evt. andre informationer skal kunne printes ud via 
+en hvilke som helst printer der er kendt af OS.
+
+Stemmestyring???sådan noget som "start" "stop".
+
+Men vi skal blive enig i gruppen, der kan være flere ting. Jeg kan ikke lege 
+product owner helt uden hjælp, i øvrigt har jeg læst loggen fra 1.marts 2012. Det er
+en slags productbacklog.
+
+
+
