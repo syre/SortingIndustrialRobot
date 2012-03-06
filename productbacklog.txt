@@ -1,26 +1,56 @@
-Styre robotten Manualt/Automatisk.
-Brugergrænseflade for robotten (GUI).
+For styresystem:
+Som bruger vil jeg kunne starte/stoppe systemet. -
+Som bruger vil jeg kunne benytte GUI
+Som bruger vil jeg kunne indlæse/køre systemet DSL-filer direkte.
+Som bruger vil jeg kunne se loggen. 
+Som bruger vil jeg kunne manuelt styre robotten. 
+Som bruger vil jeg kunne vælge mellem robotten og simulering. 
+Som bruger vil jeg kunne følge udviklingen af programmet. 
+Som bruger vil jeg kunne se klodserne, der er lagret. 
+Som bruger vil jeg kunne se, hvad systemet består af (producenter m.m.).
+Som bruger vil jeg kunne logge ind.
+Som bruger vil jeg kunne debugge/steppe/goto. 
 
-Info herunder:
-1.Hvem har betjent robotten for en uge siden, for 2 timer siden, for...?
-2.Hvad har vi på lageret, hvor på lageret, hvor meget?
-3.Hvad er der sket idag, igår for en uge siden, track and trace på alt.
-4.Hvis der skulle opstå fejl-> Hvor i systemet? Hvornår? Hvem? hvorfor?
-  Evt.fejlkode og beep lyd(IBM).
-5.Aflæs status Hvad sker der nu????ligenu..
-Rettigheder=> teknikker, medarbejder, programmør. 
+For simulator:
+Som styresystem vil jeg kunne hente værdier.
+Som bruger vil jeg eksekvere kode (starte simulering).
+Som bruger vil jeg kunne se grafisk visning. 
+Som bruger vil jeg kunne se, hvor lang tid simuleringen har kørt (for at finde ud af, hvor længe det virker i praksis).
+
+For IDE:
+Som bruger vil jeg kunne have syntaks highlighting. 
+Som bruger vil jeg kunne skrive DSL deri (et sted at skrive sin kode).
+Som bruger vil jeg kunne debugge. 
+Som bruger vil jeg kunne slå op på, hvilke kommandoer/nøgleord jeg kan bruge. 
+Som bruger vil jeg kunne ændre editor farveskema, font, tekststørrelse m.m. --
+Som bruger vil jeg kunne tjekke for syntaksfejl. 
+Som bruger vil jeg have adgang til makrogenveje. 
+Som bruger vil jeg have genvejstaster for normale operationer. 
+Som bruger vil jeg kunne anvende IntelliSense/auto completion. 
+Som bruger vil jeg kunne sende fil over i styresystemet.
+Som bruger vil jeg have auto-indentation. 
+Som bruger vil jeg have file explorer. 
+Som bruger vil jeg kunne have se ’about-box/aboutception. 
+Som bruger vil jeg kunne aktivere tekstombrydning.
+Som bruger vil jeg have en statusbar med linjenummer, antal bogstaver m.m. 
+
+1.Gang:
+Som bruger vil jeg kunne sætte tolerancen for placering af klodsen. ++
+Som bruger vil jeg kunne styre, hvor klodserne skal placeres. ++
+Som tekniker vil jeg kunne se positionen af robotten. ++
+Som tekniker vil jeg kunne kalibrere. ++
+Som tekniker vil jeg kunne kalibrere. ++
 
 
-
-Udvidelse
-Hændelser(loggen) evt. andre informationer skal kunne printes ud via 
-en hvilke som helst printer der er kendt af OS.
-
-Stemmestyring???sådan noget som "start" "stop".
-
-Men vi skal blive enig i gruppen, der kan være flere ting. Jeg kan ikke lege 
-product owner helt uden hjælp, i øvrigt har jeg læst loggen fra 1.marts 2012. Det er
-en slags productbacklog.
+Som bruger vil jeg kunne benytte GUI++
+Som bruger vil jeg have muligheden for autosave. ++
+Som bruger vil jeg have kunne undo-redo-funktionalitet.  ++
+Som bruger vil jeg have flere filer åbne på én gang. ++(hænger sammen med noget andet)
+Som bruger vil jeg kunne udskrive filer.(printe)++
+Som bruger vil jeg kunne åbne/lukke filer. ++
+Som bruger vil jeg kunne gemme filer.++
+Som bruger vil jeg kunne søge og erstatte i filen. ++
+Som bruger vil jeg blive påmindet om at gemme ændrede filer ved lukning.++
 
 
 
