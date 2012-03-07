@@ -7,18 +7,9 @@
 
 
 --
--- Select Database: 'db_name'
+-- Select Database: 'F12I4PRJ4Gr3'
 --
-USE db_name
-GO
- 
-IF DB_NAME() = 'db_name'
-    RAISERROR('''db_name'' DATABASE CONTEXT NOW IN USE.',1,1)
-ELSE
-    RAISERROR('ERROR IN BATCH FILE, ''USE db_name'' FAILED!  KILLING THE SPID NOW.',22,127) WITH LOG
- 
-GO
-EXECUTE SP_DBOPTION 'db_name' ,'TRUNC. LOG ON CHKPT.' ,'TRUE'
+USE F12I4PRJ4Gr3
 GO
 
 --
