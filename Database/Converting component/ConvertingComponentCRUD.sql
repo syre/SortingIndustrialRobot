@@ -1,28 +1,34 @@
 -- eksempler på CRUD-scripts, mangler at tilføje READ, UPDATE og DELETE til Position table mm.
 
--- CREATE
-CREATE TABLE BoxDimensions
-(BoxID int PRIMARY KEY NOT NULL IDENTITY,
-Length float,
-Width float,
-Depth float)
 
-CREATE TABLE Position
-(BoxID int REFERENCES BoxDimensions(BoxID),
-X int,
-Y int,
-Z int)
+--
+-- Create Table    : 'Position'   
+-- PositionID      :   
+-- X			   :  
+-- Y			   :
+-- Z			   :
+--
+CREATE TABLE Position (
+	PositionID			INT PRIMARY KEY NOT NULL IDENTITY,
+	X INT,
+	Y INT,
+	Z INT)
 
-INSERT BoxDimensions ([Length],[Width],[Depth]) VALUES (100.0,200.0,300.0)
 
--- READ
-SELECT * FROM BoxDimensions
+--
+-- Create Table    : 'BoxInfo'   
+-- BoxID           :  
+-- Length          :  
+-- Width	       :  
+-- Depth		   :
+-- Weight		   :
+--
+CREATE TABLE BoxInfo (
+	BoxID			INT PRIMARY KEY NOT NULL IDENTITY,
+	PositionID		INT NOT NULL REFERENCES Position(PositionID),
+	Length FLOAT,
+	Width FLOAT,
+	Depth FLOAT,
+	Weight FLOAT)
 
--- UPDATE
-UPDATE BoxDimensions
-SET [Length]=200,[Width]=300,[Depth]=400
-WHERE BoxID=1
 
--- DELETE
-DELETE FROM BoxDimensions
-WHERE BoxID=1

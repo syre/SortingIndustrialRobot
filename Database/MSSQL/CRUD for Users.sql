@@ -11,9 +11,9 @@ INSERT INTO [F12I4PRJ4Gr3].[dbo].[Users]
            ,[Description]
            ,[Permission])
      VALUES
-           ('G'
-           ,'G'
-           ,2)
+           ('Hehe'
+           ,'Huulter til bulter'
+           ,1)
 GO
 
 -- UPDATE PART
