@@ -18,8 +18,8 @@ GO
 -- Name            :  
 --
 CREATE TABLE Permissions (
-    ID             INT NOT NULL UNIQUE,
-    Name           VARCHAR NOT NULL,
+    ID             INT IDENTITY(1,1) NOT NULL UNIQUE,
+    Name           VARCHAR(20) NOT NULL,
 CONSTRAINT pk_Permissions PRIMARY KEY CLUSTERED (ID))
 GO
 
@@ -30,9 +30,9 @@ GO
 -- Description     :  
 --
 CREATE TABLE Producers (
-    ID             INT NOT NULL UNIQUE,
-    Name           VARCHAR NOT NULL,
-    Description    VARCHAR NOT NULL,
+    ID             INT IDENTITY(1,1) NOT NULL UNIQUE,
+    Name           VARCHAR(20) NOT NULL,
+    Description    VARCHAR(255) NOT NULL,
 CONSTRAINT pk_Producers PRIMARY KEY CLUSTERED (ID))
 GO
 
@@ -44,9 +44,9 @@ GO
 -- Permission      :  (references Permissions.ID)
 --
 CREATE TABLE Users (
-    ID             INT NOT NULL UNIQUE,
-    Name           VARCHAR NOT NULL,
-    Description    VARCHAR NOT NULL,
+    ID             INT IDENTITY(1,1) NOT NULL UNIQUE,
+    Name           VARCHAR(20) NOT NULL,
+    Description    VARCHAR(255) NOT NULL,
     Permission     INT NULL,
 CONSTRAINT pk_Users PRIMARY KEY CLUSTERED (ID),
 CONSTRAINT fk_Users FOREIGN KEY (Permission)
@@ -62,9 +62,9 @@ GO
 -- Producer        :  (references Producers.ID)
 --
 CREATE TABLE Components (
-    ID             INT NOT NULL UNIQUE,
-    Name           VARCHAR NOT NULL,
-    Description    VARCHAR NOT NULL,
+    ID             INT IDENTITY(1,1) NOT NULL UNIQUE,
+    Name           VARCHAR(20) NOT NULL,
+    Description    VARCHAR(255) NOT NULL,
     Producer       INT NULL,
 CONSTRAINT pk_Components PRIMARY KEY CLUSTERED (ID),
 CONSTRAINT fk_Components FOREIGN KEY (Producer)
@@ -80,9 +80,9 @@ GO
 -- Producer        :  (references Producers.ID)
 --
 CREATE TABLE Software (
-    ID             INT NOT NULL UNIQUE,
-    Name           VARCHAR NOT NULL,
-    Description    VARCHAR NOT NULL,
+    ID             INT IDENTITY(1,1) NOT NULL UNIQUE,
+    Name           VARCHAR(20) NOT NULL,
+    Description    VARCHAR(255) NOT NULL,
     Producer       INT NULL,
 CONSTRAINT pk_Software PRIMARY KEY CLUSTERED (ID),
 CONSTRAINT fk_Software FOREIGN KEY (Producer)

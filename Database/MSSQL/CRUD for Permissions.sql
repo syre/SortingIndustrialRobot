@@ -6,23 +6,18 @@ GO
 
 -- INSERT PART
 INSERT INTO [F12I4PRJ4Gr3].[dbo].[Permissions]
-           ([ID]
-           ,[Name])
+           ([Name])
      VALUES
-           (3
-           ,'a')
+           ('ddadsadasdadd1')
 GO
 
 -- UPDATE PART
-INSERT INTO [F12I4PRJ4Gr3].[dbo].[Permissions]
-           ([ID]
-           ,[Name])
-     VALUES
-           (1
-           ,'a')
+UPDATE [F12I4PRJ4Gr3].[dbo].[Permissions]
+   SET [Name] = Name
+ WHERE ID < 3
 GO
 
 -- DELETE PART
 DELETE FROM [F12I4PRJ4Gr3].[dbo].[Permissions]
-      WHERE ID = 1
+      WHERE ID > 5
 GO

@@ -8,15 +8,13 @@ GO
 
 -- INSERT PART
 INSERT INTO [F12I4PRJ4Gr3].[dbo].[Components]
-           ([ID]
-           ,[Name]
+           ([Name]
            ,[Description]
            ,[Producer])
      VALUES
-           (2
-           ,'a'
+           ('a'
            ,'Hello world'
-           ,9)
+           ,1)
 GO
 -- UPDATE PART
 
@@ -30,7 +28,7 @@ GO
 
 -- DELETE PART
 DELETE FROM [F12I4PRJ4Gr3].[dbo].[Components]
-      WHERE ID = 1
+      WHERE ID = 3
 GO
 
 
