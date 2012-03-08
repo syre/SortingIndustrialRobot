@@ -14,5 +14,8 @@ CREATE TABLE SystemComponentTable (
 	LogEvent		  VARCHAR(50) NOT NULL,
 	LogTime			  DATETIME NOT NULL,
 	Description		  VARCHAR(50) NOT NULL,
-	PositionID        INT NOT NULL)
+	PositionID        INT NOT NULL,
+	CONSTRAINT fk_SystemComponentTable FOREIGN KEY (PositionID)
+    REFERENCES Position (PositionID)
+	)
 GO
