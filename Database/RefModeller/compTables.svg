@@ -93,7 +93,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.13"
      inkscape:cx="711.73477"
-     inkscape:cy="-218.94858"
+     inkscape:cy="-203.79953"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -149,164 +149,172 @@
          id="tspan5525"
          x="-81.415932"
          y="160.17699" /></text>
+    <rect
+       style="fill:#729fcf;fill-opacity:1;fill-rule:evenodd;stroke:#204a87;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect4901"
+       width="180"
+       height="220"
+       x="290"
+       y="1092.3622"
+       ry="10" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="300"
+       y="1112.3622"
+       id="text4903"><tspan
+         sodipodi:role="line"
+         id="tspan4905"
+         x="300"
+         y="1112.3622"
+         style="font-size:16px">Converting component</tspan></text>
     <g
-       id="g4172"
-       transform="translate(-20,330)">
+       id="g5435"
+       transform="translate(500,320)">
       <rect
          ry="10"
-         y="762.36218"
-         x="310"
-         height="190"
-         width="180"
-         id="rect4901"
-         style="fill:#729fcf;fill-opacity:1;fill-rule:evenodd;stroke:#204a87;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+         transform="translate(0,652.36218)"
+         y="160"
+         x="-200"
+         height="160"
+         width="140"
+         id="rect4907"
+         style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
       <text
-         id="text4903"
-         y="782.36218"
-         x="320"
+         id="text4909"
+         y="832.36218"
+         x="-190"
          style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
          xml:space="preserve"><tspan
-           style="font-size:16px"
-           y="782.36218"
-           x="320"
-           id="tspan4905"
-           sodipodi:role="line">Converting component</tspan></text>
-      <g
-         transform="translate(520,-10)"
-         id="g5435">
-        <rect
-           style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-           id="rect4907"
-           width="140"
-           height="130"
-           x="-200"
-           y="160"
-           transform="translate(0,652.36218)"
-           ry="10" />
-        <text
-           xml:space="preserve"
-           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-           x="-190"
            y="832.36218"
-           id="text4909"><tspan
-             sodipodi:role="line"
-             id="tspan4911"
-             x="-190"
-             y="832.36218">BoxDimensions</tspan></text>
-        <path
-           style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-           d="m -200,190 140,0"
-           id="path4913"
-           transform="translate(0,652.36218)" />
-        <text
-           xml:space="preserve"
-           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
            x="-190"
-           y="862.36218"
-           id="text5425"><tspan
-             sodipodi:role="line"
-             x="-190"
-             y="862.36218"
-             id="tspan5433">boxID : PK</tspan><tspan
-             id="tspan5509"
-             sodipodi:role="line"
-             x="-190"
-             y="882.36218">length</tspan><tspan
-             id="tspan5511"
-             sodipodi:role="line"
-             x="-190"
-             y="902.36218">width</tspan><tspan
-             id="tspan5513"
-             sodipodi:role="line"
-             x="-190"
-             y="922.36218">depth</tspan></text>
-      </g>
-      <g
-         id="g5435-5"
-         transform="translate(790,0)">
-        <rect
-           style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-           id="rect4907-4"
-           width="140"
-           height="130"
-           x="-200"
-           y="160"
-           transform="translate(0,652.36218)"
-           ry="10" />
-        <text
-           xml:space="preserve"
-           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-           x="-190"
-           y="832.36218"
-           id="text4909-3"><tspan
-             sodipodi:role="line"
-             id="tspan4911-1"
-             x="-190"
-             y="832.36218">Position</tspan></text>
-        <path
-           style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-           d="m -200,190 140,0"
-           id="path4913-2"
-           transform="translate(0,652.36218)" />
-        <text
-           xml:space="preserve"
-           style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-           x="-190"
-           y="862.36218"
-           id="text5425-3"><tspan
-             sodipodi:role="line"
-             x="-190"
-             y="862.36218"
-             id="tspan5431-1">x</tspan><tspan
-             id="tspan5500"
-             sodipodi:role="line"
-             x="-190"
-             y="882.36218">y</tspan><tspan
-             id="tspan5502"
-             sodipodi:role="line"
-             x="-190"
-             y="902.36218">z</tspan><tspan
-             sodipodi:role="line"
-             x="-190"
-             y="922.36218"
-             id="tspan5433-1">boxID : FK</tspan></text>
-      </g>
+           id="tspan4911"
+           sodipodi:role="line">BoxDimensions</tspan></text>
       <path
-         sodipodi:nodetypes="cc"
-         id="path5517"
-         d="m 460,872.36218 130,0"
-         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         transform="translate(0,652.36218)"
+         id="path4913"
+         d="m -200,190 140,0"
+         style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <text
-         id="text5527"
-         y="867.36218"
-         x="465"
+         id="text5425"
+         y="862.36218"
+         x="-190"
          style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
          xml:space="preserve"><tspan
-           y="867.36218"
-           x="465"
-           id="tspan5529"
-           sodipodi:role="line">1</tspan></text>
-      <text
-         id="text5531"
-         y="867.36218"
-         x="570"
-         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-         xml:space="preserve"><tspan
-           y="867.36218"
-           x="570"
-           id="tspan5533"
-           sodipodi:role="line">1</tspan></text>
-      <text
-         id="text5535"
-         y="852.36218"
-         x="500"
-         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-         xml:space="preserve"><tspan
-           y="852.36218"
-           x="500"
-           id="tspan5537"
-           sodipodi:role="line">&lt; has</tspan></text>
+           id="tspan5433"
+           y="862.36218"
+           x="-190"
+           sodipodi:role="line">BoxID : PK</tspan><tspan
+           y="882.36218"
+           x="-190"
+           sodipodi:role="line"
+           id="tspan5509">length</tspan><tspan
+           y="902.36218"
+           x="-190"
+           sodipodi:role="line"
+           id="tspan5511">width</tspan><tspan
+           id="tspan2995"
+           y="922.36218"
+           x="-190"
+           sodipodi:role="line">weight</tspan><tspan
+           y="942.36218"
+           x="-190"
+           sodipodi:role="line"
+           id="tspan5513">depth</tspan><tspan
+           id="tspan2997"
+           y="962.36218"
+           x="-190"
+           sodipodi:role="line">PositionID : FK</tspan></text>
     </g>
+    <g
+       transform="translate(770,330)"
+       id="g5435-5">
+      <rect
+         ry="10"
+         transform="translate(0,652.36218)"
+         y="160"
+         x="-200"
+         height="130"
+         width="140"
+         id="rect4907-4"
+         style="fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:#ce5c00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         id="text4909-3"
+         y="832.36218"
+         x="-190"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="832.36218"
+           x="-190"
+           id="tspan4911-1"
+           sodipodi:role="line">Position</tspan></text>
+      <path
+         transform="translate(0,652.36218)"
+         id="path4913-2"
+         d="m -200,190 140,0"
+         style="fill:none;stroke:#ce5c00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         id="text5425-3"
+         y="862.36218"
+         x="-190"
+         style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           id="tspan2987"
+           y="862.36218"
+           x="-190"
+           sodipodi:role="line">PositionID : PK</tspan><tspan
+           id="tspan2993"
+           y="882.36218"
+           x="-190"
+           sodipodi:role="line">x</tspan><tspan
+           y="902.36218"
+           x="-190"
+           sodipodi:role="line"
+           id="tspan5500">y</tspan><tspan
+           y="922.36218"
+           x="-190"
+           sodipodi:role="line"
+           id="tspan5502">z</tspan><tspan
+           id="tspan5433-1"
+           y="942.36218"
+           x="-190"
+           sodipodi:role="line" /></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 440,1202.3622 130,0"
+       id="path5517"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="445"
+       y="1197.3622"
+       id="text5527"><tspan
+         sodipodi:role="line"
+         id="tspan5529"
+         x="445"
+         y="1197.3622">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="550"
+       y="1197.3622"
+       id="text5531"><tspan
+         sodipodi:role="line"
+         id="tspan5533"
+         x="550"
+         y="1197.3622">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="480"
+       y="1182.3622"
+       id="text5535"><tspan
+         sodipodi:role="line"
+         id="tspan5537"
+         x="480"
+         y="1182.3622">has &gt;</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
@@ -941,5 +949,16 @@
          id="tspan4228"
          x="740"
          y="1182.3622">&lt; has</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="433.62833"
+       y="613.27435"
+       id="text3032"
+       transform="translate(0,652.36218)"><tspan
+         sodipodi:role="line"
+         id="tspan3034"
+         x="433.62833"
+         y="613.27435" /></text>
   </g>
 </svg>
