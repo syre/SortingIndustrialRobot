@@ -10,10 +10,9 @@ GO
 -- Name            :  
 --
 CREATE TABLE SystemComponentTable (
-    LogID             NCHAR(10) NOT NULL UNIQUE,
-	LogEvent		  VARCHAR(50) NULL,
-	LogTime			  DATE NULL,
-	Description		  VARCHAR(50), NULL
-	Position          INT NULL 
-CONSTRAINT pk_SystemComponentTable PRIMARY KEY CLUSTERED (LogID))
+    LogID             INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	LogEvent		  VARCHAR(50) NOT NULL,
+	LogTime			  DATETIME NOT NULL,
+	Description		  VARCHAR(50) NOT NULL,
+	PositionID        INT NOT NULL)
 GO
