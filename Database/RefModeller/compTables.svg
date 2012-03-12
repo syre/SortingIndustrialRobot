@@ -189,7 +189,7 @@
            y="832.36218"
            x="-190"
            id="tspan4911"
-           sodipodi:role="line">BoxDimensions</tspan></text>
+           sodipodi:role="line">BoxInfo</tspan></text>
       <path
          transform="translate(0,652.36218)"
          id="path4913"
@@ -765,7 +765,7 @@
              id="tspan3973"
              sodipodi:role="line"
              x="-190"
-             y="942.36218">Position</tspan></text>
+             y="942.36218">PositionID</tspan></text>
       </g>
     </g>
     <g
@@ -823,7 +823,7 @@
              id="tspan3973-3"
              sodipodi:role="line"
              x="-190"
-             y="942.36218">Position</tspan></text>
+             y="942.36218">PositionID</tspan></text>
       </g>
     </g>
     <g
@@ -881,7 +881,7 @@
              id="tspan3973-3-9"
              sodipodi:role="line"
              x="-190"
-             y="942.36218">Position</tspan></text>
+             y="942.36218">PositionID</tspan></text>
       </g>
     </g>
     <path
