@@ -1,0 +1,1 @@
+needs IronPython, IronPython.Modules and Microsoft.Scripting assemblies found in IronPython folder as reference
