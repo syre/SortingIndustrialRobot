@@ -7,6 +7,7 @@ using Microsoft.Scripting.Hosting;
 
 namespace DSL_component
 {
+    // needs IronPython, IronPython.Modules and Microsoft.Scripting assemblies as reference
     static class ScriptRunner
     {
         static private ScriptRuntimeSetup _setup;
@@ -40,10 +41,15 @@ namespace DSL_component
         public static void RunRobotFunction(string script, Robot r)
         {
             _scope = _engine.CreateScope();
-            _scope.SetVariable("robot", r);
+            ObjectOperations objOps = _engine.Operations;
+            
+            // removing the need for robot scope
+            foreach (string memberName in objOps.GetMemberNames(r))
+            {
+                _scope.SetVariable(memberName, objOps.GetMember(r, memberName));
+            }
 
-
-            _source = _engine.CreateScriptSourceFromString("robot." + script, Microsoft.Scripting.SourceCodeKind.Statements);
+            _source = _engine.CreateScriptSourceFromString(script, Microsoft.Scripting.SourceCodeKind.Statements);
         }
 
         public static void ExecuteScript()
