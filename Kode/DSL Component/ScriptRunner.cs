@@ -7,37 +7,54 @@ using Microsoft.Scripting.Hosting;
 
 namespace DSL_component
 {
-    // needs IronPython, IronPython.Modules and Microsoft.Scripting assemblies as reference
+    /// <summary>
+    ///  needs IronPython, IronPython.Modules and Microsoft.Scripting assemblies as reference
+    /// </summary>
+
     static class ScriptRunner
     {
-        static private ScriptRuntimeSetup _setup;
-        static private ScriptRuntime _runtime;
-        static private ScriptEngine _engine;
+        private static ScriptRuntimeSetup _setup;
+        private static ScriptRuntime _runtime;
+        private static ScriptEngine _engine;
         private static ScriptSource _source;
         private static ScriptScope _scope;
+
+        /// <summary>
+        ///  initializing the python engine
+        /// </summary>
         static ScriptRunner()
         {
             _setup = Python.CreateRuntimeSetup(null);
             _runtime = new ScriptRuntime(_setup);
             _engine = Python.GetEngine(_runtime);
+            _scope = _engine.CreateScope();
         }
+
         public static ScriptEngine getEngine()
         {
             return _engine;
         }
 
+        /// <summary>
+        ///  loads script from a file
+        /// </summary>
         public static void setScriptFromFile(string path)
         {
             _source = _engine.CreateScriptSourceFromFile(path);
-            _scope = _engine.CreateScope();
         }
 
+        /// <summary>
+        ///  loads script from a string
+        /// </summary>
         public static void setScriptFromString(string script)
         {
-           _scope = _engine.CreateScope();
+
            _source = _engine.CreateScriptSourceFromString(script);
         }
 
+        /// <summary>
+        ///  allows us to run the robot object functions from python
+        /// </summary>
         public static void RunRobotFunction(string script, Robot r)
         {
             _scope = _engine.CreateScope();
@@ -52,13 +69,18 @@ namespace DSL_component
             _source = _engine.CreateScriptSourceFromString(script, Microsoft.Scripting.SourceCodeKind.Statements);
         }
 
+        /// <summary>
+        ///  executes loaded script
+        /// </summary>
         public static void ExecuteScript()
         {
-            if (_source == null)
+            if (_source != null)
             {
-                throw new Exception();
-            }
                 _source.Execute(_scope);
+                
+            }
+            else
+                throw new Exception();
         }
     }
 }
