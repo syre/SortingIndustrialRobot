@@ -11,7 +11,8 @@ namespace WrapperTester
         {
             Wrapper wrapA = new Wrapper();
             bool status;
-            status = wrapA.controlWrapped(Wrapper.enumAxis.AXIS_ROBOT, true);
+            status = wrapA.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
+            wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
             Console.WriteLine("Status: {0}", status);
             System.Console.ReadLine();
         }
