@@ -5,9 +5,10 @@ using System.Text;
 
 namespace DSL_component
 {
-    public class Robot
+
+    public class Wrapper
     {
-        public void Hello()
+        public void HelloWorld()
         {
             System.Console.WriteLine("hello world!");
         }

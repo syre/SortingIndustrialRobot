@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using IronPython.Hosting;
+using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 
 namespace DSL_component
@@ -18,6 +20,9 @@ namespace DSL_component
         private static ScriptEngine _engine;
         private static ScriptSource _source;
         private static ScriptScope _scope;
+        private static ErrorReporter _reporter;
+        private static ObjectOperations _operations;
+        private static Wrapper _wrapper;
 
         /// <summary>
         ///  initializing the python engine
@@ -28,11 +33,22 @@ namespace DSL_component
             _runtime = new ScriptRuntime(_setup);
             _engine = Python.GetEngine(_runtime);
             _scope = _engine.CreateScope();
+            _reporter = new ErrorReporter();
+            // initializing wrapper methods from methods.py file placed in root dir
+            setScriptFromFile("../../methods.py");
+            ExecuteScript();
         }
 
-        public static ScriptEngine getEngine()
+        public static void setRobotInstance(Wrapper r)
         {
-            return _engine;
+            _wrapper = r;
+            _operations = _engine.Operations;
+
+            // removing the need for robot scope
+            foreach (string memberName in _operations.GetMemberNames(_wrapper))
+            {
+                _scope.SetVariable(memberName, _operations.GetMember(_wrapper, memberName));
+            }
         }
 
         /// <summary>
@@ -41,6 +57,12 @@ namespace DSL_component
         public static void setScriptFromFile(string path)
         {
             _source = _engine.CreateScriptSourceFromFile(path);
+            CompiledCode codecheck = _source.Compile(_reporter);
+            if (codecheck == null)
+            {
+                // compilation failed - alert user
+                _source = null;
+            }
         }
 
         /// <summary>
@@ -48,25 +70,14 @@ namespace DSL_component
         /// </summary>
         public static void setScriptFromString(string script)
         {
-
            _source = _engine.CreateScriptSourceFromString(script);
-        }
-
-        /// <summary>
-        ///  allows us to run the robot object functions from python
-        /// </summary>
-        public static void RunRobotFunction(string script, Robot r)
-        {
-            _scope = _engine.CreateScope();
-            ObjectOperations objOps = _engine.Operations;
-            
-            // removing the need for robot scope
-            foreach (string memberName in objOps.GetMemberNames(r))
-            {
-                _scope.SetVariable(memberName, objOps.GetMember(r, memberName));
-            }
-
-            _source = _engine.CreateScriptSourceFromString(script, Microsoft.Scripting.SourceCodeKind.Statements);
+           CompiledCode codecheck = _source.Compile(_reporter);
+           if (codecheck == null)
+           {
+               System.Console.WriteLine("compilation failed");
+               // compilation failed - alert user
+               _source = null;
+           }
         }
 
         /// <summary>
@@ -77,10 +88,9 @@ namespace DSL_component
             if (_source != null)
             {
                 _source.Execute(_scope);
-                
             }
             else
-                throw new Exception();
+               throw new Exception();
         }
     }
 }
