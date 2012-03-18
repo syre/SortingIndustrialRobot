@@ -10,10 +10,9 @@ namespace WrapperTester
         static void Main(string[] args)
         {
             Wrapper wrapA = new Wrapper();
-            int iReturnValue;
-            wrapA.initializationWrapped(Wrapper.MODE_SIMULAT, Wrapper.SYSTEM_TYPE_DEFAULT);
-            iReturnValue = wrapA.setParameterFolderWrapped(".");
-            System.Console.WriteLine("Value: {0}", iReturnValue);
+            bool status;
+            status = wrapA.controlWrapped(Wrapper.enumAxis.AXIS_ROBOT, true);
+            Console.WriteLine("Status: {0}", status);
             System.Console.ReadLine();
         }
     }
