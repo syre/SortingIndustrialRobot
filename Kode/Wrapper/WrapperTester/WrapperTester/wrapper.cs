@@ -13,6 +13,7 @@ namespace WrapperTester // Has to be changed
     /// Notes:  Uses IntPtr for different types of C++ pointers.
     ///         Same function names as C++ but has "Wrapped" at the end.
     /// </summary>
+    /** \author Robotic Global Organization(RoboGO) */
     class Wrapper
     {
         // Members

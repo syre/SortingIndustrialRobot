@@ -7,14 +7,6 @@ namespace WrapperTester
 {
     class Program
     {
-        public static void test(IntPtr intptrConfigData)
-        {
-            System.Console.WriteLine("Hello");
-        }
-        public static void error(IntPtr intptrConfigData)
-        {
-            System.Console.WriteLine("Error");
-        }
         static void Main(string[] args)
         {
             Wrapper wrapA = new Wrapper();
