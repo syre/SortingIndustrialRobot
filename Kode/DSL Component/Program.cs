@@ -11,13 +11,9 @@ namespace DSL_component
     {
         static void Main(string[] args)
         {
-            Robot r = new Robot();
-            ScriptRunner.RunRobotFunction("Hello()",r);
-            string s = "def printHelloTwice():"+"\n"+
-                       "    print 'hello'" +"\n"+
-                       "    print 'hello'" +"\n"+
-                       "printHelloTwice()";
-            //ScriptRunner.setScriptFromString(s);
+            Wrapper wr = new Wrapper();
+            ScriptRunner.setRobotInstance(wr);
+            ScriptRunner.setScriptFromString(@"HelloWorld()");
             ScriptRunner.ExecuteScript();
         }
     }
