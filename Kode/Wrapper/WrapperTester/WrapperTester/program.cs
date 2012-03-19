@@ -9,11 +9,20 @@ namespace WrapperTester
     {
         static void Main(string[] args)
         {
-            Wrapper wrapA = new Wrapper();
+            // Members
+            Wrapper wrapA = Wrapper.getInstance();
             bool status;
-            status = wrapA.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
-            wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
-            Console.WriteLine("Status: {0}", status);
+            string sBuffer;
+            
+            // Testing
+            status = wrapA.initializationWrapped(Wrapper.MODE_DEFAULT, Wrapper.SYSTEM_TYPE_ER4USB);
+            System.Console.WriteLine("Init status: {0}", status);
+            /*
+             * Alt:
+             * status = wrapA.initializationWrapped(1, 0);
+            System.Console.WriteLine("Init status: {0}", status);
+             */
+
             System.Console.ReadLine();
         }
     }

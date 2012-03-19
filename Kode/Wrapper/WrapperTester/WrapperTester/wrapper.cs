@@ -12,15 +12,19 @@ namespace WrapperTester // Has to be changed
     /// 
     /// Notes:  Uses IntPtr arg for different types of C++ pointers.
     ///         Same function names as C++ but has "Wrapped" at the end.
+    /// 
+    /// \todo Add behind factory class.
     /// </summary>
     class Wrapper
     {
         // Members
+        private static Wrapper wrapOnlyInstance;
         private dgateCallBack callbackfuncSucessful;
         private dgateCallBack callbackfuncError;
         private dgateCallBackCharArg callbackfuncHoming;
 
         #region Events
+        // Some callback events placed here if not found useful in outside context.
         private static void eventSuccess(IntPtr intptrConfigData)
         {
             System.Console.WriteLine("Success.");
@@ -68,7 +72,7 @@ namespace WrapperTester // Has to be changed
 
         // Functions
         // -Constructors and destructors
-        public Wrapper()
+        private Wrapper()
         {
             // Initializes callback functions
             callbackfuncSucessful = new dgateCallBack(eventSuccess);
@@ -122,6 +126,16 @@ namespace WrapperTester // Has to be changed
                     throw new ArgumentOutOfRangeException("axisSettingsArg group invalid.");
             }
             return(bArg);
+        }
+
+        // -Singleton related
+        public static Wrapper getInstance()
+        {
+            if(wrapOnlyInstance == null)
+            {
+                wrapOnlyInstance = new Wrapper();
+            }
+            return (wrapOnlyInstance);
         }
 
         // -Wrapped functions
