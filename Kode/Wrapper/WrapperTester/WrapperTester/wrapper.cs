@@ -158,7 +158,7 @@ namespace WrapperTester // Has to be changed
         /// Sets the location of the "Par" folder.
         /// </summary>
         /// <param name="charptrFolder">String with location of file.</param>
-        /// <returns>Returns true on success.</returns>
+        /// <returns>Returns true on successful call.</returns>
         public bool setParameterFolderWrapped(string _sFolderAddress)
         {
             IntPtr intptrTmp = Marshal.StringToHGlobalAnsi(_sFolderAddress);
@@ -169,7 +169,7 @@ namespace WrapperTester // Has to be changed
         /// Returns address of "Par" folder.
         /// </summary>
         /// <param name="_sFolderAddress">Buffer for address.</param>
-        /// <returns>Returns true on success.</returns>
+        /// <returns>Returns true on successful call.</returns>
         public bool getParameterFolderWrapped(out string _sFolderAddress)
         {
             IntPtr intptrTmp = Marshal.AllocHGlobal(200);
@@ -182,7 +182,7 @@ namespace WrapperTester // Has to be changed
         /// </summary>
         /// <param name="bAxis">Axis group to affect.(Use enum)</param>
         /// <param name="_bControlOnOrOff">To have it turned off or on.</param>
-        /// <returns>Returns true on success,</returns>
+        /// <returns>Returns true on successful call.</returns>
         public bool controlWrapped(enumAxisSettings _axisSettingsGroup, bool _bControlOnOrOff)
         {
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
@@ -198,7 +198,7 @@ namespace WrapperTester // Has to be changed
         /// Should be called before calling most movement functions.
         /// </summary>
         /// <param name="_axisSettingsGroup">The axis group.(Use enum)</param>
-        /// <returns>Returns true on success.</returns>
+        /// <returns>Returns true on successful call.</returns>
         public bool homeWrapped(enumAxisSettings _axisSettingsGroup)
         {
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
@@ -210,7 +210,7 @@ namespace WrapperTester // Has to be changed
         /// Must be called to use manual movement.  
         /// </summary>
         /// <param name="_enummanMoveType">What to move by.(Axis(0), Coordinates(1))</param>
-        /// <returns>Returns true on success.</returns>
+        /// <returns>Returns true on successful call.</returns>
         public bool enterManualWrapped(enumManualType _enummanMoveType)
         {
             short shrtTmp;
@@ -232,7 +232,7 @@ namespace WrapperTester // Has to be changed
         /// <summary>
         /// Stops manual mode.
         /// </summary>
-        /// <returns>Returns true on success.</returns>
+        /// <returns>Returns true on successful call.</returns>
         public bool closeManualWrapped()
         {
             int iReturnValue;
@@ -260,8 +260,8 @@ namespace WrapperTester // Has to be changed
         ///     Roll(4)
         /// </param>
         /// <param name="_lSpeed"></param>
-        /// <returns>Returns true on success.</returns>
-        public bool moveManualWrapped(byte _bWhatToMove, long _lSpeed) /// \todo Refactor.
+        /// <returns>Returns true on successful call.</returns>
+        public bool moveManualWrapped(byte _bWhatToMove, int _lSpeed) /// \todo Refactor.
         {
             int iReturnValue;
             iReturnValue = MoveManual(_bWhatToMove, _lSpeed);
@@ -271,28 +271,46 @@ namespace WrapperTester // Has to be changed
         /// Stops movement of axis.
         /// </summary>
         /// <param name="_bWhatToStop">Axis to stop.</param>
-        /// <returns>Returns true on success.</returns>
+        /// <returns>Returns true on successful call.</returns>
         public bool stopWrapped(enumAxisSettings _bWhatToStop) /// \todo Refactor.
         {
             int iReturnValue;
             iReturnValue = Stop(axisSettingsToByte(_bWhatToStop));
             return ((iReturnValue == 1) ? true : false);
         }
+
+
         #endregion
 
         #region Gripper
+        /// <summary>
+        /// Opens the gripper.
+        /// </summary>
+        /// <returns>Returns true on successful call.</returns>
         public bool openGripperWrapped()
         {
             int iReturnValue;
             iReturnValue = OpenGripper();
             return ((iReturnValue == 1) ? true : false);
         }
+        /// <summary>
+        /// Closes the gripper.
+        /// </summary>
+        /// <returns>Returns true on successful call.</returns>
         public bool closeGripperWrapped()
         {
             int iReturnValue;
             iReturnValue = CloseGripper();
             return ((iReturnValue == 1) ? true : false);
         }
+        /// <summary>
+        /// Gives information about how much open the gripper is.(Between the 'fingers')
+        /// 
+        /// Note: Probably most useful to use the _shrtWidth arg.
+        /// </summary>
+        /// <param name="_shrtPerc">Data in percentage.</param>
+        /// <param name="_shrtWidth">Data in width.(mm)</param>
+        /// <returns>Returns true on successful call.</returns>
         public bool getJawWrapped(ref short _shrtPerc, ref short _shrtWidth)
         {
             int iReturnValue;
@@ -301,8 +319,37 @@ namespace WrapperTester // Has to be changed
         }
         #endregion
 
+
+        #region Event handling
+        /// <summary>
+        /// Adds functions to be called when motion starts and motion ends. 
+        /// 
+        /// Note: Ignoring return value.
+        /// </summary>
+        /// <param name="_funcptrCallbackEnd">Function to be called when motion has ended.</param>
+        /// <param name="_funcptrCallbackStart">Function to be called when motion has started.</param>
+        public void watchMotionWrapped(DgateCallBackCharArg _funcptrCallbackEnd, DgateCallBackCharArg _funcptrCallbackStart)
+        {
+            WatchMotion(_funcptrCallbackEnd, _funcptrCallbackStart);
+        }
+
+        /// <summary>
+        /// Adds a function to be called when digital input changes.
+        /// 
+        /// Note: Should then later use 'getDigitalInputWrapped()' to check what happened.
+        /// </summary>
+        /// <param name="_funcptrCallbackEvent">The function to be called.</param>
+        /// <returns>Returns true if successful call.</returns>
+        public bool watchDigitalInputWrapped(DgateCallBackLongArg _funcptrCallbackEvent)
+        {
+            int iReturnValue;
+            iReturnValue = WatchDigitalInput(_funcptrCallbackEvent);
+            return ((iReturnValue == 1) ? true : false);
+        }
+        #endregion
+
         #region Imported references(Should use wrapped versions)
-        // --Function pointer
+        // --Function pointers
         [UnmanagedFunctionPointer( CallingConvention.Cdecl, CharSet = CharSet.Ansi )] /** \todo Wrap timer around */
         private delegate void DgateCallBack(IntPtr voidptrConfigData);
 
@@ -310,9 +357,7 @@ namespace WrapperTester // Has to be changed
         public delegate void DgateCallBackCharArg(Byte bArg);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        public delegate void DgateCallBackLongArg(long lArg); 
-
-
+        public delegate void DgateCallBackLongArg(long lArg); /// \warning Using long.
 
         // --Robot functions
         [DllImport("USBC.dll", EntryPoint = "?Initialization@@YAHFFP6AXPAX@Z1@Z", CallingConvention = CallingConvention.Cdecl)]
@@ -375,10 +420,6 @@ namespace WrapperTester // Has to be changed
 
         [DllImport("USBC.dll", EntryPoint = "?Teach@@YAHPADFPAJFJ@Z", CallingConvention = CallingConvention.Cdecl)]
         public static extern int Teach([MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtPoint, int[] iaPointInfo, short shrtSizeOfArray, int iPointType); // long types used in C++ functions.
-
-        [DllImport("USBC.dll", EntryPoint = "?Stop@@YAHE@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int StopMovement(byte bGroup); // "Stop" was already taken
-
         #endregion
     }
 }
