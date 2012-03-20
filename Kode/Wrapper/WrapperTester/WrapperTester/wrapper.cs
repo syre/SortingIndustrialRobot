@@ -248,6 +248,7 @@ namespace WrapperTester // Has to be changed
         ///     Wrist-Pitch(3)
         ///     Wrist-Roll(4)
         ///     Gripper(5)
+        ///     Conveyer belt(7)
         /// Coordinates:
         ///     X(0)
         ///     Y(1)
