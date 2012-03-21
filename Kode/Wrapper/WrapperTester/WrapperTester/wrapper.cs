@@ -24,7 +24,6 @@ namespace WrapperTester // Has to be changed
         // -Events not used outside class
         private DgateCallBack callbackfuncSuccessful;
         private DgateCallBack callbackfuncError;
-        private DgateCallBackCharArg callbackfuncHoming;
 
         /// \todo Change default event handling. Example output more useful info.
         #region Events
@@ -37,28 +36,37 @@ namespace WrapperTester // Has to be changed
         {
             System.Console.WriteLine("Error.");
         }
-        private void eventHoming(Byte homeNotif)
-        {
-            Console.WriteLine("Home Event: " + homeNotif);
-        }
         #endregion
 
         // Settings constants
         // -Initialization mode
-        public enum enumSystemModes /// \todo Add descriptions  
+        /// <summary>
+        /// For mode in initialization. 
+        ///
+        /// (MODE_ONLINE is normally used)
+        /// </summary>
+        public enum enumSystemModes
         {
             MODE_DEFAULT = 0, // Last used mode
             MODE_ONLINE = 1, // Force online mode(Normally used)
             MODE_SIMULAT = 2 // Simulator mode
         }
         // -Initialization system type
-        public enum enumSystemTypes /// \todo Add descriptions
+        /// <summary>
+        /// For type in initialization.
+        /// 
+        /// (SYSTEM_TYPE_DEFAULT normally used)
+        /// </summary>
+        public enum enumSystemTypes
         {
             SYSTEM_TYPE_DEFAULT = 0, // Detect it(Normally used)
             SYSTEM_TYPE_ER4USB = 41 // ER-4
         }
         // -Axis control settings
-        public enum enumAxisSettings /// \todo Add descriptions
+        /// <summary>
+        /// For chosing axis group in certain functions.
+        /// </summary>
+        public enum enumAxisSettings
         {
             AXIS_ROBOT,
             AXIS_PERIPHERALS,
@@ -74,12 +82,20 @@ namespace WrapperTester // Has to be changed
             AXIS_ALL
         }
         // -Manual movement
-        public enum enumManualType /// \todo Add description.
+        /// <summary>
+        /// For chosing type of movement when enabling manual movement.
+        /// </summary>
+        public enum enumManualType
         {
             MANUAL_TYPE_AXES,
             MANUAL_TYPE_COORD
         }
-        public enum enumManualModeWhat /// \todo Add description.
+        /// <summary>
+        /// For chosing what part to move when movin manually.
+        /// 
+        /// Note: Some used for moving by axes and some used for moving by coordinates.
+        /// </summary>
+        public enum enumManualModeWhat
         {
             MANUAL_MOVE_BASE, // Axes
             MANUAL_MOVE_SHOULDER,
@@ -102,7 +118,6 @@ namespace WrapperTester // Has to be changed
             // Initializes callback functions
             callbackfuncSuccessful = new DgateCallBack(eventSuccess);
             callbackfuncError = new DgateCallBack(eventError);
-            callbackfuncHoming = new DgateCallBackCharArg(eventHoming);
         }
 
 
@@ -142,10 +157,15 @@ namespace WrapperTester // Has to be changed
             iReturnValue = Control(bArg, _bControlOnOrOff); /// \warning Bool arg in unwrapped version.
             return ((iReturnValue == 1) ? true : false);
         }
-        public bool control2(char arg)
+
+        /// <summary>
+        /// Tells about the robot being online.
+        /// </summary>
+        /// <returns>Returns true if it is, false otherwise.</returns>
+        public bool isOnlineOkWrapped()
         {
             int iReturnValue;
-            iReturnValue = Control((byte)arg, true); /// \warning Bool arg in unwrapped version.
+            iReturnValue = IsOnLineOk();
             return ((iReturnValue == 1) ? true : false);
         }
         #endregion
@@ -156,18 +176,18 @@ namespace WrapperTester // Has to be changed
         /// Should be called before calling most movement functions.
         /// </summary>
         /// <param name="_axisSettingsGroup">The axis group.(Use enum)</param>
+        /// <param name="_funcptrHomingEventHandler">Function to be called for homing events.
+        /// 
+        /// Values being passed in event:
+        ///     0xff: Homing started
+        ///     1 - 8: Axis n being homed.
+        ///     0x40: Homing ended.</param>
         /// <returns>Returns true on successful call.</returns>
-        public bool homeWrapped(enumAxisSettings _axisSettingsGroup) 
+        public bool homeWrapped(enumAxisSettings _axisSettingsGroup, DgateCallBackCharArg _funcptrHomingEventHandler) 
         {
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
             int iReturnValue;
-            iReturnValue = Home((byte) _axisSettingsGroup, callbackfuncHoming);/// \warning Direct
-            return ((iReturnValue == 1) ? true : false);
-        }
-        public bool home2(char arg) // Test
-        {
-            int iReturnValue;
-            iReturnValue = Home((byte) arg, callbackfuncHoming);/// \warning Direct
+            iReturnValue = Home((byte) _axisSettingsGroup, _funcptrHomingEventHandler);
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -207,10 +227,10 @@ namespace WrapperTester // Has to be changed
         /// Moves the robot.
         /// homeWrapped must have been called if moving by coordinates. 
         /// </summary>
-        public bool moveManualWrapped(enumManualModeWhat enumWhatToMove, int _lSpeed)
+        public bool moveManualWrapped(enumManualModeWhat _enumWhatToMove, int _lSpeed)
         {
             int iReturnValue;
-            iReturnValue = MoveManual(manualMovementToByte(enumWhatToMove), _lSpeed);
+            iReturnValue = MoveManual(manualMovementToByte(_enumWhatToMove), _lSpeed);
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -265,7 +285,6 @@ namespace WrapperTester // Has to be changed
         }
         #endregion
 
-
         #region Event handling
         /// <summary>
         /// Adds functions to be called when motion starts and motion ends. 
@@ -281,8 +300,6 @@ namespace WrapperTester // Has to be changed
 
         /// <summary>
         /// Adds a function to be called when digital input changes.
-        /// 
-        /// Note: Should then later use 'getDigitalInputWrapped()' to check what happened.
         /// </summary>
         /// <param name="_funcptrCallbackEvent">The function to be called.</param>
         /// <returns>Returns true if successful call.</returns>
@@ -292,10 +309,24 @@ namespace WrapperTester // Has to be changed
             iReturnValue = WatchDigitalInput(_funcptrCallbackEvent);
             return ((iReturnValue == 1) ? true : false);
         }
+
+        /// <summary>
+        /// Stops watching of digital inputs.
+        /// 
+        /// Note: Probably means no more events.
+        /// </summary>
+        /// <returns>Returns true if successful call.</returns>
+        public bool closeWatchDigitalInputWrapped()
+        {
+            int iReturnValue;
+            iReturnValue = CloseWatchDigitalInput();
+            return ((iReturnValue == 1) ? true : false);
+        }
         #endregion
 
+
         #region Imported references(Should use wrapped versions)
-        // --Function pointers
+        // -Function pointers
         [UnmanagedFunctionPointer( CallingConvention.Cdecl, CharSet = CharSet.Ansi )] /** \todo Wrap timer around */
         private delegate void DgateCallBack(IntPtr voidptrConfigData);
 
@@ -305,7 +336,7 @@ namespace WrapperTester // Has to be changed
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public delegate void DgateCallBackLongArg(long lArg); /// \warning Using long.
 
-        // --Robot functions
+        // -Robot functions
         [DllImport("USBC.dll", EntryPoint = "?Initialization@@YAHFFP6AXPAX@Z1@Z", CallingConvention = CallingConvention.Cdecl)]
         private static extern int initialization(short shrtMode, short shrtType, DgateCallBack funcprtCallBack, DgateCallBack funcptrCallBackError);
 
@@ -336,7 +367,6 @@ namespace WrapperTester // Has to be changed
         [DllImport("USBC.dll", EntryPoint = "?Stop@@YAHE@Z", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private static extern int Stop(byte axis);
 
-        //
         [DllImport("USBC.dll", EntryPoint = "?WatchMotion@@YAP6AXPAX@ZP6AX0@Z1@Z", CallingConvention = CallingConvention.Cdecl)]
         private static extern DgateCallBackCharArg WatchMotion(DgateCallBackCharArg funcptrCallbackEnd, DgateCallBackCharArg funcptrCallbackStart);
 
@@ -346,9 +376,6 @@ namespace WrapperTester // Has to be changed
         [DllImport("USBC.dll", EntryPoint = "?CloseWatchDigitalInp@@YAHXZ", CallingConvention = CallingConvention.Cdecl)]
         private static extern int CloseWatchDigitalInput();
 
-        [DllImport("USBC.dll", EntryPoint = "?GetDigitalInputs@@YAHPAK@Z", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int GetDigitalInputs(ref long reflongInputBits);
-
         [DllImport("USBC.dll", EntryPoint = "?IsOnLineOk@@YAHXZ", CallingConvention = CallingConvention.Cdecl)]
         private static extern int IsOnLineOk();
 
@@ -356,14 +383,14 @@ namespace WrapperTester // Has to be changed
         private static extern int MoveLinear([MarshalAs(UnmanagedType.LPStr)] string sNameOfVectorThatGotPosition, short shrtPointInVector, [MarshalAs(UnmanagedType.LPStr)] string sSecondaryPos, short shrtPointToMoveTo);
 
         [DllImport("USBC.dll", EntryPoint = "?DefineVector@@YAHEPADF@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int DefineVector(byte bGroup, [MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtSizeOfVector);
+        private static extern int DefineVector(byte bGroup, [MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtSizeOfVector);
 
         [DllImport("USBC.dll", EntryPoint = "?Teach@@YAHPADFPAJFJ@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int Teach([MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtPoint, int[] iaPointInfo, short shrtSizeOfArray, int iPointType); // long types used in C++ functions.
+        private static extern int Teach([MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtPoint, int[] iaPointInfo, short shrtSizeOfArray, int iPointType); // long types used in C++ functions.
         #endregion
 
 
-        // -Helper functions
+        #region Helper functions
         private byte axisSettingsToByte(enumAxisSettings axisSettingsArg)
         {
             byte bArg;
@@ -456,5 +483,6 @@ namespace WrapperTester // Has to be changed
             }
             return(bArg);
         }
+        #endregion
     }
 }

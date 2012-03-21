@@ -38,12 +38,17 @@ namespace WrapperTester
             }
             Console.ReadKey();
         }
+        static void homeEvent(Byte _bArg)
+        {
+            System.Console.WriteLine("Home Event: " + _bArg);
+        }
+
+        // Main
         static void Main(string[] args)
         {
             // Members
             wrapA = Wrapper.getInstance();
             bool status;
-            string sBuffer;
 
             #region OLD
             /*System.Console.WriteLine("Initializing.");
@@ -68,9 +73,6 @@ namespace WrapperTester
 
 
             // Testing
-            // -Variables
-            char cArg = '0';
-
             // -Main setup
             System.Console.WriteLine("Initializing.(Press <Enter> when successfully initialized.)");
             status = wrapA.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE, Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT);
@@ -95,7 +97,7 @@ namespace WrapperTester
                 if(ckiArg.Key == ConsoleKey.H)
                 {
                     System.Console.WriteLine("Homing.(Press <Enter> when successfully done.)");
-                    status = wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
+                    status = wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, homeEvent);
                     System.Console.WriteLine("Status: {0}", status);
                     System.Console.ReadLine();
                 }
