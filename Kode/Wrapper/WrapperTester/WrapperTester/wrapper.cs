@@ -74,10 +74,25 @@ namespace WrapperTester // Has to be changed
             AXIS_ALL
         }
         // -Manual movement
-        public enum enumManualType
+        public enum enumManualType /// \todo Add description.
         {
             MANUAL_TYPE_AXES,
             MANUAL_TYPE_COORD
+        }
+        public enum enumManualModeWhat /// \todo Add description.
+        {
+            MANUAL_MOVE_BASE, // Axes
+            MANUAL_MOVE_SHOULDER,
+            MANUAL_MOVE_ELBOW,
+            MANUAL_MOVE_WRISTPITCH,
+            MANUAL_MOVE_WRISTROLL,
+            MANUAL_MOVE_GRIPPER,
+            MANUAL_MOVE_CONVEYERBELT,
+            MANUAL_MOVE_X, // Coordinates
+            MANUAL_MOVE_Y,
+            MANUAL_MOVE_Z,
+            MANUAL_MOVE_PITCH,
+            MANUAL_MOVE_ROLL
         }
 
         // Functions
@@ -90,53 +105,6 @@ namespace WrapperTester // Has to be changed
             callbackfuncHoming = new DgateCallBackCharArg(eventHoming);
         }
 
-        // -Helper functions
-        private byte axisSettingsToByte(enumAxisSettings axisSettingsArg) // Move down
-        {
-            byte bArg;
-            switch (axisSettingsArg)
-            {
-                case enumAxisSettings.AXIS_ROBOT:
-                    bArg = (byte)'A';
-                    break;
-                case enumAxisSettings.AXIS_PERIPHERALS:
-                    bArg = (byte)'B';
-                    break;
-                case enumAxisSettings.AXIS_GRIPPER:
-                    bArg = (byte) 'G';
-                    break;
-                case enumAxisSettings.AXIS_0:
-                    bArg = (byte) '0';
-                    break;
-                case enumAxisSettings.AXIS_1:
-                    bArg = (byte) '1';
-                    break;
-                case enumAxisSettings.AXIS_2:
-                    bArg = (byte) '2';
-                    break;
-                case enumAxisSettings.AXIS_3:
-                    bArg = (byte) '3';
-                    break;
-                case enumAxisSettings.AXIS_4:
-                    bArg = (byte) '4';
-                    break;
-                case enumAxisSettings.AXIS_5:
-                    bArg = (byte) '5';
-                    break;
-                case enumAxisSettings.AXIS_6:
-                    bArg = (byte) '6';
-                    break;
-                case enumAxisSettings.AXIS_7:
-                    bArg = (byte) '7';
-                    break;
-                case enumAxisSettings.AXIS_ALL:
-                    bArg = (byte)'&';
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("axisSettingsArg group invalid.");
-            }
-            return(bArg);
-        }
 
         // -Singleton related
         public static Wrapper getInstance()
@@ -236,31 +204,13 @@ namespace WrapperTester // Has to be changed
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
-        /// Moves to robot.
+        /// Moves the robot.
         /// homeWrapped must have been called if moving by coordinates. 
         /// </summary>
-        /// <param name="_bWhatToMove">Depends on moving by coordinates or axis.
-        /// Axis:
-        ///     Base(0)
-        ///     Shoulder(1)
-        ///     Elbow(2)
-        ///     Wrist-Pitch(3)
-        ///     Wrist-Roll(4)
-        ///     Gripper(5)
-        ///     Conveyer belt(7)
-        /// Coordinates:
-        ///     X(0)
-        ///     Y(1)
-        ///     Z(2)
-        ///     Pitch(3)
-        ///     Roll(4)
-        /// </param>
-        /// <param name="_lSpeed"></param>
-        /// <returns>Returns true on successful call.</returns>
-        public bool moveManualWrapped(byte _bWhatToMove, int _lSpeed) /// \todo Refactor.
+        public bool moveManualWrapped(enumManualModeWhat enumWhatToMove, int _lSpeed)
         {
             int iReturnValue;
-            iReturnValue = MoveManual(_bWhatToMove, _lSpeed);
+            iReturnValue = MoveManual(manualMovementToByte(enumWhatToMove), _lSpeed);
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -411,5 +361,100 @@ namespace WrapperTester // Has to be changed
         [DllImport("USBC.dll", EntryPoint = "?Teach@@YAHPADFPAJFJ@Z", CallingConvention = CallingConvention.Cdecl)]
         public static extern int Teach([MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtPoint, int[] iaPointInfo, short shrtSizeOfArray, int iPointType); // long types used in C++ functions.
         #endregion
+
+
+        // -Helper functions
+        private byte axisSettingsToByte(enumAxisSettings axisSettingsArg)
+        {
+            byte bArg;
+            switch (axisSettingsArg)
+            {
+                case enumAxisSettings.AXIS_ROBOT:
+                    bArg = (byte)'A';
+                    break;
+                case enumAxisSettings.AXIS_PERIPHERALS:
+                    bArg = (byte)'B';
+                    break;
+                case enumAxisSettings.AXIS_GRIPPER:
+                    bArg = (byte) 'G';
+                    break;
+                case enumAxisSettings.AXIS_0:
+                    bArg = (byte) '0';
+                    break;
+                case enumAxisSettings.AXIS_1:
+                    bArg = (byte) '1';
+                    break;
+                case enumAxisSettings.AXIS_2:
+                    bArg = (byte) '2';
+                    break;
+                case enumAxisSettings.AXIS_3:
+                    bArg = (byte) '3';
+                    break;
+                case enumAxisSettings.AXIS_4:
+                    bArg = (byte) '4';
+                    break;
+                case enumAxisSettings.AXIS_5:
+                    bArg = (byte) '5';
+                    break;
+                case enumAxisSettings.AXIS_6:
+                    bArg = (byte) '6';
+                    break;
+                case enumAxisSettings.AXIS_7:
+                    bArg = (byte) '7';
+                    break;
+                case enumAxisSettings.AXIS_ALL:
+                    bArg = (byte)'&';
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("axisSettingsArg group invalid.");
+            }
+            return(bArg);
+        }
+        private byte manualMovementToByte(enumManualModeWhat enumArg)
+        {
+            byte bArg;
+            switch (enumArg)
+            {
+                case enumManualModeWhat.MANUAL_MOVE_BASE:
+                    bArg = (byte)'0';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_SHOULDER:
+                    bArg = (byte)'1';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_ELBOW:
+                    bArg = (byte)'2';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_WRISTPITCH:
+                    bArg = (byte)'3';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_WRISTROLL:
+                    bArg = (byte)'4';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_GRIPPER:
+                    bArg = (byte)'5';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT:
+                    bArg = (byte)'7';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_X:
+                    bArg = (byte)'0';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_Y:
+                    bArg = (byte)'1';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_Z:
+                    bArg = (byte)'2';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_PITCH:
+                    bArg = (byte)'3';
+                    break;
+                case enumManualModeWhat.MANUAL_MOVE_ROLL:
+                    bArg = (byte)'4';
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("enumArg group invalid.");
+            }
+            return(bArg);
+        }
     }
 }
