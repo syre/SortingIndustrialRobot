@@ -1,4 +1,4 @@
-﻿/** \file Wrapper.cs */
+﻿/** \file wrapper.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Runtime.InteropServices;
