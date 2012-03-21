@@ -11,9 +11,10 @@ namespace DSL_component
     {
         static void Main(string[] args)
         {
-            Wrapper wr = new Wrapper();
+            IRobot wr = new Robot();
             ScriptRunner.setRobotInstance(wr);
-            ScriptRunner.setScriptFromString(@"HelloWorld()");
+
+            ScriptRunner.setScriptFromString(@"testHelloName('Soeren')");
             ScriptRunner.ExecuteScript();
         }
     }

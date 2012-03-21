@@ -13,16 +13,15 @@ namespace DSL_component
     ///  needs IronPython, IronPython.Modules and Microsoft.Scripting assemblies as reference
     /// </summary>
 
-    static class ScriptRunner
+    public static class ScriptRunner
     {
+        private static ScriptEngine _engine;
         private static ScriptRuntimeSetup _setup;
         private static ScriptRuntime _runtime;
-        private static ScriptEngine _engine;
         private static ScriptSource _source;
         private static ScriptScope _scope;
         private static ErrorReporter _reporter;
-        private static ObjectOperations _operations;
-        private static Wrapper _wrapper;
+        private static IRobot _robot;
 
         /// <summary>
         ///  initializing the python engine
@@ -34,21 +33,15 @@ namespace DSL_component
             _engine = Python.GetEngine(_runtime);
             _scope = _engine.CreateScope();
             _reporter = new ErrorReporter();
-            // initializing wrapper methods from methods.py file placed in root dir
+            // initializing robot methods from methods.py file placed in root dir
             setScriptFromFile("../../methods.py");
             ExecuteScript();
         }
 
-        public static void setRobotInstance(Wrapper r)
+        public static void setRobotInstance(IRobot r)
         {
-            _wrapper = r;
-            _operations = _engine.Operations;
-
-            // removing the need for robot scope
-            foreach (string memberName in _operations.GetMemberNames(_wrapper))
-            {
-                _scope.SetVariable(memberName, _operations.GetMember(_wrapper, memberName));
-            }
+            _robot = r;
+            _scope.SetVariable("_robot", _robot);
         }
 
         /// <summary>
