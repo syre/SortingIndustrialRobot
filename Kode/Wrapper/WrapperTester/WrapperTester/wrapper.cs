@@ -21,23 +21,6 @@ namespace WrapperTester // Has to be changed
         // -Singleton related
         private static Wrapper wrapOnlyInstance;
 
-        // -Events not used outside class
-        private DgateCallBack callbackfuncSuccessful;
-        private DgateCallBack callbackfuncError;
-
-        /// \todo Change default event handling. Example output more useful info.
-        #region Events
-        // Some callback events placed here if not found useful in outside context.
-        private static void eventSuccess(IntPtr intptrConfigData)
-        {
-            System.Console.WriteLine("Success.");
-        } 
-        private static void eventError(IntPtr intptrConfigData)
-        {
-            System.Console.WriteLine("Error.");
-        }
-        #endregion
-
         // Settings constants
         // -Initialization mode
         /// <summary>
@@ -115,13 +98,14 @@ namespace WrapperTester // Has to be changed
         // -Constructors and destructors
         private Wrapper()
         {
-            // Initializes callback functions
-            callbackfuncSuccessful = new DgateCallBack(eventSuccess);
-            callbackfuncError = new DgateCallBack(eventError);
         }
 
 
         // -Singleton related
+        /// <summary>
+        /// Gets the wrapper.
+        /// </summary>
+        /// <returns>The wrapper.</returns>
         public static Wrapper getInstance()
         {
             if(wrapOnlyInstance == null)
@@ -135,13 +119,18 @@ namespace WrapperTester // Has to be changed
         #region Initialization and settings
         /// <summary>
         /// Initializes the robot.
+        /// 
+        /// Note: Should wait for it to be done before calling other functions.
+        /// \todo Refactor delegate to contain ConfigData and ErrorInfo if found necessary.
         /// </summary>
         /// <param name="_shrtMode">Mode. For example simulator.(Use one of constants)</param>
         /// <param name="_shrtType">Type of connection.(Use one of constants)</param>
+        /// <param name="_funcptrSuccess">Function to be called on success.</param>
+        /// <param name="_funcptrError">Function to be called on error.</param>
         /// <returns>Returns true on successful call.(But errors can still happen)</returns>
-        public bool initializationWrapped(enumSystemModes _sysmodeMode, enumSystemTypes _systypeType)
+        public bool initializationWrapped(enumSystemModes _sysmodeMode, enumSystemTypes _systypeType, DgateCallBack _funcptrSuccess, DgateCallBack _funcptrError)
         {
-            int iReturnValue = initialization((short)_sysmodeMode, (short)_systypeType, callbackfuncSuccessful, callbackfuncError);
+            int iReturnValue = initialization((short)_sysmodeMode, (short)_systypeType, _funcptrSuccess, _funcptrError);
             return ((iReturnValue == 1)? true : false);
         }
         /// <summary>
@@ -328,7 +317,7 @@ namespace WrapperTester // Has to be changed
         #region Imported references(Should use wrapped versions)
         // -Function pointers
         [UnmanagedFunctionPointer( CallingConvention.Cdecl, CharSet = CharSet.Ansi )] /** \todo Wrap timer around */
-        private delegate void DgateCallBack(IntPtr voidptrConfigData);
+        public delegate void DgateCallBack(IntPtr voidptrConfigData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public delegate void DgateCallBackCharArg(Byte bArg);

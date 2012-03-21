@@ -8,9 +8,9 @@ namespace WrapperTester
     class Program
     {
         private static Wrapper wrapA;
+        private static int iSpeed = 10;
         private static void manualMovement()
         {
-            int iSpeed = 10;
             while(true)
             {
                 ConsoleKeyInfo ckiArg;
@@ -37,6 +37,16 @@ namespace WrapperTester
                 Console.ReadKey(false);
             }
             Console.ReadKey();
+        }
+
+        // Events
+        static void initSuccess(IntPtr iptrArg)
+        {
+            System.Console.WriteLine("Initialized successfully.");
+        }
+        static void initError(IntPtr iptrArg)
+        {
+            System.Console.WriteLine("Initialize error.");
         }
         static void homeEvent(Byte _bArg)
         {
@@ -75,7 +85,7 @@ namespace WrapperTester
             // Testing
             // -Main setup
             System.Console.WriteLine("Initializing.(Press <Enter> when successfully initialized.)");
-            status = wrapA.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE, Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT);
+            status = wrapA.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE, Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT, initSuccess, initError);
             System.Console.WriteLine("Status<wait for event too>: {0}", status);
             System.Console.ReadLine();
             System.Console.WriteLine("Turning control on.(Press <Enter> when done.)");
@@ -91,6 +101,7 @@ namespace WrapperTester
                 System.Console.WriteLine("What now:");
                 System.Console.WriteLine("\t(H)Home all.");
                 System.Console.WriteLine("\t(E)Enable manual movement.");
+                System.Console.WriteLine("\t(S)Set manual movement speed.(At the moment {0}.)", iSpeed);
                 ckiArg = System.Console.ReadKey();
                 System.Console.Clear();
                 // --Check
@@ -108,6 +119,11 @@ namespace WrapperTester
                     System.Console.WriteLine("Status: {0}", status);
                     System.Console.ReadLine();
                     manualMovement();
+                }
+                else if(ckiArg.Key == ConsoleKey.S)
+                {
+                    System.Console.WriteLine("Enter new speed value: ");
+                    iSpeed = int.Parse(System.Console.ReadLine());
                 }
                 else
                 {
