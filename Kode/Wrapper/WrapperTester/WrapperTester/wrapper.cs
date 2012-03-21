@@ -22,10 +22,11 @@ namespace WrapperTester // Has to be changed
         private static Wrapper wrapOnlyInstance;
 
         // -Events not used outside class
-        private DgateCallBack callbackfuncSucessful;
+        private DgateCallBack callbackfuncSuccessful;
         private DgateCallBack callbackfuncError;
         private DgateCallBackCharArg callbackfuncHoming;
 
+        /// \todo Change default event handling. Example output more useful info.
         #region Events
         // Some callback events placed here if not found useful in outside context.
         private static void eventSuccess(IntPtr intptrConfigData)
@@ -44,14 +45,20 @@ namespace WrapperTester // Has to be changed
 
         // Settings constants
         // -Initialization mode
-        public const short MODE_DEFAULT = 0; // Last used mode
-        public const short MODE_ONLINE = 1; // Force online mode
-        public const short MODE_SIMULAT = 2; // Simulator mode
+        public enum enumSystemModes /// \todo Add descriptions  
+        {
+            MODE_DEFAULT = 0, // Last used mode
+            MODE_ONLINE = 1, // Force online mode(Normally used)
+            MODE_SIMULAT = 2 // Simulator mode
+        }
         // -Initialization system type
-        public const short SYSTEM_TYPE_DEFAULT = 0; // Detect it
-        public const short SYSTEM_TYPE_ER4USB= 41; // ER-4
+        public enum enumSystemTypes /// \todo Add descriptions
+        {
+            SYSTEM_TYPE_DEFAULT = 0, // Detect it(Normally used)
+            SYSTEM_TYPE_ER4USB = 41 // ER-4
+        }
         // -Axis control settings
-        public enum enumAxisSettings
+        public enum enumAxisSettings /// \todo Add descriptions
         {
             AXIS_ROBOT,
             AXIS_PERIPHERALS,
@@ -78,13 +85,13 @@ namespace WrapperTester // Has to be changed
         private Wrapper()
         {
             // Initializes callback functions
-            callbackfuncSucessful = new DgateCallBack(eventSuccess);
+            callbackfuncSuccessful = new DgateCallBack(eventSuccess);
             callbackfuncError = new DgateCallBack(eventError);
             callbackfuncHoming = new DgateCallBackCharArg(eventHoming);
         }
 
         // -Helper functions
-        private byte axisSettingsToByte(enumAxisSettings axisSettingsArg)
+        private byte axisSettingsToByte(enumAxisSettings axisSettingsArg) // Move down
         {
             byte bArg;
             switch (axisSettingsArg)
@@ -149,33 +156,10 @@ namespace WrapperTester // Has to be changed
         /// <param name="_shrtMode">Mode. For example simulator.(Use one of constants)</param>
         /// <param name="_shrtType">Type of connection.(Use one of constants)</param>
         /// <returns>Returns true on successful call.(But errors can still happen)</returns>
-        public bool initializationWrapped(short _shrtMode, short _shrtType)
+        public bool initializationWrapped(enumSystemModes _sysmodeMode, enumSystemTypes _systypeType)
         {
-            int iReturnValue = initialization(_shrtMode, _shrtType, callbackfuncSucessful, callbackfuncError);
+            int iReturnValue = initialization((short)_sysmodeMode, (short)_systypeType, callbackfuncSuccessful, callbackfuncError);
             return ((iReturnValue == 1)? true : false);
-        }
-        /// <summary>
-        /// Sets the location of the "Par" folder.
-        /// </summary>
-        /// <param name="charptrFolder">String with location of file.</param>
-        /// <returns>Returns true on successful call.</returns>
-        public bool setParameterFolderWrapped(string _sFolderAddress)
-        {
-            IntPtr intptrTmp = Marshal.StringToHGlobalAnsi(_sFolderAddress);
-            int iReturnValue = SetParameterFolder(intptrTmp);
-            return ((iReturnValue == 1) ? true : false);
-        }
-        /// <summary>
-        /// Returns address of "Par" folder.
-        /// </summary>
-        /// <param name="_sFolderAddress">Buffer for address.</param>
-        /// <returns>Returns true on successful call.</returns>
-        public bool getParameterFolderWrapped(out string _sFolderAddress)
-        {
-            IntPtr intptrTmp = Marshal.AllocHGlobal(200);
-            int iReturnValue = GetParameterFolder(intptrTmp);
-            _sFolderAddress = Marshal.PtrToStringAuto(intptrTmp);
-            return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
         /// Turns control on and off for certain axis group.
@@ -183,11 +167,17 @@ namespace WrapperTester // Has to be changed
         /// <param name="bAxis">Axis group to affect.(Use enum)</param>
         /// <param name="_bControlOnOrOff">To have it turned off or on.</param>
         /// <returns>Returns true on successful call.</returns>
-        public bool controlWrapped(enumAxisSettings _axisSettingsGroup, bool _bControlOnOrOff)
-        {
+        public bool controlWrapped(enumAxisSettings _axisSettingsGroup, bool _bControlOnOrOff) 
+        { 
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
             int iReturnValue;
-            iReturnValue = Control(bArg, _bControlOnOrOff);
+            iReturnValue = Control(bArg, _bControlOnOrOff); /// \warning Bool arg in unwrapped version.
+            return ((iReturnValue == 1) ? true : false);
+        }
+        public bool control2(char arg)
+        {
+            int iReturnValue;
+            iReturnValue = Control((byte)arg, true); /// \warning Bool arg in unwrapped version.
             return ((iReturnValue == 1) ? true : false);
         }
         #endregion
@@ -199,11 +189,17 @@ namespace WrapperTester // Has to be changed
         /// </summary>
         /// <param name="_axisSettingsGroup">The axis group.(Use enum)</param>
         /// <returns>Returns true on successful call.</returns>
-        public bool homeWrapped(enumAxisSettings _axisSettingsGroup)
+        public bool homeWrapped(enumAxisSettings _axisSettingsGroup) 
         {
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
             int iReturnValue;
-            iReturnValue = Home((byte) _axisSettingsGroup, callbackfuncHoming);
+            iReturnValue = Home((byte) _axisSettingsGroup, callbackfuncHoming);/// \warning Direct
+            return ((iReturnValue == 1) ? true : false);
+        }
+        public bool home2(char arg) // Test
+        {
+            int iReturnValue;
+            iReturnValue = Home((byte) arg, callbackfuncHoming);/// \warning Direct
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -362,12 +358,6 @@ namespace WrapperTester // Has to be changed
         // --Robot functions
         [DllImport("USBC.dll", EntryPoint = "?Initialization@@YAHFFP6AXPAX@Z1@Z", CallingConvention = CallingConvention.Cdecl)]
         private static extern int initialization(short shrtMode, short shrtType, DgateCallBack funcprtCallBack, DgateCallBack funcptrCallBackError);
-
-        [DllImport("USBC.dll", EntryPoint = "?SetParameterFolder@@YAHPAD@Z", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int SetParameterFolder(IntPtr charptrFolder);
-
-        [DllImport("USBC.dll", EntryPoint = "?GetParameterFolder@@YAHPAD@Z", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int GetParameterFolder(IntPtr charptrFolderBuffer);
 
         [DllImport("USBC.dll", EntryPoint = "?Control@@YAHEH@Z", CallingConvention = CallingConvention.Cdecl)]
         private static extern int Control(byte bAxis, bool bIsOn);
