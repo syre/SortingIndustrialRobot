@@ -176,7 +176,7 @@ namespace WrapperTester // Has to be changed
         {
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
             int iReturnValue;
-            iReturnValue = Home((byte) _axisSettingsGroup, _funcptrHomingEventHandler);
+            iReturnValue = Home((byte) bArg, _funcptrHomingEventHandler);
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -219,7 +219,7 @@ namespace WrapperTester // Has to be changed
         public bool moveManualWrapped(enumManualModeWhat _enumWhatToMove, int _lSpeed)
         {
             int iReturnValue;
-            iReturnValue = MoveManual(manualMovementToByte(_enumWhatToMove), _lSpeed);
+            iReturnValue = MoveManual(manualMovementToByte(_enumWhatToMove), _lSpeed); ///\warning WARN
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>

@@ -11,6 +11,7 @@ namespace WrapperTester
         private static int iSpeed = 10;
         private static void manualMovement()
         {
+            wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, iSpeed);
             while(true)
             {
                 ConsoleKeyInfo ckiArg;
@@ -18,7 +19,7 @@ namespace WrapperTester
                 System.Console.WriteLine("Press arrow keys.(<q> to stop.)");
                 ckiArg = System.Console.ReadKey();
 
-                if (ckiArg.Key == ConsoleKey.DownArrow)
+                if (ckiArg.Key == ConsoleKey.W)
                     wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_SHOULDER, iSpeed);
                 else if (ckiArg.Key == ConsoleKey.UpArrow)
                     wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_SHOULDER, -iSpeed);
@@ -58,6 +59,9 @@ namespace WrapperTester
         {
             // Members
             wrapA = Wrapper.getInstance();
+            Wrapper.DgateCallBack dgateEventHandlerSuccess = initSuccess;
+            Wrapper.DgateCallBack dgateEventHandlerError = initError;
+            Wrapper.DgateCallBackCharArg dgateEventHandlerHoming = homeEvent;
             bool status;
 
             #region OLD
@@ -85,7 +89,7 @@ namespace WrapperTester
             // Testing
             // -Main setup
             System.Console.WriteLine("Initializing.(Press <Enter> when successfully initialized.)");
-            status = wrapA.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE, Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT, initSuccess, initError);
+            status = wrapA.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE, Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT, dgateEventHandlerSuccess, dgateEventHandlerError);
             System.Console.WriteLine("Status<wait for event too>: {0}", status);
             System.Console.ReadLine();
             System.Console.WriteLine("Turning control on.(Press <Enter> when done.)");
@@ -102,13 +106,30 @@ namespace WrapperTester
                 System.Console.WriteLine("\t(H)Home all.");
                 System.Console.WriteLine("\t(E)Enable manual movement.");
                 System.Console.WriteLine("\t(S)Set manual movement speed.(At the moment {0}.)", iSpeed);
+                System.Console.WriteLine("\t(E)Enable manual movement.");
+                System.Console.WriteLine("\t(C)Close gripper.");
+                System.Console.WriteLine("\t(O)Open gripper.");
                 ckiArg = System.Console.ReadKey();
                 System.Console.Clear();
                 // --Check
                 if(ckiArg.Key == ConsoleKey.H)
                 {
                     System.Console.WriteLine("Homing.(Press <Enter> when successfully done.)");
-                    status = wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, homeEvent);
+                    status = wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
+                    /*System.Console.WriteLine("Homing 0:");
+                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_0, dgateEventHandlerHoming);
+                    System.Console.WriteLine("Homing 1:");
+                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_1, dgateEventHandlerHoming);
+                    System.Console.WriteLine("Homing 2:");
+                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_2, dgateEventHandlerHoming);
+                    System.Console.WriteLine("Homing Gripper:");
+                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_GRIPPER, dgateEventHandlerHoming);
+                    System.Console.WriteLine("Homing Peripherals:");
+                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_PERIPHERALS, dgateEventHandlerHoming);
+                    System.Console.WriteLine("Homing Robot:");
+                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
+                    System.Console.WriteLine("Homing All:");
+                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ALL, dgateEventHandlerHoming);*/
                     System.Console.WriteLine("Status: {0}", status);
                     System.Console.ReadLine();
                 }
@@ -124,6 +145,18 @@ namespace WrapperTester
                 {
                     System.Console.WriteLine("Enter new speed value: ");
                     iSpeed = int.Parse(System.Console.ReadLine());
+                }
+                else if(ckiArg.Key == ConsoleKey.C)
+                {
+                    System.Console.WriteLine("Closing gripper.(Press <Enter> afterwards.)");
+                    status = wrapA.closeGripperWrapped();
+                    System.Console.WriteLine("Status: {0}", status);
+                }
+                else if(ckiArg.Key == ConsoleKey.O)
+                {
+                    System.Console.WriteLine("Opening gripper.(Press <Enter> afterwards.)");
+                    status = wrapA.closeGripperWrapped();
+                    System.Console.WriteLine("Status: {0}", status);
                 }
                 else
                 {
