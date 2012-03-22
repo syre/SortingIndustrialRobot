@@ -1,10 +1,97 @@
 ﻿/** \file wrapper.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace WrapperTester // Has to be changed
 {
+    // Extra classes
+    /// <summary>
+    /// Class to contain point for use in one of the vector classes.
+    /// </summary>
+    class VecPoint
+    {
+        public int iX;
+        public int iY;
+        public int iZ;
+        public int iPitch;
+        public int iRoll;
+        public VecPoint(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
+        {
+            iX = _iX;
+            iY = _iY;
+            iZ = _iZ;
+            iPitch = _iPitch;
+            iRoll = _iRoll;
+        }
+    }
+    /// <summary>
+    /// Base class for vector used in wrapper.
+    /// 
+    /// Should use the derived classes.
+    /// </summary>
+    class Vector
+    {
+        // Members
+
+
+        protected string sName;
+        protected List<VecPoint> lstPoints;
+        protected int iType; // What kind of pointer
+
+        // Functions
+        public int getSize()
+        {
+            return (lstPoints.Count);
+        }
+        public void addPoint(VecPoint pNewVecPoint)
+        {
+            lstPoints.Add(pNewVecPoint);     
+        }
+        public VecPoint getPoint(int iIndex)
+        {
+            return (lstPoints[iIndex]);
+        }
+        public string Name
+        {
+            get { return sName; }
+        }
+        public int Type
+        {
+            get { return iType; }
+        }
+
+    }
+
+    /// <summary>
+    /// Vector class for absolute positions.
+    /// </summary>
+    class AbsCoordVector : Vector
+    {
+        // Functions 
+        public AbsCoordVector(string _sName)
+        {
+            sName = _sName;
+            lstPoints = new List<VecPoint>();
+            iType = -32766;
+        }
+    }
+    
+    /// <summary>
+    /// Vector class for relative positions.
+    /// </summary>
+    class RelCoordVector : Vector
+    {
+        // Functions 
+        public RelCoordVector(string _sName)
+        {
+            sName = _sName;
+            lstPoints = new List<VecPoint>();
+            iType = -32767;
+        }
+    }
+
     /// <summary>
     /// Contains a wrapper for the C++ functions in the dll file(USBC.dll).
     /// 
@@ -12,6 +99,7 @@ namespace WrapperTester // Has to be changed
     /// 
     /// Notes:  Uses IntPtr arg for different types of C++ pointers.
     ///         Same function names as C++ but has "Wrapped" at the end.
+    ///         Try to have handlers in delegates which in entire use of wrapper, so the memory for the handler doesn´t get removed by GC.
     /// 
     /// \todo Add behind factory class.
     /// </summary>
@@ -74,7 +162,7 @@ namespace WrapperTester // Has to be changed
             MANUAL_TYPE_COORD
         }
         /// <summary>
-        /// For chosing what part to move when movin manually.
+        /// For chosing what part to move when moving manually.
         /// 
         /// Note: Some used for moving by axes and some used for moving by coordinates.
         /// </summary>
@@ -98,6 +186,7 @@ namespace WrapperTester // Has to be changed
         // -Constructors and destructors
         private Wrapper()
         {
+            // Nothing
         }
 
 
@@ -123,8 +212,8 @@ namespace WrapperTester // Has to be changed
         /// Note: Should wait for it to be done before calling other functions.
         /// \todo Refactor delegate to contain ConfigData and ErrorInfo if found necessary.
         /// </summary>
-        /// <param name="_shrtMode">Mode. For example simulator.(Use one of constants)</param>
-        /// <param name="_shrtType">Type of connection.(Use one of constants)</param>
+        /// <param name="_shrtMode">Mode.(Use one of constants[Normally use online mode])</param>
+        /// <param name="_shrtType">Type of connection.(Use one of constants[Normally use default])</param>
         /// <param name="_funcptrSuccess">Function to be called on success.</param>
         /// <param name="_funcptrError">Function to be called on error.</param>
         /// <returns>Returns true on successful call.(But errors can still happen)</returns>
@@ -172,7 +261,7 @@ namespace WrapperTester // Has to be changed
         ///     1 - 8: Axis n being homed.
         ///     0x40: Homing ended.</param>
         /// <returns>Returns true on successful call.</returns>
-        public bool homeWrapped(enumAxisSettings _axisSettingsGroup, DgateCallBackCharArg _funcptrHomingEventHandler) 
+        public bool homeWrapped(enumAxisSettings _axisSettingsGroup, DgateCallBackByteRefArg _funcptrHomingEventHandler)
         {
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
             int iReturnValue;
@@ -234,7 +323,20 @@ namespace WrapperTester // Has to be changed
             return ((iReturnValue == 1) ? true : false);
         }
 
-
+        /// <summary>
+        /// Flytter robotten til et punkt.
+        /// 
+        /// \warning not using pos 2 in wrapped dll function.
+        /// </summary>
+        /// <param name="_sNameOfVector">Navnet på vektoren i robotten.</param>
+        /// <param name="_iIndex">Index for punkt.</param>
+        /// <returns>Returns true on successfull call.</returns>
+        public bool moveLinearWrapped(string _sNameOfVector, int _iIndex)
+        {
+            int iReturn;
+            iReturn = MoveLinear(_sNameOfVector, (short)_iIndex, null, 0); // Ignoring last value.
+            return (iReturn == 1);
+        }
         #endregion
 
         #region Gripper
@@ -313,10 +415,78 @@ namespace WrapperTester // Has to be changed
         }
         #endregion
 
+        #region Vectors
+        // Move enums and constants
+        public const char VECTOR_GROUP_ROBOT = 'A'; // Normally used
+        public const char VECTOR_GROUP_PERIPHERALS = 'B';
+        public const char VECTOR_GROUP_ALL = '&';
+
+        /// <summary>
+        /// Defines a new vector in robot memory.
+        /// 
+        /// Note: Good idea to have in program one of the Vector classes to contains vector information.
+        /// </summary>
+        /// <param name="_enumGroup">Group can use:
+        ///     Robot(Normally used)
+        ///     Peripherals
+        ///     All</param>
+        /// <param name="_sVectorName">Name of vector.</param>
+        /// <param name="_shrtLength">Length of vector.(Number of points.)</param>
+        /// <returns>Returns true on successfull call.</returns>
+        public bool defineVectorWrapped(enumAxisSettings _enumGroup, string _sVectorName, short _shrtLength)
+        {
+            int iReturn;
+            iReturn = DefineVector(axisSettingsToByte(_enumGroup), _sVectorName, _shrtLength);
+            return (iReturn == 1);
+        }
+        /// <summary>
+        /// Add the vector points to the vector with the same name. 
+        /// 
+        /// Note: Should call 'defineVectorWrapped' first.
+        /// </summary>
+        /// <param name="_vecTheVector">The vector with the points.</param>
+        /// <returns>Returns true on succeessfull call.</returns>
+        public bool teachWrapped(Vector _vecTheVector)
+        {
+            int iReturn;
+            for (int i = 0; i < _vecTheVector.getSize(); i++)
+            {
+                VecPoint pTmp = _vecTheVector.getPoint(i);
+                int x, y, z, pitch, roll;
+                x = pTmp.iX;
+                y = pTmp.iY;
+                z = pTmp.iZ;
+                pitch = pTmp.iPitch;
+                roll = pTmp.iRoll;
+                int[] iArray = new int[]{x, y, z, pitch, roll};
+
+                iReturn = Teach(_vecTheVector.Name, (short) i, iArray, 5, _vecTheVector.Type); // 5 because of 5 ints
+                if (iReturn == 0)
+                    return (false);
+            }
+            return (true);
+        }
+        /// <summary>
+        /// Returns the position of the robot.
+        /// 
+        /// \warning Ignoring wrapper int return value.
+        /// \todo Refactor buffer type and wrapped dll signature.
+        /// </summary>
+        /// <returns>Returns current position.</returns>
+        public VecPoint getCurrentPosition() /// \warning Not sure about buffer type to use.
+        {
+            // Used from site 
+            int[] pEnc = new int[8]; // Ignored
+            int[] pJoint = new int[8]; // Ignored
+            int[] pXYZ = new int[8];
+            GetCurrentPosition(ref pEnc, ref pJoint, ref pXYZ);
+            return (new VecPoint(pXYZ[0], pXYZ[1], pXYZ[2], pXYZ[3], pXYZ[4]));
+        }
+        #endregion
 
         #region Imported references(Should use wrapped versions)
         // -Function pointers
-        [UnmanagedFunctionPointer( CallingConvention.Cdecl, CharSet = CharSet.Ansi )] /** \todo Wrap timer around */
+        [UnmanagedFunctionPointer( CallingConvention.Cdecl, CharSet = CharSet.Ansi )]
         public delegate void DgateCallBack(IntPtr voidptrConfigData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
@@ -324,6 +494,9 @@ namespace WrapperTester // Has to be changed
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public delegate void DgateCallBackLongArg(long lArg); /// \warning Using long.
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public delegate void DgateCallBackByteRefArg(ref byte bArg);
 
         // -Robot functions
         [DllImport("USBC.dll", EntryPoint = "?Initialization@@YAHFFP6AXPAX@Z1@Z", CallingConvention = CallingConvention.Cdecl)]
@@ -333,7 +506,7 @@ namespace WrapperTester // Has to be changed
         private static extern int Control(byte bAxis, bool bIsOn);
 
         [DllImport("USBC.dll", EntryPoint = "?Home@@YAHEP6AXPAX@Z@Z", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int Home(byte axis, DgateCallBackCharArg funcptrCallBack);
+        private static extern int Home(byte axis, DgateCallBackByteRefArg funcptrCallBack);
 
         [DllImport("USBC.dll", EntryPoint = "?OpenGripper@@YAHXZ", CallingConvention = CallingConvention.Cdecl)]
         private static extern int OpenGripper();
@@ -376,8 +549,10 @@ namespace WrapperTester // Has to be changed
 
         [DllImport("USBC.dll", EntryPoint = "?Teach@@YAHPADFPAJFJ@Z", CallingConvention = CallingConvention.Cdecl)]
         private static extern int Teach([MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtPoint, int[] iaPointInfo, short shrtSizeOfArray, int iPointType); // long types used in C++ functions.
-        #endregion
 
+        [DllImport("USBC.dll", EntryPoint = "?GetCurrentPosition@@YAHPAY07J00@Z", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int GetCurrentPosition(ref int[] ibufEnc, ref int[] ibufJoint, ref int[] ibufXYZ);
+        #endregion
 
         #region Helper functions
         private byte axisSettingsToByte(enumAxisSettings axisSettingsArg)

@@ -12,21 +12,33 @@ namespace WrapperTester
         private static void manualMovement()
         {
             wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, iSpeed);
+            System.Console.Clear();
             while(true)
             {
                 ConsoleKeyInfo ckiArg;
-                System.Console.Clear();
                 System.Console.WriteLine("Press arrow keys.(<q> to stop.)");
                 ckiArg = System.Console.ReadKey();
 
-                if (ckiArg.Key == ConsoleKey.W)
-                    wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_SHOULDER, iSpeed);
+                if (ckiArg.Key == ConsoleKey.DownArrow)
+                {
+                    Console.WriteLine("Down arrow.");
+                    wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, iSpeed);
+                }
                 else if (ckiArg.Key == ConsoleKey.UpArrow)
-                    wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_SHOULDER, -iSpeed);
+                {
+                    Console.WriteLine("Up arrow.");
+                    wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, iSpeed);
+                }
                 else if (ckiArg.Key == ConsoleKey.LeftArrow)
-                    wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, iSpeed);
+                {
+                    Console.WriteLine("Left arrow.");
+                    wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, iSpeed);
+                }
                 else if (ckiArg.Key == ConsoleKey.RightArrow)
-                    wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, -iSpeed);
+                {
+                    Console.WriteLine("Right arrow.");
+                    wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_PITCH, iSpeed);
+                }
                 else if (ckiArg.Key == ConsoleKey.Q)
                     break;
             }
@@ -49,7 +61,7 @@ namespace WrapperTester
         {
             System.Console.WriteLine("Initialize error.");
         }
-        static void homeEvent(Byte _bArg)
+        static void homeEvent(ref byte _bArg)
         {
             System.Console.WriteLine("Home Event: " + _bArg);
         }
@@ -61,7 +73,7 @@ namespace WrapperTester
             wrapA = Wrapper.getInstance();
             Wrapper.DgateCallBack dgateEventHandlerSuccess = initSuccess;
             Wrapper.DgateCallBack dgateEventHandlerError = initError;
-            Wrapper.DgateCallBackCharArg dgateEventHandlerHoming = homeEvent;
+            Wrapper.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
             bool status;
 
             #region OLD
@@ -104,11 +116,11 @@ namespace WrapperTester
                 ConsoleKeyInfo ckiArg;
                 System.Console.WriteLine("What now:");
                 System.Console.WriteLine("\t(H)Home all.");
-                System.Console.WriteLine("\t(E)Enable manual movement.");
+                System.Console.WriteLine("\t(E)Manual movement.(Unfunctional)");
                 System.Console.WriteLine("\t(S)Set manual movement speed.(At the moment {0}.)", iSpeed);
-                System.Console.WriteLine("\t(E)Enable manual movement.");
                 System.Console.WriteLine("\t(C)Close gripper.");
                 System.Console.WriteLine("\t(O)Open gripper.");
+                System.Console.WriteLine("\t(B)Move conveyerbelt.");
                 ckiArg = System.Console.ReadKey();
                 System.Console.Clear();
                 // --Check
@@ -116,27 +128,13 @@ namespace WrapperTester
                 {
                     System.Console.WriteLine("Homing.(Press <Enter> when successfully done.)");
                     status = wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
-                    /*System.Console.WriteLine("Homing 0:");
-                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_0, dgateEventHandlerHoming);
-                    System.Console.WriteLine("Homing 1:");
-                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_1, dgateEventHandlerHoming);
-                    System.Console.WriteLine("Homing 2:");
-                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_2, dgateEventHandlerHoming);
-                    System.Console.WriteLine("Homing Gripper:");
-                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_GRIPPER, dgateEventHandlerHoming);
-                    System.Console.WriteLine("Homing Peripherals:");
-                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_PERIPHERALS, dgateEventHandlerHoming);
-                    System.Console.WriteLine("Homing Robot:");
-                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
-                    System.Console.WriteLine("Homing All:");
-                    wrapA.homeWrapped(Wrapper.enumAxisSettings.AXIS_ALL, dgateEventHandlerHoming);*/
                     System.Console.WriteLine("Status: {0}", status);
                     System.Console.ReadLine();
                 }
                 else if(ckiArg.Key == ConsoleKey.E)
                 {
                     System.Console.WriteLine("Enabling manual movement[By axes].(Press <Enter> when successfully done.)");
-                    status = wrapA.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
+                    status = wrapA.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
                     System.Console.WriteLine("Status: {0}", status);
                     System.Console.ReadLine();
                     manualMovement();
@@ -155,8 +153,18 @@ namespace WrapperTester
                 else if(ckiArg.Key == ConsoleKey.O)
                 {
                     System.Console.WriteLine("Opening gripper.(Press <Enter> afterwards.)");
-                    status = wrapA.closeGripperWrapped();
+                    status = wrapA.openGripperWrapped();
                     System.Console.WriteLine("Status: {0}", status);
+                }
+                else if(ckiArg.Key == ConsoleKey.B)
+                {
+                    System.Console.WriteLine("Moving belt.(Press <Enter> to to other things.)");
+                    wrapA.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
+                    System.Console.WriteLine("Enabling status: {0}", status);
+                    status = wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, iSpeed);
+                    System.Console.WriteLine("Moving status: {0}", status);
+                    System.Console.ReadLine();
+                    wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, 0);
                 }
                 else
                 {
