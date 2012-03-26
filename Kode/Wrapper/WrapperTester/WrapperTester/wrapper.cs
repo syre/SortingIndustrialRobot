@@ -31,11 +31,9 @@ namespace WrapperTester // Has to be changed
     /// 
     /// Should use the derived classes.
     /// </summary>
-    class Vector
+    class SIRVector
     {
         // Members
-
-
         protected string sName;
         protected List<VecPoint> lstPoints;
         protected int iType; // What kind of pointer
@@ -65,12 +63,12 @@ namespace WrapperTester // Has to be changed
     }
 
     /// <summary>
-    /// Vector class for absolute positions.
+    /// SIRVector class for absolute positions.
     /// </summary>
-    class AbsCoordVector : Vector
+    class AbsCoordSirVector : SIRVector
     {
         // Functions 
-        public AbsCoordVector(string _sName)
+        public AbsCoordSirVector(string _sName)
         {
             sName = _sName;
             lstPoints = new List<VecPoint>();
@@ -79,12 +77,12 @@ namespace WrapperTester // Has to be changed
     }
     
     /// <summary>
-    /// Vector class for relative positions.
+    /// SIRVector class for relative positions.
     /// </summary>
-    class RelCoordVector : Vector
+    class RelCoordSirVector : SIRVector
     {
         // Functions 
-        public RelCoordVector(string _sName)
+        public RelCoordSirVector(string _sName)
         {
             sName = _sName;
             lstPoints = new List<VecPoint>();
@@ -416,15 +414,10 @@ namespace WrapperTester // Has to be changed
         #endregion
 
         #region Vectors
-        // Move enums and constants
-        public const char VECTOR_GROUP_ROBOT = 'A'; // Normally used
-        public const char VECTOR_GROUP_PERIPHERALS = 'B';
-        public const char VECTOR_GROUP_ALL = '&';
-
         /// <summary>
         /// Defines a new vector in robot memory.
         /// 
-        /// Note: Good idea to have in program one of the Vector classes to contains vector information.
+        /// Note: Good idea to have in program one of the SIRVector classes to contains vector information.
         /// </summary>
         /// <param name="_enumGroup">Group can use:
         ///     Robot(Normally used)
@@ -444,14 +437,14 @@ namespace WrapperTester // Has to be changed
         /// 
         /// Note: Should call 'defineVectorWrapped' first.
         /// </summary>
-        /// <param name="_vecTheVector">The vector with the points.</param>
+        /// <param name="vecTheSirVector">The vector with the points.</param>
         /// <returns>Returns true on succeessfull call.</returns>
-        public bool teachWrapped(Vector _vecTheVector)
+        public bool teachWrapped(SIRVector vecTheSirVector)
         {
             int iReturn;
-            for (int i = 0; i < _vecTheVector.getSize(); i++)
+            for (int i = 0; i < vecTheSirVector.getSize(); i++)
             {
-                VecPoint pTmp = _vecTheVector.getPoint(i);
+                VecPoint pTmp = vecTheSirVector.getPoint(i);
                 int x, y, z, pitch, roll;
                 x = pTmp.iX;
                 y = pTmp.iY;
@@ -460,7 +453,7 @@ namespace WrapperTester // Has to be changed
                 roll = pTmp.iRoll;
                 int[] iArray = new int[]{x, y, z, pitch, roll};
 
-                iReturn = Teach(_vecTheVector.Name, (short) i, iArray, 5, _vecTheVector.Type); // 5 because of 5 ints
+                iReturn = Teach(vecTheSirVector.Name, (short) i, iArray, 5, vecTheSirVector.Type); // 5 because of 5 ints
                 if (iReturn == 0)
                     return (false);
             }
