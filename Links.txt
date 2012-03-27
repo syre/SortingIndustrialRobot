@@ -3,3 +3,6 @@ http://scrumy.com/remake60bubbled
 
 Scrum Master in 10 minutes - Updated version
  - http://www.youtube.com/watch?v=XU0llRltyFM
+
+MVVM pattern kort forklaret:
+http://jmorrill.hjtcentral.com/Home/tabid/428/EntryId/432/MVVM-for-Tarded-Folks-Like-Me-or-MVVM-and-What-it-Means-to-Me.aspx
