@@ -67,7 +67,9 @@ namespace DSL_component
     public class Robot : IRobot
     {
         private Wrapper _wrapper;
-
+        DLLImport.DgateCallBack dgateEventHandlerSuccess = initSuccess;
+        DLLImport.DgateCallBack dgateEventHandlerError = initError;
+        DLLImport.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
         #region Robot mode properties
         public ManualModeType ManualMode
         {
@@ -133,8 +135,23 @@ namespace DSL_component
         }
         #endregion
 
+        #region delegate functions
+        static void initSuccess(IntPtr iptrArg)
+        {
+            System.Console.WriteLine("Initialized successfully.");
+        }
+        static void initError(IntPtr iptrArg)
+        {
+            System.Console.WriteLine("Initialize error.");
+        }
+        static void homeEvent(ref byte _bArg)
+        {
+            System.Console.WriteLine("Home Event: " + _bArg);
+        }
+        #endregion
+
         #region general robot methods
-        
+
         public Robot()
         {
             _wrapper = Wrapper.getInstance();
@@ -145,13 +162,10 @@ namespace DSL_component
         /// <returns></returns>
         public bool Initialization() // implementing delegates
         {
-            Wrapper.DgateCallBack d1 = delegate(IntPtr data) {  };
-            Wrapper.DgateCallBack d2= delegate(IntPtr data) { };
-
             return _wrapper.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE,
                                                   Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT,
-                                                 d1,
-                                                 d2);
+                                                  dgateEventHandlerSuccess,
+                                                  dgateEventHandlerError);
         }
         /// <summary>
         /// homes robot
@@ -159,8 +173,7 @@ namespace DSL_component
         /// <returns></returns>
         public bool homeRobot() // implementing delegates
         {
-            Wrapper.DgateCallBackByteRefArg d = delegate(ref byte arg) {  };
-            return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, d);
+            return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
         }
 
         /// <summary>
@@ -194,7 +207,7 @@ namespace DSL_component
         public bool moveByCoordinates(int x, int y, int z, int pitch, int roll) // subject to change
         {
                 ManualMode = ManualModeType.Coordinates;
-                // move by coordinates
+                // implement move by coordinates
                 
                 ManualMode = ManualModeType.Off;
 

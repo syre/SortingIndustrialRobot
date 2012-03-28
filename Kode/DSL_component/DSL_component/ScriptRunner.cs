@@ -55,6 +55,7 @@ namespace DSL_component
             {
                 // compilation failed - alert user
                 _source = null;
+                throw new Exception("compilation failed");
             }
         }
 
@@ -67,7 +68,7 @@ namespace DSL_component
            CompiledCode codecheck = _source.Compile(_reporter);
            if (codecheck == null)
            {
-               System.Console.WriteLine("compilation failed");
+               throw new Exception("compilation failed");
                // compilation failed - alert user
                _source = null;
            }
