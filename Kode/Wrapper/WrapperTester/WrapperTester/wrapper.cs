@@ -301,7 +301,8 @@ namespace WrapperTester // Has to be changed
         }
         /// <summary>
         /// Moves the robot.
-        /// homeWrapped must have been called if moving by coordinates. 
+        /// homeWrapped must have been called if moving by coordinates.
+        /// \warning Seems to be unfunctional. 
         /// </summary>
         public bool moveManualWrapped(enumManualModeWhat _enumWhatToMove, int _lSpeed)
         {
@@ -325,6 +326,7 @@ namespace WrapperTester // Has to be changed
         /// Flytter robotten til et punkt.
         /// 
         /// \warning not using pos 2 in wrapped dll function.
+        /// \warning Seems to be unfunctional.
         /// </summary>
         /// <param name="_sNameOfVector">Navnet på vektoren i robotten.</param>
         /// <param name="_iIndex">Index for punkt.</param>
