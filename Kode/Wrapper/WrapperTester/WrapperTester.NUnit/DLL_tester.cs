@@ -8,14 +8,24 @@ using WrapperTester;
 namespace WrapperTester.NUnit
 {
     [TestFixture]
-    public class DLL_tester
+    public class DLLMock_Testing
     {
-        private DLL _dll;
+
+        public static DLL _dll = new DLL();
+        public DLLMock _dllMock = new DLLMock(_dll);
+
+        
+        private static int iSpeed = 10;
+        
+        private DLLImport.DgateCallBack dgateEventHandlerSuccess;
+        private DLLImport.DgateCallBack dgateEventHandlerError;
+        private DLLImport.DgateCallBackByteRefArg dgateEventHandlerHoming;
+        
+        
 
         [SetUp]
         public void SetupTest()
         {
-            _dll = new DLL();
             
         }
 
@@ -23,44 +33,56 @@ namespace WrapperTester.NUnit
         public void ExitTest()
         {
             //_dll = null;
+            //_dllMock = null;
         }
 
         [Test]
+        public void test()
+        {
+            int y = _dllMock.testcase(3);
+            Assert.AreEqual(3, y);
+        }
+        
+        
+        [Test]
         public void Initailization()
         {
-           
+            Assert.AreEqual(1, _dllMock.Initialization((short) DLLMock.enumSystemModes.MODE_ONLINE,
+                                               (short) DLLMock.enumSystemTypes.SYSTEM_TYPE_DEFAULT,
+                                               dgateEventHandlerSuccess, dgateEventHandlerError));
         }
 
         [Test]
         public void Control()
         {
-            
+           Assert.AreEqual(1, _dllMock.Control((byte)DLLMock.enumAxisSettings.AXIS_ROBOT, true)); 
         }
-
+        
         [Test]
         public void Home()
         {
-
+            Assert.AreEqual(1, _dllMock.Home((byte)DLLMock.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming));
         }
-
+        
         [Test]
         public void OpenGripper()
         {
+            Assert.AreEqual(1, _dllMock.OpenGripper());
 
         }
 
         [Test]
         public void CloseGripper()
         {
-
-        }
+            Assert.AreEqual(1, _dllMock.CloseGripper());
+        }   
 
         [Test]
         public void GetJaw()
         {
-
+          
         }
-
+        
         [Test]
         public void EnterManual()
         {
@@ -126,6 +148,6 @@ namespace WrapperTester.NUnit
         {
 
         }
-
+        
     }
 }

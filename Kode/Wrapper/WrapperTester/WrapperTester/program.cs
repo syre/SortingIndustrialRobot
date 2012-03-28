@@ -71,9 +71,9 @@ namespace WrapperTester
         {
             // Members
             wrapA = Wrapper.getInstance();
-            DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
-            DLL.DgateCallBack dgateEventHandlerError = initError;
-            DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
+            DLLImport.DgateCallBack dgateEventHandlerSuccess = initSuccess;
+            DLLImport.DgateCallBack dgateEventHandlerError = initError;
+            DLLImport.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
             bool status;
 
             #region OLD
