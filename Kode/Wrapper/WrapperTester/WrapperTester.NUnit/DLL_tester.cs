@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using WrapperTester;
 
 namespace WrapperTester.NUnit
 {
@@ -11,7 +12,7 @@ namespace WrapperTester.NUnit
     {
         private DLL _dll;
 
-        [Setup]
+        [SetUp]
         public void SetupTest()
         {
             _dll = new DLL();
@@ -27,7 +28,7 @@ namespace WrapperTester.NUnit
         [Test]
         public void Initailization()
         {
-            Assert.AreNotEqual();
+           
         }
 
         [Test]

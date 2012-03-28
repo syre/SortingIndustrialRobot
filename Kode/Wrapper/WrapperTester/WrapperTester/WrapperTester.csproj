@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DLL.cs" />
+    <Compile Include="DLLMock.cs" />
     <Compile Include="IDLL.cs" />
+    <Compile Include="IDLLMock.cs" />
     <Compile Include="program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="wrapper.cs" />

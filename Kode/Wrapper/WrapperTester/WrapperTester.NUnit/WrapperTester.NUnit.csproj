@@ -47,6 +47,12 @@
     <Compile Include="DLL_tester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WrapperTester\WrapperTester.csproj">
+      <Project>{72FF0E5F-CFDD-47ED-B0FF-014F1D6640E8}</Project>
+      <Name>WrapperTester</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace WrapperTester
 {
@@ -10,11 +11,11 @@ namespace WrapperTester
         #region Interfaced DLL's
         
         // -Robot functions
-        int initialization(DLL.DgateCallBack funcprtCallBack, DLL.DgateCallBack funcptrCallBackError);
+        int Initialization(short shrtMode, short shrtType, DLLImport.DgateCallBack funcprtCallBack, DLLImport.DgateCallBack funcptrCallBackError);
 
         int Control(byte bAxis, bool bIsOn);
 
-        int Home(byte axis, DLL.DgateCallBackByteRefArg funcptrCallBack);
+        int Home(byte axis, DLLImport.DgateCallBackByteRefArg funcptrCallBack);
 
         int OpenGripper();
 
@@ -30,9 +31,9 @@ namespace WrapperTester
 
         int Stop(byte axis);
 
-        DLL.DgateCallBackCharArg WatchMotion(DLL.DgateCallBackCharArg funcptrCallbackEnd, DLL.DgateCallBackCharArg funcptrCallbackStart);
+        DLLImport.DgateCallBackCharArg WatchMotion(DLLImport.DgateCallBackCharArg funcptrCallbackEnd, DLLImport.DgateCallBackCharArg funcptrCallbackStart);
 
-        int WatchDigitalInput(DLL.DgateCallBackLongArg funcptrCallbackEvent);
+        int WatchDigitalInput(DLLImport.DgateCallBackLongArg funcptrCallbackEvent);
 
         int CloseWatchDigitalInput();
 
