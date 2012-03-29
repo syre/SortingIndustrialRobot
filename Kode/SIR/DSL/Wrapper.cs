@@ -231,7 +231,7 @@ namespace DSL // Has to be changed
         { 
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
             int iReturnValue;
-            iReturnValue = _dll.Control(bArg, _bControlOnOrOff); /// \warning Bool arg in unwrapped version.
+            iReturnValue = _dll.Control(bArg, _bControlOnOrOff); // Note: Bool arg in unwrapped version.
             return ((iReturnValue == 1) ? true : false);
         }
 
@@ -268,7 +268,8 @@ namespace DSL // Has to be changed
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
-        /// Must be called to use manual movement.  
+        /// Must be called to use manual movement. 
+		/// Seems to stop previous movement of any object(Axis) that was moving before.
         /// </summary>
         /// <param name="_enummanMoveType">What to move by.(Axis(0), Coordinates(1))</param>
         /// <returns>Returns true on successful call.</returns>
@@ -303,12 +304,13 @@ namespace DSL // Has to be changed
         /// <summary>
         /// Moves the robot.
         /// homeWrapped must have been called if moving by coordinates.
-        /// \warning Seems to be unfunctional. 
+		/// enterManual seems have to be called before each call to this function.
+		/// Use stopWrapped to stop motion afterwards.(Moving some other part of the system also stops the previous movement, since the system can only handle one object(Axis) moving at a time.)
         /// </summary>
         public bool moveManualWrapped(enumManualModeWhat _enumWhatToMove, int _lSpeed)
         {
             int iReturnValue;
-            iReturnValue = _dll.MoveManual(manualMovementToByte(_enumWhatToMove), _lSpeed); ///\warning WARN
+            iReturnValue = _dll.MoveManual(manualMovementToByte(_enumWhatToMove), _lSpeed);
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -326,7 +328,7 @@ namespace DSL // Has to be changed
         /// <summary>
         /// Flytter robotten til et punkt.
         /// 
-        /// \warning not using pos 2 in wrapped dll function.
+        /// \warning Not using pos 2 in wrapped dll function.
         /// \warning Seems to be unfunctional.
         /// </summary>
         /// <param name="_sNameOfVector">Navnet på vektoren i robotten.</param>
@@ -466,10 +468,10 @@ namespace DSL // Has to be changed
         /// Returns the position of the robot.
         /// 
         /// \warning Ignoring wrapper int return value.
-        /// \todo Refactor buffer type and wrapped dll signature.
+		/// \warning Not sure about buffer type to use in impl.
         /// </summary>
         /// <returns>Returns current position.</returns>
-        public VecPoint getCurrentPosition() /// \warning Not sure about buffer type to use.
+        public VecPoint getCurrentPosition()
         {
             // Used from site 
             int[] pEnc = new int[8]; // Ignored
@@ -496,28 +498,28 @@ namespace DSL // Has to be changed
                     bArg = (byte) 'G';
                     break;
                 case enumAxisSettings.AXIS_0:
-                    bArg = (byte) '0';
+                    bArg = (byte) 0;
                     break;
                 case enumAxisSettings.AXIS_1:
-                    bArg = (byte) '1';
+                    bArg = (byte) 1;
                     break;
                 case enumAxisSettings.AXIS_2:
-                    bArg = (byte) '2';
+                    bArg = (byte) 2;
                     break;
                 case enumAxisSettings.AXIS_3:
-                    bArg = (byte) '3';
+                    bArg = (byte) 3;
                     break;
                 case enumAxisSettings.AXIS_4:
-                    bArg = (byte) '4';
+                    bArg = (byte) 4;
                     break;
                 case enumAxisSettings.AXIS_5:
-                    bArg = (byte) '5';
+                    bArg = (byte) 5;
                     break;
                 case enumAxisSettings.AXIS_6:
-                    bArg = (byte) '6';
+                    bArg = (byte) 6;
                     break;
                 case enumAxisSettings.AXIS_7:
-                    bArg = (byte) '7';
+                    bArg = (byte) 7;
                     break;
                 case enumAxisSettings.AXIS_ALL:
                     bArg = (byte)'&';
@@ -533,40 +535,40 @@ namespace DSL // Has to be changed
             switch (enumArg)
             {
                 case enumManualModeWhat.MANUAL_MOVE_BASE:
-                    bArg = (byte)'0';
+                    bArg = (byte)0;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_SHOULDER:
-                    bArg = (byte)'1';
+                    bArg = (byte)1;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_ELBOW:
-                    bArg = (byte)'2';
+                    bArg = (byte)2;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_WRISTPITCH:
-                    bArg = (byte)'3';
+                    bArg = (byte)3;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_WRISTROLL:
-                    bArg = (byte)'4';
+                    bArg = (byte)4;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_GRIPPER:
-                    bArg = (byte)'5';
+                    bArg = (byte)5;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT:
-                    bArg = (byte)'7';
+                    bArg = (byte)7;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_X:
-                    bArg = (byte)'0';
+                    bArg = (byte)0;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_Y:
-                    bArg = (byte)'1';
+                    bArg = (byte)1;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_Z:
-                    bArg = (byte)'2';
+                    bArg = (byte)2;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_PITCH:
-                    bArg = (byte)'3';
+                    bArg = (byte)3;
                     break;
                 case enumManualModeWhat.MANUAL_MOVE_ROLL:
-                    bArg = (byte)'4';
+                    bArg = (byte)4;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("enumArg group invalid.");
