@@ -56,6 +56,7 @@ namespace DSL_component
         bool Initialization();
         ManualModeType ManualMode { get; set; }
         ControlModeType ControlMode { get; set; }
+	bool stopAllMovement();
         bool stopMove(AxisSettings axis);
         bool moveByCoordinates(int x, int y, int z, int pitch, int roll);
         short getJawOpeningWidthMilimeters();
