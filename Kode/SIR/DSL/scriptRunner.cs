@@ -1,18 +1,15 @@
 ﻿/** \file scriptRunner.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using IronPython.Hosting;
-using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 
 namespace DSL
 {
     /// <summary>
-    ///  needs IronPython, IronPython.Modules and Microsoft.Scripting assemblies as reference
+    /// Used to run IronPython scripts.
+    /// 
+    /// Note: Needs IronPython, IronPython.Modules and Microsoft.Scripting assemblies as reference
     /// </summary>
 
     public static class ScriptRunner
@@ -40,18 +37,18 @@ namespace DSL
             ExecuteScript();
         }
 
-        public static void setRobotInstance(IRobot r)
+        public static void setRobotInstance(IRobot _iroboRobot)
         {
-            _robot = r;
+            _robot = _iroboRobot;
             _scope.SetVariable("_robot", _robot);
         }
 
         /// <summary>
         ///  loads script from a file
         /// </summary>
-        public static void setScriptFromFile(string path)
+        public static void setScriptFromFile(string _sPath)
         {
-            _source = _engine.CreateScriptSourceFromFile(path);
+            _source = _engine.CreateScriptSourceFromFile(_sPath);
             CompiledCode codecheck = _source.Compile(_reporter);
             if (codecheck == null)
             {
@@ -64,9 +61,9 @@ namespace DSL
         /// <summary>
         ///  loads script from a string
         /// </summary>
-        public static void setScriptFromString(string script)
+        public static void setScriptFromString(string _sScript)
         {
-           _source = _engine.CreateScriptSourceFromString(script);
+           _source = _engine.CreateScriptSourceFromString(_sScript);
            CompiledCode codecheck = _source.Compile(_reporter);
            if (codecheck == null)
            {

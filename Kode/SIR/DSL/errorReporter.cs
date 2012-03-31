@@ -14,9 +14,9 @@ namespace DSL
     {
         public static List<String> Errorlist = new List<string>();
 
-        public override void ErrorReported(ScriptSource source, string errormessage, SourceSpan span, int code, Severity severity)
+        public override void ErrorReported(ScriptSource _scrpsrcScriptSource, string _sErrorMsg, SourceSpan _srcspanSpanning, int _iCode, Severity sevSeverity)
         {
-            Errorlist.Add(errormessage);
+            Errorlist.Add(_sErrorMsg);
         }
     }
 }

@@ -1,53 +1,50 @@
 ﻿/** \file robot.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DSL
 {
-        public enum ManualModeType
-        {   
-            Off,
-            Axes,
-            Coordinates
-        }
-        public enum enumManualModeWhat
-        {
-            MANUAL_MOVE_BASE, // Axes
-            MANUAL_MOVE_SHOULDER,
-            MANUAL_MOVE_ELBOW,
-            MANUAL_MOVE_WRISTPITCH,
-            MANUAL_MOVE_WRISTROLL,
-            MANUAL_MOVE_GRIPPER,
-            MANUAL_MOVE_CONVEYERBELT,
-            MANUAL_MOVE_X, // Coordinates
-            MANUAL_MOVE_Y,
-            MANUAL_MOVE_Z,
-            MANUAL_MOVE_PITCH,
-            MANUAL_MOVE_ROLL
-        }
-        public enum ControlModeType
-        {
-            Off,
-            On
-        }
+    public enum ManualModeType
+    {   
+        Off,
+        Axes,
+        Coordinates
+    }
+    public enum enumManualModeWhat
+    {
+        MANUAL_MOVE_BASE, // Axes
+        MANUAL_MOVE_SHOULDER,
+        MANUAL_MOVE_ELBOW,
+        MANUAL_MOVE_WRISTPITCH,
+        MANUAL_MOVE_WRISTROLL,
+        MANUAL_MOVE_GRIPPER,
+        MANUAL_MOVE_CONVEYERBELT,
+        MANUAL_MOVE_X, // Coordinates
+        MANUAL_MOVE_Y,
+        MANUAL_MOVE_Z,
+        MANUAL_MOVE_PITCH,
+        MANUAL_MOVE_ROLL
+    }
+    public enum ControlModeType
+    {
+        Off,
+        On
+    }
 
-        public enum AxisSettings
-        {
-            AXIS_ROBOT,
-            AXIS_PERIPHERALS,
-            AXIS_0,
-            AXIS_1,
-            AXIS_2,
-            AXIS_3,
-            AXIS_4,
-            AXIS_5,
-            AXIS_6,
-            AXIS_7,
-            AXIS_ALL
-        }
+    public enum AxisSettings
+    {
+        AXIS_ROBOT,
+        AXIS_PERIPHERALS,
+        AXIS_0,
+        AXIS_1,
+        AXIS_2,
+        AXIS_3,
+        AXIS_4,
+        AXIS_5,
+        AXIS_6,
+        AXIS_7,
+        AXIS_ALL
+    }
 
 
     public interface IRobot
@@ -138,11 +135,11 @@ namespace DSL
         #endregion
 
         #region delegate functions
-        static void initSuccess(IntPtr iptrArg)
+        static void initSuccess(IntPtr _iptrArg)
         {
             System.Console.WriteLine("Initialized successfully.");
         }
-        static void initError(IntPtr iptrArg)
+        static void initError(IntPtr _iptrArg)
         {
             System.Console.WriteLine("Initialize error.");
         }
@@ -200,13 +197,13 @@ namespace DSL
         /// <summary>
         /// function for moving by coordinates
         /// </summary>
-        /// <param name="x"> x-coordinate </param>
+        /// <param name="_iX"> x-coordinate </param>
         /// <param name="y"> y-coordinate </param>
         /// <param name="z"> z-coordinate </param>
         /// <param name="pitch"> pitch robot arm</param>
         /// <param name="roll"> roll of robot arm</param>
         /// <returns></returns>
-        public bool moveByCoordinates(int x, int y, int z, int pitch, int roll) // subject to change
+        public bool moveByCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
         {
                 ManualMode = ManualModeType.Coordinates;
                 // implement move by coordinates
@@ -222,75 +219,75 @@ namespace DSL
         /// </summary>
         /// <param name="speed"></param>
         /// <returns></returns>
-        public bool moveBase(int speed)
+        public bool moveBase(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
-            return  _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, speed);
+            return  _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, _iSpeed);
         }
         /// <summary>
         /// separate function for moving shoulder of robot
         /// </summary>
-        /// <param name="speed"></param>
+        /// <param name="_iSpeed"></param>
         /// <returns></returns>
-        public bool moveShoulder(int speed)
+        public bool moveShoulder(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
-            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_SHOULDER, speed);
+            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_SHOULDER, _iSpeed);
         }
         /// <summary>
         /// separate function for moving elbow of robot
         /// </summary>
-        /// <param name="speed"></param>
+        /// <param name="_iSpeed"></param>
         /// <returns></returns>
-        public bool moveElbow(int speed)
+        public bool moveElbow(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
-            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ELBOW, speed);
+            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ELBOW, _iSpeed);
         }
         /// <summary>
         /// separate function for moving wrist pitch of robot
         /// </summary>
-        /// <param name="speed"></param>
+        /// <param name="_iSpeed"></param>
         /// <returns></returns>
-        public bool moveWristPitch(int speed)
+        public bool moveWristPitch(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
-            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTPITCH, speed);
+            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTPITCH, _iSpeed);
         }
         /// <summary>
         /// separate function for moving wrist roll of robot
         /// </summary>
-        /// <param name="speed"></param>
+        /// <param name="_iSpeed"></param>
         /// <returns></returns>
-        public bool moveWristRoll(int speed)
+        public bool moveWristRoll(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
-            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTROLL, speed);
+            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTROLL, _iSpeed);
         }
         /// <summary>
         /// separate function for moving robot gripper
         /// </summary>
-        /// <param name="speed"></param>
+        /// <param name="_iSpeed"></param>
         /// <returns></returns>
-        public bool moveGripper(int speed)
+        public bool moveGripper(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
-            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_GRIPPER, speed);
+            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_GRIPPER, _iSpeed);
         }
         /// <summary>
         /// separate function for moving robot conveyer belt
         /// </summary>
-        /// <param name="speed"></param>
+        /// <param name="_iSpeed"></param>
         /// <returns></returns>
-        public bool moveConveyerBelt(int speed)
+        public bool moveConveyerBelt(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
-            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, speed);
+            return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, _iSpeed);
         }
 
-        public bool stopMove(AxisSettings axis)
+        public bool stopMove(AxisSettings _axisWhatAxis)
         {
-            switch (axis)
+            switch (_axisWhatAxis)
             {
                 case (AxisSettings.AXIS_0):
                     return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_0);

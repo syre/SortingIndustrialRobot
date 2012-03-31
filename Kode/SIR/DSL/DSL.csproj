@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dll.cs" />
-    <Compile Include="dllMock.cs" />
     <Compile Include="errorReporter.cs" />
     <Compile Include="iDLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

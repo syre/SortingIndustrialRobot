@@ -2,7 +2,6 @@
 /** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace DSL // Has to be changed
 {
@@ -26,6 +25,7 @@ namespace DSL // Has to be changed
             iRoll = _iRoll;
         }
     }
+
     /// <summary>
     /// Base class for vector used in wrapper.
     /// 
@@ -150,6 +150,7 @@ namespace DSL // Has to be changed
             AXIS_7,
             AXIS_ALL
         }
+
         // -Manual movement
         /// <summary>
         /// For chosing type of movement when enabling manual movement.
@@ -159,6 +160,7 @@ namespace DSL // Has to be changed
             MANUAL_TYPE_AXES,
             MANUAL_TYPE_COORD
         }
+
         /// <summary>
         /// For chosing what part to move when moving manually.
         /// 

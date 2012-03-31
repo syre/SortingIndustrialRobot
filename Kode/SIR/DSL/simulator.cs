@@ -1,4 +1,6 @@
-﻿using System;
+﻿/** \file simulator.cs */
+/** \author Robotic Global Organization(RoboGO) */
+using System;
 
 namespace DSL
 {
@@ -46,8 +48,6 @@ namespace DSL
         }
 
         #endregion
-
-
 
         #region Methods
         public Simulator()

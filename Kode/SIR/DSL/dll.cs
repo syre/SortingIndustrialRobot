@@ -14,19 +14,19 @@ namespace DSL
     public class DLL : IDLL
     {
         
-        public int Initialization(short shrtMode, short shrtType, DLLImport.DgateCallBack funcprtCallBack, DLLImport.DgateCallBack funcptrCallBackError)
+        public int Initialization(short _shrtMode, short _shrtType, DLLImport.DgateCallBack _funcprtCallBack, DLLImport.DgateCallBack _funcptrCallBackError)
         {
-            return DLLImport.initialization(shrtMode, shrtType, funcprtCallBack, funcptrCallBackError);
+            return DLLImport.initialization(_shrtMode, _shrtType, _funcprtCallBack, _funcptrCallBackError);
         }
 
-        public int Control(byte bAxis, bool bIsOn)
+        public int Control(byte _bAxis, bool _bIsOn)
         {
-            return DLLImport.Control(bAxis, bIsOn);
+            return DLLImport.Control(_bAxis, _bIsOn);
         }
 
-        public int Home(byte axis, DLLImport.DgateCallBackByteRefArg funcptrCallBack)
+        public int Home(byte _axis, DLLImport.DgateCallBackByteRefArg _funcptrCallBack)
         {
-            return DLLImport.Home(axis, funcptrCallBack);
+            return DLLImport.Home(_axis, _funcptrCallBack);
         }
 
         public int OpenGripper()
@@ -39,14 +39,14 @@ namespace DSL
             return DLLImport.CloseGripper();
         }
         
-        public int GetJaw(ref short perc, ref short metric)
+        public int GetJaw(ref short _perc, ref short _metric)
         {
-            return DLLImport.GetJaw(ref perc, ref metric);
+            return DLLImport.GetJaw(ref _perc, ref _metric);
         }
     
-        public int EnterManual(short shrtArg)
+        public int EnterManual(short _shrtArg)
         {
-            return DLLImport.EnterManual(shrtArg);
+            return DLLImport.EnterManual(_shrtArg);
         }
       
         public int CloseManual()
@@ -54,24 +54,24 @@ namespace DSL
             return DLLImport.CloseManual();
         }
         
-        public int MoveManual(byte bAxis, int lSpeed)
+        public int MoveManual(byte _bAxis, int _lSpeed)
         {
-            return DLLImport.MoveManual(bAxis, lSpeed);
+            return DLLImport.MoveManual(_bAxis, _lSpeed);
         }
         
-        public int Stop(byte axis)
+        public int Stop(byte _axis)
         {
-            return DLLImport.Stop(axis);
+            return DLLImport.Stop(_axis);
         }
         
-        public DLLImport.DgateCallBackCharArg WatchMotion(DLLImport.DgateCallBackCharArg funcptrCallbackEnd, DLLImport.DgateCallBackCharArg funcptrCallbackStart)
+        public DLLImport.DgateCallBackCharArg WatchMotion(DLLImport.DgateCallBackCharArg _funcptrCallbackEnd, DLLImport.DgateCallBackCharArg _funcptrCallbackStart)
         {
-            return DLLImport.WatchMotion(funcptrCallbackEnd, funcptrCallbackStart);
+            return DLLImport.WatchMotion(_funcptrCallbackEnd, _funcptrCallbackStart);
         }
 
-        public int WatchDigitalInput(DLLImport.DgateCallBackLongArg funcptrCallbackEvent)
+        public int WatchDigitalInput(DLLImport.DgateCallBackLongArg _funcptrCallbackEvent)
         {
-            return DLLImport.WatchDigitalInput(funcptrCallbackEvent);
+            return DLLImport.WatchDigitalInput(_funcptrCallbackEvent);
         }
         
         public int CloseWatchDigitalInput()
@@ -84,25 +84,25 @@ namespace DSL
             return DLLImport.IsOnLineOk();
         }
        
-        public int MoveLinear([MarshalAs(UnmanagedType.LPStr)] string sNameOfVectorThatGotPosition, short shrtPointInVector, [MarshalAs(UnmanagedType.LPStr)] string sSecondaryPos, short shrtPointToMoveTo)
+        public int MoveLinear([MarshalAs(UnmanagedType.LPStr)] string _sNameOfVectorThatGotPosition, short _shrtPointInVector, [MarshalAs(UnmanagedType.LPStr)] string _sSecondaryPos, short _shrtPointToMoveTo)
         {
-            return DLLImport.MoveLinear(sNameOfVectorThatGotPosition, shrtPointInVector, sSecondaryPos,
-                                        shrtPointToMoveTo);
+            return DLLImport.MoveLinear(_sNameOfVectorThatGotPosition, _shrtPointInVector, _sSecondaryPos,
+                                        _shrtPointToMoveTo);
         }
     
-        public int DefineVector(byte bGroup, [MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtSizeOfVector)
+        public int DefineVector(byte _bGroup, [MarshalAs(UnmanagedType.LPStr)] string _sVectorName, short _shrtSizeOfVector)
         {
-            return DLLImport.DefineVector(bGroup, sVectorName, shrtSizeOfVector);
+            return DLLImport.DefineVector(_bGroup, _sVectorName, _shrtSizeOfVector);
         }
       
-        public int Teach([MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtPoint, int[] iaPointInfo, short shrtSizeOfArray, int iPointType)
+        public int Teach([MarshalAs(UnmanagedType.LPStr)] string _sVectorName, short _shrtPoint, int[] _iaPointInfo, short _shrtSizeOfArray, int _iPointType)
         {
-            return DLLImport.Teach(sVectorName, shrtPoint, iaPointInfo, shrtSizeOfArray, iPointType);
+            return DLLImport.Teach(_sVectorName, _shrtPoint, _iaPointInfo, _shrtSizeOfArray, _iPointType);
         }
 
-        public int GetCurrentPosition(ref int[] ibufEnc, ref int[] ibufJoint, ref int[] ibufXYZ)
+        public int GetCurrentPosition(ref int[] _ibufEnc, ref int[] _ibufJoint, ref int[] _ibufXYZ)
         {
-            return GetCurrentPosition(ref ibufEnc, ref ibufJoint, ref ibufXYZ);
+            return GetCurrentPosition(ref _ibufEnc, ref _ibufJoint, ref _ibufXYZ);
         }
     }
     #endregion

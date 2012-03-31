@@ -13,41 +13,41 @@ namespace DSL
         #region Interfaced DLL's
         
         // -Robot functions
-        int Initialization(short shrtMode, short shrtType, DLLImport.DgateCallBack funcprtCallBack, DLLImport.DgateCallBack funcptrCallBackError);
+        int Initialization(short _shrtMode, short _shrtType, DLLImport.DgateCallBack _funcprtCallBack, DLLImport.DgateCallBack _funcptrCallBackError);
 
-        int Control(byte bAxis, bool bIsOn);
+        int Control(byte _bAxis, bool _bIsOn);
 
-        int Home(byte axis, DLLImport.DgateCallBackByteRefArg funcptrCallBack);
+        int Home(byte _axis, DLLImport.DgateCallBackByteRefArg _funcptrCallBack);
 
         int OpenGripper();
 
         int CloseGripper();
 
-        int GetJaw(ref short perc, ref short metric);
+        int GetJaw(ref short _perc, ref short _metric);
 
-        int EnterManual(short shrtArg);
+        int EnterManual(short _shrtArg);
 
         int CloseManual();
 
-        int MoveManual(byte bAxis, int lSpeed);
+        int MoveManual(byte _bAxis, int _lSpeed);
 
-        int Stop(byte axis);
+        int Stop(byte _axis);
 
-        DLLImport.DgateCallBackCharArg WatchMotion(DLLImport.DgateCallBackCharArg funcptrCallbackEnd, DLLImport.DgateCallBackCharArg funcptrCallbackStart);
+        DLLImport.DgateCallBackCharArg WatchMotion(DLLImport.DgateCallBackCharArg _funcptrCallbackEnd, DLLImport.DgateCallBackCharArg _funcptrCallbackStart);
 
-        int WatchDigitalInput(DLLImport.DgateCallBackLongArg funcptrCallbackEvent);
+        int WatchDigitalInput(DLLImport.DgateCallBackLongArg _funcptrCallbackEvent);
 
         int CloseWatchDigitalInput();
 
         int IsOnLineOk();
 
-        int MoveLinear([MarshalAs(UnmanagedType.LPStr)] string sNameOfVectorThatGotPosition, short shrtPointInVector, [MarshalAs(UnmanagedType.LPStr)] string sSecondaryPos, short shrtPointToMoveTo);
+        int MoveLinear([MarshalAs(UnmanagedType.LPStr)] string _sNameOfVectorThatGotPosition, short _shrtPointInVector, [MarshalAs(UnmanagedType.LPStr)] string _sSecondaryPos, short _shrtPointToMoveTo);
 
-        int DefineVector(byte bGroup, [MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtSizeOfVector);
+        int DefineVector(byte bGroup, [MarshalAs(UnmanagedType.LPStr)] string _sVectorName, short _shrtSizeOfVector);
 
-        int Teach([MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtPoint, int[] iaPointInfo, short shrtSizeOfArray, int iPointType); // long types used in C++ functions.
+        int Teach([MarshalAs(UnmanagedType.LPStr)] string _sVectorName, short _shrtPoint, int[] _iaPointInfo, short _shrtSizeOfArray, int _iPointType); // long types used in C++ functions.
 
-        int GetCurrentPosition(ref int[] ibufEnc, ref int[] ibufJoint, ref int[] ibufXYZ);
+        int GetCurrentPosition(ref int[] _ibufEnc, ref int[] _ibufJoint, ref int[] _ibufXYZ);
         
         #endregion
 
