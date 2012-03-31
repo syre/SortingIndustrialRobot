@@ -1,4 +1,4 @@
-﻿/** \file IDLL.cs */
+﻿/** \file iDLL.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Collections.Generic;

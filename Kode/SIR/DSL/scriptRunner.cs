@@ -1,4 +1,4 @@
-﻿/** \file ScriptRunner.cs */
+﻿/** \file scriptRunner.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Collections.Generic;
