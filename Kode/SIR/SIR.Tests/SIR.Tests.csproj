@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WrapperTests.cs" />
-    <Compile Include="IDLLMock.cs" />
+    <Compile Include="iDLLMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="wrapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DSL\DSL.csproj">
