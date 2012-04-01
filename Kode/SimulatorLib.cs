@@ -73,6 +73,7 @@ namespace Simulator
             bool Initialization();
             ManualModeType ManualMode { get; set; }
             ControlModeType ControlMode { get; set; }
+            bool stopAllMovement();
             bool stopMove(AxisSettings axis);
             bool moveByCoordinates(int x, int y, int z, int pitch, int roll);
             short getJawOpeningWidthMilimeters();
@@ -137,6 +138,16 @@ namespace Simulator
                 ManualMode = ManualModeType.Off;
 
 
+            }
+
+            /// <summary>
+            /// Writes out that All movement is stopped
+            /// </summary>
+            /// <returns> returns true if it is stopped</returns>
+            public bool stopAllMovement()
+            {
+                Console.WriteLine("All axes stopped, no one moves");
+                return true;
             }
 
             /// <summary>
