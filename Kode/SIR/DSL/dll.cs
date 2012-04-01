@@ -1,19 +1,13 @@
 ﻿/** \file dll.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.InteropServices;
 
 namespace DSL
 {
-
     #region DLLWrapper
-
     public class DLL : IDLL
     {
-        
         public int Initialization(short _shrtMode, short _shrtType, DLLImport.DgateCallBack _funcprtCallBack, DLLImport.DgateCallBack _funcptrCallBackError)
         {
             return DLLImport.initialization(_shrtMode, _shrtType, _funcprtCallBack, _funcptrCallBackError);

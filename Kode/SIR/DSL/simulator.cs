@@ -14,19 +14,16 @@ namespace DSL
             get { return _type; }
             set
             {
-
                 if (value == ManualModeType.Axes || value == ManualModeType.Off ||
                     value == ManualModeType.Coordinates)
                 {
-                    Console.WriteLine("Manual mode set to: " + value);
+                    iuiOutput.writeLine("Manual mode set to: " + value);
                     _type = value;
                 }
 
                 else
-                    Console.WriteLine("Out of Range, Manual mode unchanged");
-
+                    iuiOutput.writeLine("Out of Range, Manual mode unchanged");
             }
-
         }
 
         private ControlModeType _modeType;
@@ -37,14 +34,19 @@ namespace DSL
             {
                 if (value == ControlModeType.Off || value == ControlModeType.On)
                 {
-                    Console.WriteLine("Control mode set to: " + value);
+                    iuiOutput.writeLine("Control mode set to: " + value);
                     _modeType = value;
                 }
                 else
-                    Console.WriteLine("Out of Range, Control mode unchanged");
-
-
+                    iuiOutput.writeLine("Out of Range, Control mode unchanged");
             }
+        }
+
+        private IUI iuiOutput;
+        public IUI IUIOutput
+        {
+            get { return iuiOutput; }
+            set { iuiOutput = value; }
         }
 
         #endregion
@@ -52,9 +54,10 @@ namespace DSL
         #region Methods
         public Simulator()
         {
-            Console.WriteLine("Simulation is started!");
+            iuiOutput.writeLine("Simulation is started!");
             ControlMode = ControlModeType.Off;
             ManualMode = ManualModeType.Off;
+            iuiOutput = new ConsoleUI();
         }
 
         /// <summary>
@@ -63,7 +66,7 @@ namespace DSL
         /// <returns> returns true if it is stopped</returns>
         public bool stopAllMovement()
         {
-            Console.WriteLine("All axes stopped, no one moves");
+            iuiOutput.writeLine("All axes stopped, no one moves");
             return true;
         }
 
@@ -73,7 +76,7 @@ namespace DSL
         /// <returns>Returns true if the gripper closes</returns>
         public bool closeGripper()
         {
-            Console.WriteLine("Gripper closing!");
+            iuiOutput.writeLine("Gripper closing!");
             return true;
         }
 
@@ -83,7 +86,7 @@ namespace DSL
         /// <returns>returns true if the gripper opens</returns>
         public bool openGripper()
         {
-            Console.WriteLine("Gripper opening!");
+            iuiOutput.writeLine("Gripper opening!");
             return true;
         }
 
@@ -93,7 +96,7 @@ namespace DSL
         /// <returns>true if the initialization is ok!</returns>
         public bool Initialization()
         {
-            Console.WriteLine("The system is online, and system types is set to default!");
+            iuiOutput.writeLine("The system is online, and system types is set to default!");
             return true;
         }
 
@@ -109,16 +112,15 @@ namespace DSL
                     axis == AxisSettings.AXIS_6 || axis == AxisSettings.AXIS_7 || axis == AxisSettings.AXIS_ROBOT ||
                         axis == AxisSettings.AXIS_ALL || axis == AxisSettings.AXIS_PERIPHERALS)
             {
-                Console.WriteLine(axis.ToString() + " is stopped!");
+                iuiOutput.writeLine(axis.ToString() + " is stopped!");
                 return true;
             }
             else
-                Console.WriteLine("Unknown axis, the state is unchanged");
+                iuiOutput.writeLine("Unknown axis, the state is unchanged");
 
 
             return false;
         }
-
 
         /// <summary>
         /// function for moving by coordinates
@@ -134,18 +136,15 @@ namespace DSL
             //If ManualMode is set to on
             if (ManualMode != ManualModeType.Off)
             {
-                Console.WriteLine("The robot is moving to X: " + _x + "  Y: " + _y + "  Z: " + _z + "  Pitch: " +
+                iuiOutput.writeLine("The robot is moving to X: " + _x + "  Y: " + _y + "  Z: " + _z + "  Pitch: " +
                                   _pitch + " Roll: " + _roll);
                 return true;
             }
             //Message like exception.
             else
-                Console.WriteLine("Please deactivate automode");
+                iuiOutput.writeLine("Please deactivate automode");
 
             return false;
-
-
-
         }
 
         public short getJawOpeningWidthMilimeters()
@@ -157,7 +156,7 @@ namespace DSL
             }
             catch (NotImplementedException e)
             {
-                Console.WriteLine(e.Message);
+                iuiOutput.writeLine(e.Message);
             }
 
             return 0;
@@ -172,7 +171,7 @@ namespace DSL
             }
             catch (NotImplementedException e)
             {
-                Console.WriteLine(e.Message);
+                iuiOutput.writeLine(e.Message);
             }
 
             return 0;
@@ -186,7 +185,7 @@ namespace DSL
         {
             ManualMode = ManualModeType.Coordinates;
             moveByCoordinates(0, 0, 0, 0, 0);
-            Console.WriteLine("Robot moved to home position");
+            iuiOutput.writeLine("Robot moved to home position");
             return true;
         }
 
@@ -196,7 +195,7 @@ namespace DSL
         /// <returns>true if there are connection</returns>
         public bool isOnline()
         {
-            Console.WriteLine("Connected to the robot!");
+            iuiOutput.writeLine("Connected to the robot!");
             return true;
         }
         #endregion

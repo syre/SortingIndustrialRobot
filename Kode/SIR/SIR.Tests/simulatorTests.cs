@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SIR.Tests
 {
-    class simulatorTests
+    class SimulatorTests
     {
     }
 }
