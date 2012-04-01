@@ -55,8 +55,16 @@ namespace DSL
             Console.WriteLine("Simulation is started!");
             ControlMode = ControlModeType.Off;
             ManualMode = ManualModeType.Off;
+        }
 
-
+        /// <summary>
+        /// Writes out that All movement is stopped
+        /// </summary>
+        /// <returns> returns true if it is stopped</returns>
+        public bool stopAllMovement()
+        {
+            Console.WriteLine("All axes stopped, no one moves");
+            return true;
         }
 
         /// <summary>
@@ -87,12 +95,6 @@ namespace DSL
         {
             Console.WriteLine("The system is online, and system types is set to default!");
             return true;
-        }
-
-
-        public bool stopAllMovement()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
