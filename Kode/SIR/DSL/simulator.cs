@@ -54,10 +54,10 @@ namespace DSL
         #region Methods
         public Simulator()
         {
-            iuiOutput.writeLine("Simulation is started!");
+            iuiOutput = new ConsoleUI(); // Don´t move location.
             ControlMode = ControlModeType.Off;
             ManualMode = ManualModeType.Off;
-            iuiOutput = new ConsoleUI();
+            iuiOutput.writeLine("Simulation is started!");
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace DSL
         /// Initializes the robot to default values
         /// </summary>
         /// <returns>true if the initialization is ok!</returns>
-        public bool Initialization()
+        public bool initialization()
         {
             iuiOutput.writeLine("The system is online, and system types is set to default!");
             return true;

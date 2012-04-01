@@ -51,7 +51,7 @@ namespace DSL
     {
         bool closeGripper();
         bool openGripper();
-        bool Initialization();
+        bool initialization();
         ManualModeType ManualMode { get; set; }
         ControlModeType ControlMode { get; set; }
 	bool stopAllMovement();
@@ -159,7 +159,7 @@ namespace DSL
         /// initializes robot with default values MODE_ONLINE and SYSTEM_TYPE_DEFAULT
         /// </summary>
         /// <returns></returns>
-        public bool Initialization() // implementing delegates
+        public bool initialization() // implementing delegates
         {
             return _wrapper.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE,
                                                   Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT,

@@ -1,10 +1,6 @@
 ﻿/** \file iUI.cs */
 /** \author Robotic Global Organization(RoboGO) */
 /** \brief Contains interfaces and classes for simple communication with the UI. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DSL
 {
