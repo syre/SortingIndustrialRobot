@@ -45,7 +45,7 @@ namespace SIR.Tests
         
         
         [Test]
-        public void Initailization()
+        public void Initialization()
         {
             Assert.AreEqual(1, _dllMock.Initialization((short) DLLMock.enumSystemModes.MODE_ONLINE,
                                                (short) DLLMock.enumSystemTypes.SYSTEM_TYPE_DEFAULT,

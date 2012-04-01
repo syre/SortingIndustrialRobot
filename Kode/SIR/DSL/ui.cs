@@ -14,7 +14,7 @@ namespace DSL
         /// </summary>
         /// <param name="sMsg">The string with the message and argument placement.(Like normal Write())</param>
         /// <param name="paramobjArgument">Arguments to be placed in the string.</param>
-        void write(string sMsg, params object[] paramobjArgument);
+        void write(string _sMsg, params object[] _paramobjArgument);
 
         /// <summary>
         /// Writes the string with arguments to the UI.
@@ -29,14 +29,14 @@ namespace DSL
     /** \brief Console UI for writing to the console output. */
     public class ConsoleUI : IUI
     {
-        public void write(string sMsg, params object[] paramobjArgument)
+        public void write(string _sMsg, params object[] _paramobjArgument)
         {
-            System.Console.Write(sMsg, paramobjArgument);
+            System.Console.Write(_sMsg, _paramobjArgument);
         }
 
-        public void writeLine(string sMsg, params object[] paramobjArgument)
+        public void writeLine(string _sMsg, params object[] _paramobjArgument)
         {
-            System.Console.WriteLine(sMsg, paramobjArgument);
+            System.Console.WriteLine(_sMsg, _paramobjArgument);
         }
     }
 }

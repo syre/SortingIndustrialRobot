@@ -156,7 +156,7 @@ namespace DSL
             _wrapper = Wrapper.getInstance();
         }
         /// <summary>
-        /// initializes robot with default values MODE_ONLINE and SYSTEM_TYPE_DEFAULT
+        /// Initializes robot with default values MODE_ONLINE and SYSTEM_TYPE_DEFAULT
         /// </summary>
         /// <returns></returns>
         public bool initialization() // implementing delegates
@@ -167,7 +167,7 @@ namespace DSL
                                                   dgateEventHandlerError);
         }
         /// <summary>
-        /// homes robot
+        /// Homes robot
         /// </summary>
         /// <returns></returns>
         public bool homeRobot() // implementing delegates
@@ -176,7 +176,7 @@ namespace DSL
         }
 
         /// <summary>
-        /// calls wrapper function for stopping all movement
+        /// Calls wrapper function for stopping all movement
         /// </summary>
         /// <returns></returns>
         public bool stopAllMovement()
@@ -184,7 +184,7 @@ namespace DSL
             return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
         }
         /// <summary>
-        /// checks to see if robot is online
+        /// Checks to see if robot is online
         /// </summary>
         /// <returns></returns>
         public bool isOnline()
@@ -195,7 +195,7 @@ namespace DSL
 
         #region Coordinate movements
         /// <summary>
-        /// function for moving by coordinates
+        /// Function for moving by coordinates
         /// </summary>
         /// <param name="_iX"> x-coordinate </param>
         /// <param name="y"> y-coordinate </param>
@@ -215,7 +215,7 @@ namespace DSL
 
         #region Axis movements
         /// <summary>
-        /// separate function for moving base of robot
+        /// Separate function for moving base of robot
         /// </summary>
         /// <param name="speed"></param>
         /// <returns></returns>
@@ -225,7 +225,7 @@ namespace DSL
             return  _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, _iSpeed);
         }
         /// <summary>
-        /// separate function for moving shoulder of robot
+        /// Separate function for moving shoulder of robot
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
@@ -235,7 +235,7 @@ namespace DSL
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_SHOULDER, _iSpeed);
         }
         /// <summary>
-        /// separate function for moving elbow of robot
+        /// Separate function for moving elbow of robot
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
@@ -245,7 +245,7 @@ namespace DSL
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ELBOW, _iSpeed);
         }
         /// <summary>
-        /// separate function for moving wrist pitch of robot
+        /// Separate function for moving wrist pitch of robot
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
@@ -255,7 +255,7 @@ namespace DSL
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTPITCH, _iSpeed);
         }
         /// <summary>
-        /// separate function for moving wrist roll of robot
+        /// Separate function for moving wrist roll of robot
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
@@ -265,7 +265,7 @@ namespace DSL
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTROLL, _iSpeed);
         }
         /// <summary>
-        /// separate function for moving robot gripper
+        /// Separate function for moving robot gripper
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
@@ -275,7 +275,7 @@ namespace DSL
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_GRIPPER, _iSpeed);
         }
         /// <summary>
-        /// separate function for moving robot conveyer belt
+        /// Separate function for moving robot conveyer belt
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
@@ -329,7 +329,7 @@ namespace DSL
 
         #region gripper methods
         /// <summary>
-        ///  returns jaw opening in milimeters
+        ///  Returns jaw opening in milimeters
         /// </summary>
         /// <returns></returns>
         public short getJawOpeningWidthMilimeters()
@@ -343,7 +343,7 @@ namespace DSL
 
         }
         /// <summary>
-        /// returns jaw opening in percentage
+        ///  Returns jaw opening in percentage
         /// </summary>
         /// <returns></returns>
         public short getJawOpeningWidthPercentage()
@@ -356,7 +356,7 @@ namespace DSL
                 throw new Exception("Error getting JawOpeningWidth in Percentage");
         }
         /// <summary>
-        ///  closes gripper
+        ///  Closes gripper
         /// </summary>
         /// <returns></returns>
         public bool closeGripper()
@@ -364,19 +364,12 @@ namespace DSL
            return _wrapper.closeGripperWrapped();
         }
         /// <summary>
-        /// opens gripper
+        /// Opens gripper
         /// </summary>
         /// <returns></returns>
         public bool openGripper()
         {
             return _wrapper.openGripperWrapped();
-        }
-        #endregion
-        
-        #region test methods
-        public void testHelloName(string s)
-        {
-            Console.WriteLine("hello "+s);
         }
         #endregion
     }

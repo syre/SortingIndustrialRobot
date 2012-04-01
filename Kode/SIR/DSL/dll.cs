@@ -6,6 +6,11 @@ using System.Runtime.InteropServices;
 namespace DSL
 {
     #region DLLWrapper
+    /// <summary>
+    /// Class that with the IDLL interface calls the actual functions from the USBC.dll.
+    /// 
+    /// Note: Uses static imports from DLLImport.
+    /// </summary>
     public class DLL : IDLL
     {
         public int Initialization(short _shrtMode, short _shrtType, DLLImport.DgateCallBack _funcprtCallBack, DLLImport.DgateCallBack _funcptrCallBackError)

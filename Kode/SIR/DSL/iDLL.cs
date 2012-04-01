@@ -8,6 +8,9 @@ using System.Runtime.InteropServices;
 
 namespace DSL
 {
+    /// <summary>
+    /// Interface for the functions in the USBC.dll files, in C# format.
+    /// </summary>
     public interface IDLL
     {
         #region Interfaced DLL's

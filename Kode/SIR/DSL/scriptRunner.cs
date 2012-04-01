@@ -11,7 +11,6 @@ namespace DSL
     /// 
     /// Note: Needs IronPython, IronPython.Modules and Microsoft.Scripting assemblies as reference
     /// </summary>
-
     public static class ScriptRunner
     {
         private static ScriptEngine _engine;
@@ -23,7 +22,7 @@ namespace DSL
         private static IRobot _robot;
 
         /// <summary>
-        ///  initializing the python engine
+        ///  Initializing the python engine
         /// </summary>
         static ScriptRunner()
         {
@@ -44,7 +43,7 @@ namespace DSL
         }
 
         /// <summary>
-        ///  loads script from a file
+        ///  Loads script from a file
         /// </summary>
         public static void setScriptFromFile(string _sPath)
         {
@@ -59,7 +58,7 @@ namespace DSL
         }
 
         /// <summary>
-        ///  loads script from a string
+        ///  Loads script from a string
         /// </summary>
         public static void setScriptFromString(string _sScript)
         {
@@ -74,7 +73,7 @@ namespace DSL
         }
 
         /// <summary>
-        ///  executes loaded script
+        ///  Executes loaded script
         /// </summary>
         public static void ExecuteScript()
         {

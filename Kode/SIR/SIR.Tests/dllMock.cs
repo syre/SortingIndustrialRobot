@@ -10,7 +10,6 @@ namespace DSL
 {
     public class DLLMock
     {
-
         // Extra classes
         /// <summary>
         /// Class to contain point for use in one of the vector classes.

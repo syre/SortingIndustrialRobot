@@ -9,7 +9,11 @@ using Microsoft.Scripting.Hosting;
 
 namespace DSL
 {
-    // temporary error reporting class
+    /// <summary>
+    /// Temporary error reporting class.
+    /// 
+    /// \warning Temp. class.
+    /// </summary>
     public class ErrorReporter : ErrorListener
     {
         public static List<String> Errorlist = new List<string>();

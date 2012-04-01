@@ -1,6 +1,5 @@
 ﻿/** \file wrapper.cs */
 /** \author Robotic Global Organization(RoboGO) */
-/** \brief Contains files for working with the USBC.dll functions wrapped to C#. */
 using System;
 using System.Collections.Generic;
 
