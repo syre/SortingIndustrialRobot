@@ -34,10 +34,11 @@ namespace Styresystem
         /// </summary>
         /// <param name="_threadStart">Parameter is name of function that needs its own thread, as its Threadstart, it means it have to be a function with no parameters: (functionname(){})</param>
         /// <param name="_description">Description which the thread needs to be saved as (unique)</param>
-        /// <returns>Returns 0 if successful : Returns -1 if thread by same description is already existing</returns>
-        public int addThread(ThreadStart _threadStart, string _description)
+        public void addThread(ThreadStart _threadStart, string _description)
         {
-            if(find(_description) == null)
+            ThreadHolder tempThreadHolder = find(_description);
+
+            if(tempThreadHolder == null)
             {
                 Thread tempThread = new Thread(_threadStart);
                 ThreadHolder tempHolder = new ThreadHolder();
@@ -46,11 +47,11 @@ namespace Styresystem
                 tempHolder.threadPlaceHolder = tempThread;
             
                 threadList.Add(tempHolder);
-
-                return 0;
             }
 
-            return -1;
+            if(tempThreadHolder != null)
+                throw new ArgumentException("Thread already exists");
+
         }
 
         /// <summary>
@@ -58,10 +59,11 @@ namespace Styresystem
         /// </summary>
         /// <param name="_parameterizedThreadStart">Parameter is name of function that needs its own thread, as its paramterizedThreadStart, it means it have to be a function with parameter object: (functionname(object example){})</param>
         /// <param name="_description">Description which the thread needs to be saved as (unique)</param>
-        /// <returns>Returns 0 if successful : Returns -1 if thread by same description is already existing</returns>
-        public int addThread(ParameterizedThreadStart _parameterizedThreadStart, string _description)
+        public void addThread(ParameterizedThreadStart _parameterizedThreadStart, string _description)
         {
-            if (find(_description) == null)
+            ThreadHolder tempThreadHolder = find(_description);
+
+            if (tempThreadHolder == null)
             {
                 Thread tempThread = new Thread(_parameterizedThreadStart);
                 ThreadHolder tempHolder = new ThreadHolder();
@@ -71,18 +73,17 @@ namespace Styresystem
 
                 threadList.Add(tempHolder);
 
-                return 0;
             }
 
-            return -1;
+            if (tempThreadHolder != null)
+                throw new ArgumentException("Thread already exists");
         }
 
         /// <summary>
         /// Removes the specified thread from the thread list (Stops and waits for it to finish if it was running).
         /// </summary>
         /// <param name="_description">Description which the function need to find the thread that should be deleted</param>
-        /// <returns>Returns 0 if successful : Returns -1 if nothing was found with given description</returns>
-        public int removeThread(string _description)
+        public void removeThread(string _description)
         {
             ThreadHolder tempThreadHolder = find(_description);
 
@@ -96,9 +97,10 @@ namespace Styresystem
 
                 threadList.Remove(tempThreadHolder);
 
-                return 0;
             }
-            return -1;
+            
+            if(tempThreadHolder == null)
+                throw new ArgumentException("No thread with that description found");
         }
 
 
@@ -106,8 +108,7 @@ namespace Styresystem
         /// Terminates thread with supplied description, then waits for it to finish terminating
         /// </summary>
         /// <param name="_description">Description which the function needs to terminate thread for and wait for</param>
-        /// <returns>Returns 0 if successful : Returns -1 if no thread was found with supplied description : Returns -2 if supplied thread was not running</returns>
-        public int abortAndWait(string _description)
+        public void abortAndWait(string _description)
         {
             ThreadHolder tempThreadHolder = find(_description);
 
@@ -117,20 +118,19 @@ namespace Styresystem
                 {
                     tempThreadHolder.threadPlaceHolder.Abort("Terminating Thread, Request from Program.");
                     tempThreadHolder.threadPlaceHolder.Join();
-                    return 0;
                 }
 
-                return -2;
+                throw new ArgumentException("Thread not running");
             }
 
-            return -1;
+            if (tempThreadHolder == null)
+                throw new ArgumentException("No thread with that description found");
         }
 
         /// <summary>
         /// Functions aborts all threads currently running and waits for them to finish
         /// </summary>
-        /// <returns>Returns 0 if successful : Returns -1 if there is no threads</returns>
-        public int abortAllAndWait()
+        public void abortAllAndWait()
         {
             if (threadList.Count != 0)
             {
@@ -143,18 +143,17 @@ namespace Styresystem
                     }
                 }
 
-                return 0;
             }
 
-            return -1;
+            if(threadList.Count == 0)
+                throw new Exception("No running threads");
         }
 
         /// <summary>
         /// Starts the thread from supplied description if found.
         /// </summary>
         /// <param name="_description">Description is a string which the function needs to search and find a thread for in a list</param>
-        /// <returns>Returns 0 if successful : Returns -1 if no thread was found by supplied description : Returns -2 if wanted thread is already started</returns>
-        public int start(string _description)
+        public void start(string _description)
         {
             ThreadHolder tempThreadHolder = find(_description);
 
@@ -163,13 +162,13 @@ namespace Styresystem
                 if (!tempThreadHolder.threadPlaceHolder.IsAlive)
                 {
                     tempThreadHolder.threadPlaceHolder.Start();
-                    return 0;
                 }
 
-                return -2;
+                throw new ArgumentException("Thread already started");
             }
 
-            return -1;
+            if(tempThreadHolder == null)
+                throw new ArgumentException("No thread found");
         }
 
 
@@ -178,8 +177,7 @@ namespace Styresystem
         /// </summary>
         /// <param name="_description">Description is a string which the function needs to search and find a thread for in a list</param>
         /// <param name="_obj">An object that needs to be passed on to the thread as start parameter</param>
-        /// <returns>Returns 0 if successful : Returns -1 if no thread was found by supplied description : Returns -2 if wanted thread is already started</returns>
-        public int start(string _description , object _obj)
+        public void start(string _description , object _obj)
         {
             ThreadHolder tempThreadHolder = find(_description);
 
@@ -187,14 +185,14 @@ namespace Styresystem
             {
                 if (!tempThreadHolder.threadPlaceHolder.IsAlive)
                 {
-                    tempThreadHolder.threadPlaceHolder.Start(_obj);
-                    return 0;
+                    tempThreadHolder.threadPlaceHolder.Start(_obj);                 
                 }
 
-                return -2;
+                throw new ArgumentException("Thread already started");
             }
 
-            return -1;   
+            if(tempThreadHolder == null)
+                throw new ArgumentException("No thread found");
         }
 
 
