@@ -118,7 +118,6 @@ namespace DSL
             else
                 iuiOutput.writeLine("Unknown axis, the state is unchanged");
 
-
             return false;
         }
 
@@ -200,11 +199,4 @@ namespace DSL
         }
         #endregion
     }
-
-
-
-
-    //Two functions howto?
-    //Søren = Integration with python code (fælles)?
-    //
 }

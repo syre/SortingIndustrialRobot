@@ -104,8 +104,17 @@ namespace DSL // Has to be changed
     class Wrapper
     {
         // Members
+        // -Normal
+        private IDLL _dll;
+        public IDLL DLL
+        {
+            get { return (_dll); }
+            set { _dll = value; }
+        }
+
         // -Singleton related
         private static Wrapper wrapOnlyInstance;
+
 
         // Settings constants
         // -Initialization mode
@@ -186,7 +195,7 @@ namespace DSL // Has to be changed
         // -Constructors and destructors
         private Wrapper()
         {
-            // Nothing
+            _dll = new DLL();
         }
 
 
@@ -217,7 +226,6 @@ namespace DSL // Has to be changed
         /// <param name="_funcptrSuccess">Function to be called on success.</param>
         /// <param name="_funcptrError">Function to be called on error.</param>
         /// <returns>Returns true on successful call.(But errors can still happen)</returns>
-        private DLL _dll = new DLL();
         public bool initializationWrapped(enumSystemModes _sysmodeMode, enumSystemTypes _systypeType, DLLImport.DgateCallBack _funcptrSuccess, DLLImport.DgateCallBack _funcptrError)
         {
             int iReturnValue = _dll.Initialization((short)_sysmodeMode, (short)_systypeType, _funcptrSuccess, _funcptrError);
