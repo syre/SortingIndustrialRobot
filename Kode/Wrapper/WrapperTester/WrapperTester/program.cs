@@ -71,9 +71,9 @@ namespace WrapperTester
         {
             // Members
             wrapA = Wrapper.getInstance();
-            Wrapper.DgateCallBack dgateEventHandlerSuccess = initSuccess;
-            Wrapper.DgateCallBack dgateEventHandlerError = initError;
-            Wrapper.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
+            DLLImport.DgateCallBack dgateEventHandlerSuccess = initSuccess;
+            DLLImport.DgateCallBack dgateEventHandlerError = initError;
+            DLLImport.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
             bool status;
 
             #region OLD
@@ -116,11 +116,13 @@ namespace WrapperTester
                 ConsoleKeyInfo ckiArg;
                 System.Console.WriteLine("What now:");
                 System.Console.WriteLine("\t(H)Home all.");
-                System.Console.WriteLine("\t(E)Manual movement.(Unfunctional)");
+                //System.Console.WriteLine("\t(E)Manual movement.(Unfunctional)");
                 System.Console.WriteLine("\t(S)Set manual movement speed.(At the moment {0}.)", iSpeed);
                 System.Console.WriteLine("\t(C)Close gripper.");
                 System.Console.WriteLine("\t(O)Open gripper.");
                 System.Console.WriteLine("\t(B)Move conveyerbelt.");
+                System.Console.WriteLine("\t(P)Define point in new vector.");
+                System.Console.WriteLine("\t(M)Move to point.");
                 ckiArg = System.Console.ReadKey();
                 System.Console.Clear();
                 // --Check
@@ -131,14 +133,14 @@ namespace WrapperTester
                     System.Console.WriteLine("Status: {0}", status);
                     System.Console.ReadLine();
                 }
-                else if(ckiArg.Key == ConsoleKey.E)
+                /*else if(ckiArg.Key == ConsoleKey.E)
                 {
                     System.Console.WriteLine("Enabling manual movement[By axes].(Press <Enter> when successfully done.)");
                     status = wrapA.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
                     System.Console.WriteLine("Status: {0}", status);
                     System.Console.ReadLine();
                     manualMovement();
-                }
+                }*/
                 else if(ckiArg.Key == ConsoleKey.S)
                 {
                     System.Console.WriteLine("Enter new speed value: ");
@@ -165,6 +167,58 @@ namespace WrapperTester
                     System.Console.WriteLine("Moving status: {0}", status);
                     System.Console.ReadLine();
                     wrapA.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, 0);
+                }
+                else if(ckiArg.Key == ConsoleKey.P)
+                {
+                    string sVecName;
+                    SIRVector vVector;
+                    VecPoint vpPoint;
+                    int x, y, z, roll, pitch;
+
+                    System.Console.Write("SIRVector name: ");
+                    sVecName = System.Console.ReadLine();
+                    status = wrapA.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, sVecName, 1);
+                    System.Console.WriteLine("Status: {0}", status);
+                    System.Console.WriteLine("(R)elative or (A)bsolute positioning:");
+                    ckiArg = System.Console.ReadKey();
+                    if(ckiArg.Key == ConsoleKey.R)
+                    {
+                        vVector = new RelCoordSirVector(sVecName);
+                    }
+                    else
+                    {
+                        vVector = new AbsCoordSirVector(sVecName);
+                    }
+                    System.Console.WriteLine();
+                    System.Console.WriteLine("Making point in vector:");
+                    System.Console.Write("X: ");
+                    x = int.Parse(System.Console.ReadLine());
+                    System.Console.Write("Y: ");
+                    y = int.Parse(System.Console.ReadLine());
+                    System.Console.Write("Z: ");
+                    z = int.Parse(System.Console.ReadLine());
+                    System.Console.Write("Pitch: ");
+                    pitch =  int.Parse(System.Console.ReadLine());
+                    System.Console.Write("Roll: ");
+                    roll = int.Parse(System.Console.ReadLine());
+                    vpPoint = new VecPoint(x, y, z, pitch, roll);
+
+                    System.Console.WriteLine("Adding point:");
+                    vVector.addPoint(vpPoint);
+                    wrapA.teachWrapped(vVector);
+                    System.Console.WriteLine("Status: {0} (<Enter>)", status);
+                    System.Console.ReadLine();
+                }
+                else if(ckiArg.Key == ConsoleKey.M)
+                {
+                    string sVecName;
+
+                    System.Console.WriteLine("Name of vector: ");
+                    sVecName = System.Console.ReadLine();
+                    System.Console.WriteLine("Moving to point 1 in vector.");
+                    status = wrapA.moveLinearWrapped(sVecName, 0);
+                    System.Console.WriteLine("Status: {0} (<Enter>)", status);
+                    System.Console.ReadLine();
                 }
                 else
                 {

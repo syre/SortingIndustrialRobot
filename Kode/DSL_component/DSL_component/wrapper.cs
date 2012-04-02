@@ -215,10 +215,9 @@ namespace WrapperTester // Has to be changed
         /// <param name="_funcptrSuccess">Function to be called on success.</param>
         /// <param name="_funcptrError">Function to be called on error.</param>
         /// <returns>Returns true on successful call.(But errors can still happen)</returns>
-        private DLL _dll = new DLL();
-        public bool initializationWrapped(enumSystemModes _sysmodeMode, enumSystemTypes _systypeType, DLLImport.DgateCallBack _funcptrSuccess, DLLImport.DgateCallBack _funcptrError)
+        public bool initializationWrapped(enumSystemModes _sysmodeMode, enumSystemTypes _systypeType, DgateCallBack _funcptrSuccess, DgateCallBack _funcptrError)
         {
-            int iReturnValue = _dll.Initialization((short)_sysmodeMode, (short)_systypeType, _funcptrSuccess, _funcptrError);
+            int iReturnValue = initialization((short)_sysmodeMode, (short)_systypeType, _funcptrSuccess, _funcptrError);
             return ((iReturnValue == 1)? true : false);
         }
         /// <summary>
@@ -231,7 +230,7 @@ namespace WrapperTester // Has to be changed
         { 
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
             int iReturnValue;
-            iReturnValue = _dll.Control(bArg, _bControlOnOrOff); /// \warning Bool arg in unwrapped version.
+            iReturnValue = Control(bArg, _bControlOnOrOff); /// \warning Bool arg in unwrapped version.
             return ((iReturnValue == 1) ? true : false);
         }
 
@@ -242,7 +241,7 @@ namespace WrapperTester // Has to be changed
         public bool isOnlineOkWrapped()
         {
             int iReturnValue;
-            iReturnValue = _dll.IsOnLineOk();
+            iReturnValue = IsOnLineOk();
             return ((iReturnValue == 1) ? true : false);
         }
         #endregion
@@ -260,11 +259,11 @@ namespace WrapperTester // Has to be changed
         ///     1 - 8: Axis n being homed.
         ///     0x40: Homing ended.</param>
         /// <returns>Returns true on successful call.</returns>
-        public bool homeWrapped(enumAxisSettings _axisSettingsGroup, DLLImport.DgateCallBackByteRefArg _funcptrHomingEventHandler)
+        public bool homeWrapped(enumAxisSettings _axisSettingsGroup, DgateCallBackByteRefArg _funcptrHomingEventHandler)
         {
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
             int iReturnValue;
-            iReturnValue = _dll.Home((byte) bArg, _funcptrHomingEventHandler);
+            iReturnValue = Home((byte) bArg, _funcptrHomingEventHandler);
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -287,7 +286,7 @@ namespace WrapperTester // Has to be changed
                 default:
                     return (false);
             }
-            iReturnValue = _dll.EnterManual(shrtTmp);
+            iReturnValue = EnterManual(shrtTmp);
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -297,7 +296,7 @@ namespace WrapperTester // Has to be changed
         public bool closeManualWrapped()
         {
             int iReturnValue;
-            iReturnValue = _dll.CloseManual();
+            iReturnValue = CloseManual();
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -308,7 +307,7 @@ namespace WrapperTester // Has to be changed
         public bool moveManualWrapped(enumManualModeWhat _enumWhatToMove, int _lSpeed)
         {
             int iReturnValue;
-            iReturnValue = _dll.MoveManual(manualMovementToByte(_enumWhatToMove), _lSpeed); ///\warning WARN
+            iReturnValue = MoveManual(manualMovementToByte(_enumWhatToMove), _lSpeed); ///\warning WARN
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -319,7 +318,7 @@ namespace WrapperTester // Has to be changed
         public bool stopWrapped(enumAxisSettings _bWhatToStop) /// \todo Refactor.
         {
             int iReturnValue;
-            iReturnValue = _dll.Stop(axisSettingsToByte(_bWhatToStop));
+            iReturnValue = Stop(axisSettingsToByte(_bWhatToStop));
             return ((iReturnValue == 1) ? true : false);
         }
 
@@ -335,7 +334,7 @@ namespace WrapperTester // Has to be changed
         public bool moveLinearWrapped(string _sNameOfVector, int _iIndex)
         {
             int iReturn;
-            iReturn = _dll.MoveLinear(_sNameOfVector, (short)_iIndex, null, 0); // Ignoring last value.
+            iReturn = MoveLinear(_sNameOfVector, (short)_iIndex, null, 0); // Ignoring last value.
             return (iReturn == 1);
         }
         #endregion
@@ -348,7 +347,7 @@ namespace WrapperTester // Has to be changed
         public bool openGripperWrapped()
         {
             int iReturnValue;
-            iReturnValue = _dll.OpenGripper();
+            iReturnValue = OpenGripper();
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -358,7 +357,7 @@ namespace WrapperTester // Has to be changed
         public bool closeGripperWrapped()
         {
             int iReturnValue;
-            iReturnValue = _dll.CloseGripper();
+            iReturnValue = CloseGripper();
             return ((iReturnValue == 1) ? true : false);
         }
         /// <summary>
@@ -372,7 +371,7 @@ namespace WrapperTester // Has to be changed
         public bool getJawWrapped(ref short _shrtPerc, ref short _shrtWidth)
         {
             int iReturnValue;
-            iReturnValue = _dll.GetJaw(ref _shrtPerc, ref _shrtWidth);
+            iReturnValue = GetJaw(ref _shrtPerc, ref _shrtWidth);
             return ((iReturnValue == 1) ? true : false);
         }
         #endregion
@@ -385,9 +384,9 @@ namespace WrapperTester // Has to be changed
         /// </summary>
         /// <param name="_funcptrCallbackEnd">Function to be called when motion has ended.</param>
         /// <param name="_funcptrCallbackStart">Function to be called when motion has started.</param>
-        public void watchMotionWrapped(DLLImport.DgateCallBackCharArg _funcptrCallbackEnd, DLLImport.DgateCallBackCharArg _funcptrCallbackStart)
+        public void watchMotionWrapped(DgateCallBackCharArg _funcptrCallbackEnd, DgateCallBackCharArg _funcptrCallbackStart)
         {
-            _dll.WatchMotion(_funcptrCallbackEnd, _funcptrCallbackStart);
+            WatchMotion(_funcptrCallbackEnd, _funcptrCallbackStart);
         }
 
         /// <summary>
@@ -395,10 +394,10 @@ namespace WrapperTester // Has to be changed
         /// </summary>
         /// <param name="_funcptrCallbackEvent">The function to be called.</param>
         /// <returns>Returns true if successful call.</returns>
-        public bool watchDigitalInputWrapped(DLLImport.DgateCallBackLongArg _funcptrCallbackEvent)
+        public bool watchDigitalInputWrapped(DgateCallBackLongArg _funcptrCallbackEvent)
         {
             int iReturnValue;
-            iReturnValue = _dll.WatchDigitalInput(_funcptrCallbackEvent);
+            iReturnValue = WatchDigitalInput(_funcptrCallbackEvent);
             return ((iReturnValue == 1) ? true : false);
         }
 
@@ -411,7 +410,7 @@ namespace WrapperTester // Has to be changed
         public bool closeWatchDigitalInputWrapped()
         {
             int iReturnValue;
-            iReturnValue = _dll.CloseWatchDigitalInput();
+            iReturnValue = CloseWatchDigitalInput();
             return ((iReturnValue == 1) ? true : false);
         }
         #endregion
@@ -432,7 +431,7 @@ namespace WrapperTester // Has to be changed
         public bool defineVectorWrapped(enumAxisSettings _enumGroup, string _sVectorName, short _shrtLength)
         {
             int iReturn;
-            iReturn = _dll.DefineVector(axisSettingsToByte(_enumGroup), _sVectorName, _shrtLength);
+            iReturn = DefineVector(axisSettingsToByte(_enumGroup), _sVectorName, _shrtLength);
             return (iReturn == 1);
         }
         /// <summary>
@@ -456,7 +455,7 @@ namespace WrapperTester // Has to be changed
                 roll = pTmp.iRoll;
                 int[] iArray = new int[]{x, y, z, pitch, roll};
 
-                iReturn = _dll.Teach(vecTheSirVector.Name, (short) i, iArray, 5, vecTheSirVector.Type); // 5 because of 5 ints
+                iReturn = Teach(vecTheSirVector.Name, (short) i, iArray, 5, vecTheSirVector.Type); // 5 because of 5 ints
                 if (iReturn == 0)
                     return (false);
             }
@@ -475,7 +474,7 @@ namespace WrapperTester // Has to be changed
             int[] pEnc = new int[8]; // Ignored
             int[] pJoint = new int[8]; // Ignored
             int[] pXYZ = new int[8];
-            _dll.GetCurrentPosition(ref pEnc, ref pJoint, ref pXYZ);
+            GetCurrentPosition(ref pEnc, ref pJoint, ref pXYZ);
             return (new VecPoint(pXYZ[0], pXYZ[1], pXYZ[2], pXYZ[3], pXYZ[4]));
         }
         #endregion
