@@ -27,5 +27,10 @@ namespace RoboGO
         {
 
         }
+
+        private void button5_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("The robot has been connected!");
+        }
     }
 }

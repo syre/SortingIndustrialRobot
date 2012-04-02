@@ -5,10 +5,10 @@
         Height="500" 
         Width="800"
         WindowStartupLocation="CenterScreen"
-        Loaded ="Window_Loaded">
+        Loaded="Window_Loaded" ResizeMode="CanMinimize" Icon="/RoboGO;component/Images/Globus.JPG">
 
     <Grid>
-        <TabControl>
+        <TabControl Margin="226,0,0,0">
             <TabItem Header="User-Tab">
                 <Grid>
                     <Menu VerticalAlignment="Top">
@@ -61,9 +61,10 @@
                         </MenuItem>
                     </Menu>
                     <!--Box for text editor-->
-                    <TextBox Height="396" HorizontalAlignment="Left" Margin="6,27,0,0" Name="textBox1" VerticalAlignment="Top" Width="756">
+                    <TextBox Height="374" HorizontalAlignment="Left" Margin="6,27,0,0" Name="textBox1" VerticalAlignment="Top" Width="756">
                         Tekst editor til IDE'en
                     </TextBox>
+                    <StatusBar Height="23" HorizontalAlignment="Left" Margin="7,400,0,0" Name="statusBar1" VerticalAlignment="Top" Width="755" Background="Aqua" />
                 </Grid>
                 
             </TabItem>
@@ -86,15 +87,53 @@
                             <MenuItem Name="mnuAbout2" Header="_About"/>
                         </MenuItem>
                     </Menu>
-                    <Button Width="134" Height="25" Margin="600,370,30,15" Content="Calibrate" />
-                    <TextBlock Height="23" HorizontalAlignment="Left" Margin="57,380,0,0" Name="textBlock1" Text="Position:" VerticalAlignment="Top" Width="47" TextAlignment="Center" />
-                    <TextBox Height="23" HorizontalAlignment="Left" Margin="110,380,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
-                    <TextBlock Height="23" HorizontalAlignment="Left" Margin="57,351,0,0" Name="textBlock2" Text="Time:" TextAlignment="Center" VerticalAlignment="Top" Width="47" />
-                    <TextBox Height="23" HorizontalAlignment="Left" Margin="110,351,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" />
+                    <Button Width="134" Height="23" Margin="334,379,74,25" Content="Calibrate" />
+                    <TextBlock Height="23" HorizontalAlignment="Left" Margin="57,380,0,0" Name="textBlock1" Text="Position(x,y,z):" VerticalAlignment="Top" Width="77" TextAlignment="Center" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="140,381,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
+                    <TextBlock Height="23" HorizontalAlignment="Left" Margin="57,351,0,0" Name="textBlock2" Text="Time:" TextAlignment="Center" VerticalAlignment="Top" Width="77" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="140,351,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" />
                     <!--Simulator box-->
                     <TextBox Height="317" HorizontalAlignment="Left" Margin="6,27,0,0" Name="frame1" VerticalAlignment="Top" Width="756"/>
                 </Grid>
             </TabItem>
+            <!--Info-Tab-->
+            <TabItem Header="Info-Tab">
+                <StackPanel Name="Hello" Orientation="Horizontal">
+                    <!--Left table-->
+                    <ListBox HorizontalAlignment="Left" Width="135">
+                        Tables available
+                    </ListBox>
+                    <ListBox HorizontalAlignment="Left" Width="406">
+                        Schemas
+                    </ListBox>
+                </StackPanel>
+            </TabItem>
+            
+            <!--Log-Tab-->
+            <TabItem Header="Log-Tab">
+                <TextBlock>
+                    Hello world - Log is here!
+                </TextBlock>
+            </TabItem>
+            
         </TabControl>
+        
+        
+    <Grid Height="461" HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top" Width="225">
+        <TextBlock Height="23" HorizontalAlignment="Left" Name="textBlock3" Text="Styresystem" TextAlignment="Center" VerticalAlignment="Top" Width="225" />
+            <Button Content="Start!" Height="23" HorizontalAlignment="Left" Margin="22,112,0,0" Name="button1" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Stop!" Height="23" HorizontalAlignment="Left" Margin="126,112,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
+            <ComboBox Height="23" HorizontalAlignment="Left" Margin="6,74,0,0" Name="comboBox1" VerticalAlignment="Top" Width="213">
+                <ComboBoxItem Name="cmbRobot">Robot</ComboBoxItem>
+                <ComboBoxItem Name="cmbSimulator">Simulator</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Text="Choose Robot or Simulator" TextAlignment="Center" Height="28" HorizontalAlignment="Left" Margin="6,48,0,0" Name="label1" VerticalAlignment="Top" Width="213" />
+            <Button Content="Auto" Height="46" HorizontalAlignment="Left" Margin="22,391,0,0" Name="button3" VerticalAlignment="Top" Width="85"/>
+            <Button Content="Manual" Height="46" HorizontalAlignment="Left" Margin="116,391,0,0" Name="button4" VerticalAlignment="Top" Width="85" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="22,362,0,0" Name="textBlock4" Text="Choose operation for robot:" TextAlignment="Center" VerticalAlignment="Top" Width="179" />
+            <ProgressBar Height="27" HorizontalAlignment="Left" Margin="22,302,0,0" Name="progressBar1" VerticalAlignment="Top" Width="179" />
+            <Button Content="Check connectivity" Height="23" HorizontalAlignment="Left" Margin="22,273,0,0" Name="button5" VerticalAlignment="Top" Width="179" Click="button5_Click" />
+        </Grid>
     </Grid>
 </Window>

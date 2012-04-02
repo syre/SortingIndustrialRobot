@@ -1,8 +1,0 @@
-**XXXX**: Skal udskiftes i dokumenter.
-
-Markér 'milestones' i commits, så det er nemmere at gå tilbage i tiden.
-Ex: Ved Use Case done eller sprint lavet færdigt(SCRUM).
-
-Hvis bruger doxygen skal folk huske at kigge i TODO.
-
-Opdater indholdsfortegnelser.
