@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factory.cs" />
+    <Compile Include="manualController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControlSystem.cs" />
     <Compile Include="ThreadHandling.cs" />
