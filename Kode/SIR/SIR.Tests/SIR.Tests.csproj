@@ -61,6 +61,10 @@
       <Project>{CCB881A3-2162-400F-B9A6-02410740789F}</Project>
       <Name>DSL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RoboGO\RoboGO.csproj">
+      <Project>{2F82B9CC-CCCC-49FF-8FA1-3703A0AFBD5D}</Project>
+      <Name>RoboGO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

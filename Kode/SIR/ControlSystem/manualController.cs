@@ -12,7 +12,7 @@ namespace ControlSystem
     public enum enumLeftRight
     {
         MANUAL_MOVE_LEFT,
-        MANUAL_MOVE_RIGTH
+        MANUAL_MOVE_RIGHT
     }
 
     /// <summary>
@@ -99,7 +99,7 @@ namespace ControlSystem
         /// Move the conveyer belt in the desired direction.
         /// </summary>
         /// <param name="_elrDirection">What direction to move in.</param>
-        void moveConveyer(enumLeftRight _elrDirection); // Left right? What else to call it.
+        void moveAxisConveyer(enumLeftRight _elrDirection); // Left right? What else to call it.
 
         // -Coordinates
         /// <summary>
@@ -178,7 +178,7 @@ namespace ControlSystem
             throw new NotImplementedException();
         }
 
-        public void moveConveyer(enumLeftRight _elrDirection)
+        public void moveAxisConveyer(enumLeftRight _elrDirection)
         {
             throw new NotImplementedException();
         }

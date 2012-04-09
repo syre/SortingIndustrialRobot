@@ -84,7 +84,7 @@ namespace SIR.Tests
             Factory.currentIRobotInstance = irMock;
             mcTestObj = new ManualController();
             
-            mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_RIGTH);
+            mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.ManualMode = ManualModeType.Axes);
         }        [Test]
@@ -94,7 +94,7 @@ namespace SIR.Tests
             Factory.currentIRobotInstance = irMock;
             mcTestObj = new ManualController();
             
-            mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_RIGTH);
+            mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.stopAllMovement());
         }        
@@ -105,7 +105,7 @@ namespace SIR.Tests
             Factory.currentIRobotInstance = irMock;
             mcTestObj = new ManualController();
             
-            mcTestObj.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_RIGTH);
+            mcTestObj.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.ManualMode = ManualModeType.Axes);
         }        
@@ -116,7 +116,7 @@ namespace SIR.Tests
             Factory.currentIRobotInstance = irMock;
             mcTestObj = new ManualController();
 
-            mcTestObj.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_RIGTH);
+            mcTestObj.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.stopAllMovement());
         }        
@@ -127,7 +127,7 @@ namespace SIR.Tests
             Factory.currentIRobotInstance = irMock;
             mcTestObj = new ManualController();
 
-            mcTestObj.moveAxisElbow(enumLeftRight.MANUAL_MOVE_RIGTH);
+            mcTestObj.moveAxisElbow(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.ManualMode = ManualModeType.Axes);
         }        
@@ -138,7 +138,7 @@ namespace SIR.Tests
             Factory.currentIRobotInstance = irMock;
             mcTestObj = new ManualController();
 
-            mcTestObj.moveAxisElbow(enumLeftRight.MANUAL_MOVE_RIGTH);
+            mcTestObj.moveAxisElbow(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.stopAllMovement());
         }        
@@ -193,7 +193,7 @@ namespace SIR.Tests
             Factory.currentIRobotInstance = irMock;
             mcTestObj = new ManualController();
 
-            mcTestObj.moveAxisRoll(enumLeftRight.MANUAL_MOVE_RIGTH);
+            mcTestObj.moveAxisRoll(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.ManualMode = ManualModeType.Axes);
         }        
@@ -204,29 +204,29 @@ namespace SIR.Tests
             Factory.currentIRobotInstance = irMock;
             mcTestObj = new ManualController();
 
-            mcTestObj.moveAxisRoll(enumLeftRight.MANUAL_MOVE_RIGTH);
+            mcTestObj.moveAxisRoll(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.stopAllMovement());
         }        
         [Test]
-        public void moveConveyer_Called_ManualModeInRobotSetToAxes()
+        public void moveAxisConveyer_Called_ManualModeInRobotSetToAxes()
         {
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             Factory.currentIRobotInstance = irMock;
             mcTestObj = new ManualController();
 
-            mcTestObj.moveConveyer(enumLeftRight.MANUAL_MOVE_RIGTH);
+            mcTestObj.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.ManualMode = ManualModeType.Axes);
         }
         [Test]
-        public void moveConveyer_Called_CallsRobotStopAllMovement()
+        public void moveAxisConveyer_Called_CallsRobotStopAllMovement()
         {
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             Factory.currentIRobotInstance = irMock;
             mcTestObj = new ManualController();
 
-            mcTestObj.moveConveyer(enumLeftRight.MANUAL_MOVE_RIGTH);
+            mcTestObj.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.stopAllMovement());
         }
