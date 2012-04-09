@@ -1,4 +1,5 @@
-﻿using System;
+﻿/** \file guiManualSteering.xaml.cs */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RoboGO.ViewModels;
 
 namespace RoboGO
 {
@@ -18,9 +20,18 @@ namespace RoboGO
     /// </summary>
     public partial class GUIManualSteering : Window
     {
+        // Members
+        private ViewModelManualSteering vmmsViewModel;
+
         public GUIManualSteering()
         {
             InitializeComponent();
+
+            // ViewModel
+            vmmsViewModel = new ViewModelManualSteering();
+            this.DataContext = vmmsViewModel;
         }
+
+        // Events: Most pass to ViewModel functions
     }
 }

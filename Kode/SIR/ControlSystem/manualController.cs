@@ -1,9 +1,6 @@
 ﻿/** \file manualController.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ControlSystem
 {
@@ -15,6 +12,15 @@ namespace ControlSystem
     {
         MANUAL_MOVE_LEFT,
         MANUAL_MOVE_RIGTH
+    }
+
+    /// <summary>
+    /// What direction to move in when moving by axes.(Wrist)
+    /// </summary>
+    public enum enumUpDown
+    {
+        MANUAL_MOVE_UP,
+        MANUAL_MOVE_DOWN
     }
 
     /// <summary>
@@ -44,6 +50,8 @@ namespace ControlSystem
         // Settings
         /// <summary>
         /// Speed in percentage.
+        /// 
+        /// So should be between 0 and 100.
         /// </summary>
         int speed
         {
@@ -56,30 +64,76 @@ namespace ControlSystem
         /// Move the base in the desired direction in 'speed' percentage of maximum speed.
         /// </summary>
         /// <param name="_elrDirection">Where ya wanna go?</param>
-        void moveBase(enumLeftRight _elrDirection);
+        void moveAxisBase(enumLeftRight _elrDirection);
         /// <summary>
-        /// !i!i!i!i!
+        /// Moves the shoulder in the desired direction.
         /// </summary>
-        /// <param name="_elrDirection"></param>
-        void moveShoulder(enumLeftRight _elrDirection);
-        void moveElbow(enumLeftRight _elrDirection);
-        void moveGripper(enumCloseOpen _coGripper);
-        void moveAxePitch(enumLeftRight _elrDirection); // Maybe a bit weird there is one for Axe and Coord
-        void moveAxeRoll(enumLeftRight _elrDirection); // Maybe a bit weird there is one for Axe and Coord
+        /// <param name="_elrDirection">What direction to move in.</param>
+        void moveAxisShoulder(enumLeftRight _elrDirection);
+        /// <summary>
+        /// Moves the elbow in the desired direction.
+        /// </summary>
+        /// <param name="_elrDirection">What direction to move in.</param>
+        void moveAxisElbow(enumLeftRight _elrDirection);
+        /// <summary>
+        /// Opens or closes the gripper.
+        /// </summary>
+        /// <param name="_coGripper">To open or close.</param>
+        void moveAxisGripper(enumCloseOpen _coGripper);
+        /// <summary>
+        /// Moves the wrists pitch in the desired direction.
+        /// </summary>
+        /// <param name="_eudDirection">What direction to move in.</param>
+        void moveAxisPitch(enumUpDown _eudDirection);
+        /// <summary>
+        /// Rolls the wrist in the desired direction.
+        /// </summary>
+        /// <param name="_elrDirection">What direction to move in.</param>
+        void moveAxisRoll(enumLeftRight _elrDirection);
+        /// <summary>
+        /// Move the conveyer belt in the desired direction.
+        /// </summary>
+        /// <param name="_elrDirection">What direction to move in.</param>
         void moveConveyer(enumLeftRight _elrDirection); // Left right? What else to call it.
 
         // -Coordinates
-        void moveX(enumIncDec eidIncOrDec);
-        void moveY(enumIncDec eidIncOrDec);
-        void moveZ(enumIncDec eidIncOrDec);
-        void moveCoordPitch(enumIncDec eidIncOrDec);
-        void moveCoordRoll(enumIncDec eidIncOrDec);
+        /// <summary>
+        /// Change the robots X-coordinate.
+        /// </summary>
+        /// <param name="_eidIncOrDec">Increasing or decreasing.</param>
+        void moveCoordX(enumIncDec _eidIncOrDec);
+        /// <summary>
+        /// Change the robots Y-coordinate.
+        /// </summary>
+        /// <param name="_eidIncOrDec">Increasing or decreasing.</param>
+        void moveCoordY(enumIncDec _eidIncOrDec);
+        /// <summary>
+        /// Change the robots Z-coordinate.
+        /// </summary>
+        /// <param name="_eidIncOrDec">Increasing or decreasing.</param>
+        void moveCoordZ(enumIncDec _eidIncOrDec);
+        /// <summary>
+        /// Change the wrists pitch.
+        /// </summary>
+        /// <param name="_eidIncOrDec">Increasing or decreasing.</param>
+        void moveCoordPitch(enumIncDec _eidIncOrDec);
+        /// <summary>
+        /// Change the roll of the wrist.
+        /// </summary>
+        /// <param name="_eidIncOrDec">Increasing or decreasing.</param>
+        void moveCoordRoll(enumIncDec _eidIncOrDec);
+
+        // -Other
+        /// <summary>
+        /// Stops all movement.
+        /// </summary>
+        void stopMovement();
     }
 
     /// <summary>
-    /// Class to functions as encapsulation for controlling manual movement. Instead of using directly Robot or Simulator by interface.
+    /// Class that encapsulates controlling manual movement. Instead of using directly Robot or Simulator by interface.
     /// 
-    /// Note: Uses IRobot, so it is able to use both a Robot or a simulator.
+    /// Note: Uses IRobot, so it is able to use both a Robot or a Simulator.
     /// </summary>
     public class ManualController : IManualController
     {
@@ -89,32 +143,32 @@ namespace ControlSystem
             set { throw new NotImplementedException(); }
         }
 
-        public void moveBase(enumLeftRight _elrDirection)
+        public void moveAxisBase(enumLeftRight _elrDirection)
         {
             throw new NotImplementedException();
         }
 
-        public void moveShoulder(enumLeftRight _elrDirection)
+        public void moveAxisShoulder(enumLeftRight _elrDirection)
         {
             throw new NotImplementedException();
         }
 
-        public void moveElbow(enumLeftRight _elrDirection)
+        public void moveAxisElbow(enumLeftRight _elrDirection)
         {
             throw new NotImplementedException();
         }
 
-        public void moveGripper(enumCloseOpen _coGripper)
+        public void moveAxisGripper(enumCloseOpen _coGripper)
         {
             throw new NotImplementedException();
         }
 
-        public void moveAxePitch(enumLeftRight _elrDirection)
+        public void moveAxisPitch(enumUpDown _elrDirection)
         {
             throw new NotImplementedException();
         }
 
-        public void moveAxeRoll(enumLeftRight _elrDirection)
+        public void moveAxisRoll(enumLeftRight _elrDirection)
         {
             throw new NotImplementedException();
         }
@@ -124,29 +178,34 @@ namespace ControlSystem
             throw new NotImplementedException();
         }
 
-        public void moveX(enumIncDec eidIncOrDec)
+        public void moveCoordX(enumIncDec _eidIncOrDec)
         {
             throw new NotImplementedException();
         }
 
-        public void moveY(enumIncDec eidIncOrDec)
+        public void moveCoordY(enumIncDec _eidIncOrDec)
         {
             throw new NotImplementedException();
         }
 
-        public void moveZ(enumIncDec eidIncOrDec)
+        public void moveCoordZ(enumIncDec _eidIncOrDec)
         {
             throw new NotImplementedException();
         }
 
-        public void moveCoordPitch(enumIncDec eidIncOrDec)
+        public void moveCoordPitch(enumIncDec _eidIncOrDec)
         {
             throw new NotImplementedException();
         }
 
-        public void moveCoordRoll(enumIncDec eidIncOrDec)
+        public void moveCoordRoll(enumIncDec _eidIncOrDec)
         {
             throw new NotImplementedException();
+        }
+        
+        public void stopMovement()
+        {
+            throw new NotImplementedException(); 
         }
     }
 }

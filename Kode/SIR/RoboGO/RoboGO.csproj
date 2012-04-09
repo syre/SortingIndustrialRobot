@@ -55,7 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="GUIManualSteering.xaml">
+    <Compile Include="ViewModels\viewModelManualSteering.cs" />
+    <Page Include="guiManualSteering.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -67,8 +68,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GUIManualSteering.xaml.cs">
-      <DependentUpon>GUIManualSteering.xaml</DependentUpon>
+    <Compile Include="guiManualSteering.xaml.cs">
+      <DependentUpon>guiManualSteering.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -103,6 +104,12 @@
     <Content Include="Images\Globus.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControlSystem\ControlSystem.csproj">
+      <Project>{184F67D0-715F-4676-BC5F-7D7BA2FD49D8}</Project>
+      <Name>ControlSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
