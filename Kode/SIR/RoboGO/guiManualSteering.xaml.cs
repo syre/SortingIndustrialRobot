@@ -32,6 +32,6 @@ namespace RoboGO
             this.DataContext = vmmsViewModel;
         }
 
-        // Events: Most pass to ViewModel functions
+        // Events: Most pass to ViewModel functions.(Can also use commands instead.)
     }
 }

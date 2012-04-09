@@ -1,6 +1,7 @@
 ﻿/** \file manualController.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
+using DSL;
 
 namespace ControlSystem
 {
@@ -47,16 +48,20 @@ namespace ControlSystem
     /// </summary>
     public interface IManualController
     {
-        // Settings
+        // Properties
         /// <summary>
         /// Speed in percentage.
         /// 
         /// So should be between 0 and 100.
         /// </summary>
-        int speed
-        {
-            get; set;
-        }
+        int Speed{ get; set; }
+
+        /// <summary>
+        /// What to steer.
+        /// 
+        /// Could be for example Robot(ER4) or Simulator.
+        /// </summary>
+        IRobot RobotConnection { get; set; }
 
         // Movement
         // -Axes
@@ -122,12 +127,6 @@ namespace ControlSystem
         /// </summary>
         /// <param name="_eidIncOrDec">Increasing or decreasing.</param>
         void moveCoordRoll(enumIncDec _eidIncOrDec);
-
-        // -Other
-        /// <summary>
-        /// Stops all movement.
-        /// </summary>
-        void stopMovement();
     }
 
     /// <summary>
@@ -137,7 +136,13 @@ namespace ControlSystem
     /// </summary>
     public class ManualController : IManualController
     {
-        public int speed
+        public int Speed
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
+
+        public IRobot RobotConnection
         {
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }
@@ -201,11 +206,6 @@ namespace ControlSystem
         public void moveCoordRoll(enumIncDec _eidIncOrDec)
         {
             throw new NotImplementedException();
-        }
-        
-        public void stopMovement()
-        {
-            throw new NotImplementedException(); 
         }
     }
 }

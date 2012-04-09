@@ -10,6 +10,8 @@ namespace RoboGO.ViewModels
 {
     /// <summary>
     /// ViewModel for GUIManualSteering.
+    /// 
+    /// \todo Way to inform View about errors, like not being connected to robot.(Example messaging.)
     /// </summary>
     public class ViewModelManualSteering : INotifyPropertyChanged
     {

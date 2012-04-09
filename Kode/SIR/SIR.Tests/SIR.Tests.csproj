@@ -49,9 +49,14 @@
     <Compile Include="manualControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulatorTests.cs" />
+    <Compile Include="viewModelManualSteeringTests.cs" />
     <Compile Include="wrapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ControlSystem\ControlSystem.csproj">
+      <Project>{184F67D0-715F-4676-BC5F-7D7BA2FD49D8}</Project>
+      <Name>ControlSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DSL\DSL.csproj">
       <Project>{CCB881A3-2162-400F-B9A6-02410740789F}</Project>
       <Name>DSL</Name>
