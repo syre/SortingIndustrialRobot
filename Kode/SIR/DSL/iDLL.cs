@@ -14,13 +14,13 @@ namespace DSL
     public interface IDLL
     {
         #region Interfaced DLL's
-        
+
         // -Robot functions
-        int Initialization(short _shrtMode, short _shrtType, DLLImport.DgateCallBack _funcprtCallBack, DLLImport.DgateCallBack _funcptrCallBackError);
+        int Initialization(short _shrtMode, short _shrtType, DLL.DgateCallBack _funcprtCallBack, DLL.DgateCallBack _funcptrCallBackError);
 
         int Control(byte _bAxis, bool _bIsOn);
 
-        int Home(byte _axis, DLLImport.DgateCallBackByteRefArg _funcptrCallBack);
+        int Home(byte _axis, DLL.DgateCallBackByteRefArg _funcptrCallBack);
 
         int OpenGripper();
 
@@ -36,9 +36,9 @@ namespace DSL
 
         int Stop(byte _axis);
 
-        DLLImport.DgateCallBackCharArg WatchMotion(DLLImport.DgateCallBackCharArg _funcptrCallbackEnd, DLLImport.DgateCallBackCharArg _funcptrCallbackStart);
+        DLL.DgateCallBackCharArg WatchMotion(DLL.DgateCallBackCharArg _funcptrCallbackEnd, DLL.DgateCallBackCharArg _funcptrCallbackStart);
 
-        int WatchDigitalInput(DLLImport.DgateCallBackLongArg _funcptrCallbackEvent);
+        int WatchDigitalInput(DLL.DgateCallBackLongArg _funcptrCallbackEvent);
 
         int CloseWatchDigitalInput();
 

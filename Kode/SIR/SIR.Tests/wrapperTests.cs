@@ -10,23 +10,13 @@ namespace SIR.Tests
     [TestFixture]
     public class WrapperTests
     {
+        
 
-        public static DLL _dll = new DLL();
-        public DLLMock _dllMock = new DLLMock(_dll);
-
-        
-        private static int iSpeed = 10;
-        
-        private DLLImport.DgateCallBack dgateEventHandlerSuccess;
-        private DLLImport.DgateCallBack dgateEventHandlerError;
-        private DLLImport.DgateCallBackByteRefArg dgateEventHandlerHoming;
-        
-        
 
         [SetUp]
         public void SetupTest()
         {
-            
+            Wrapper stubCalcHelper = MockRepository.GenerateStub<ICalcHelper>();
         }
 
         [TearDown]

@@ -66,9 +66,9 @@ namespace DSL
     public class Robot : IRobot
     {
         private Wrapper _wrapper;
-        DLLImport.DgateCallBack dgateEventHandlerSuccess = initSuccess;
-        DLLImport.DgateCallBack dgateEventHandlerError = initError;
-        DLLImport.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
+        DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
+        DLL.DgateCallBack dgateEventHandlerError = initError;
+        DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
         #region Robot mode properties
         public ManualModeType ManualMode
         {

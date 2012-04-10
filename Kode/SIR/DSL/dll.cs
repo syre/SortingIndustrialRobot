@@ -13,7 +13,21 @@ namespace DSL
     /// </summary>
     public class DLL : IDLL
     {
-        public int Initialization(short _shrtMode, short _shrtType, DLLImport.DgateCallBack _funcprtCallBack, DLLImport.DgateCallBack _funcptrCallBackError)
+        #region Imported references(Should use wrapped versions)
+        // -Function pointers
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public delegate void DgateCallBack(IntPtr voidptrConfigData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public delegate void DgateCallBackCharArg(Byte bArg);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public delegate void DgateCallBackLongArg(long lArg); /// \warning Using long.
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public delegate void DgateCallBackByteRefArg(ref byte bArg);
+
+        public int Initialization(short _shrtMode, short _shrtType, DgateCallBack _funcprtCallBack, DgateCallBack _funcptrCallBackError)
         {
             return DLLImport.initialization(_shrtMode, _shrtType, _funcprtCallBack, _funcptrCallBackError);
         }
@@ -23,7 +37,7 @@ namespace DSL
             return DLLImport.Control(_bAxis, _bIsOn);
         }
 
-        public int Home(byte _axis, DLLImport.DgateCallBackByteRefArg _funcptrCallBack)
+        public int Home(byte _axis, DgateCallBackByteRefArg _funcptrCallBack)
         {
             return DLLImport.Home(_axis, _funcptrCallBack);
         }
@@ -63,12 +77,12 @@ namespace DSL
             return DLLImport.Stop(_axis);
         }
         
-        public DLLImport.DgateCallBackCharArg WatchMotion(DLLImport.DgateCallBackCharArg _funcptrCallbackEnd, DLLImport.DgateCallBackCharArg _funcptrCallbackStart)
+        public DgateCallBackCharArg WatchMotion(DgateCallBackCharArg _funcptrCallbackEnd, DgateCallBackCharArg _funcptrCallbackStart)
         {
             return DLLImport.WatchMotion(_funcptrCallbackEnd, _funcptrCallbackStart);
         }
 
-        public int WatchDigitalInput(DLLImport.DgateCallBackLongArg _funcptrCallbackEvent)
+        public int WatchDigitalInput(DgateCallBackLongArg _funcptrCallbackEvent)
         {
             return DLLImport.WatchDigitalInput(_funcptrCallbackEvent);
         }
@@ -108,29 +122,17 @@ namespace DSL
 
     public class DLLImport
     {
-        #region Imported references(Should use wrapped versions)
-        // -Function pointers
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        public delegate void DgateCallBack(IntPtr voidptrConfigData);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        public delegate void DgateCallBackCharArg(Byte bArg);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        public delegate void DgateCallBackLongArg(long lArg); /// \warning Using long.
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        public delegate void DgateCallBackByteRefArg(ref byte bArg);
+        
 
         // -Robot functions
         [DllImport("USBC.dll", EntryPoint = "?Initialization@@YAHFFP6AXPAX@Z1@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int initialization(short shrtMode, short shrtType, DgateCallBack funcprtCallBack, DgateCallBack funcptrCallBackError);
+        public static extern int initialization(short shrtMode, short shrtType, DLL.DgateCallBack funcprtCallBack, DLL.DgateCallBack funcptrCallBackError);
 
         [DllImport("USBC.dll", EntryPoint = "?Control@@YAHEH@Z", CallingConvention = CallingConvention.Cdecl)]
         public static extern int Control(byte bAxis, bool bIsOn);
 
         [DllImport("USBC.dll", EntryPoint = "?Home@@YAHEP6AXPAX@Z@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int Home(byte axis, DgateCallBackByteRefArg funcptrCallBack);
+        public static extern int Home(byte axis, DLL.DgateCallBackByteRefArg funcptrCallBack);
 
         [DllImport("USBC.dll", EntryPoint = "?OpenGripper@@YAHXZ", CallingConvention = CallingConvention.Cdecl)]
         public static extern int OpenGripper();
@@ -154,10 +156,10 @@ namespace DSL
         public static extern int Stop(byte axis);
 
         [DllImport("USBC.dll", EntryPoint = "?WatchMotion@@YAP6AXPAX@ZP6AX0@Z1@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern DgateCallBackCharArg WatchMotion(DgateCallBackCharArg funcptrCallbackEnd, DgateCallBackCharArg funcptrCallbackStart);
+        public static extern DLL.DgateCallBackCharArg WatchMotion(DLL.DgateCallBackCharArg funcptrCallbackEnd, DLL.DgateCallBackCharArg funcptrCallbackStart);
 
         [DllImport("USBC.dll", EntryPoint = "?WatchDigitalInp@@YAHP6AXPAX@Z@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int WatchDigitalInput(DgateCallBackLongArg funcptrCallbackEvent);
+        public static extern int WatchDigitalInput(DLL.DgateCallBackLongArg funcptrCallbackEvent);
 
         [DllImport("USBC.dll", EntryPoint = "?CloseWatchDigitalInp@@YAHXZ", CallingConvention = CallingConvention.Cdecl)]
         public static extern int CloseWatchDigitalInput();
