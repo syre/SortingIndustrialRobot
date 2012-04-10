@@ -34,6 +34,16 @@ namespace SIR.Tests
 
             Assert.AreEqual(50, vmmsTestObj.Speed);
         }
+        [Test]
+        public void Speed_SetsItTo50_GetsSavedInManualController()
+        {
+            vmmsTestObj = new ViewModelManualSteering();
+            IManualController imcTmp = MockRepository.GenerateMock<IManualController>();
+            vmmsTestObj.ManualControl = imcTmp;
+            vmmsTestObj.Speed = 50;
+
+            imcTmp.AssertWasCalled(t => t.Speed = 50);
+        }
 
         // -Functions
         #region Axis
