@@ -20,12 +20,19 @@ namespace SIR.Tests
         [Test]
         public void ManualControl_SetsIt_GetsSaved()
         {
-            
+            vmmsTestObj = new ViewModelManualSteering();
+            ManualController mcTmp = new ManualController();
+            vmmsTestObj.ManualControl = mcTmp;
+
+            Assert.AreSame(mcTmp, vmmsTestObj.ManualControl);
         }
         [Test]
         public void Speed_SetsItTo50_GetsSetInManualController()
         {
-            
+            vmmsTestObj = new ViewModelManualSteering();
+            vmmsTestObj.Speed = 50;
+
+            Assert.AreEqual(50, vmmsTestObj.Speed);
         }
 
         // -Functions
@@ -58,7 +65,8 @@ namespace SIR.Tests
 
             vmmsTestObj.moveAxisShoulderRight();
 
-            imcManualControllerMock.AssertWasCalled(t => t.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_RIGHT));        }
+            imcManualControllerMock.AssertWasCalled(t => t.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_RIGHT));
+        }
         [Test]
         public void moveAxisShoulderLeft_Called_CallsManualControllermoveAxisShoulderWithMANUAL_MOVE_LEFT()
         {

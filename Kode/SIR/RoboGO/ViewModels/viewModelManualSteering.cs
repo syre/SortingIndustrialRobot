@@ -22,7 +22,7 @@ namespace RoboGO.ViewModels
             get { return (mcManualControl); }
             set { mcManualControl = value; }
         }
-        private int Speed
+        public int Speed
         {
             get{return(mcManualControl.Speed);}
             set { mcManualControl.Speed = value; propertyChanged("Speed"); }
