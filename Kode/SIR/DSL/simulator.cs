@@ -101,27 +101,6 @@ namespace DSL
         }
 
         /// <summary>
-        /// Stops one axe
-        /// </summary>
-        /// <param name="axis">The axe to be stopped</param>
-        /// <returns>returns true if axe is stopped</returns>
-        public bool stopMove(AxisSettings axis)
-        {
-            if (axis == AxisSettings.AXIS_0 || axis == AxisSettings.AXIS_1 || axis == AxisSettings.AXIS_2 ||
-                axis == AxisSettings.AXIS_3 || axis == AxisSettings.AXIS_4 || axis == AxisSettings.AXIS_5 ||
-                    axis == AxisSettings.AXIS_6 || axis == AxisSettings.AXIS_7 || axis == AxisSettings.AXIS_ROBOT ||
-                        axis == AxisSettings.AXIS_ALL || axis == AxisSettings.AXIS_PERIPHERALS)
-            {
-                iuiOutput.writeLine(axis.ToString() + " is stopped!");
-                return true;
-            }
-            else
-                iuiOutput.writeLine("Unknown axis, the state is unchanged");
-
-            return false;
-        }
-
-        /// <summary>
         /// function for moving by coordinates
         /// </summary>
         /// <param name="_x"> x-coordinate </param>
@@ -198,5 +177,51 @@ namespace DSL
             return true;
         }
         #endregion
+
+        // Interface V2 additions
+        public bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool moveBase(int speed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool moveShoulder(int speed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool moveWristPitch(int speed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool moveWristRoll(int speed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool moveElbow(int speed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool moveGripper(int speed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool moveConveyerBelt(int speed)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
