@@ -226,7 +226,7 @@ namespace DSL // Has to be changed
         /// <param name="_funcptrSuccess">Function to be called on success.</param>
         /// <param name="_funcptrError">Function to be called on error.</param>
         /// <returns>Returns true on successful call.(But errors can still happen)</returns>
-        public bool initializationWrapped(enumSystemModes _sysmodeMode, enumSystemTypes _systypeType, DLLImport.DgateCallBack _funcptrSuccess, DLLImport.DgateCallBack _funcptrError)
+        public bool initializationWrapped(enumSystemModes _sysmodeMode, enumSystemTypes _systypeType, DLL.DgateCallBack _funcptrSuccess, DLL.DgateCallBack _funcptrError)
         {
             int iReturnValue = _dll.Initialization((short)_sysmodeMode, (short)_systypeType, _funcptrSuccess, _funcptrError);
             return ((iReturnValue == 1)? true : false);
@@ -270,7 +270,7 @@ namespace DSL // Has to be changed
         ///     1 - 8: Axis n being homed.
         ///     0x40: Homing ended.</param>
         /// <returns>Returns true on successful call.</returns>
-        public bool homeWrapped(enumAxisSettings _axisSettingsGroup, DLLImport.DgateCallBackByteRefArg _funcptrHomingEventHandler)
+        public bool homeWrapped(enumAxisSettings _axisSettingsGroup, DLL.DgateCallBackByteRefArg _funcptrHomingEventHandler)
         {
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
             int iReturnValue;
@@ -397,7 +397,7 @@ namespace DSL // Has to be changed
         /// </summary>
         /// <param name="_funcptrCallbackEnd">Function to be called when motion has ended.</param>
         /// <param name="_funcptrCallbackStart">Function to be called when motion has started.</param>
-        public void watchMotionWrapped(DLLImport.DgateCallBackCharArg _funcptrCallbackEnd, DLLImport.DgateCallBackCharArg _funcptrCallbackStart)
+        public void watchMotionWrapped(DLL.DgateCallBackCharArg _funcptrCallbackEnd, DLL.DgateCallBackCharArg _funcptrCallbackStart)
         {
             _dll.WatchMotion(_funcptrCallbackEnd, _funcptrCallbackStart);
         }
@@ -407,7 +407,7 @@ namespace DSL // Has to be changed
         /// </summary>
         /// <param name="_funcptrCallbackEvent">The function to be called.</param>
         /// <returns>Returns true if successful call.</returns>
-        public bool watchDigitalInputWrapped(DLLImport.DgateCallBackLongArg _funcptrCallbackEvent)
+        public bool watchDigitalInputWrapped(DLL.DgateCallBackLongArg _funcptrCallbackEvent)
         {
             int iReturnValue;
             iReturnValue = _dll.WatchDigitalInput(_funcptrCallbackEvent);

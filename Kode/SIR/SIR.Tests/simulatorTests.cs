@@ -88,21 +88,6 @@ namespace SIR.Tests
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
         [Test]
-        public void stopMove_CallingIt_ReturnsTrue()
-        {
-            Assert.IsTrue(simTestObj.stopMove(AxisSettings.AXIS_ROBOT)); // Dummy value
-        }
-        [Test]
-        public void stopMove_CallingIt_WritesToUI()
-        {
-            IUI iuiMock = MockRepository.GenerateMock<IUI>();
-            simTestObj.IUIOutput = iuiMock;
-
-            simTestObj.stopMove(AxisSettings.AXIS_ROBOT); // Dummy value
-
-            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
-        }
-        [Test]
         public void isOnline_CallingIt_ReturnsTrue()
         {
             Assert.IsTrue(simTestObj.isOnline());

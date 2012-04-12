@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 
 namespace DSL
 {
+    /*
     public class DLLMock
     {
         // Extra classes
@@ -195,7 +196,7 @@ namespace DSL
             return y;
         }
 
-        public int Initialization(short shrtMode, short shrtType, DLLImport.DgateCallBack funcprtCallBack, DLLImport.DgateCallBack funcptrCallBackError)
+        public int Initialization(short shrtMode, short shrtType, DLL.DgateCallBack funcprtCallBack, DLL.DgateCallBack funcptrCallBackError)
         {
             _dll.Initialization(shrtMode, shrtType, funcprtCallBack, funcptrCallBackError);
             return 1;
@@ -305,4 +306,5 @@ namespace DSL
             return 1;
         }
     }
+     * */
 }
