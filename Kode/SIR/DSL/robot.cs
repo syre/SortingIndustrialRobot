@@ -54,13 +54,19 @@ namespace DSL
         bool initialization();
         ManualModeType ManualMode { get; set; }
         ControlModeType ControlMode { get; set; }
-	bool stopAllMovement();
-        bool stopMove(AxisSettings axis);
+        bool stopAllMovement();
         bool moveByCoordinates(int x, int y, int z, int pitch, int roll);
         short getJawOpeningWidthMilimeters();
         short getJawOpeningWidthPercentage();
         bool homeRobot();
         bool isOnline();
+        bool moveBase(int speed);
+        bool moveShoulder(int speed);
+        bool moveWristPitch(int speed);
+        bool moveWristRoll(int speed);
+        bool moveElbow(int speed);
+        bool moveGripper(int speed);
+        bool moveConveyerBelt(int speed);
 
     }
     public class Robot : IRobot
@@ -154,6 +160,8 @@ namespace DSL
         public Robot()
         {
             _wrapper = Wrapper.getInstance();
+            homeRobot();
+
         }
         /// <summary>
         /// Initializes robot with default values MODE_ONLINE and SYSTEM_TYPE_DEFAULT
@@ -205,11 +213,14 @@ namespace DSL
         /// <returns></returns>
         public bool moveByCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
         {
-                ManualMode = ManualModeType.Coordinates;
-                // implement move by coordinates
-                
-                ManualMode = ManualModeType.Off;
-            return (false); /// \warning Not implemented.
+            // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
+            
+            ManualMode = ManualModeType.Coordinates;
+            
+            _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, "defaultVector",5); // shrtlength??
+            _wrapper.moveLinearWrapped("defaultVector", 5); // index??    
+            ManualMode = ManualModeType.Off;
+            return false; 
         }
         #endregion
 
@@ -285,46 +296,6 @@ namespace DSL
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, _iSpeed);
         }
 
-        public bool stopMove(AxisSettings _axisWhatAxis)
-        {
-            switch (_axisWhatAxis)
-            {
-                case (AxisSettings.AXIS_0):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_0);
-
-                case (AxisSettings.AXIS_1):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_1);
-
-                case (AxisSettings.AXIS_2):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_2);
-
-                case (AxisSettings.AXIS_3):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_3);
-
-                case (AxisSettings.AXIS_4):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_4);
-
-                case (AxisSettings.AXIS_5):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_5);
-
-                case (AxisSettings.AXIS_6):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_6);
-
-                case (AxisSettings.AXIS_7):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_7);
-
-                case (AxisSettings.AXIS_ALL):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
-
-                case (AxisSettings.AXIS_PERIPHERALS):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_PERIPHERALS);
-
-                case (AxisSettings.AXIS_ROBOT):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
-                default:
-                    return false;
-            }
-        }
         #endregion
 
         #region gripper methods
