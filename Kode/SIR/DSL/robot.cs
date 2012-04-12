@@ -31,22 +31,6 @@ namespace DSL
         On
     }
 
-    public enum AxisSettings
-    {
-        AXIS_ROBOT,
-        AXIS_PERIPHERALS,
-        AXIS_0,
-        AXIS_1,
-        AXIS_2,
-        AXIS_3,
-        AXIS_4,
-        AXIS_5,
-        AXIS_6,
-        AXIS_7,
-        AXIS_ALL
-    }
-
-
     public interface IRobot
     {
         bool closeGripper();
@@ -55,7 +39,8 @@ namespace DSL
         ManualModeType ManualMode { get; set; }
         ControlModeType ControlMode { get; set; }
         bool stopAllMovement();
-        bool moveByCoordinates(int x, int y, int z, int pitch, int roll);
+        bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll);
+        bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll);
         short getJawOpeningWidthMilimeters();
         short getJawOpeningWidthPercentage();
         bool homeRobot();
@@ -211,16 +196,29 @@ namespace DSL
         /// <param name="pitch"> pitch robot arm</param>
         /// <param name="roll"> roll of robot arm</param>
         /// <returns></returns>
-        public bool moveByCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
+        public bool moveByAbsoluteCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
         {
             // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
             
             ManualMode = ManualModeType.Coordinates;
-            
-            _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, "defaultVector",5); // shrtlength??
+            SIRVector tempCordVector = new AbsCoordSirVector("absoluteVector");
+            tempCordVector.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll));
+            _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, "absoluteVector",5); // shrtlength??
             _wrapper.moveLinearWrapped("defaultVector", 5); // index??    
             ManualMode = ManualModeType.Off;
             return false; 
+        }
+
+        public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
+        {
+            // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
+            ManualMode = ManualModeType.Coordinates;
+            
+            SIRVector tempRelVector = new RelCoordSirVector("relativeVector");
+            tempRelVector.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll ));
+
+            ManualMode = ManualModeType.Off;
+            return false;
         }
         #endregion
 
