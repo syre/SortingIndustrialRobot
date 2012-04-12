@@ -2,6 +2,146 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Manual Steering" Height="300" Width="300"
-        x:Name="GUIManual">
-    <TextBlock>Nothing to see people. Move along.</TextBlock>
+        x:Name="GUIManual" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStyle="ToolWindow">
+<!-- Resources -->
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+    </Window.Resources>
+
+<!-- Content -->
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Gripper: " />
+            <Button Name="axisBtnGripperOpen">
+                <Image Source="Images/arrowOpen.png"/>
+            </Button>
+            <Button Name="axisBtnGripperClose">
+                <Image Source="Images/arrowClose.png" />
+            </Button>
+        </StackPanel>
+            <TabControl>
+            <!-- Axis movement -->
+            <TabItem Header="Axis">
+                <StackPanel Orientation="Horizontal">
+                    <GroupBox Header="Movement">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Base:" />
+                                <Button Name="axisBtnBaseLeft">
+                                    <Image Source="Images/arrowLeft.png"/>
+                                </Button>
+                                <Button Name="axisBtnBaseRight">
+                                    <Image Source="Images/arrowRight.png" />
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Shoulder:" />
+                                <Button Name="axisBtnShoulderLeft">
+                                    <Image Source="Images/arrowLeft.png"/>
+                                </Button>
+                                <Button Name="axisBtnShoulderRight">
+                                    <Image Source="Images/arrowRight.png" />
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Elbow:" />
+                                <Button Name="axisBtnElbowLeft">
+                                    <Image Source="Images/arrowLeft.png"/>
+                                </Button>
+                                <Button Name="axisBtnElbowRight">
+                                    <Image Source="Images/arrowRight.png" />
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Wrist Pitch:" />
+                                <Button Name="axisBtnWristPitchUp">
+                                    <Image Source="Images/arrowUp.png"/>
+                                </Button>
+                                <Button Name="axisBtnWristPitchDown">
+                                    <Image Source="Images/arrowDown.png" />
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Wrist Roll:" />
+                                <Button Name="axisWristRollLeft">
+                                    <Image Source="Images/arrowLeft.png"/>
+                                </Button>
+                                <Button Name="axisBtnWristRollRight">
+                                    <Image Source="Images/arrowRight.png" />
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Conveyer:" />
+                                <Button Name="axisBtnConveyerLeft">
+                                    <Image Source="Images/arrowLeft.png"/>
+                                </Button>
+                                <Button Name="axisBtnConveyerRight">
+                                    <Image Source="Images/arrowRight.png" />
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+            <!-- Coordinate movement -->
+            <TabItem Header="Coordinates">
+                <StackPanel Orientation="Horizontal">
+                    <GroupBox Header="Movement">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="X:" />
+                                <Button Name="coordBtnXInc">
+                                    <Image Source="Images/cogInc.png"/>
+                                </Button>
+                                <Button Name="coordBtnXDec">
+                                    <Image Source="Images/cogDec.png" />
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Y:" />
+                                <Button Name="coordBtnYInc">
+                                    <Image Source="Images/cogInc.png"/>
+                                </Button>
+                                <Button Name="coordBtnYDec">
+                                    <Image Source="Images/cogDec.png" />
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Z:" />
+                                <Button Name="coordBtnZInc">
+                                    <Image Source="Images/cogInc.png"/>
+                                </Button>
+                                <Button Name="coordBtnZDec">
+                                    <Image Source="Images/cogDec.png" />
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Wrist Pitch:" />
+                                <Button Name="coordBtnWristPitchInc">
+                                    <Image Source="Images/cogInc.png"/>
+                                </Button>
+                                <Button Name="coordBtnWristPitchDec">
+                                    <Image Source="Images/cogDec.png" />
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Wrist Roll:" />
+                                <Button Name="coordBtnWristRollInc">
+                                    <Image Source="Images/cogInc.png"/>
+                                </Button>
+                                <Button Name="coordBtnWristRollDec">
+                                    <Image Source="Images/cogDec.png" />
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
 </Window>

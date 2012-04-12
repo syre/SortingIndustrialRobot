@@ -18,9 +18,17 @@ namespace RoboGO
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Members
+        private PasswordWindow psWindow;
+        private GUIManualSteering gmsManualGUI;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            // Members initialize
+            psWindow = new PasswordWindow();
+            gmsManualGUI = new GUIManualSteering();
         }
 
         // A function within main that invokes function DisplayLogin
@@ -32,14 +40,29 @@ namespace RoboGO
         // The Window which needs a login
         private void DisplayLoginScreen()
         {
-            PasswordWindow psWindow = new PasswordWindow();
-
             psWindow.Owner = this;
             psWindow.ShowDialog();
             if (psWindow.DialogResult.HasValue && psWindow.DialogResult.Value)
                 MessageBox.Show("User Logged In");
             else
                 this.Close();
+        }
+
+        // Manual steering
+        private void btnManuel_Click(object sender, RoutedEventArgs e)
+        {
+            // If using Simulator
+            if(ControlSystem.Factory.currentIRobotInstance == ControlSystem.Factory.getSimulatorInstance)
+                this.tabctrlMain.SelectedItem = this.tabitmSimulator;
+            gmsManualGUI.ShowDialog();
+        }
+
+        // Clean up
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // Close children
+            gmsManualGUI.Close();
+            psWindow.Close();
         }
     }
 }

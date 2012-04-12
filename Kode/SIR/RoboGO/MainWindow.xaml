@@ -6,10 +6,9 @@
         Width="921"
         WindowStartupLocation="CenterScreen" 
         Loaded="WindowsLoaded"
-        Icon="/RoboGO;component/Images/Globus.JPG">
-    
+        Icon="Images/Globus.JPG" Closing="Window_Closing">
     <!-- By adding viewbox, all content will be proportionally fitting-->
-    <Viewbox>
+   <Viewbox>
    <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -30,13 +29,12 @@
             <ProgressBar Height="25" Name="pgbStyresystem" Width="150" Margin="50,60,0,5" HorizontalAlignment="Left"/>
             <Button Content="Check connectivity" Height="25" Name="btnCheckConnectivity" VerticalAlignment="Top" Width="160"/>
             <DockPanel Margin="0,50,5,5">
-                <TextBlock DockPanel.Dock="Top" Height="23" Name="txtbOperation" Text="Choose operation for robot:" TextAlignment="Center" VerticalAlignment="Top"/>
-                <Button DockPanel.Dock="Bottom" Content="Automatic" Name="btnAutomatic" Margin="5,5,5,5"/>
-                <Button DockPanel.Dock="Bottom" Content="Manual" Name="btnManuel" Margin="5,5,5,5"/>
+                <TextBlock DockPanel.Dock="Top" Height="23" Name="txtbOperation" Text="Manual Steering:" TextAlignment="Center" VerticalAlignment="Top"/>
+                <Button DockPanel.Dock="Bottom" Content="Operate" Name="btnManuel" Margin="5,5,5,5" Click="btnManuel_Click"/>
             </DockPanel>
         </StackPanel>
             <!--Tabs column-->
-        <TabControl Grid.Column="1">
+        <TabControl Name="tabctrlMain" Grid.Column="1">
             <!-- User tab-->
                 <TabItem Header="User">
                     <Grid Width="645">
@@ -100,7 +98,7 @@
                 </StackPanel>
                 </TabItem>
             <!--Simulator tab-->
-                <TabItem Header="Simulator">
+                <TabItem Name="tabitmSimulator" Header="Simulator">
                     <StackPanel Orientation="Vertical">
                     <Menu VerticalAlignment="Top">
                         <!--File-->
