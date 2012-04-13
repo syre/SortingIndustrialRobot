@@ -9,7 +9,7 @@ namespace DSL // Has to be changed
     /// <summary>
     /// Class to contain point for use in one of the vector classes.
     /// </summary>
-    class VecPoint
+    public class VecPoint
     {
         public int iX;
         public int iY;

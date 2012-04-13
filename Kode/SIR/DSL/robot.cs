@@ -53,7 +53,7 @@ namespace DSL
         bool moveElbow(int speed);
         bool moveGripper(int speed);
         bool moveConveyerBelt(int speed);
-
+        VecPoint getCurrentPosition();
     }
     public class Robot : IRobot
     {
@@ -184,6 +184,11 @@ namespace DSL
         public bool isOnline()
         {
             return _wrapper.isOnlineOkWrapped();
+        }
+
+        public VecPoint getCurrentPosition()
+        {
+            return _wrapper.getCurrentPosition();
         }
         #endregion
 
