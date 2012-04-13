@@ -39,6 +39,7 @@ namespace DSL
         ManualModeType ManualMode { get; set; }
         ControlModeType ControlMode { get; set; }
         bool stopAllMovement();
+        bool movebyCoordinates(int _iX, int _iY, int _iZ);
         bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll);
         bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll);
         short getJawOpeningWidthMilimeters();
@@ -188,7 +189,7 @@ namespace DSL
 
         #region Coordinate movements
         /// <summary>
-        /// Function for moving by coordinates
+        /// Function for moving by absolute coordinates
         /// </summary>
         /// <param name="_iX"> x-coordinate </param>
         /// <param name="y"> y-coordinate </param>
@@ -209,6 +210,35 @@ namespace DSL
             return false; 
         }
 
+        /// <summary>
+        /// moves by coordinates x, y and z
+        /// </summary>
+        /// <param name="_iX"></param>
+        /// <param name="_iY"></param>
+        /// <param name="_iZ"></param>
+        /// <returns></returns>
+        public bool movebyCoordinates(int _iX, int _iY, int _iZ)
+        {
+            ManualMode = ManualModeType.Coordinates;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
+                return false;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
+                return false;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
+                return false;
+            ManualMode = ManualModeType.Off;
+            return true;
+        }
+
+        /// <summary>
+        /// function for moving by relative coordinates
+        /// </summary>
+        /// <param name="_iX"></param>
+        /// <param name="_iY"></param>
+        /// <param name="_iZ"></param>
+        /// <param name="_iPitch"></param>
+        /// <param name="_iRoll"></param>
+        /// <returns></returns>
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
             // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
