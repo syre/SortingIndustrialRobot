@@ -87,7 +87,8 @@ namespace SIR.Tests
             mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_RIGHT);
 
             irMock.AssertWasCalled(t => t.ManualMode = ManualModeType.Axes);
-        }        [Test]
+        }
+        [Test]
         public void moveAxisBase_Called_CallsRobotStopAllMovement()
         {
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
