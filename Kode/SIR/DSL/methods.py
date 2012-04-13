@@ -14,6 +14,17 @@ def Goto(Position):
 def WaitFor(arg):
 	return 0
 
+# coordinates movement function
+def moveByCoordinates(x,y,z):
+	return _robot.moveByCoordinates(x,y,z)
+
+def moveByAbsoluteCoordinates(x,y,z,pitch,roll):
+	return _robot.moveByAbsoluteCoordinates(x,y,z,pitch,roll)
+
+def moveByRelativeCoordinates(x,y,z,pitch,roll):
+	return _robot.moveByRelativeCoordinates(x,y,z,pitch,roll)
+
+# gripper functions
 def OpenGripper():
 	return _robot.openGripper()
 

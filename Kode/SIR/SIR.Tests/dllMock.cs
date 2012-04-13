@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 
 namespace DSL
 {
+    /*
     public class DLLMock
     {
         // Extra classes
@@ -305,4 +306,5 @@ namespace DSL
             return 1;
         }
     }
+    */
 }
