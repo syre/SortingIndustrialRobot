@@ -136,51 +136,137 @@ namespace ControlSystem
     /// </summary>
     public class ManualController : IManualController
     {
+        private int speed;
         public int Speed
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return speed; }
+            set
+            {
+                if (speed >= 0 && speed <= 100)
+                {
+                    speed = value;
+                }
+            }
         }
 
+        private IRobot robot;
         public IRobot RobotConnection
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return robot; }
+            set { robot = value; }
         }
 
         public void moveAxisBase(enumLeftRight _elrDirection)
         {
-            throw new NotImplementedException();
+            bool ifEverythingOk = false;
+
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
+            {
+               ifEverythingOk = robot.moveBase(speed);
+            }
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
+            {
+                ifEverythingOk = robot.moveBase(-speed);
+            }
+
+            if (!ifEverythingOk) throw new Exception();
+
         }
 
         public void moveAxisShoulder(enumLeftRight _elrDirection)
         {
-            throw new NotImplementedException();
+            bool ifEverythingOk = false;
+
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
+            {
+                ifEverythingOk = robot.moveShoulder(speed);
+            }
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
+            {
+                ifEverythingOk = robot.moveShoulder(-speed);
+            }
+
+            if (!ifEverythingOk) throw new Exception();
         }
 
         public void moveAxisElbow(enumLeftRight _elrDirection)
         {
-            throw new NotImplementedException();
+            bool ifEverythingOk = false;
+
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
+            {
+                ifEverythingOk = robot.moveElbow(speed);
+            }
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
+            {
+                ifEverythingOk = robot.moveElbow(-speed);
+            }
+
+            if (!ifEverythingOk) throw new Exception();
         }
 
         public void moveAxisGripper(enumCloseOpen _coGripper)
         {
-            throw new NotImplementedException();
+            bool ifEverythingOk = false;
+
+            if (_coGripper == enumCloseOpen.MANUAL_OPEN)
+            {
+                ifEverythingOk = robot.moveGripper(speed);
+            }
+            if (_coGripper == enumCloseOpen.MANUAL_CLOSE)
+            {
+                ifEverythingOk = robot.moveGripper(-speed);
+            }
+
+            if (!ifEverythingOk) throw new Exception();
         }
 
         public void moveAxisPitch(enumUpDown _elrDirection)
         {
-            throw new NotImplementedException();
+            bool ifEverythingOk = false;
+
+            if (_elrDirection == enumUpDown.MANUAL_MOVE_UP)
+            {
+                ifEverythingOk = robot.moveWristPitch(speed);
+            }
+            if (_elrDirection == enumUpDown.MANUAL_MOVE_DOWN)
+            {
+                ifEverythingOk = robot.moveWristPitch(-speed);
+            }
+
+            if (!ifEverythingOk) throw new Exception();
         }
 
         public void moveAxisRoll(enumLeftRight _elrDirection)
         {
-            throw new NotImplementedException();
+            bool ifEverythingOk = false;
+
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
+            {
+                ifEverythingOk = robot.moveWristRoll(speed);
+            }
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
+            {
+                ifEverythingOk = robot.moveWristRoll(-speed);
+            }
+
+            if (!ifEverythingOk) throw new Exception();
         }
 
         public void moveAxisConveyer(enumLeftRight _elrDirection)
         {
-            throw new NotImplementedException();
+            bool ifEverythingOk = false;
+
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
+            {
+                ifEverythingOk = robot.moveConveyerBelt(speed);
+            }
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
+            {
+                ifEverythingOk = robot.moveConveyerBelt(-speed);
+            }
+
+            if (!ifEverythingOk) throw new Exception();
         }
 
         public void moveCoordX(enumIncDec _eidIncOrDec)
