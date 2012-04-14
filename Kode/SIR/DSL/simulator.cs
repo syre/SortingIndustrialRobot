@@ -70,6 +70,11 @@ namespace DSL
             return true;
         }
 
+        public bool movebyCoordinates(int _iX, int _iY, int _iZ)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// It will close the gripper
         /// </summary>
@@ -220,6 +225,11 @@ namespace DSL
         }
 
         public bool moveConveyerBelt(int speed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public VecPoint getCurrentPosition()
         {
             throw new NotImplementedException();
         }
