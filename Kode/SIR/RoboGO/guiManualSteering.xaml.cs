@@ -22,6 +22,11 @@ namespace RoboGO
     {
         // Members
         private ViewModelManualSteering vmmsViewModel;
+        public ViewModelManualSteering ViewModel
+        {
+            get { return (vmmsViewModel); }
+            set { vmmsViewModel = value; }
+        }
 
         public GUIManualSteering()
         {
@@ -30,8 +35,6 @@ namespace RoboGO
             // ViewModel
             vmmsViewModel = new ViewModelManualSteering();
             this.DataContext = vmmsViewModel;
-        }
-
-        // Events: Most pass to ViewModel functions.(Can also use commands instead.)
+       }
     }
 }

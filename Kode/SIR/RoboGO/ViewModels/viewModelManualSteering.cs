@@ -4,16 +4,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
+using System.Windows.Input;
 using ControlSystem;
 
 namespace RoboGO.ViewModels
 {
     /// <summary>
+    /// Class skeleton for commands.
+    /// </summary>
+    public class DelegateCommand : ICommand
+    {
+        private Action aMethod;
+        public DelegateCommand(Action _aMethodToExecute)
+        {
+            aMethod = _aMethodToExecute;
+        }
+
+        public bool CanExecute(object _objParam)
+        {
+            return (true);
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public void Execute(object _objParam)
+        {
+            aMethod.Invoke();
+        }
+    }
+
+    /// <summary>
     /// ViewModel for GUIManualSteering.
     /// 
     /// \todo Way to inform View about errors, like not being connected to robot.(Example messaging.)
     /// </summary>
-    public class ViewModelManualSteering : INotifyPropertyChanged
+    public class ViewModelManualSteering
     {
         // Properties
         private IManualController mcManualControl;
@@ -22,125 +48,292 @@ namespace RoboGO.ViewModels
             get { return (mcManualControl); }
             set { mcManualControl = value; }
         }
+
         public int Speed
         {
             get{return(mcManualControl.Speed);}
-            set { mcManualControl.Speed = value; propertyChanged("Speed"); }
+            set {mcManualControl.Speed = value;}
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        #region Commands
+        private DelegateCommand dcMoveAxisBaseRight;
+        public ICommand MoveAxisBaseRight
+        {
+            get { return (dcMoveAxisBaseRight); }
+        }
+
+        private DelegateCommand dcMoveAxisBaseLeft;
+        public ICommand MoveAxisBaseLeft
+        {
+            get { return (dcMoveAxisBaseLeft); }
+        }
+
+        private DelegateCommand dcMoveAxisShoulderRight;
+        public ICommand MoveAxisShoulderRight
+        {
+            get { return (dcMoveAxisShoulderRight); }
+        }
+
+        private DelegateCommand dcMoveAxisShoulderLeft;
+        public ICommand MoveAxisShoulderLeft
+        {
+            get { return (dcMoveAxisShoulderLeft); }
+        }
+
+        private DelegateCommand dcMoveAxisElbowRight;
+        public ICommand MoveAxisElbowRight
+        {
+            get { return (dcMoveAxisElbowRight); }
+        }
+
+        private DelegateCommand dcMoveAxisElbowLeft;
+        public ICommand MoveAxisElbowLeft
+        {
+            get { return (dcMoveAxisElbowLeft); }
+        }
+
+        private DelegateCommand dcOpenGripper;
+        public ICommand OpenGripper
+        {
+            get { return (dcOpenGripper); }
+        }
+
+        private DelegateCommand dcCloseGripper;
+        public ICommand CloseGripper
+        {
+            get { return (dcCloseGripper); }
+        }
+
+        private DelegateCommand dcMoveAxisPitchUp;
+        public ICommand MoveAxisPitchUp
+        {
+            get { return (dcMoveAxisPitchUp); }
+        }
+
+        private DelegateCommand dcMoveAxisPitchDown;
+        public ICommand MoveAxisPitchDown
+        {
+            get { return (dcMoveAxisPitchDown); }
+        }
+
+        private DelegateCommand dcMoveAxisRollRight;
+        public ICommand MoveAxisRollRight
+        {
+            get { return (dcMoveAxisRollRight); }
+        }
+
+        private DelegateCommand dcMoveAxisRollLeft;
+        public ICommand MoveAxisRollLeft
+        {
+            get { return (dcMoveAxisRollLeft); }
+        }
+
+        private DelegateCommand dcMoveAxisConveyerRight;
+        public ICommand MoveAxisConveyerRight
+        {
+            get { return (dcMoveAxisConveyerRight); }
+        }
+
+        private DelegateCommand dcMoveAxisConveyerLeft;
+        public ICommand MoveAxisConveyerLeft
+        {
+            get { return (dcMoveAxisConveyerLeft); }
+        }
+
+        private DelegateCommand dcMoveCoordXIncreasing;
+        public ICommand MoveCoordXIncreasing
+        {
+            get { return (dcMoveCoordXIncreasing); }
+        }
+
+        private DelegateCommand dcMoveCoordXDecreasing;
+        public ICommand MoveCoordXDecreasing
+        {
+            get { return (dcMoveCoordXDecreasing); }
+        }
+
+        private DelegateCommand dcMoveCoordYIncreasing;
+        public ICommand MoveCoordYIncreasing
+        {
+            get { return (dcMoveCoordYIncreasing); }
+        }
+
+        private DelegateCommand dcMoveCoordYDecreasing;
+        public ICommand MoveCoordYDecreasing
+        {
+            get { return (dcMoveCoordYDecreasing); }
+        }
+
+        private DelegateCommand dcMoveCoordZIncreasing;
+        public ICommand MoveCoordZIncreasing
+        {
+            get { return (dcMoveCoordZIncreasing); }
+        }
+
+        private DelegateCommand dcMoveCoordZDecreasing;
+        public ICommand MoveCoordZDecreasing
+        {
+            get { return (dcMoveCoordZDecreasing); }
+        }
+
+        private DelegateCommand dcMoveCoordPitchIncreasing;
+        public ICommand MoveCoordPitchIncreasing
+        {
+            get { return (dcMoveCoordPitchIncreasing); }
+        }
+
+        private DelegateCommand dcMoveCoordPitchDecreasing;
+        public ICommand MoveCoordPitchDecreasing
+        {
+            get { return (dcMoveCoordPitchDecreasing); }
+        }
+
+        private DelegateCommand dcMoveCoordRollIncreasing;
+        public ICommand MoveCoordRollIncreasing
+        {
+            get { return (dcMoveCoordRollIncreasing); }
+        }
+
+        private DelegateCommand dcMoveCoordRollDecreasing;
+        public ICommand MoveCoordRollDecreasing
+        {
+            get { return (dcMoveCoordRollDecreasing); }
+        }
+        #endregion
 
         // Functions
         public ViewModelManualSteering()
         {
             // Model
             mcManualControl = new ManualController();
-        }
 
-        public void propertyChanged(string _sWhat)
-        {
-            if(PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(_sWhat));
+            // Commands
+            dcMoveAxisBaseRight = new DelegateCommand(moveAxisBaseRight);
+            dcMoveAxisBaseLeft = new DelegateCommand(moveAxisBaseLeft);
+            dcMoveAxisShoulderRight = new DelegateCommand(moveAxisShoulderRight);
+            dcMoveAxisShoulderLeft = new DelegateCommand(moveAxisShoulderLeft);
+            dcMoveAxisElbowRight = new DelegateCommand(moveAxisElbowRight);
+            dcMoveAxisElbowLeft = new DelegateCommand(moveAxisElbowLeft);
+            dcOpenGripper = new DelegateCommand(openGripper);
+            dcCloseGripper = new DelegateCommand(closeGripper);
+            dcMoveAxisPitchUp = new DelegateCommand(moveAxisPitchUp);
+            dcMoveAxisPitchDown = new DelegateCommand(moveAxisPitchDown);
+            dcMoveAxisRollRight = new DelegateCommand(moveAxisRollRight);
+            dcMoveAxisRollLeft = new DelegateCommand(moveAxisRollLeft);
+            dcMoveAxisConveyerRight = new DelegateCommand(moveAxisConveyerRight);
+            dcMoveAxisConveyerLeft = new DelegateCommand(moveAxisConveyerLeft);
+            dcMoveCoordXIncreasing = new DelegateCommand(moveCoordXIncreasing);
+            dcMoveCoordXDecreasing = new DelegateCommand(moveCoordXDecreasing);
+            dcMoveCoordYIncreasing = new DelegateCommand(moveCoordYIncreasing);
+            dcMoveCoordYDecreasing = new DelegateCommand(moveCoordYDecreasing);
+            dcMoveCoordZIncreasing = new DelegateCommand(moveCoordZIncreasing);
+            dcMoveCoordZDecreasing = new DelegateCommand(moveCoordZDecreasing);
+            dcMoveCoordPitchIncreasing = new DelegateCommand(moveCoordPitchIncreasing);
+            dcMoveCoordPitchDecreasing = new DelegateCommand(moveCoordPitchDecreasing);
+            dcMoveCoordRollIncreasing = new DelegateCommand(moveCoordRollIncreasing);
+            dcMoveCoordRollDecreasing = new DelegateCommand(moveCoordRollDecreasing);
         }
 
         // -Steering: Made as simple interface as possible so minimum of logic required from View´s side.
         #region Axis
         public void moveAxisBaseRight()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisBase(enumLeftRight.MANUAL_MOVE_RIGHT);
+            System.Console.WriteLine("huhu");
         }
         public void moveAxisBaseLeft()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisBase(enumLeftRight.MANUAL_MOVE_LEFT);
         }
         public void moveAxisShoulderRight()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_RIGHT);
         }
         public void moveAxisShoulderLeft()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_LEFT);
         }
         public void moveAxisElbowRight()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisElbow(enumLeftRight.MANUAL_MOVE_RIGHT);
         }
         public void moveAxisElbowLeft()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisElbow(enumLeftRight.MANUAL_MOVE_LEFT);
         }
         public void openGripper()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisGripper(enumCloseOpen.MANUAL_OPEN);
         }
         public void closeGripper()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisGripper(enumCloseOpen.MANUAL_CLOSE);
         }
         public void moveAxisPitchUp()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisPitch(enumUpDown.MANUAL_MOVE_UP);
         }
         public void moveAxisPitchDown()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisPitch(enumUpDown.MANUAL_MOVE_DOWN);
         }
         public void moveAxisRollRight()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisRoll(enumLeftRight.MANUAL_MOVE_RIGHT);
         }
         public void moveAxisRollLeft()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisRoll(enumLeftRight.MANUAL_MOVE_LEFT);
         }
         public void moveAxisConveyerRight()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_RIGHT);
         }
         public void moveAxisConveyerLeft()
         {
-            throw new NotImplementedException();
+            mcManualControl.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_LEFT);
         }
 #endregion
         #region Coordinates
         public void moveCoordXIncreasing()
         {
-            throw new NotImplementedException(); 
+            mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_INC);
         }
         public void moveCoordXDecreasing()
         {
-            throw new NotImplementedException(); 
+            mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_DEC);
         }
         public void moveCoordYIncreasing()
         {
-            throw new NotImplementedException(); 
+            mcManualControl.moveCoordY(enumIncDec.MANUAL_MOVE_INC);
         }
         public void moveCoordYDecreasing()
         {
-            throw new NotImplementedException(); 
+            mcManualControl.moveCoordY(enumIncDec.MANUAL_MOVE_DEC);
         }
         public void moveCoordZIncreasing()
         {
-            throw new NotImplementedException(); 
+            mcManualControl.moveCoordZ(enumIncDec.MANUAL_MOVE_INC);
         }
         public void moveCoordZDecreasing()
         {
-            throw new NotImplementedException(); 
+            mcManualControl.moveCoordZ(enumIncDec.MANUAL_MOVE_DEC);
         }
         public void moveCoordPitchIncreasing()
         {
-            throw new NotImplementedException(); 
+            mcManualControl.moveCoordPitch(enumIncDec.MANUAL_MOVE_INC);
         }
         public void moveCoordPitchDecreasing()
         {
-            throw new NotImplementedException(); 
+            mcManualControl.moveCoordPitch(enumIncDec.MANUAL_MOVE_DEC);
         }
         public void moveCoordRollIncreasing()
         {
-            throw new NotImplementedException(); 
+            mcManualControl.moveCoordRoll(enumIncDec.MANUAL_MOVE_INC);
         }
         public void moveCoordRollDecreasing()
         {
-            throw new NotImplementedException(); 
+            mcManualControl.moveCoordRoll(enumIncDec.MANUAL_MOVE_DEC);
         }
         #endregion
     }
