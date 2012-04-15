@@ -66,6 +66,7 @@
                         <MenuItem Name="mnuFile1" Header="_File">
                             <MenuItem Name="mnuFileNew1" Header="_New"/>
                             <MenuItem Name="mnuFileOpen1" Header="_Open"/>
+                            <MenuItem Name="mnuFileSave1" Header="_Save"/>
                             <MenuItem Name="mnuFileExit1" Header="_Exit"/>
                         </MenuItem>
                         <!--Edit-->
