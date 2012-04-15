@@ -17,10 +17,10 @@
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Gripper: " />
-            <Button Name="axisBtnGripperOpen">
+            <Button Name="axisBtnGripperOpen" Command="{Binding Path=OpenGripper}">
                 <Image Source="Images/arrowOpen.png"/>
             </Button>
-            <Button Name="axisBtnGripperClose">
+            <Button Name="axisBtnGripperClose" Command="{Binding Path=CloseGripper}">
                 <Image Source="Images/arrowClose.png" />
             </Button>
         </StackPanel>
@@ -32,7 +32,7 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Base:" />
-                                <Button Name="axisBtnBaseLeft">
+                                <Button Name="axisBtnBaseLeft" Command="{Binding Path=MoveAxisBaseLeft}">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
                                 <Button Name="axisBtnBaseRight" Command="{Binding Path=MoveAxisBaseRight}">
@@ -41,46 +41,46 @@
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Shoulder:" />
-                                <Button Name="axisBtnShoulderLeft">
+                                <Button Name="axisBtnShoulderLeft" Command="{Binding Path=MoveAxisShoulderLeft}">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
-                                <Button Name="axisBtnShoulderRight">
+                                <Button Name="axisBtnShoulderRight" Command="{Binding Path=MoveAxisShoulderRight}">
                                     <Image Source="Images/arrowRight.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Elbow:" />
-                                <Button Name="axisBtnElbowLeft">
+                                <Button Name="axisBtnElbowLeft" Command="{Binding Path=MoveAxisElbowLeft}">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
-                                <Button Name="axisBtnElbowRight">
+                                <Button Name="axisBtnElbowRight" Command="{Binding Path=MoveAxisElbowRight}">
                                     <Image Source="Images/arrowRight.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Wrist Pitch:" />
-                                <Button Name="axisBtnWristPitchUp">
+                                <Button Name="axisBtnWristPitchUp" Command="{Binding Path=MoveAxisPitchUp}">
                                     <Image Source="Images/arrowUp.png"/>
                                 </Button>
-                                <Button Name="axisBtnWristPitchDown">
+                                <Button Name="axisBtnWristPitchDown" Command="{Binding Path=MoveAxisPitchDown}">
                                     <Image Source="Images/arrowDown.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Wrist Roll:" />
-                                <Button Name="axisWristRollLeft">
+                                <Button Name="axisWristRollLeft" Command="{Binding Path=MoveAxisRollLeft}">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
-                                <Button Name="axisBtnWristRollRight">
+                                <Button Name="axisBtnWristRollRight" Command="{Binding Path=MoveAxisRollRight}">
                                     <Image Source="Images/arrowRight.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Conveyer:" />
-                                <Button Name="axisBtnConveyerLeft">
+                                <Button Name="axisBtnConveyerLeft" Command="{Binding Path=MoveAxisConveyerLeft}">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
-                                <Button Name="axisBtnConveyerRight">
+                                <Button Name="axisBtnConveyerRight" Command="{Binding Path=MoveAxisConveyerRight}">
                                     <Image Source="Images/arrowRight.png" />
                                 </Button>
                             </StackPanel>
@@ -95,46 +95,46 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="X:" />
-                                <Button Name="coordBtnXInc">
+                                <Button Name="coordBtnXInc" Command="{Binding Path=MoveCoordXIncreasing}">
                                     <Image Source="Images/cogInc.png"/>
                                 </Button>
-                                <Button Name="coordBtnXDec">
+                                <Button Name="coordBtnXDec" Command="{Binding Path=MoveCoordXDecreasing}">
                                     <Image Source="Images/cogDec.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Y:" />
-                                <Button Name="coordBtnYInc">
+                                <Button Name="coordBtnYInc" Command="{Binding Path=MoveCoordYIncreasing}">
                                     <Image Source="Images/cogInc.png"/>
                                 </Button>
-                                <Button Name="coordBtnYDec">
+                                <Button Name="coordBtnYDec" Command="{Binding Path=MoveCoordYDecreasing}">
                                     <Image Source="Images/cogDec.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Z:" />
-                                <Button Name="coordBtnZInc">
+                                <Button Name="coordBtnZInc" Command="{Binding Path=MoveCoordZIncreasing}">
                                     <Image Source="Images/cogInc.png"/>
                                 </Button>
-                                <Button Name="coordBtnZDec">
+                                <Button Name="coordBtnZDec" Command="{Binding Path=MoveCoordZDecreasing}">
                                     <Image Source="Images/cogDec.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Wrist Pitch:" />
-                                <Button Name="coordBtnWristPitchInc">
+                                <Button Name="coordBtnWristPitchInc" Command="{Binding Path=MoveCoordPitchIncreasing}">
                                     <Image Source="Images/cogInc.png"/>
                                 </Button>
-                                <Button Name="coordBtnWristPitchDec">
+                                <Button Name="coordBtnWristPitchDec" Command="{Binding Path=MoveCoordPitchDecreasing}">
                                     <Image Source="Images/cogDec.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Wrist Roll:" />
-                                <Button Name="coordBtnWristRollInc">
+                                <Button Name="coordBtnWristRollInc" Command="{Binding Path=MoveCoordRollIncreasing}">
                                     <Image Source="Images/cogInc.png"/>
                                 </Button>
-                                <Button Name="coordBtnWristRollDec">
+                                <Button Name="coordBtnWristRollDec" Command="{Binding Path=MoveCoordRollDecreasing}">
                                     <Image Source="Images/cogDec.png" />
                                 </Button>
                             </StackPanel>
