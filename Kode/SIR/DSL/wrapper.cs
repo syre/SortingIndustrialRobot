@@ -31,7 +31,7 @@ namespace DSL // Has to be changed
     /// 
     /// Should use the derived classes.
     /// </summary>
-    class SIRVector
+    public class SIRVector
     {
         // Members
         protected string sName;
@@ -65,7 +65,7 @@ namespace DSL // Has to be changed
     /// <summary>
     /// SIRVector class for absolute positions.
     /// </summary>
-    class AbsCoordSirVector : SIRVector
+    public class AbsCoordSirVector : SIRVector
     {
         // Functions 
         public AbsCoordSirVector(string _sName)
@@ -79,7 +79,7 @@ namespace DSL // Has to be changed
     /// <summary>
     /// SIRVector class for relative positions.
     /// </summary>
-    class RelCoordSirVector : SIRVector
+    public class RelCoordSirVector : SIRVector
     {
         // Functions 
         public RelCoordSirVector(string _sName)
@@ -101,7 +101,7 @@ namespace DSL // Has to be changed
     /// 
     /// \todo Add behind factory class.
     /// </summary>
-    class Wrapper
+    public class Wrapper
     {
         // Members
         // -Normal

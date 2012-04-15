@@ -35,7 +35,7 @@
                                 <Button Name="axisBtnBaseLeft">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
-                                <Button Name="axisBtnBaseRight">
+                                <Button Name="axisBtnBaseRight" Command="{Binding Path=MoveAxisBaseRight}">
                                     <Image Source="Images/arrowRight.png" />
                                 </Button>
                             </StackPanel>
