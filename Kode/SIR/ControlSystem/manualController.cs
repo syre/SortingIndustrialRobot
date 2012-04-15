@@ -5,6 +5,7 @@ using DSL;
 
 namespace ControlSystem
 {
+    
     // Helper constants and enums
     /// <summary>
     /// What direction to move in when moving by axes.
@@ -271,27 +272,32 @@ namespace ControlSystem
 
         public void moveCoordX(enumIncDec _eidIncOrDec)
         {
-            throw new NotImplementedException();
+           if(!robot.moveByXCordinate(100))
+               throw new Exception(); 
         }
 
         public void moveCoordY(enumIncDec _eidIncOrDec)
         {
-            throw new NotImplementedException();
+            if (!robot.moveByYCordinate(100))
+                throw new Exception();
         }
 
         public void moveCoordZ(enumIncDec _eidIncOrDec)
         {
-            throw new NotImplementedException();
+            if (!robot.moveByZCordinate(100))
+                throw new Exception();
         }
 
         public void moveCoordPitch(enumIncDec _eidIncOrDec)
         {
-            throw new NotImplementedException();
+            if(!robot.moveByPitch(100))
+                throw new Exception();
         }
 
         public void moveCoordRoll(enumIncDec _eidIncOrDec)
         {
-            throw new NotImplementedException();
+            if (!robot.moveByRoll(100))
+                throw new Exception();
         }
     }
 }
