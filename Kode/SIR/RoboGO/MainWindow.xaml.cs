@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RoboGO.ViewModels;
 
 namespace RoboGO
 {
@@ -18,9 +19,22 @@ namespace RoboGO
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Members and properties
+        private IDEViewModel idevmViewModelIDE;
+        public IDEViewModel ViewModelIDE
+        {
+            get { return (idevmViewModelIDE); }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            // Init
+            idevmViewModelIDE = new IDEViewModel();
+
+            // Data context
+            spIDE.DataContext = idevmViewModelIDE;
         }
 
         // A function within main that invokes function DisplayLogin

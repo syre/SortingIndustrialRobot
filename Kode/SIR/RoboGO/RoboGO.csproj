@@ -114,6 +114,12 @@
   <ItemGroup>
     <Resource Include="Images\Key.JPG" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DSL\DSL.csproj">
+      <Project>{CCB881A3-2162-400F-B9A6-02410740789F}</Project>
+      <Name>DSL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
