@@ -62,9 +62,6 @@
     <Compile Include="ViewModels\ideViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ideView.xaml.cs">
-      <DependentUpon>ideView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -95,10 +92,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ideView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
