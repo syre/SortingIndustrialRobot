@@ -1,6 +1,0 @@
-﻿<Window x:Class="RoboGO.IDEView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ideView" Height="300" Width="300">
-    <TextBlock>Nothing to see people, move along.</TextBlock>
-</Window>
