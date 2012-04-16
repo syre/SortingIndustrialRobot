@@ -66,9 +66,9 @@ namespace DSL
            CompiledCode codecheck = _source.Compile(_reporter);
            if (codecheck == null)
            {
-               throw new Exception("compilation failed");
+               _source = null;
                // compilation failed - alert user
-               _source = null; /// \warning Unreachable
+               throw new Exception("compilation failed");
            }
         }
 
