@@ -31,14 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IronPython">
-      <HintPath>..\..\IronPython 2.7.1\IronPython.dll</HintPath>
+    <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython-2.7.2.1\IronPython.dll</HintPath>
     </Reference>
-    <Reference Include="IronPython.Modules">
-      <HintPath>..\..\IronPython 2.7.1\IronPython.Modules.dll</HintPath>
+    <Reference Include="IronPython.Modules, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython-2.7.2.1\IronPython.Modules.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Scripting">
-      <HintPath>..\..\IronPython 2.7.1\Microsoft.Scripting.dll</HintPath>
+    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython-2.7.2.1\Microsoft.Scripting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
