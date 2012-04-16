@@ -329,6 +329,26 @@ namespace DSL
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, _iSpeed);
         }
 
+
+        /// <summary>
+        /// Separate function for getting Current position of the gripper
+        /// </summary>
+        /// <param name="_iX"></param>
+        /// <param name="_iY"></param>
+        /// <param name="_iZ"></param>
+        /// <param name="_iPitch"></param>
+        /// <param name="_iRoll"></param>
+        /// <returns></returns>
+        public string getCurrentPositionRobot()
+        {
+            
+            VecPoint _vect;
+            _vect = _wrapper.getCurrentPosition();
+      
+            return (_vect.iX.ToString() + " " + _vect.iY.ToString() + " " + _vect.iZ.ToString() + " " + _vect.iPitch.ToString() + " " + _vect.iRoll.ToString());
+
+        }
+
         #endregion
 
         #region gripper methods
