@@ -90,6 +90,7 @@ namespace DSL // Has to be changed
         }
     }
 
+   
     /// <summary>
     /// Contains a wrapper for the C++ functions in the dll file(USBC.dll).
     /// 
@@ -101,7 +102,7 @@ namespace DSL // Has to be changed
     /// 
     /// \todo Add behind factory class.
     /// </summary>
-    public class Wrapper
+    public class Wrapper : IWrapper
     {
         // Members
         // -Normal
@@ -493,7 +494,8 @@ namespace DSL // Has to be changed
         #endregion
 
         #region Helper functions
-        private byte axisSettingsToByte(enumAxisSettings axisSettingsArg)
+
+        public byte axisSettingsToByte(enumAxisSettings axisSettingsArg)
         {
             byte bArg;
             switch (axisSettingsArg)
@@ -539,7 +541,8 @@ namespace DSL // Has to be changed
             }
             return(bArg);
         }
-        private byte manualMovementToByte(enumManualModeWhat enumArg)
+
+        public byte manualMovementToByte(enumManualModeWhat enumArg)
         {
             byte bArg;
             switch (enumArg)
