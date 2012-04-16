@@ -1,43 +1,41 @@
 ﻿<Window x:Class="RoboGO.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="RoboGO" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:RoboGO="clr-namespace:SaveAsCloseOpen" Title="RoboGO" 
         Height="451" 
         Width="921"
         WindowStartupLocation="CenterScreen" 
-        Loaded="WindowsLoaded"
-        Icon="/RoboGO;component/Images/Globus.JPG">
-    
+        Loaded="WindowsLoaded">
+
     <!-- By adding viewbox, all content will be proportionally fitting-->
     <Viewbox>
-   <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
             <!--Styresystem column-->
-        <StackPanel Grid.Column="0" Width="250" Orientation="Vertical">
-            <TextBlock Text="Styresystem" TextAlignment="Center" VerticalAlignment="Top" Margin="5,5,5,5" FontWeight="Bold" FontStretch="Expanded" FontSize="20" />
-            <TextBlock Text=" Choose Robot or Simulator" TextAlignment="Center" Margin="5,30,5,5"/>
-            <ComboBox Name="cmbChoice" Margin="5,5,5,5">
-                <ComboBoxItem Name="cmbRobot" Content="Robot"/>
-                <ComboBoxItem Name="cmbSimulator" Content="Simulator"/>
-            </ComboBox>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Start!" Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Left"/>
-                <Button Content="Stop!"  Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Right"/>
+            <StackPanel Grid.Column="0" Width="250" Orientation="Vertical">
+                <TextBlock Text="Styresystem" TextAlignment="Center" VerticalAlignment="Top" Margin="5,5,5,5" FontWeight="Bold" FontStretch="Expanded" FontSize="20" />
+                <TextBlock Text=" Choose Robot or Simulator" TextAlignment="Center" Margin="5,30,5,5"/>
+                <ComboBox Name="cmbChoice" Margin="5,5,5,5">
+                    <ComboBoxItem Name="cmbRobot" Content="Robot"/>
+                    <ComboBoxItem Name="cmbSimulator" Content="Simulator"/>
+                </ComboBox>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Start!" Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Left"/>
+                    <Button Content="Stop!"  Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Right"/>
+                </StackPanel>
+                <ProgressBar Height="25" Name="pgbStyresystem" Width="150" Margin="50,60,0,5" HorizontalAlignment="Left"/>
+                <Button Content="Check connectivity" Height="25" Name="btnCheckConnectivity" VerticalAlignment="Top" Width="160"/>
+                <DockPanel Margin="0,50,5,5">
+                    <TextBlock DockPanel.Dock="Top" Height="23" Name="txtbOperation" Text="Choose operation for robot:" TextAlignment="Center" VerticalAlignment="Top"/>
+                    <Button DockPanel.Dock="Bottom" Content="Automatic" Name="btnAutomatic" Margin="5,5,5,5"/>
+                    <Button DockPanel.Dock="Bottom" Content="Manual" Name="btnManuel" Margin="5,5,5,5"/>
+                </DockPanel>
             </StackPanel>
-            <ProgressBar Height="25" Name="pgbStyresystem" Width="150" Margin="50,60,0,5" HorizontalAlignment="Left"/>
-            <Button Content="Check connectivity" Height="25" Name="btnCheckConnectivity" VerticalAlignment="Top" Width="160"/>
-            <DockPanel Margin="0,50,5,5">
-                <TextBlock DockPanel.Dock="Top" Height="23" Name="txtbOperation" Text="Choose operation for robot:" TextAlignment="Center" VerticalAlignment="Top"/>
-                <Button DockPanel.Dock="Bottom" Content="Automatic" Name="btnAutomatic" Margin="5,5,5,5"/>
-                <Button DockPanel.Dock="Bottom" Content="Manual" Name="btnManuel" Margin="5,5,5,5"/>
-            </DockPanel>
-        </StackPanel>
             <!--Tabs column-->
-        <TabControl Grid.Column="1">
-            <!-- User tab-->
+            <TabControl Grid.Column="1">
+                <!-- User tab-->
                 <TabItem Header="User">
                     <Grid Width="645">
                         <Menu VerticalAlignment="Top">
@@ -60,92 +58,92 @@
                         </Menu>
                     </Grid>
                 </TabItem>
-            <!-- IDE tab-->
+                <!-- IDE tab-->
                 <TabItem Header="IDE">
-                    <StackPanel Orientation="Vertical" Name="spIDE">
-                    <Menu VerticalAlignment="Top">
-                        <!--File -->
-                        <MenuItem Name="mnuFile1" Header="_File">
-                            <MenuItem Name="mnuFileNew1" Header="_New"/>
-                            <MenuItem Name="mnuFileOpen1" Header="_Open"/>
-                            <MenuItem Name="mnuFileSave1" Header="_Save"/>
-                            <MenuItem Name="mnuFileExit1" Header="_Exit"/>
-                        </MenuItem>
-                        <!--Edit-->
-                        <MenuItem Name="mnuEdit" Header="_Edit">
-                            <!--Mangler undermenuer-->
-                        </MenuItem>
-                        <!--Debug-->
-                        <MenuItem Name="mnuDebugAndBuild" Header="_Debug and build">
-                            <MenuItem Name="mnuStartDebugging" Header="_Start Debugging"/>
-                            <MenuItem Name="mnuStartBuild" Header="_Start Build"/>
-                        </MenuItem>
-                        <!--Macros-->
-                        <MenuItem Name="mnuMacros" Header="_Macros">
-                            <!--Mangler undermenuer-->
-                        </MenuItem>
-                        <!--Options-->
-                        <MenuItem Name="mnuOptions" Header="_Options">
-                            <!--Mangler undermenuer-->
-                        </MenuItem>
-                        <!--Help-->
-                        <MenuItem Name="mnuHelp1" Header="_Help">
-                            <MenuItem Name="mnuAbout1" Header="_About"/>
-                        </MenuItem>
-                    </Menu>
-                    <!--Box for text editor-->
-                    <TextBox Name="txtBoxIDE" VerticalAlignment="Top" Height="300" Width="645" HorizontalAlignment="Left">
-                        An editable texteditor .. name points itself, lol!
-                    </TextBox>
-                    <StatusBar Height="25" HorizontalAlignment="Left" Name="stbIDE" VerticalAlignment="Top" Width="645" Background="Aqua" />
-                </StackPanel>
+                    <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="500" MaxWidth="500">
+                        <Menu VerticalAlignment="Top">
+                            <!--File -->
+                            <MenuItem Name="mnuFile1" Header="_File">
+                                <MenuItem Name="mnuFileNew1" Header="_New"/>
+                                <MenuItem Name="mnuFileOpen1" Header="_Open" Command="{Binding Path=Open}" />
+                                <MenuItem Name="mnuFileSave1" Header="_Save" Command="{Binding Path=SaveAs}"/>
+                                <MenuItem Name="mnuFileClose1" Header="Close" Command="{Binding Path=CloseTab}"/>
+                                <MenuItem Name="mnuFileExit1" Header="_Exit"/>
+                            </MenuItem>
+                            <!--Edit-->
+                            <MenuItem Name="mnuEdit" Header="_Edit">
+                                <!--Mangler undermenuer-->
+                            </MenuItem>
+                            <!--Debug-->
+                            <MenuItem Name="mnuDebugAndBuild" Header="_Debug and build">
+                                <MenuItem Name="mnuStartDebugging" Header="_Start Debugging"/>
+                                <MenuItem Name="mnuStartBuild" Header="_Start Build"/>
+                            </MenuItem>
+                            <!--Macros-->
+                            <MenuItem Name="mnuMacros" Header="_Macros">
+                                <!--Mangler undermenuer-->
+                            </MenuItem>
+                            <!--Options-->
+                            <MenuItem Name="mnuOptions" Header="_Options">
+                                <!--Mangler undermenuer-->
+                            </MenuItem>
+                            <!--Help-->
+                            <MenuItem Name="mnuHelp1" Header="_Help">
+                                <MenuItem Name="mnuAbout1" Header="_About"/>
+                            </MenuItem>
+                        </Menu>
+                        <!--Box for Tabs-->
+                        <TabControl Name="IDETabs" MaxHeight="350">
+
+                        </TabControl>
+                    </StackPanel>
                 </TabItem>
-            <!--Simulator tab-->
+                <!--Simulator tab-->
                 <TabItem Header="Simulator">
                     <StackPanel Orientation="Vertical">
-                    <Menu VerticalAlignment="Top">
-                        <!--File-->
-                        <MenuItem Name="mnuFile2" Header="_File">
-                            <MenuItem Name="mnuFileNew2" Header="_New"/>
-                            <MenuItem Name="mnuFileOpen2" Header="_Open"/>
-                            <MenuItem Name="mnuFileExit2" Header="_Exit"/>
-                        </MenuItem>
-                        <!--View-->
-                        <MenuItem Name="mnuView" Header="_View">
-                            <MenuItem Name="mnuViewLog" Header="_As Log"/>
-                            <MenuItem Name="mnuViewGraphic" Header="_As Graphic"/>
-                        </MenuItem>
-                        <!--Help-->
-                        <MenuItem Name="mnuHelp2" Header="_Help">
-                            <MenuItem Name="mnuAbout2" Header="_About"/>
-                        </MenuItem>
-                    </Menu>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="145"/>
-                            <ColumnDefinition Width="500"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="160"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="50"/>
-                        </Grid.RowDefinitions>
-                        <!-- Content -->
-                        <Label Content="Simulator" Grid.Row="0" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Center" FontSize="16" />
-                        <TextBox Name="txtbSimulator" Grid.Row="0" Grid.Column="1" Grid.RowSpan="7"/>
-                        <Label Content="-- Time --" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="2,2,2,2"/>
-                        <TextBox Name="txtbTime" Grid.Row="3" Grid.Column="0" Margin="2,2,2,2"/>
-                        <Label Content="-- Position (x, y, z) --" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Margin="2,2,2,2"/>
-                        <TextBox Name="txtbPosition" Grid.Row="5" Grid.Column="0" Margin="2,2,2,2"/>
-                        <Button Name="btnCalibrate" Content="Calibrate!" Grid.Row="6" Grid.Column="0" Height="30" Margin="2,2,2,2"/>
-                    </Grid>
-                </StackPanel>
+                        <Menu VerticalAlignment="Top">
+                            <!--File-->
+                            <MenuItem Name="mnuFile2" Header="_File">
+                                <MenuItem Name="mnuFileNew2" Header="_New"/>
+                                <MenuItem Name="mnuFileOpen2" Header="_Open"/>
+                                <MenuItem Name="mnuFileExit2" Header="_Exit"/>
+                            </MenuItem>
+                            <!--View-->
+                            <MenuItem Name="mnuView" Header="_View">
+                                <MenuItem Name="mnuViewLog" Header="_As Log"/>
+                                <MenuItem Name="mnuViewGraphic" Header="_As Graphic"/>
+                            </MenuItem>
+                            <!--Help-->
+                            <MenuItem Name="mnuHelp2" Header="_Help">
+                                <MenuItem Name="mnuAbout2" Header="_About"/>
+                            </MenuItem>
+                        </Menu>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="145"/>
+                                <ColumnDefinition Width="500"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="160"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <!-- Content -->
+                            <Label Content="Simulator" Grid.Row="0" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Center" FontSize="16" />
+                            <TextBox Name="txtbSimulator" Grid.Row="0" Grid.Column="1" Grid.RowSpan="7"/>
+                            <Label Content="-- Time --" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="2,2,2,2"/>
+                            <TextBox Name="txtbTime" Grid.Row="3" Grid.Column="0" Margin="2,2,2,2"/>
+                            <Label Content="-- Position (x, y, z) --" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Margin="2,2,2,2"/>
+                            <TextBox Name="txtbPosition" Grid.Row="5" Grid.Column="0" Margin="2,2,2,2"/>
+                            <Button Name="btnCalibrate" Content="Calibrate!" Grid.Row="6" Grid.Column="0" Height="30" Margin="2,2,2,2"/>
+                        </Grid>
+                    </StackPanel>
                 </TabItem>
-            <!--Info-Tab-->
+                <!--Info-Tab-->
                 <TabItem Header="Info">
                     <StackPanel Name="Hello" Orientation="Horizontal">
                         <!--Left table-->
@@ -158,13 +156,13 @@
                         </ListBox>
                     </StackPanel>
                 </TabItem>
-            <!--Log-Tab-->
+                <!--Log-Tab-->
                 <TabItem Header="Log">
                     <TextBlock Width="645">
                     Hello world - Log is here!
                     </TextBlock>
                 </TabItem>
-        </TabControl>
-    </Grid>
+            </TabControl>
+        </Grid>
     </Viewbox>
 </Window>
