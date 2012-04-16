@@ -31,22 +31,6 @@ namespace DSL
         On
     }
 
-    public enum AxisSettings
-    {
-        AXIS_ROBOT,
-        AXIS_PERIPHERALS,
-        AXIS_0,
-        AXIS_1,
-        AXIS_2,
-        AXIS_3,
-        AXIS_4,
-        AXIS_5,
-        AXIS_6,
-        AXIS_7,
-        AXIS_ALL
-    }
-
-
     public interface IRobot
     {
         bool closeGripper();
@@ -54,21 +38,29 @@ namespace DSL
         bool initialization();
         ManualModeType ManualMode { get; set; }
         ControlModeType ControlMode { get; set; }
-	bool stopAllMovement();
-        bool stopMove(AxisSettings axis);
-        bool moveByCoordinates(int x, int y, int z, int pitch, int roll);
+        bool stopAllMovement();
+        bool movebyCoordinates(int _iX, int _iY, int _iZ);
+        bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll);
+        bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll);
         short getJawOpeningWidthMilimeters();
         short getJawOpeningWidthPercentage();
         bool homeRobot();
         bool isOnline();
-
+        bool moveBase(int speed);
+        bool moveShoulder(int speed);
+        bool moveWristPitch(int speed);
+        bool moveWristRoll(int speed);
+        bool moveElbow(int speed);
+        bool moveGripper(int speed);
+        bool moveConveyerBelt(int speed);
+        VecPoint getCurrentPosition();
     }
     public class Robot : IRobot
     {
-        private Wrapper _wrapper;
-        DLLImport.DgateCallBack dgateEventHandlerSuccess = initSuccess;
-        DLLImport.DgateCallBack dgateEventHandlerError = initError;
-        DLLImport.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
+        private IWrapper _wrapper;
+        DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
+        DLL.DgateCallBack dgateEventHandlerError = initError;
+        DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
         #region Robot mode properties
         public ManualModeType ManualMode
         {
@@ -154,6 +146,8 @@ namespace DSL
         public Robot()
         {
             _wrapper = Wrapper.getInstance();
+            homeRobot();
+
         }
         /// <summary>
         /// Initializes robot with default values MODE_ONLINE and SYSTEM_TYPE_DEFAULT
@@ -191,11 +185,16 @@ namespace DSL
         {
             return _wrapper.isOnlineOkWrapped();
         }
+
+        public VecPoint getCurrentPosition()
+        {
+            return _wrapper.getCurrentPosition();
+        }
         #endregion
 
         #region Coordinate movements
         /// <summary>
-        /// Function for moving by coordinates
+        /// Function for moving by absolute coordinates
         /// </summary>
         /// <param name="_iX"> x-coordinate </param>
         /// <param name="y"> y-coordinate </param>
@@ -203,13 +202,58 @@ namespace DSL
         /// <param name="pitch"> pitch robot arm</param>
         /// <param name="roll"> roll of robot arm</param>
         /// <returns></returns>
-        public bool moveByCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
+        public bool moveByAbsoluteCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
         {
-                ManualMode = ManualModeType.Coordinates;
-                // implement move by coordinates
-                
-                ManualMode = ManualModeType.Off;
-            return (false); /// \warning Not implemented.
+            // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
+            
+            ManualMode = ManualModeType.Coordinates;
+            SIRVector tempCordVector = new AbsCoordSirVector("absoluteVector");
+            tempCordVector.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll));
+            _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, "absoluteVector",5); // shrtlength??
+            _wrapper.moveLinearWrapped("defaultVector", 5); // index??    
+            ManualMode = ManualModeType.Off;
+            return false; 
+        }
+
+        /// <summary>
+        /// moves by coordinates x, y and z
+        /// </summary>
+        /// <param name="_iX"></param>
+        /// <param name="_iY"></param>
+        /// <param name="_iZ"></param>
+        /// <returns></returns>
+        public bool movebyCoordinates(int _iX, int _iY, int _iZ)
+        {
+            ManualMode = ManualModeType.Coordinates;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
+                return false;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
+                return false;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
+                return false;
+            ManualMode = ManualModeType.Off;
+            return true;
+        }
+
+        /// <summary>
+        /// function for moving by relative coordinates
+        /// </summary>
+        /// <param name="_iX"></param>
+        /// <param name="_iY"></param>
+        /// <param name="_iZ"></param>
+        /// <param name="_iPitch"></param>
+        /// <param name="_iRoll"></param>
+        /// <returns></returns>
+        public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
+        {
+            // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
+            ManualMode = ManualModeType.Coordinates;
+            
+            SIRVector tempRelVector = new RelCoordSirVector("relativeVector");
+            tempRelVector.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll ));
+
+            ManualMode = ManualModeType.Off;
+            return false;
         }
         #endregion
 
@@ -285,46 +329,6 @@ namespace DSL
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, _iSpeed);
         }
 
-        public bool stopMove(AxisSettings _axisWhatAxis)
-        {
-            switch (_axisWhatAxis)
-            {
-                case (AxisSettings.AXIS_0):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_0);
-
-                case (AxisSettings.AXIS_1):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_1);
-
-                case (AxisSettings.AXIS_2):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_2);
-
-                case (AxisSettings.AXIS_3):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_3);
-
-                case (AxisSettings.AXIS_4):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_4);
-
-                case (AxisSettings.AXIS_5):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_5);
-
-                case (AxisSettings.AXIS_6):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_6);
-
-                case (AxisSettings.AXIS_7):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_7);
-
-                case (AxisSettings.AXIS_ALL):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
-
-                case (AxisSettings.AXIS_PERIPHERALS):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_PERIPHERALS);
-
-                case (AxisSettings.AXIS_ROBOT):
-                    return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
-                default:
-                    return false;
-            }
-        }
         #endregion
 
         #region gripper methods

@@ -23,14 +23,23 @@ namespace RoboGO
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        // A function within main that invokes function DisplayLogin
+        private void WindowsLoaded(object sender, RoutedEventArgs e)
         {
-
+            DisplayLoginScreen();
         }
 
-        private void button5_Click(object sender, RoutedEventArgs e)
+        // The Window which needs a login
+        private void DisplayLoginScreen()
         {
-            MessageBox.Show("The robot has been connected!");
+            PasswordWindow psWindow = new PasswordWindow();
+
+            psWindow.Owner = this;
+            psWindow.ShowDialog();
+            if (psWindow.DialogResult.HasValue && psWindow.DialogResult.Value)
+                MessageBox.Show("User Logged In");
+            else
+                this.Close();
         }
     }
 }
