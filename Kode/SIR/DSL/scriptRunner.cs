@@ -13,7 +13,6 @@ namespace DSL
     /// </summary>
     public interface IScriptRunner
     {
-        IScriptRunner getInstance();
         void setRobotInstance(IRobot _iroboRobot);
         void setScriptFromFile(string _sPath);
         void setScriptFromString(string _sScript);
@@ -40,7 +39,7 @@ namespace DSL
         /// Gets the instance of the ScriptRunner.
         /// </summary>
         /// <returns></returns>
-        public IScriptRunner getInstance()
+        public static ScriptRunner getInstance()
         {
             if(srInstance == null) 
                srInstance = new ScriptRunner();
