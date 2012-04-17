@@ -53,11 +53,11 @@ namespace DSL
         bool moveElbow(int speed);
         bool moveGripper(int speed);
         bool moveConveyerBelt(int speed);
-
+        VecPoint getCurrentPosition();
     }
     public class Robot : IRobot
     {
-        private Wrapper _wrapper;
+        private IWrapper _wrapper;
         DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
         DLL.DgateCallBack dgateEventHandlerError = initError;
         DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
@@ -184,6 +184,11 @@ namespace DSL
         public bool isOnline()
         {
             return _wrapper.isOnlineOkWrapped();
+        }
+
+        public VecPoint getCurrentPosition()
+        {
+            return _wrapper.getCurrentPosition();
         }
         #endregion
 

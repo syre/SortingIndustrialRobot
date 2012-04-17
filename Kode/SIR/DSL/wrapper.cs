@@ -9,7 +9,7 @@ namespace DSL // Has to be changed
     /// <summary>
     /// Class to contain point for use in one of the vector classes.
     /// </summary>
-    class VecPoint
+    public class VecPoint
     {
         public int iX;
         public int iY;
@@ -31,7 +31,7 @@ namespace DSL // Has to be changed
     /// 
     /// Should use the derived classes.
     /// </summary>
-    class SIRVector
+    public class SIRVector
     {
         // Members
         protected string sName;
@@ -65,7 +65,7 @@ namespace DSL // Has to be changed
     /// <summary>
     /// SIRVector class for absolute positions.
     /// </summary>
-    class AbsCoordSirVector : SIRVector
+    public class AbsCoordSirVector : SIRVector
     {
         // Functions 
         public AbsCoordSirVector(string _sName)
@@ -79,7 +79,7 @@ namespace DSL // Has to be changed
     /// <summary>
     /// SIRVector class for relative positions.
     /// </summary>
-    class RelCoordSirVector : SIRVector
+    public class RelCoordSirVector : SIRVector
     {
         // Functions 
         public RelCoordSirVector(string _sName)
@@ -90,6 +90,7 @@ namespace DSL // Has to be changed
         }
     }
 
+   
     /// <summary>
     /// Contains a wrapper for the C++ functions in the dll file(USBC.dll).
     /// 
@@ -101,7 +102,7 @@ namespace DSL // Has to be changed
     /// 
     /// \todo Add behind factory class.
     /// </summary>
-    class Wrapper
+    public class Wrapper : IWrapper
     {
         // Members
         // -Normal
@@ -493,7 +494,8 @@ namespace DSL // Has to be changed
         #endregion
 
         #region Helper functions
-        private byte axisSettingsToByte(enumAxisSettings axisSettingsArg)
+
+        public byte axisSettingsToByte(enumAxisSettings axisSettingsArg)
         {
             byte bArg;
             switch (axisSettingsArg)
@@ -539,7 +541,8 @@ namespace DSL // Has to be changed
             }
             return(bArg);
         }
-        private byte manualMovementToByte(enumManualModeWhat enumArg)
+
+        public byte manualMovementToByte(enumManualModeWhat enumArg)
         {
             byte bArg;
             switch (enumArg)
