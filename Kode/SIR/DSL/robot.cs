@@ -57,7 +57,7 @@ namespace DSL
     }
     public class Robot : IRobot
     {
-        private Wrapper _wrapper;
+        private IWrapper _wrapper;
         DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
         DLL.DgateCallBack dgateEventHandlerError = initError;
         DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
