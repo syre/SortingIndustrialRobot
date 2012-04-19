@@ -86,7 +86,6 @@ namespace RoboGO.ViewModels
         public void executeCode()
         {
             isrScriptRunner.setScriptFromString(Code);
-
             isrScriptRunner.ExecuteScript();
         }
     }

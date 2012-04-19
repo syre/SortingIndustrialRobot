@@ -39,7 +39,7 @@ namespace SIR.Tests
         #endregion
         #region Properties
         [Test]
-        public void ScriptExecutioner_SetsIt_ScriptExecutionerIsSaved()
+        public void ScriptExecuter_SetsIt_ScriptExecutionerIsSaved()
         {
             // Setup
             idevmTestObj = new IDEViewModel();
@@ -90,6 +90,21 @@ namespace SIR.Tests
             isrRunner.AssertWasCalled(t => t.setScriptFromString(Arg<string>.Is.Anything));
         }
         [Test]
+        public void executeCode_CallsIt_CallsScriptRunnersetScriptFromStringEqualCodeProperty()
+        {
+            // Setup
+            idevmTestObj = new IDEViewModel();
+            IScriptRunner isrRunner = MockRepository.GenerateMock<IScriptRunner>();
+            idevmTestObj.ScriptExecuter = isrRunner;
+            idevmTestObj.Code = "Hello";
+
+            // Test
+            idevmTestObj.executeCode();
+
+            // Verify
+            isrRunner.AssertWasCalled(t => t.setScriptFromString(idevmTestObj.Code));
+        }
+        [Test]
         public void executeCode_CallsIt_CallsScriptRunnerExecuteScript()
         {
             // Setup
@@ -102,6 +117,29 @@ namespace SIR.Tests
 
             // Verify
             isrRunner.AssertWasCalled(t => t.ExecuteScript());
+        }
+        [Test]
+        public void executeCode_CallsIt_ScriptRunnersetScriptFromStringIsCalledBeforeExecuteScript()
+        {
+            // Setup
+            idevmTestObj = new IDEViewModel();
+            MockRepository mockrepo = new MockRepository();
+            IScriptRunner isrRunner = mockrepo.DynamicMock<IScriptRunner>();
+            idevmTestObj.ScriptExecuter = isrRunner;
+
+            // Record
+            using(mockrepo.Ordered())
+            {
+                isrRunner.Expect(t => t.setScriptFromString(Arg<string>.Is.Anything));
+                isrRunner.Expect(t => t.ExecuteScript());
+            }
+            isrRunner.Replay();
+
+            // Run
+            idevmTestObj.executeCode();
+
+            // Verify
+            mockrepo.VerifyAll();
         }
         #endregion
     }
