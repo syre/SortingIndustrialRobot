@@ -93,8 +93,8 @@
                         </MenuItem>
                     </Menu>
                     <!--Box for text editor-->
-                    <TextBox Name="txtBoxIDE" VerticalAlignment="Top" Height="300" Width="645" HorizontalAlignment="Left">
-                        An editable texteditor .. name points itself, lol!
+                    <TextBox Name="txtBoxIDE" VerticalAlignment="Top" Height="300" Width="645" HorizontalAlignment="Left" TextWrapping="Wrap" AcceptsReturn="True">
+                        
                     </TextBox>
                     <StatusBar Height="25" HorizontalAlignment="Left" Name="stbIDE" VerticalAlignment="Top" Width="645" Background="Aqua" />
                 </StackPanel>

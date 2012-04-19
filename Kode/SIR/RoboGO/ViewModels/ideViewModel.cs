@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using DSL;
+using ControlSystem;
 
 namespace RoboGO.ViewModels
 {
@@ -43,10 +44,16 @@ namespace RoboGO.ViewModels
         /// <summary>
         /// ScriptRunner using to execute code.
         /// </summary>
-        public IScriptRunner ScriptExecutioner
+        public IScriptRunner ScriptExecuter
         {
             get { return (isrScriptRunner); }
-            set { isrScriptRunner = value; }
+            set
+            {
+                if (value == null)
+                    throw new Exception();
+                else
+                    isrScriptRunner = value;
+            }
         }
 
         private string sCode;
@@ -64,7 +71,12 @@ namespace RoboGO.ViewModels
         // Functions
         public IDEViewModel()
         {
+            // Members settings
+            sCode = "";
+            isrScriptRunner = Factory.getScriptRunnerInstance;
+
             #region Commands
+
             #endregion
         }
 
@@ -73,7 +85,9 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void executeCode()
         {
-            throw new NotImplementedException();
+            isrScriptRunner.setScriptFromString(Code);
+
+            isrScriptRunner.ExecuteScript();
         }
     }
 }

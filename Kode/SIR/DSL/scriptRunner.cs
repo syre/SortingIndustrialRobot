@@ -58,7 +58,7 @@ namespace DSL
             _scope = _engine.CreateScope();
             _reporter = new ErrorReporter();
             // initializing robot methods from methods.py file placed in root dir
-            setScriptFromFile("../../methods.py");
+            setScriptFromFile("../../../DSL/methods.py");
             ExecuteScript();
         }
 

@@ -11,7 +11,7 @@ using RoboGO.ViewModels;
 namespace SIR.Tests
 {
     [TestFixture]
-    class IDEViewModelTests
+    public class IDEViewModelTests
     {
         // Members
         private IDEViewModel idevmTestObj;
@@ -34,7 +34,7 @@ namespace SIR.Tests
             idevmTestObj = new IDEViewModel();
 
             // Verify
-            Assert.IsTrue(idevmTestObj.ScriptExecutioner == Factory.getScriptRunnerInstance);
+            Assert.IsTrue(idevmTestObj.ScriptExecuter == Factory.getScriptRunnerInstance);
         }
         #endregion
         #region Properties
@@ -46,20 +46,20 @@ namespace SIR.Tests
             IScriptRunner isrRunner = MockRepository.GenerateStub<IScriptRunner>();
 
             // Test
-            idevmTestObj.ScriptExecutioner = isrRunner;
+            idevmTestObj.ScriptExecuter = isrRunner;
 
             // Verify
-            Assert.AreSame(isrRunner, idevmTestObj.ScriptExecutioner);
+            Assert.AreSame(isrRunner, idevmTestObj.ScriptExecuter);
         }
         [Test]
         [ExpectedException]
-        public void ScriptExecutioner_SetsItToNull_ThrowsException()
+        public void ScriptExecuter_SetsItToNull_ThrowsException()
         {
             // Setup
             idevmTestObj = new IDEViewModel();
 
             // Test
-            idevmTestObj.ScriptExecutioner = null;
+            idevmTestObj.ScriptExecuter = null;
         }
         [Test]
         public void Code_SetsItToHello_CodeIsSaved()
@@ -81,7 +81,7 @@ namespace SIR.Tests
             // Setup
             idevmTestObj = new IDEViewModel();
             IScriptRunner isrRunner = MockRepository.GenerateMock<IScriptRunner>();
-            idevmTestObj.ScriptExecutioner = isrRunner;
+            idevmTestObj.ScriptExecuter = isrRunner;
 
             // Test
             idevmTestObj.executeCode();
@@ -95,7 +95,7 @@ namespace SIR.Tests
             // Setup
             idevmTestObj = new IDEViewModel();
             IScriptRunner isrRunner = MockRepository.GenerateMock<IScriptRunner>();
-            idevmTestObj.ScriptExecutioner = isrRunner;
+            idevmTestObj.ScriptExecuter = isrRunner;
 
             // Test
             idevmTestObj.executeCode();
