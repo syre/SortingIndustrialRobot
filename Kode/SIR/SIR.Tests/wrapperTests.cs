@@ -141,6 +141,5 @@ namespace SIR.Tests
         }
         
     }
-<<<<<<< HEAD
-     * */
+    */
 }
