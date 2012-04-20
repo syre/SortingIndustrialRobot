@@ -85,7 +85,15 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             Assert.IsTrue(mcTestObj.RobotConnection == Factory.currentIRobotInstance);
         }
+        [Test]
+        public void ManualController_CallsIt_SpeedIsSetTo50()
+        {
+            // Setup and test
+            mcTestObj = new ManualController();
 
+            // Verify
+            Assert.AreEqual(50, mcTestObj.Speed);
+        }
         #endregion
         #region Axis functions
         [Test]
