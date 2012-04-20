@@ -139,7 +139,13 @@ namespace ControlSystem
     {
         public ManualController()
         {
-            robot = new Robot();
+            robot = Factory.currentIRobotInstance;
+
+        }
+
+        public void IsOnline()
+        {
+            if (!robot.isOnline()) throw new Exception();
         }
 
         private int speed;
@@ -148,7 +154,7 @@ namespace ControlSystem
             get { return speed; }
             set
             {
-                if (speed >= 0 && speed <= 100)
+                if (value >= 0 && value <= 100)
                 {
                     speed = value;
                 }
