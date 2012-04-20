@@ -11,13 +11,10 @@ namespace RoboGO.ViewModels
     /// <summary>
     /// Command class for simple linking between one command and a function.
     /// </summary>
-    public class DelegateCommand : ICommand
+    public class ExecuteCommand : ICommand
     {
-        // Members
         private Action aMethod;
-
-        // Functions
-        public DelegateCommand(Action _aMethod)
+        public ExecuteCommand(Action _aMethod)
         {
             aMethod = _aMethod;
         }
@@ -66,6 +63,12 @@ namespace RoboGO.ViewModels
             set { sCode = value; }
         }
         #region Commands
+
+        private ExecuteCommand ecExecuteComd;
+        public ExecuteCommand ExecuteComd
+        {
+            get { return (ecExecuteComd); }
+        }
         #endregion
 
         // Functions
@@ -76,7 +79,7 @@ namespace RoboGO.ViewModels
             isrScriptRunner = Factory.getScriptRunnerInstance;
 
             #region Commands
-
+            ecExecuteComd = new ExecuteCommand(executeCode);
             #endregion
         }
 

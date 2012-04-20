@@ -73,6 +73,20 @@ namespace SIR.Tests
             // Verify
             Assert.AreEqual("Hello", idevmTestObj.Code);
         }
+        [Test]
+        public void ExecuteComd_CallsIt_DoesNotReturnNull()
+        {
+            // Setup
+            idevmTestObj = new IDEViewModel();
+            ExecuteCommand ecHolder;
+
+            // Test
+            ecHolder = idevmTestObj.ExecuteComd;
+
+            // Verify
+            Assert.AreNotEqual(null, ecHolder);
+
+        }
         #endregion
         #region executeCode
         [Test]

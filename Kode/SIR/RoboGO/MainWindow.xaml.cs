@@ -34,7 +34,7 @@ namespace RoboGO
             idevmViewModelIDE = new IDEViewModel();
 
             // Data context
-            spIDE.DataContext = idevmViewModelIDE;
+            tabIDE.DataContext = idevmViewModelIDE;
         }
 
         // A function within main that invokes function DisplayLogin
