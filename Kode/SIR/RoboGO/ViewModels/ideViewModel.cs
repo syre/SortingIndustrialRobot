@@ -4,19 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using DSL;
+using ControlSystem;
 
 namespace RoboGO.ViewModels
 {
     /// <summary>
     /// Command class for simple linking between one command and a function.
     /// </summary>
-    public class DelegateCommand : ICommand
+    public class ExecuteCommand : ICommand
     {
-        // Members
         private Action aMethod;
-
-        // Functions
-        public DelegateCommand(Action _aMethod)
+        public ExecuteCommand(Action _aMethod)
         {
             aMethod = _aMethod;
         }
@@ -43,10 +41,16 @@ namespace RoboGO.ViewModels
         /// <summary>
         /// ScriptRunner using to execute code.
         /// </summary>
-        public IScriptRunner ScriptExecutioner
+        public IScriptRunner ScriptExecuter
         {
             get { return (isrScriptRunner); }
-            set { isrScriptRunner = value; }
+            set
+            {
+                if (value == null)
+                    throw new Exception();
+                else
+                    isrScriptRunner = value;
+            }
         }
 
         private string sCode;
@@ -59,12 +63,23 @@ namespace RoboGO.ViewModels
             set { sCode = value; }
         }
         #region Commands
+
+        private ExecuteCommand ecExecuteComd;
+        public ExecuteCommand ExecuteComd
+        {
+            get { return (ecExecuteComd); }
+        }
         #endregion
 
         // Functions
         public IDEViewModel()
         {
+            // Members settings
+            sCode = "";
+            isrScriptRunner = Factory.getScriptRunnerInstance;
+
             #region Commands
+            ecExecuteComd = new ExecuteCommand(executeCode);
             #endregion
         }
 
@@ -73,7 +88,8 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void executeCode()
         {
-            throw new NotImplementedException();
+            isrScriptRunner.setScriptFromString(Code);
+            isrScriptRunner.ExecuteScript();
         }
     }
 }
