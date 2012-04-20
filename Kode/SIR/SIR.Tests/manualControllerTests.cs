@@ -43,9 +43,8 @@ namespace SIR.Tests
         public void Speed_SettingSpeedTo101_SpeedIsNotSaved()
         {
             mcTestObj = new ManualController();
-            int iTmpSpeed = mcTestObj.Speed;
             mcTestObj.Speed = 101;
-            Assert.AreNotEqual(mcTestObj.Speed, iTmpSpeed);
+            Assert.AreNotEqual(mcTestObj.Speed, 101);
         }
         #endregion
 
