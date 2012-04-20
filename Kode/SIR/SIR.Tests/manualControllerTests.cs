@@ -102,6 +102,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveBase(Arg<int>.Is.Anything)).Return(true);
             
             mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -113,6 +114,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveBase(Arg<int>.Is.Anything)).Return(true);
             
             mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -124,6 +126,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveBase(Arg<int>.Is.Anything)).Return(true);
  
             mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_LEFT);
 
@@ -136,6 +139,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveBase(Arg<int>.Is.Anything)).Return(true);
  
             mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_LEFT);
 
@@ -148,6 +152,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveBase(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -159,6 +164,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveShoulder(Arg<int>.Is.Anything)).Return(true);
             
             mcTestObj.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -170,6 +176,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveShoulder(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -181,6 +188,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveShoulder(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_LEFT);
 
@@ -193,6 +201,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveShoulder(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_LEFT);
 
@@ -205,6 +214,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveShoulder(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -216,6 +226,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveElbow(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisElbow(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -227,6 +238,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveElbow(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisElbow(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -238,6 +250,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveElbow(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisElbow(enumLeftRight.MANUAL_MOVE_LEFT);
 
@@ -250,6 +263,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveElbow(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisElbow(enumLeftRight.MANUAL_MOVE_LEFT);
 
@@ -262,6 +276,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveElbow(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisElbow(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -273,6 +288,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveGripper(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisGripper(enumCloseOpen.MANUAL_OPEN);
 
@@ -284,6 +300,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveGripper(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisGripper(enumCloseOpen.MANUAL_OPEN);
 
@@ -295,6 +312,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveGripper(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisGripper(enumCloseOpen.MANUAL_OPEN);
 
@@ -307,6 +325,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveGripper(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisGripper(enumCloseOpen.MANUAL_CLOSE);
 
@@ -319,6 +338,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveGripper(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisGripper(enumCloseOpen.MANUAL_OPEN);
 
@@ -330,6 +350,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveWristPitch(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisPitch(enumUpDown.MANUAL_MOVE_UP);
 
@@ -341,6 +362,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveWristPitch(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisPitch(enumUpDown.MANUAL_MOVE_UP);
 
@@ -352,6 +374,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveWristPitch(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisPitch(enumUpDown.MANUAL_MOVE_DOWN);
 
@@ -364,6 +387,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveWristPitch(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisPitch(enumUpDown.MANUAL_MOVE_DOWN);
 
@@ -376,6 +400,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveWristPitch(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisPitch(enumUpDown.MANUAL_MOVE_UP);
 
@@ -387,6 +412,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveWristRoll(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisRoll(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -398,6 +424,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveWristRoll(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisRoll(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -409,6 +436,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveWristRoll(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisRoll(enumLeftRight.MANUAL_MOVE_LEFT);
 
@@ -421,6 +449,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveWristRoll(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisRoll(enumLeftRight.MANUAL_MOVE_LEFT);
 
@@ -433,6 +462,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveWristRoll(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisRoll(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -444,6 +474,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveConveyerBelt(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -455,6 +486,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveConveyerBelt(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -466,6 +498,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveConveyerBelt(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_LEFT);
 
@@ -478,6 +511,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveConveyerBelt(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_LEFT);
 
@@ -490,6 +524,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveConveyerBelt(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_RIGHT);
 
@@ -503,6 +538,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByXCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordX(enumIncDec.MANUAL_MOVE_INC);
 
@@ -514,6 +550,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByXCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordX(enumIncDec.MANUAL_MOVE_INC);
 
@@ -525,6 +562,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByXCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordX(enumIncDec.MANUAL_MOVE_DEC);
 
@@ -537,6 +575,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByXCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordX(enumIncDec.MANUAL_MOVE_DEC);
 
@@ -549,6 +588,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByXCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordX(enumIncDec.MANUAL_MOVE_INC);
 
@@ -560,6 +600,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByYCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordY(enumIncDec.MANUAL_MOVE_INC);
 
@@ -571,6 +612,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByYCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordY(enumIncDec.MANUAL_MOVE_INC);
 
@@ -582,6 +624,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByYCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordY(enumIncDec.MANUAL_MOVE_DEC);
 
@@ -594,6 +637,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByYCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordY(enumIncDec.MANUAL_MOVE_DEC);
 
@@ -606,6 +650,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByYCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordY(enumIncDec.MANUAL_MOVE_INC);
 
@@ -617,6 +662,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByZCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordZ(enumIncDec.MANUAL_MOVE_INC);
 
@@ -628,6 +674,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByZCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordZ(enumIncDec.MANUAL_MOVE_INC);
 
@@ -639,6 +686,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByZCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordZ(enumIncDec.MANUAL_MOVE_DEC);
 
@@ -651,6 +699,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByZCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordZ(enumIncDec.MANUAL_MOVE_DEC);
 
@@ -663,6 +712,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByZCordinate(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordX(enumIncDec.MANUAL_MOVE_INC);
 
@@ -674,6 +724,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByPitch(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordPitch(enumIncDec.MANUAL_MOVE_INC);
 
@@ -685,6 +736,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByPitch(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordPitch(enumIncDec.MANUAL_MOVE_INC);
 
@@ -696,6 +748,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByPitch(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordPitch(enumIncDec.MANUAL_MOVE_DEC);
 
@@ -708,6 +761,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByPitch(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordPitch(enumIncDec.MANUAL_MOVE_DEC);
 
@@ -720,6 +774,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByPitch(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordPitch(enumIncDec.MANUAL_MOVE_INC);
 
@@ -731,6 +786,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByRoll(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordRoll(enumIncDec.MANUAL_MOVE_INC);
 
@@ -742,6 +798,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByRoll(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordRoll(enumIncDec.MANUAL_MOVE_INC);
 
@@ -753,6 +810,7 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByRoll(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordRoll(enumIncDec.MANUAL_MOVE_DEC);
 
@@ -765,6 +823,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByRoll(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordRoll(enumIncDec.MANUAL_MOVE_DEC);
 
@@ -777,6 +836,7 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByRoll(Arg<int>.Is.Anything)).Return(true);
 
             mcTestObj.moveCoordRoll(enumIncDec.MANUAL_MOVE_INC);
 
