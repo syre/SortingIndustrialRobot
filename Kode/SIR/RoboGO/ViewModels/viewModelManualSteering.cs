@@ -239,7 +239,6 @@ namespace RoboGO.ViewModels
         public void moveAxisBaseRight()
         {
             mcManualControl.moveAxisBase(enumLeftRight.MANUAL_MOVE_RIGHT);
-            System.Console.WriteLine("huhu");
         }
         public void moveAxisBaseLeft()
         {
