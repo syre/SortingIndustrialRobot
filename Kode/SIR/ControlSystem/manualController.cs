@@ -137,6 +137,11 @@ namespace ControlSystem
     /// </summary>
     public class ManualController : IManualController
     {
+        public ManualController()
+        {
+            robot = new Robot();
+        }
+
         private int speed;
         public int Speed
         {
