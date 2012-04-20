@@ -41,5 +41,13 @@ namespace RoboGO
             else
                 this.Close();
         }
+
+        private void mnuViewCommands1_Click(object sender, RoutedEventArgs e)
+        {
+            CommandsWindow window = new CommandsWindow();
+            window.Owner = this;
+            window.Show();
+            window.NavigateToHelp();
+        }
     }
 }

@@ -1,0 +1,50 @@
+<p><h2>Coordinates movement function moveByCoordinates(x,y,z)</h2></p>
+
+<p><h3>moveByAbsoluteCoordinates(x,y,z,pitch,roll)</h3></p> 
+<p>moves by absolute coordinates, ex. with robot in position = (0,0,0)
+ a move by absolute coordinates (2,2,2) would result in robot position = (2,2,2)</p>
+
+ <p><h3>moveByRelativeCoordinates(x,y,z,pitch,roll)</h3></p>
+ <p>moves by relative coordinates, ex. with robot in position = (2,2,2)
+ a move by relative coordinates (2,2,2) would result in robot position = (4,4,4)</p>
+
+<p><h2> Gripper functions </h2></p> 
+
+<p><h3> OpenGripper() </h3></p>
+<p>opens the gripper</p>
+<p><h3>CloseGripper() </h3></p>
+<p>closes the gripper around a subject</p>
+
+<p><h2>Standard robot functions</h2></p>
+
+<p><h3>isOnline()</h3></p>
+<p>returns true if robot is connectable</p>
+
+<p><h3>Initialization()</h3></p>
+<p>Initializes the robot with standard parameters</p>
+
+<p><h3>seekHome()</h3></p>
+<p>makes the robot go to home position</p>
+
+<p><h3>stopAllMovement()</h3></p>
+<p>stops movement for all axes moving</p>
+
+<p><h2>Axis movement functions</h2></p>
+
+<p><h3>moveBase(speed)</h3></p>
+<p>moves base axis with parameter of speed in percentage (0-100%)</p>
+
+<p><h3>moveShoulder(speed)</h3></p>
+<p>moves shoulder axis with parameter of speed in percentage (0-100%)</p>
+
+<p><h3>moveElbow(speed) </h3>
+<p>moves elbow axis with parameter of speed in percentage (0-100%)</p>
+
+<p><h3>moveWristRoll(speed)</h3></p>
+<p>moves wristroll axis with parameter of speed in percentage (0-100%)</p>
+
+<p><h3>moveGripper(speed)</h3></p>
+<p>moves gripper axis with parameter of speed in percentage (0-100%)</p>
+
+<p><h3>moveConveyorBelt(speed)</h3></p>
+<p>moves conveyor belt with parameter of speed in percentage (0-100%)</p>

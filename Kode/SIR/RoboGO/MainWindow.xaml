@@ -55,6 +55,7 @@
                             </MenuItem>
                             <!--Help-->
                             <MenuItem Name="mnuHelp" Header="_Help">
+                                <MenuItem Name="View_Commands" Header="_View Commands"/>
                                 <MenuItem Name="mnuAbout" Header="_About"/>
                             </MenuItem>
                         </Menu>
@@ -90,7 +91,8 @@
                         </MenuItem>
                         <!--Help-->
                         <MenuItem Name="mnuHelp1" Header="_Help">
-                            <MenuItem Name="mnuAbout1" Header="_About"/>
+                                <MenuItem Name="mnuViewCommands1" Header="_View Commands" Click="mnuViewCommands1_Click"/>
+                                <MenuItem Name="mnuAbout1" Header="_About"/>
                         </MenuItem>
                     </Menu>
                     <!--Box for text editor-->
