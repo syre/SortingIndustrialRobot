@@ -306,7 +306,5 @@ namespace DSL
             return 1;
         }
     }
-<<<<<<< HEAD
-     * */
-
+    */
 }
