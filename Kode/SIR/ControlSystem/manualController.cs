@@ -272,32 +272,72 @@ namespace ControlSystem
 
         public void moveCoordX(enumIncDec _eidIncOrDec)
         {
-           if(!robot.moveByXCordinate(100))
-               throw new Exception(); 
+            if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
+            {
+                if (!robot.moveByXCordinate(Speed))
+                    throw new Exception();
+            }
+            else
+            {
+                if (!robot.moveByXCordinate(-Speed))
+                    throw new Exception();
+            }
         }
 
         public void moveCoordY(enumIncDec _eidIncOrDec)
         {
-            if (!robot.moveByYCordinate(100))
-                throw new Exception();
+            if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
+            {
+                if (!robot.moveByYCordinate(Speed))
+                    throw new Exception();
+            }
+            else
+            {
+                if (!robot.moveByYCordinate(-Speed))
+                    throw new Exception();
+            }
         }
 
         public void moveCoordZ(enumIncDec _eidIncOrDec)
         {
-            if (!robot.moveByZCordinate(100))
-                throw new Exception();
+            if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
+            {
+                if (!robot.moveByZCordinate(Speed))
+                    throw new Exception();
+            }
+            else
+            {
+                if (!robot.moveByZCordinate(-Speed))
+                    throw new Exception();
+            }
         }
 
         public void moveCoordPitch(enumIncDec _eidIncOrDec)
         {
-            if(!robot.moveByPitch(100))
-                throw new Exception();
+            if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
+            {
+                if (!robot.moveByPitch(Speed))
+                    throw new Exception();
+            }
+            else
+            {
+                if (!robot.moveByPitch(-Speed))
+                    throw new Exception();
+            }
         }
 
         public void moveCoordRoll(enumIncDec _eidIncOrDec)
         {
-            if (!robot.moveByRoll(100))
-                throw new Exception();
+            if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
+            {
+                if (!robot.moveByRoll(Speed))
+                    throw new Exception();
+            }
+            else
+            {
+                if (!robot.moveByRoll(-Speed))
+                    throw new Exception();
+            }
         }
     }
 }
