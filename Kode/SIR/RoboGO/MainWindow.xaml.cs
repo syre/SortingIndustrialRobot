@@ -45,7 +45,7 @@ namespace RoboGO
                 () => CloseTab_Executed(),
                 () => CloseTab_CanExecute);
 
-            mnuFile1.DataContext = this;
+            this.DataContext = this;
         }
 
         // A function within main that invokes function DisplayLogin

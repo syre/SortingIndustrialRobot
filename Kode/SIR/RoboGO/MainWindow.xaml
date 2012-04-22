@@ -1,11 +1,15 @@
 ﻿<Window x:Class="RoboGO.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:RoboGO="clr-namespace:SaveAsCloseOpen" Title="RoboGO" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="RoboGO" 
         Height="451" 
         Width="921"
         WindowStartupLocation="CenterScreen" 
         Loaded="WindowsLoaded">
-
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Path=SaveAs}" Gesture="CTRL+S" ></KeyBinding>
+        <KeyBinding Command="{Binding Path=Open}" Gesture="CTRL+O" ></KeyBinding>
+        <KeyBinding Command="{Binding Path=CloseTab}" Gesture="CTRL+Q" ></KeyBinding>
+    </Window.InputBindings>
     <!-- By adding viewbox, all content will be proportionally fitting-->
     <Viewbox>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
