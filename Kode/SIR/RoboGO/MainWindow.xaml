@@ -5,7 +5,11 @@
         Width="921"
         WindowStartupLocation="CenterScreen" 
         Loaded="WindowsLoaded">
-
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Path=SaveAs}" Gesture="CTRL+S" ></KeyBinding>
+        <KeyBinding Command="{Binding Path=Open}" Gesture="CTRL+O" ></KeyBinding>
+        <KeyBinding Command="{Binding Path=CloseTab}" Gesture="CTRL+Q" ></KeyBinding>
+    </Window.InputBindings>
     <!-- By adding viewbox, all content will be proportionally fitting-->
     <Viewbox>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
