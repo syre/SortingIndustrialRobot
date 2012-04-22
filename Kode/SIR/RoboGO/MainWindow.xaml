@@ -1,6 +1,6 @@
 ﻿<Window x:Class="RoboGO.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:RoboGO="clr-namespace:SaveAsCloseOpen" Title="RoboGO" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="RoboGO" 
         Height="451" 
         Width="921"
         WindowStartupLocation="CenterScreen" 
