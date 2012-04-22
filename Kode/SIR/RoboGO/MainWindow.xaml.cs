@@ -78,7 +78,7 @@ namespace RoboGO
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.Filter = "TXT Files(*.txt)|*.txt";
-            saveDialog.DefaultExt = "xml";
+            saveDialog.DefaultExt = "txt";
             saveDialog.AddExtension = true;
 
             if (saveDialog.ShowDialog() == true)
