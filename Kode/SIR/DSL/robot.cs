@@ -40,9 +40,9 @@ namespace DSL
         ControlModeType ControlMode { get; set; }
         bool stopAllMovement();
         //tilføjet af Yusuf___________
-        bool moveByXCordinate(int x);
-        bool moveByYCordinate(int y);
-        bool moveByZCordinate(int z);
+        bool moveByXCoordinate(int x);
+        bool moveByYCoordinate(int y);
+        bool moveByZCoordinate(int z);
         bool moveByPitch( int pitch);
         //____________________________
         bool moveByRoll(int roll);
@@ -385,7 +385,7 @@ namespace DSL
         #endregion
 
         #region MovejustOneCordinate
-        public bool moveByXCordinate(int _iX)
+        public bool moveByXCoordinate(int _iX)
         {
             ManualMode = ManualModeType.Coordinates;
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
@@ -393,7 +393,7 @@ namespace DSL
             return true;
         }
 
-        public bool moveByYCordinate(int _iY)
+        public bool moveByYCoordinate(int _iY)
         {
             ManualMode = ManualModeType.Coordinates;
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))

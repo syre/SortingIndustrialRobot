@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Manual Steering" Height="300" Width="300"
         x:Name="GUIManual" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStyle="ToolWindow">
-<!-- Resources -->
+    <!-- Resources -->
     <Window.Resources>
         <Style TargetType="StackPanel">
             <Setter Property="Margin" Value="10" />
@@ -13,7 +13,7 @@
         </Style>
     </Window.Resources>
 
-<!-- Content -->
+    <!-- Content -->
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Gripper: " />

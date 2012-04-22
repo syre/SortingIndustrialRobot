@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/** \file viewModelManualSteeringTests.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using NUnit.Framework;
 using Rhino.Mocks;
 using RoboGO.ViewModels;
@@ -23,8 +21,11 @@ namespace SIR.Tests
             // Setup
             vmmsTestObj = new ViewModelManualSteering();
             ManualController mcTmp = new ManualController();
+
+            // Test
             vmmsTestObj.ManualControl = mcTmp;
 
+            // Verify
             Assert.AreSame(mcTmp, vmmsTestObj.ManualControl);
         }
         [Test]
@@ -32,8 +33,11 @@ namespace SIR.Tests
         {
             // Setup
             vmmsTestObj = new ViewModelManualSteering();
-            vmmsTestObj.Speed = 50;
 
+            // Test
+            vmmsTestObj.Speed = 50;
+            
+            // Verify
             Assert.AreEqual(50, vmmsTestObj.Speed);
         }
         [Test]
@@ -42,9 +46,12 @@ namespace SIR.Tests
             // Setup
             vmmsTestObj = new ViewModelManualSteering();
             IManualController imcTmp = MockRepository.GenerateMock<IManualController>();
+
+            // Test
             vmmsTestObj.ManualControl = imcTmp;
             vmmsTestObj.Speed = 50;
 
+            // Verify
             imcTmp.AssertWasCalled(t => t.Speed = 50);
         }
         #endregion

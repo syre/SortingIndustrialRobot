@@ -84,8 +84,8 @@ namespace ControlSystem
         /// <summary>
         /// Opens or closes the gripper.
         /// </summary>
-        /// <param name="_coGripper">To open or close.</param>
-        void moveAxisGripper(enumCloseOpen _coGripper);
+        /// <param name="_ecoGripper">To open or close.</param>
+        void moveAxisGripper(enumCloseOpen _ecoGripper);
         /// <summary>
         /// Moves the wrists pitch in the desired direction.
         /// </summary>
@@ -133,22 +133,25 @@ namespace ControlSystem
     /// <summary>
     /// Class that encapsulates controlling manual movement. Instead of using directly Robot or Simulator by interface.
     /// 
-    /// Note: Uses IRobot, so it is able to use both a Robot or a Simulator.
+    /// Note: Uses IRobot, so it is able to use either a Robot or a Simulator.
     /// </summary>
     public class ManualController : IManualController
     {
+        // Members
+        private int speed;
+        private IRobot robot;
+
         public ManualController()
         {
             robot = Factory.currentIRobotInstance;
-
         }
-
         public void IsOnline()
         {
-            if (!robot.isOnline()) throw new Exception();
+            if (!robot.isOnline()) 
+                throw new Exception();
         }
 
-        private int speed;
+        // Properties
         public int Speed
         {
             get { return speed; }
@@ -160,28 +163,24 @@ namespace ControlSystem
                 }
             }
         }
-
-        private IRobot robot;
         public IRobot RobotConnection
         {
             get { return robot; }
             set { robot = value; }
         }
-
+        #region Axis
         public void moveAxisBase(enumLeftRight _elrDirection)
         {
             bool ifEverythingOk = false;
 
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
-            {
-               ifEverythingOk = robot.moveBase(speed);
-            }
-            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
-            {
-                ifEverythingOk = robot.moveBase(-speed);
-            }
+                ifEverythingOk = robot.moveBase(speed);
 
-            if (!ifEverythingOk) throw new Exception();
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
+                ifEverythingOk = robot.moveBase(-speed);
+
+            if (!ifEverythingOk) 
+                throw new Exception();
 
         }
 
@@ -190,15 +189,13 @@ namespace ControlSystem
             bool ifEverythingOk = false;
 
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
-            {
                 ifEverythingOk = robot.moveShoulder(speed);
-            }
-            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
-            {
-                ifEverythingOk = robot.moveShoulder(-speed);
-            }
 
-            if (!ifEverythingOk) throw new Exception();
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
+                ifEverythingOk = robot.moveShoulder(-speed);
+
+            if (!ifEverythingOk) 
+                throw new Exception();
         }
 
         public void moveAxisElbow(enumLeftRight _elrDirection)
@@ -206,47 +203,41 @@ namespace ControlSystem
             bool ifEverythingOk = false;
 
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
-            {
                 ifEverythingOk = robot.moveElbow(speed);
-            }
+            
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
-            {
                 ifEverythingOk = robot.moveElbow(-speed);
-            }
 
-            if (!ifEverythingOk) throw new Exception();
+            if (!ifEverythingOk) 
+                throw new Exception();
         }
 
-        public void moveAxisGripper(enumCloseOpen _coGripper)
+        public void moveAxisGripper(enumCloseOpen _ecoGripper)
         {
             bool ifEverythingOk = false;
 
-            if (_coGripper == enumCloseOpen.MANUAL_OPEN)
-            {
+            if (_ecoGripper == enumCloseOpen.MANUAL_OPEN)
                 ifEverythingOk = robot.moveGripper(speed);
-            }
-            if (_coGripper == enumCloseOpen.MANUAL_CLOSE)
-            {
+            
+            if (_ecoGripper == enumCloseOpen.MANUAL_CLOSE)
                 ifEverythingOk = robot.moveGripper(-speed);
-            }
 
-            if (!ifEverythingOk) throw new Exception();
+            if (!ifEverythingOk) 
+                throw new Exception();
         }
 
-        public void moveAxisPitch(enumUpDown _elrDirection)
+        public void moveAxisPitch(enumUpDown _eudDirection)
         {
             bool ifEverythingOk = false;
 
-            if (_elrDirection == enumUpDown.MANUAL_MOVE_UP)
-            {
+            if (_eudDirection == enumUpDown.MANUAL_MOVE_UP)
                 ifEverythingOk = robot.moveWristPitch(speed);
-            }
-            if (_elrDirection == enumUpDown.MANUAL_MOVE_DOWN)
-            {
-                ifEverythingOk = robot.moveWristPitch(-speed);
-            }
 
-            if (!ifEverythingOk) throw new Exception();
+            if (_eudDirection == enumUpDown.MANUAL_MOVE_DOWN)
+                ifEverythingOk = robot.moveWristPitch(-speed);
+
+            if (!ifEverythingOk) 
+                throw new Exception();
         }
 
         public void moveAxisRoll(enumLeftRight _elrDirection)
@@ -254,15 +245,13 @@ namespace ControlSystem
             bool ifEverythingOk = false;
 
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
-            {
                 ifEverythingOk = robot.moveWristRoll(speed);
-            }
-            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
-            {
-                ifEverythingOk = robot.moveWristRoll(-speed);
-            }
 
-            if (!ifEverythingOk) throw new Exception();
+            if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
+                ifEverythingOk = robot.moveWristRoll(-speed);
+
+            if (!ifEverythingOk) 
+                throw new Exception();
         }
 
         public void moveAxisConveyer(enumLeftRight _elrDirection)
@@ -270,27 +259,26 @@ namespace ControlSystem
             bool ifEverythingOk = false;
 
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
-            {
                 ifEverythingOk = robot.moveConveyerBelt(speed);
-            }
+            
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_LEFT)
-            {
                 ifEverythingOk = robot.moveConveyerBelt(-speed);
-            }
 
-            if (!ifEverythingOk) throw new Exception();
+            if (!ifEverythingOk) 
+                throw new Exception();
         }
-
+        #endregion
+        #region Coordinates
         public void moveCoordX(enumIncDec _eidIncOrDec)
         {
             if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
             {
-                if (!robot.moveByXCordinate(Speed))
+                if (!robot.moveByXCoordinate(Speed))
                     throw new Exception();
             }
             else
             {
-                if (!robot.moveByXCordinate(-Speed))
+                if (!robot.moveByXCoordinate(-Speed))
                     throw new Exception();
             }
         }
@@ -299,12 +287,12 @@ namespace ControlSystem
         {
             if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
             {
-                if (!robot.moveByYCordinate(Speed))
+                if (!robot.moveByYCoordinate(Speed))
                     throw new Exception();
             }
             else
             {
-                if (!robot.moveByYCordinate(-Speed))
+                if (!robot.moveByYCoordinate(-Speed))
                     throw new Exception();
             }
         }
@@ -313,12 +301,12 @@ namespace ControlSystem
         {
             if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
             {
-                if (!robot.moveByZCordinate(Speed))
+                if (!robot.moveByZCoordinate(Speed))
                     throw new Exception();
             }
             else
             {
-                if (!robot.moveByZCordinate(-Speed))
+                if (!robot.moveByZCoordinate(-Speed))
                     throw new Exception();
             }
         }
@@ -350,5 +338,6 @@ namespace ControlSystem
                     throw new Exception();
             }
         }
+        #endregion
     }
 }

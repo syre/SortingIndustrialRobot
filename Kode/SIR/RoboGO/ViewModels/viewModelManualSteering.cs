@@ -48,7 +48,6 @@ namespace RoboGO.ViewModels
             get { return (mcManualControl); }
             set { mcManualControl = value; }
         }
-
         public int Speed
         {
             get{return(mcManualControl.Speed);}

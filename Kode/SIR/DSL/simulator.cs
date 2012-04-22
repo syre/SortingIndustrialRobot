@@ -282,7 +282,7 @@ namespace DSL
         /// </summary>
         /// <param name="x">value for the x coordinate</param>
         /// <returns>always true</returns>
-        public bool moveByXCordinate(int x)
+        public bool moveByXCoordinate(int x)
         {
             iuiOutput.writeLine("New Cordinate X: "+x);
             return true;
@@ -293,7 +293,7 @@ namespace DSL
         /// </summary>
         /// <param name="y">value for the y coordinate</param>
         /// <returns>always true</returns>
-        public bool moveByYCordinate(int y)
+        public bool moveByYCoordinate(int y)
         {
             iuiOutput.writeLine("New Cordinate Y: " + y);
             return true;
