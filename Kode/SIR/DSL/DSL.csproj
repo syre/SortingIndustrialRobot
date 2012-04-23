@@ -56,6 +56,8 @@
     <Compile Include="errorReporter.cs" />
     <Compile Include="iDLL.cs" />
     <Compile Include="IWrapper.cs" />
+    <Compile Include="PositionModel.cs" />
+    <Compile Include="PositionViewModel.cs" />
     <Compile Include="ui.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="robot.cs" />

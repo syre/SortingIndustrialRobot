@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DSL;
 
 namespace RoboGO
 {
@@ -21,6 +22,8 @@ namespace RoboGO
         public MainWindow()
         {
             InitializeComponent();
+
+            txtbPosition.DataContext = new PositionViewModel();
         }
 
         // A function within main that invokes function DisplayLogin
