@@ -1,8 +1,18 @@
-﻿/** \file MainWindow.xaml.cs */
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+/** \file MainWindow.xaml.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System.Windows;
 using DSL;
 using RoboGO.ViewModels;
+using System.Xml.Serialization;
+using GalaSoft.MvvmLight.Command;
+using Microsoft.Win32;
+using Command;
+
 
 namespace RoboGO
 {
@@ -33,12 +43,15 @@ namespace RoboGO
 
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
+
+            this.DataContext = this;
+            mnuFile1.DataContext = new InOutService();
         }
 
         // A function within main that invokes function DisplayLogin
         private void WindowsLoaded(object sender, RoutedEventArgs e)
         {
-            DisplayLoginScreen();
+            //DisplayLoginScreen();
         }
 
         // The Window which needs a login

@@ -32,8 +32,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+    <Reference Include="GalaSoft.MvvmLight, Version=0.0.0.0, Culture=neutral, PublicKeyToken=3e875cdb3903c512, processorArchitecture=MSIL" />
       <SpecificVersion>False</SpecificVersion>
+    <Reference Include="IronPython">
       <HintPath>..\IronPython-2.7.2.1\IronPython.dll</HintPath>
+      <HintPath>..\..\IronPython 2.7.1\IronPython.dll</HintPath>
     </Reference>
     <Reference Include="IronPython.Modules, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -43,6 +46,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\IronPython-2.7.2.1\Microsoft.Scripting.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -64,6 +68,9 @@
     <Compile Include="scriptRunner.cs" />
     <Compile Include="simulator.cs" />
     <Compile Include="wrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
