@@ -64,6 +64,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\ideViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="guiManualSteering.xaml.cs">
       <DependentUpon>guiManualSteering.xaml</DependentUpon>
     </Compile>

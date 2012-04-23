@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DSL;
+using RoboGO.ViewModels;
 
 namespace RoboGO
 {
@@ -19,7 +20,13 @@ namespace RoboGO
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Members
+        // Members and properties
+        private IDEViewModel idevmViewModelIDE;
+        public IDEViewModel ViewModelIDE
+        {
+            get { return (idevmViewModelIDE); }
+        }
+
         private PasswordWindow psWindow;
         private GUIManualSteering gmsManualGUI;
 
@@ -30,6 +37,11 @@ namespace RoboGO
             // Members initialize
             psWindow = new PasswordWindow();
             gmsManualGUI = new GUIManualSteering();
+            // Init
+            idevmViewModelIDE = new IDEViewModel();
+
+            // Data context
+            tabIDE.DataContext = idevmViewModelIDE;
         }
 
         // A function within main that invokes function DisplayLogin
@@ -41,6 +53,8 @@ namespace RoboGO
         // The Window which needs a login
         private void DisplayLoginScreen()
         {
+            PasswordWindow psWindow = new PasswordWindow();
+
             psWindow.Owner = this;
             psWindow.ShowDialog();
             if (psWindow.DialogResult.HasValue && psWindow.DialogResult.Value)

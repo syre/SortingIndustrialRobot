@@ -59,7 +59,7 @@
                     </Grid>
                 </TabItem>
             <!-- IDE tab-->
-                <TabItem Header="IDE">
+                <TabItem Name="tabIDE" Header="IDE">
                     <StackPanel Orientation="Vertical" Name="spIDE">
                     <Menu VerticalAlignment="Top">
                         <!--File -->
@@ -76,7 +76,7 @@
                         <!--Debug-->
                         <MenuItem Name="mnuDebugAndBuild" Header="_Debug and build">
                             <MenuItem Name="mnuStartDebugging" Header="_Start Debugging"/>
-                            <MenuItem Name="mnuStartBuild" Header="_Start Build"/>
+                            <MenuItem Name="mnuStartBuild" Header="_Build and run" Command="{Binding Path=ExecuteComd}"/>
                         </MenuItem>
                         <!--Macros-->
                         <MenuItem Name="mnuMacros" Header="_Macros">
@@ -92,9 +92,13 @@
                         </MenuItem>
                     </Menu>
                     <!--Box for text editor-->
-                    <TextBox Name="txtBoxIDE" VerticalAlignment="Top" Height="300" Width="645" HorizontalAlignment="Left">
-                        An editable texteditor .. name points itself, lol!
-                    </TextBox>
+                    <RichTextBox Name="rtbIDE" VerticalAlignment="Top" Height="300" Width="645" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
+                            <RichTextBox.Resources>
+                                <Style TargetType="{x:Type Paragraph}">
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </RichTextBox.Resources>
+                        </RichTextBox>
                     <StatusBar Height="25" HorizontalAlignment="Left" Name="stbIDE" VerticalAlignment="Top" Width="645" Background="Aqua" />
                 </StackPanel>
                 </TabItem>

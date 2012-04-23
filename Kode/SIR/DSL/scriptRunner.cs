@@ -7,11 +7,23 @@ using Microsoft.Scripting.Hosting;
 namespace DSL
 {
     /// <summary>
+    /// Interface for a script runner.
+    /// 
+    /// Used for Unit testing primarily.
+    /// </summary>
+    public interface IScriptRunner
+    {
+        void setRobotInstance(IRobot _iroboRobot);
+        void setScriptFromFile(string _sPath);
+        void setScriptFromString(string _sScript);
+        void ExecuteScript();
+    }
+    /// <summary>
     /// Used to run IronPython scripts.
     /// 
     /// Note: Needs IronPython, IronPython.Modules and Microsoft.Scripting assemblies as reference
     /// </summary>
-    public static class ScriptRunner
+    public class ScriptRunner : IScriptRunner
     {
         private static ScriptEngine _engine;
         private static ScriptRuntimeSetup _setup;
@@ -21,10 +33,24 @@ namespace DSL
         private static ErrorReporter _reporter;
         private static IRobot _robot;
 
+        // Singleton
+        private static ScriptRunner srInstance;
         /// <summary>
-        ///  Initializing the python engine
+        /// Gets the instance of the ScriptRunner.
         /// </summary>
-        static ScriptRunner()
+        /// <returns></returns>
+        public static ScriptRunner getInstance()
+        {
+            if(srInstance == null) 
+               srInstance = new ScriptRunner();
+
+            return (srInstance);
+        }
+
+        /// <summary>
+        ///  Initializing the python engine.
+        /// </summary>
+        private ScriptRunner()
         {
             _setup = Python.CreateRuntimeSetup(null);
             _runtime = new ScriptRuntime(_setup);
@@ -32,11 +58,11 @@ namespace DSL
             _scope = _engine.CreateScope();
             _reporter = new ErrorReporter();
             // initializing robot methods from methods.py file placed in root dir
-            setScriptFromFile("../../methods.py");
+            setScriptFromFile("../../../DSL/methods.py");
             ExecuteScript();
         }
 
-        public static void setRobotInstance(IRobot _iroboRobot)
+        public void setRobotInstance(IRobot _iroboRobot)
         {
             _robot = _iroboRobot;
             _scope.SetVariable("_robot", _robot);
@@ -45,7 +71,7 @@ namespace DSL
         /// <summary>
         ///  Loads script from a file
         /// </summary>
-        public static void setScriptFromFile(string _sPath)
+        public void setScriptFromFile(string _sPath)
         {
             _source = _engine.CreateScriptSourceFromFile(_sPath);
             CompiledCode codecheck = _source.Compile(_reporter);
@@ -60,7 +86,7 @@ namespace DSL
         /// <summary>
         ///  Loads script from a string
         /// </summary>
-        public static void setScriptFromString(string _sScript)
+        public void setScriptFromString(string _sScript)
         {
            _source = _engine.CreateScriptSourceFromString(_sScript);
            CompiledCode codecheck = _source.Compile(_reporter);
@@ -75,7 +101,7 @@ namespace DSL
         /// <summary>
         ///  Executes loaded script
         /// </summary>
-        public static void ExecuteScript()
+        public void ExecuteScript()
         {
             if (_source != null)
             {

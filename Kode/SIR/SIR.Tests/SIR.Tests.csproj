@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
     <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\NUnit 2.5.10\bin\net-2.0\framework\nunit.framework.dll</HintPath>
@@ -50,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dllMock.cs" />
+    <Compile Include="ideViewModelTests.cs" />
     <Compile Include="iDLLMock.cs" />
     <Compile Include="PositionTest.cs" />
 
@@ -59,18 +61,18 @@
     <Compile Include="wrapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
-
-
-
-
+    <ProjectReference Include="..\ControlSystem\ControlSystem.csproj">
+      <Project>{184F67D0-715F-4676-BC5F-7D7BA2FD49D8}</Project>
+      <Name>ControlSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DSL\DSL.csproj">
       <Project>{CCB881A3-2162-400F-B9A6-02410740789F}</Project>
       <Name>DSL</Name>
     </ProjectReference>
-
-
-
-
+    <ProjectReference Include="..\RoboGO\RoboGO.csproj">
+      <Project>{588B4B2A-3461-451C-AB6E-82E6F5146066}</Project>
+      <Name>RoboGO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

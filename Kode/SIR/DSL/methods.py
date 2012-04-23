@@ -1,6 +1,6 @@
 import clr
-clr.AddReference("DSL_component")
-import DSL_component
+clr.AddReference("DSL")
+import DSL
 
 def DummyHello(name):
 	_robot.HelloName(name)

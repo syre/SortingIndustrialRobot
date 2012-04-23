@@ -19,13 +19,14 @@ namespace ControlSystem
         private static volatile Robot robotInstance;
         private static volatile Simulator simulatorInstance;
         private static volatile IRobot iRobotInstance;
+        private static volatile ScriptRunner scriptRunnerInstance;
 
         // Static synchronization root object, for locking
         private static object objectThreadSync = new object();
         private static object objectRobotSync = new object();
         private static object objectSimulatorSync = new object();
         private static object objectIRobotSync = new object();
-        
+        private static object objectScriptRunnerSync = new object();
 
 
        
@@ -124,7 +125,30 @@ namespace ControlSystem
                 }
             }
         }
+        /// <summary>
+        /// Returns the instance of ScriptRunner or creates it if its not already
+        /// </summary>
+        public static ScriptRunner getScriptRunnerInstance
+        {
+            get
+            {
+                // Check that the instance is null
+                if (scriptRunnerInstance == null)
+                {
+                    // Lock the object
+                    lock (objectScriptRunnerSync)
+                    {
+                        // Check to make sure its null
+                        if (scriptRunnerInstance == null)
+                        {
+                            scriptRunnerInstance = ScriptRunner.getInstance();
+                        }
+                    }
+                }
 
-
+                // Return the non-null instance of Singleton
+                return scriptRunnerInstance;
+            }
+        }
     }
 }
