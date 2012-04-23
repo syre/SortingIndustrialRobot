@@ -32,8 +32,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+	</Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=0.0.0.0, Culture=neutral, PublicKeyToken=3e875cdb3903c512, processorArchitecture=MSIL" />
-      <SpecificVersion>False</SpecificVersion>
     <Reference Include="IronPython">
       <HintPath>..\IronPython-2.7.2.1\IronPython.dll</HintPath>
       <HintPath>..\..\IronPython 2.7.1\IronPython.dll</HintPath>

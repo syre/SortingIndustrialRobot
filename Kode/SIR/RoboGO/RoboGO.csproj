@@ -37,15 +37,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IronPython">
-    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
-      <HintPath>..\IronPython-2.7.1\IronPython.dll</HintPath>
-    </Reference>
+		<HintPath>..\IronPython-2.7.1\IronPython.dll</HintPath>
+	</Reference>
     <Reference Include="Microsoft.Scripting">
       <HintPath>..\IronPython-2.7.1\Microsoft.Scripting.dll</HintPath>
     </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\Rhino.Mocks.dll</HintPath>
     </Reference>
+	<Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
       <HintPath>..\packages\MvvmLightLibs.3.1.1\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.WPF4">
