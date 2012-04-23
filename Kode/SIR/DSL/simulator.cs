@@ -70,11 +70,6 @@ namespace DSL
             return true;
         }
 
-        public bool movebyCoordinates(int _iX, int _iY, int _iZ)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// It will close the gripper
         /// </summary>
@@ -304,6 +299,11 @@ namespace DSL
             return true;
         }
 
+        public bool moveByZCoordinate(int z)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Moves Just Z coordinate
         /// </summary>
@@ -369,55 +369,5 @@ namespace DSL
         }
         #endregion
 
-        // Interface V2 additions
-        public bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool moveBase(int speed)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool moveShoulder(int speed)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool moveWristPitch(int speed)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool moveWristRoll(int speed)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool moveElbow(int speed)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool moveGripper(int speed)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool moveConveyerBelt(int speed)
-        {
-            throw new NotImplementedException();
-        }
-
-        public VecPoint getCurrentPosition()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

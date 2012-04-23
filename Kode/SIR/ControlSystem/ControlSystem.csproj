@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{184F67D0-715F-4676-BC5F-7D7BA2FD49D8}</ProjectGuid>
+    <ProjectGuid>{1B49DF99-175F-4DC5-9FD5-6ED464267C67}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ControlSystem</RootNamespace>
@@ -40,15 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlSystem.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="manualController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ControlSystem.cs" />
     <Compile Include="ThreadHandling.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DSL\DSL.csproj">
-      <Project>{CCB881A3-2162-400F-B9A6-02410740789F}</Project>
+      <Project>{03E26CE2-EAB1-4541-BA71-2373A38E5852}</Project>
       <Name>DSL</Name>
     </ProjectReference>
   </ItemGroup>

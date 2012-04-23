@@ -421,7 +421,8 @@ namespace DSL
             return true;
         }
 
-        public bool moveByZCordinate(int _iZ)
+
+        public bool moveByZCoordinate(int _iZ)
         {
             ManualMode = ManualModeType.Coordinates;
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))

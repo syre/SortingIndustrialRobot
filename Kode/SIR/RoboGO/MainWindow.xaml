@@ -39,7 +39,7 @@
                 </DockPanel>
             </StackPanel>
             <!--Tabs column-->
-            <TabControl Grid.Column="1">
+            <TabControl Name="tabctrlMain" Grid.Column="1">
                 <!-- User tab-->
                 <TabItem Header="User">
                     <Grid Width="645">
