@@ -33,7 +33,6 @@ namespace SIR.Tests
         private IWrapper _wrapper;
 
         [SetUp]
-        public void SetupTest()
         public void SetUp()
         {
             Wrapper stubCalcHelper = MockRepository.GenerateStub<ICalcHelper>();
@@ -41,7 +40,6 @@ namespace SIR.Tests
         }
 
         [TearDown]
-        public void ExitTest()
         public void TearDown()
         {
             //_dll = null;
