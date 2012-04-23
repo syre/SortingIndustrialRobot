@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/** \file MainWindow.xaml.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using DSL;
 using RoboGO.ViewModels;
 
@@ -78,6 +69,16 @@ namespace RoboGO
             // Close children
             gmsManualGUI.Close();
             psWindow.Close();
+        }
+    }
+}
+
+        private void mnuViewCommands1_Click(object sender, RoutedEventArgs e)
+        {
+            CommandsWindow window = new CommandsWindow();
+            window.Owner = this;
+            window.Show();
+            window.NavigateToHelp();
         }
     }
 }
