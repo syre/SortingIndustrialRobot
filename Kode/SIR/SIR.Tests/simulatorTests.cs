@@ -88,6 +88,21 @@ namespace SIR.Tests
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
         [Test]
+        public void stopMove_CallingIt_ReturnsTrue()
+        {
+            Assert.IsTrue(simTestObj.stopMove(AxisSettings.AXIS_ROBOT)); // Dummy value
+        }
+        [Test]
+        public void stopMove_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.stopMove(AxisSettings.AXIS_ROBOT); // Dummy value
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+        [Test]
         public void isOnline_CallingIt_ReturnsTrue()
         {
             Assert.IsTrue(simTestObj.isOnline());
@@ -103,36 +118,45 @@ namespace SIR.Tests
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
         [Test]
+        public void isOnline_CallingIt_ReturnsTrue()
         public void homeRobot_CallingIt_ReturnsTrue()
         {
+            Assert.IsTrue(simTestObj.isOnline());
             Assert.IsTrue(simTestObj.homeRobot());
         }
         [Test]
+        public void isOnline_CallingIt_WritesToUI()
         public void homeRobot_CallingIt_WritesToUI()
         {
             IUI iuiMock = MockRepository.GenerateMock<IUI>();
             simTestObj.IUIOutput = iuiMock;
 
+            simTestObj.isOnline();
             simTestObj.homeRobot();
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
         #region Revision V2 of IRobot
         [Test]
+        public void homeRobot_CallingIt_ReturnsTrue()
         public void moveByAbsoluteCoordinates_CallingIt_ReturnsTrue()
         {
+            Assert.IsTrue(simTestObj.homeRobot());
             Assert.IsTrue(simTestObj.moveByAbsoluteCoordinates(1, 1, 1, 1, 1));
         }
         [Test]
+        public void homeRobot_CallingIt_WritesToUI()
         public void moveByAbsoluteCoordinates_CallingIt_WritesToUI()
         {
             IUI iuiMock = MockRepository.GenerateMock<IUI>();
             simTestObj.IUIOutput = iuiMock;
 
+            simTestObj.homeRobot();
             simTestObj.moveByAbsoluteCoordinates(1, 1, 1, 1, 1);
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
+#endregion
         [Test]
         public void moveByRelativeCoordinates_CallingIt_ReturnsTrue()
         {

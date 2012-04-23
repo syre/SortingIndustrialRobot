@@ -39,6 +39,13 @@ namespace DSL
         ManualModeType ManualMode { get; set; }
         ControlModeType ControlMode { get; set; }
         bool stopAllMovement();
+        //tilføjet af Yusuf___________
+        bool moveByXCoordinate(int x);
+        bool moveByYCoordinate(int y);
+        bool moveByZCoordinate(int z);
+        bool moveByPitch( int pitch);
+        //____________________________
+        bool moveByRoll(int roll);
         bool movebyCoordinates(int _iX, int _iY, int _iZ);
         bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll);
         bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll);
@@ -395,6 +402,49 @@ namespace DSL
         {
             return _wrapper.openGripperWrapped();
         }
+        #endregion
+
+        #region MovejustOneCordinate
+        public bool moveByXCoordinate(int _iX)
+        {
+            ManualMode = ManualModeType.Coordinates;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
+                return false;
+            return true;
+        }
+
+        public bool moveByYCoordinate(int _iY)
+        {
+            ManualMode = ManualModeType.Coordinates;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
+                return false;
+            return true;
+        }
+
+        public bool moveByZCordinate(int _iZ)
+        {
+            ManualMode = ManualModeType.Coordinates;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
+                return false;
+            return true;
+        }
+
+        public bool moveByPitch(int _pitch)
+        {
+            ManualMode = ManualModeType.Coordinates;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_PITCH, _pitch))
+                return false;
+            return true;
+        }
+
+        public bool moveByRoll(int _roll)
+        {
+            ManualMode = ManualModeType.Coordinates;
+            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ROLL, _roll))
+                return false;
+            return true;
+        }
+
         #endregion
     }
 }
