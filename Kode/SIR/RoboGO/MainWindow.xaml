@@ -6,6 +6,20 @@
         WindowStartupLocation="CenterScreen" 
         Loaded="WindowsLoaded"
         Icon="Images/Globus.JPG" Closing="Window_Closing">
+    <Window.Resources>
+        <Style x:Key="styleRBIDE"  TargetType="{x:Type RichTextBox}">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Height" Value="300" />
+            <Setter Property="Width" Value="645" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="AcceptsTab" Value="True" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+        <Style TargetType="{x:Type Paragraph}">
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+    </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Command="{Binding Path=SaveAs}" Gesture="CTRL+S" ></KeyBinding>
         <KeyBinding Command="{Binding Path=Open}" Gesture="CTRL+O" ></KeyBinding>
@@ -42,7 +56,7 @@
             <TabControl Name="tabctrlMain" Grid.Column="1">
                 <!-- User tab-->
                 <TabItem Header="User">
-                    <Grid Width="645">
+                    <Grid MinWidth="645">
                         <Menu VerticalAlignment="Top">
                             <!--File-->
                             <MenuItem Name="mnuFile" Header="_File">
@@ -65,7 +79,7 @@
                 </TabItem>
                 <!-- IDE tab-->
                 <TabItem Name="tabIDE" Header="IDE">
-                    <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="500" MaxWidth="500">
+                    <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="645">
                         <Menu VerticalAlignment="Top">
                             <!--File -->
                             <MenuItem Name="mnuFile1" Header="_File">
@@ -98,20 +112,15 @@
                             </MenuItem>
                         </Menu>
                         <!--Box for Tabs-->
-                        <TabControl Name="IDETabs" MaxHeight="350">
-                            <!--<RichTextBox Name="rtbIDE" VerticalAlignment="Top" Height="300" Width="645" HorizontalAlignment="Left" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
-                                <RichTextBox.Resources>
-                                    <Style TargetType="{x:Type Paragraph}">
-                                        <Setter Property="Margin" Value="0"/>
-                                    </Style>
-                                </RichTextBox.Resources>
-                            </RichTextBox>-->
+                        <TabControl Name="IDETabs">
+                            <RichTextBox Style="{StaticResource styleRBIDE}">
+                            </RichTextBox>
                         </TabControl>
                     </StackPanel>
                 </TabItem>
                 <!--Simulator tab-->
                 <TabItem Name="tabitmSimulator" Header="Simulator">
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" MinWidth="645">
                         <Menu VerticalAlignment="Top">
                             <!--File-->
                             <MenuItem Name="mnuFile2" Header="_File">
@@ -156,7 +165,7 @@
                 </TabItem>
                 <!--Info-Tab-->
                 <TabItem Header="Info">
-                    <StackPanel Name="Hello" Orientation="Horizontal">
+                    <StackPanel Name="Hello" Orientation="Horizontal" MinWidth="645">
                         <!--Left table-->
                         <ListBox HorizontalAlignment="Left" Width="145">
                             Tables available
@@ -169,7 +178,7 @@
                 </TabItem>
                 <!--Log-Tab-->
                 <TabItem Header="Log">
-                    <TextBlock Width="645">
+                    <TextBlock MinWidth="645">
                     Hello world - Log is here!
                     </TextBlock>
                 </TabItem>
