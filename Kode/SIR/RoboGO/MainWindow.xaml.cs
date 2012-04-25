@@ -6,6 +6,7 @@ using System.Text;
 /** \file MainWindow.xaml.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System.Windows;
+using Command;
 using DSL;
 using RoboGO.ViewModels;
 using System.Xml.Serialization;
@@ -44,13 +45,13 @@ namespace RoboGO
             tabIDE.DataContext = idevmViewModelIDE;
 
             this.DataContext = this;
-            mnuFile1.DataContext = new InOutService();
+            //mnuFile1.DataContext = new InOutService();
         }
 
         // A function within main that invokes function DisplayLogin
         private void WindowsLoaded(object sender, RoutedEventArgs e)
         {
-            //DisplayLoginScreen();
+            DisplayLoginScreen();
         }
 
         // The Window which needs a login
