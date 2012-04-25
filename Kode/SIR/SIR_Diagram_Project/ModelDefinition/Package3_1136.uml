@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="b2b605f8-2b9e-4326-8d85-a2fe92def1e8"
+  name="ViewModels"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="28ad771f-5463-4e35-9641-a967b55131ac"
+      handle="viewcode://./CodeSchema_Namespace?Namespace=RoboGO.ViewModels"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="e1bc6c24-7444-457f-aab8-9d88322e71b3"
+        name="IDEViewModel"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="a309fc96-34e1-4e4f-9838-2d2f56ac5427"
+            handle="viewcode://./CodeSchema_Class?Assembly=file:///C:/IHA/4.semester/I4PRJ/SortingIndustrialRobot/Kode/SIR/RoboGO/bin/Debug/RoboGO.exe Namespace=RoboGO.ViewModels Type=IDEViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="868e552e-b79d-411b-8c40-c8daff2379dd"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="45673202-7318-41a1-bb02-e0d830778723">
+                <propertyInstance
+                  Id="23ea6127-982d-4010-891c-26f38540f8ac"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cf65d5c8-e4c5-4286-bb1e-18be0b9c2435">
+                <propertyInstance
+                  Id="ecd8c6b1-d7ec-4d3d-b2fe-7b386ce753b5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9e2a23e0-9655-4c78-a690-d8b0daa327d2">
+                <propertyInstance
+                  Id="07b1883f-7726-433f-a051-e414940d82dc"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2cb0e0a8-b692-4938-b036-1106b1c9b0b1">
+                <propertyInstance
+                  Id="4e064b8d-5fe9-4500-b311-d69c9a28f923"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="233fc1af-41c3-4c77-baae-759de6e38fcb">
+                <propertyInstance
+                  Id="e93d0e28-2e17-4fe2-a893-ec57d5bf1845"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2524400a-8031-42b2-ba5e-240435bef773"
+        name="ViewModelManualSteering"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="75028787-f37f-4660-b480-9adc2fcf46b2"
+            handle="viewcode://./CodeSchema_Class?Assembly=file:///C:/IHA/4.semester/I4PRJ/SortingIndustrialRobot/Kode/SIR/RoboGO/bin/Debug/RoboGO.exe Namespace=RoboGO.ViewModels Type=ViewModelManualSteering"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="b2370bff-63d9-407b-aec5-261c33d625cf"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1573efac-fbdc-417e-acdb-a5deba04c127">
+                <propertyInstance
+                  Id="93daf2b8-24d5-479c-9818-acc886cf0462"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="854862bb-d8a8-4ec4-bdf4-047784217653">
+                <propertyInstance
+                  Id="8e955761-5d31-4c0e-9c97-c1787127352e"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f293f151-4fd9-4953-974c-190f1148f00a">
+                <propertyInstance
+                  Id="f613e131-725d-4eed-ad47-60cc64796f1b"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a67f9449-7421-497a-a831-592731d73d74">
+                <propertyInstance
+                  Id="96958315-823f-4c10-a438-cd18ea83dfb6"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0b9312f5-760d-4016-8286-e8c74ab1d2bd">
+                <propertyInstance
+                  Id="e86417e6-11bc-41df-a708-586aaa6b624f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
