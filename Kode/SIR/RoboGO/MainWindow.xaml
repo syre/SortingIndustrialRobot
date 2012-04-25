@@ -47,9 +47,8 @@
                 <ProgressBar Height="25" Name="pgbStyresystem" Width="150" Margin="50,60,0,5" HorizontalAlignment="Left"/>
                 <Button Content="Check connectivity" Height="25" Name="btnCheckConnectivity" VerticalAlignment="Top" Width="160"/>
                 <DockPanel Margin="0,50,5,5">
-                    <TextBlock DockPanel.Dock="Top" Height="23" Name="txtbOperation" Text="Choose operation for robot:" TextAlignment="Center" VerticalAlignment="Top"/>
-                    <Button DockPanel.Dock="Bottom" Content="Automatic" Name="btnAutomatic" Margin="5,5,5,5"/>
-                    <Button DockPanel.Dock="Bottom" Content="Manual" Name="btnManuel" Margin="5,5,5,5"/>
+                    <TextBlock DockPanel.Dock="Top" Height="23" Name="txtbOperation" Text="Manual Steering:" TextAlignment="Center" VerticalAlignment="Top"/>
+                    <Button DockPanel.Dock="Bottom" Content="Operate" Name="btnManuel" Margin="5,5,5,5" Click="btnManuel_Click"/>
                 </DockPanel>
             </StackPanel>
             <!--Tabs column-->
