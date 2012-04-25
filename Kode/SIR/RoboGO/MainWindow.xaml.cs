@@ -11,7 +11,6 @@ using RoboGO.ViewModels;
 using System.Xml.Serialization;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
-using Command;
 
 
 namespace RoboGO
