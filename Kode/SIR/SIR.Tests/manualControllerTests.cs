@@ -81,6 +81,7 @@ namespace SIR.Tests
         {
             // Setup 
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            irMock.Stub(t => t.isOnline()).Return(true);
 
             // Test
             Factory.currentIRobotInstance = irMock;
@@ -106,6 +107,7 @@ namespace SIR.Tests
         {
             // Setup
             IRobot irMock = MockRepository.GenerateStub<IRobot>();
+            irMock.Stub(t => t.isOnline()).Return(true);
 
             // Test
             Factory.currentIRobotInstance = irMock;
@@ -119,6 +121,7 @@ namespace SIR.Tests
         {
             // Setup
             IRobot irMock = MockRepository.GenerateStub<IRobot>();
+            irMock.Stub(t => t.isOnline()).Return(true);
 
             // Test
             Factory.currentIRobotInstance = irMock;

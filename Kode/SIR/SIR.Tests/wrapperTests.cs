@@ -33,7 +33,7 @@ namespace SIR.Tests
         [SetUp]
         public void SetUp()
         {
-            _wrapper = MockRepository.GenerateMock<Wrapper>();
+            _wrapper = MockRepository.GenerateMock<IWrapper>();
         }
 
         [TearDown]
@@ -113,7 +113,7 @@ namespace SIR.Tests
         }
 
         [Test]
-        public void CLoseWatchDigitalInput()
+        public void CloseWatchDigitalInput()
         {
 
         }
