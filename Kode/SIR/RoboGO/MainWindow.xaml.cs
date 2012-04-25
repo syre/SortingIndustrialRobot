@@ -83,8 +83,6 @@ namespace RoboGO
             gmsManualGUI.Close();
             psWindow.Close();
         }
-    }
-}
 
         private void mnuViewCommands1_Click(object sender, RoutedEventArgs e)
         {

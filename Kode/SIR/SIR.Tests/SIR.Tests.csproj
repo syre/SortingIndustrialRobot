@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FC846BF6-67DB-46AB-BD96-9D59AFB55F97}</ProjectGuid>
+    <ProjectGuid>{E75CA2B8-62BA-487C-A124-85F3F9BCD8C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SIR.Tests</RootNamespace>
@@ -31,20 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight, Version=0.0.0.0, Culture=neutral, PublicKeyToken=3e875cdb3903c512, processorArchitecture=MSIL" />
-    <Reference Include="GalaSoft.MvvmLight.Extras, Version=0.0.0.0, Culture=neutral, PublicKeyToken=48c5515dce1bf64d, processorArchitecture=MSIL" />
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\NUnit 2.5.10\bin\net-2.0\framework\nunit.framework.dll</HintPath>
+      <HintPath>.\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\NUnit 2.5.10\bin\net-2.0\framework\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Mocks">
-      <HintPath>..\Rhino.Mocks.dll</HintPath>
-      <HintPath>..\Rhino.Mocks.dll</HintPath>
+      <HintPath>.\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,28 +48,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dllMock.cs" />
     <Compile Include="ideViewModelTests.cs" />
-    <Compile Include="iDLLMock.cs" />
-    <Compile Include="PositionTest.cs" />
     <Compile Include="InOutService_Test.cs" />
-
+    <Compile Include="manualControllerTests.cs" />
+    <Compile Include="PositionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulatorTests.cs" />
-
+    <Compile Include="viewModelManualSteeringTests.cs" />
     <Compile Include="wrapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ControlSystem\ControlSystem.csproj">
-      <Project>{184F67D0-715F-4676-BC5F-7D7BA2FD49D8}</Project>
+      <Project>{1B49DF99-175F-4DC5-9FD5-6ED464267C67}</Project>
       <Name>ControlSystem</Name>
     </ProjectReference>
     <ProjectReference Include="..\DSL\DSL.csproj">
-      <Project>{CCB881A3-2162-400F-B9A6-02410740789F}</Project>
+      <Project>{03E26CE2-EAB1-4541-BA71-2373A38E5852}</Project>
       <Name>DSL</Name>
     </ProjectReference>
     <ProjectReference Include="..\RoboGO\RoboGO.csproj">
-      <Project>{588B4B2A-3461-451C-AB6E-82E6F5146066}</Project>
+      <Project>{FFECC616-7867-4305-B9C9-D6AC64159743}</Project>
       <Name>RoboGO</Name>
     </ProjectReference>
   </ItemGroup>
