@@ -64,7 +64,7 @@
                     </Grid>
                 </TabItem>
                 <!-- IDE tab-->
-                <TabItem Header="IDE">
+                <TabItem Name="tabIDE" Header="IDE">
                     <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="500" MaxWidth="500">
                         <Menu VerticalAlignment="Top">
                             <!--File -->
