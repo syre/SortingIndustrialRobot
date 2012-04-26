@@ -107,6 +107,7 @@
                             </MenuItem>
                             <!--Help-->
                             <MenuItem Name="mnuHelp1" Header="_Help">
+								<MenuItem Name="mnuViewCommands1" Header="_View Commands" Click="mnuViewCommands1_Click"/>
                                 <MenuItem Name="mnuAbout1" Header="_About"/>
                             </MenuItem>
                         </Menu>
