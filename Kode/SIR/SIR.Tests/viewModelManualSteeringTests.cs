@@ -2,8 +2,8 @@
 /** \author Robotic Global Organization(RoboGO) */
 using NUnit.Framework;
 using Rhino.Mocks;
-using RoboGO.ViewModels;
 using ControlSystem;
+using RoboGO.ViewModels;
 
 namespace SIR.Tests
 {

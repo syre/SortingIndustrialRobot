@@ -102,10 +102,12 @@ namespace Command
             Stream tempStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             StreamReader tempReader = new StreamReader(tempStream);
 
+            /// \warning Untested when richtextbox.
             TabItem newTab = new TabItem();
-            TextBox tempBox = new TextBox();
-            tempBox.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-            tempBox.Text = tempReader.ReadToEnd();
+            RichTextBox tempBox = new RichTextBox();
+            FlowDocument fdContent = new FlowDocument();
+            fdContent.Blocks.Add(new Paragraph(new Run(tempReader.ReadToEnd())));
+            tempBox.Document = fdContent;
 
             newTab.Content = tempBox;
             FileInfo fi = new FileInfo(file);

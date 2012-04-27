@@ -144,6 +144,7 @@ namespace ControlSystem
         public ManualController()
         {
             robot = Factory.currentIRobotInstance;
+            IsOnline();
         }
         public void IsOnline()
         {

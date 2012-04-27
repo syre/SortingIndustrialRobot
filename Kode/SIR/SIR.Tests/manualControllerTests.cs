@@ -81,6 +81,7 @@ namespace SIR.Tests
         {
             // Setup 
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            irMock.Stub(t => t.isOnline()).Return(true);
 
             // Test
             Factory.currentIRobotInstance = irMock;
@@ -106,6 +107,7 @@ namespace SIR.Tests
         {
             // Setup
             IRobot irMock = MockRepository.GenerateStub<IRobot>();
+            irMock.Stub(t => t.isOnline()).Return(true);
 
             // Test
             Factory.currentIRobotInstance = irMock;
@@ -119,6 +121,7 @@ namespace SIR.Tests
         {
             // Setup
             IRobot irMock = MockRepository.GenerateStub<IRobot>();
+            irMock.Stub(t => t.isOnline()).Return(true);
 
             // Test
             Factory.currentIRobotInstance = irMock;
@@ -601,13 +604,13 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
-            irMock.Stub(t => t.moveByZCordinate(Arg<int>.Is.Anything)).Return(true);
+            irMock.Stub(t => t.moveByZCoordinate(Arg<int>.Is.Anything)).Return(true);
 
             // Test
             mcTestObj.moveCoordZ(enumIncDec.MANUAL_MOVE_DEC);
 
             // Verify
-            irMock.AssertWasCalled(t => t.moveByZCordinate(Arg<int>.Is.Anything));
+            irMock.AssertWasCalled(t => t.moveByZCoordinate(Arg<int>.Is.Anything));
         }
         [Test]
         public void moveCoordZ_CalledWithArgIncreasing_CallsRobotmoveByZCoordinate()
@@ -616,13 +619,13 @@ namespace SIR.Tests
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
-            irMock.Stub(t => t.moveByZCordinate(Arg<int>.Is.Anything)).Return(true);
+            irMock.Stub(t => t.moveByZCoordinate(Arg<int>.Is.Anything)).Return(true);
 
             // Test
             mcTestObj.moveCoordZ(enumIncDec.MANUAL_MOVE_INC);
 
             // Verify
-            irMock.AssertWasCalled(t => t.moveByZCordinate(Arg<int>.Is.Anything));
+            irMock.AssertWasCalled(t => t.moveByZCoordinate(Arg<int>.Is.Anything));
         }
         [Test]
         public void moveCoordZ_CalledWithArgDecreasing_CallsRobotmoveByZCoordinateWithNegativeSpeedValue()
@@ -632,13 +635,13 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
-            irMock.Stub(t => t.moveByZCordinate(Arg<int>.Is.Anything)).Return(true);
+            irMock.Stub(t => t.moveByZCoordinate(Arg<int>.Is.Anything)).Return(true);
 
             // Test
             mcTestObj.moveCoordZ(enumIncDec.MANUAL_MOVE_DEC);
 
             // Verify
-            irMock.AssertWasCalled(t => t.moveByZCordinate(-mcTestObj.Speed));
+            irMock.AssertWasCalled(t => t.moveByZCoordinate(-mcTestObj.Speed));
         }
         [Test]
         public void moveCoordZ_CalledWithArgIncreasing_CallsRobotmoveByZCoordinateWithPositiveSpeedValue()
@@ -648,13 +651,13 @@ namespace SIR.Tests
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
-            irMock.Stub(t => t.moveByZCordinate(Arg<int>.Is.Anything)).Return(true);
+            irMock.Stub(t => t.moveByZCoordinate(Arg<int>.Is.Anything)).Return(true);
 
             // Test
             mcTestObj.moveCoordZ(enumIncDec.MANUAL_MOVE_INC);
 
             // Verify
-            irMock.AssertWasCalled(t => t.moveByZCordinate(mcTestObj.Speed));
+            irMock.AssertWasCalled(t => t.moveByZCoordinate(mcTestObj.Speed));
         }
         [Test]
         public void moveCoordPitch_CalledWithArgDecreasing_CallsRobotmoveByPitch()
