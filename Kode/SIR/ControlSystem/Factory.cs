@@ -115,6 +115,8 @@ namespace ControlSystem
         {
             get
             {
+                if (iRobotInstance == null)
+                    iRobotInstance = getSimulatorInstance;
                 return iRobotInstance;
             }
             set

@@ -6,6 +6,20 @@
         WindowStartupLocation="CenterScreen" 
         Loaded="WindowsLoaded"
         Icon="Images/Globus.JPG" Closing="Window_Closing">
+    <Window.Resources>
+        <Style x:Key="styleRBIDE"  TargetType="{x:Type RichTextBox}">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Height" Value="300" />
+            <Setter Property="Width" Value="645" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="AcceptsTab" Value="True" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+        <Style TargetType="{x:Type Paragraph}">
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+    </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Command="{Binding Path=SaveAs}" Gesture="CTRL+S" ></KeyBinding>
         <KeyBinding Command="{Binding Path=Open}" Gesture="CTRL+O" ></KeyBinding>
@@ -22,9 +36,9 @@
             <StackPanel Grid.Column="0" Width="250" Orientation="Vertical">
                 <TextBlock Text="Styresystem" TextAlignment="Center" VerticalAlignment="Top" Margin="5,5,5,5" FontWeight="Bold" FontStretch="Expanded" FontSize="20" />
                 <TextBlock Text=" Choose Robot or Simulator" TextAlignment="Center" Margin="5,30,5,5"/>
-                <ComboBox Name="cmbChoice" Margin="5,5,5,5">
-                    <ComboBoxItem Name="cmbRobot" Content="Robot"/>
+                <ComboBox Name="cmbChoice" Margin="5,5,5,5" SelectedIndex="0">
                     <ComboBoxItem Name="cmbSimulator" Content="Simulator"/>
+                    <ComboBoxItem Name="cmbRobot" Content="Robot"/>
                 </ComboBox>
                 <StackPanel Orientation="Horizontal">
                     <Button Content="Start!" Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Left"/>
@@ -33,16 +47,15 @@
                 <ProgressBar Height="25" Name="pgbStyresystem" Width="150" Margin="50,60,0,5" HorizontalAlignment="Left"/>
                 <Button Content="Check connectivity" Height="25" Name="btnCheckConnectivity" VerticalAlignment="Top" Width="160"/>
                 <DockPanel Margin="0,50,5,5">
-                    <TextBlock DockPanel.Dock="Top" Height="23" Name="txtbOperation" Text="Choose operation for robot:" TextAlignment="Center" VerticalAlignment="Top"/>
-                    <Button DockPanel.Dock="Bottom" Content="Automatic" Name="btnAutomatic" Margin="5,5,5,5"/>
-                    <Button DockPanel.Dock="Bottom" Content="Manual" Name="btnManuel" Margin="5,5,5,5"/>
+                    <TextBlock DockPanel.Dock="Top" Height="23" Name="txtbOperation" Text="Manual Steering:" TextAlignment="Center" VerticalAlignment="Top"/>
+                    <Button DockPanel.Dock="Bottom" Content="Operate" Name="btnManuel" Margin="5,5,5,5" Click="btnManuel_Click"/>
                 </DockPanel>
             </StackPanel>
             <!--Tabs column-->
             <TabControl Name="tabctrlMain" Grid.Column="1">
                 <!-- User tab-->
                 <TabItem Header="User">
-                    <Grid Width="645">
+                    <Grid MinWidth="645">
                         <Menu VerticalAlignment="Top">
                             <!--File-->
                             <MenuItem Name="mnuFile" Header="_File">
@@ -64,8 +77,8 @@
                     </Grid>
                 </TabItem>
                 <!-- IDE tab-->
-                <TabItem Header="IDE">
-                    <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="500" MaxWidth="500">
+                <TabItem Name="tabIDE" Header="IDE">
+                    <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="645">
                         <Menu VerticalAlignment="Top">
                             <!--File -->
                             <MenuItem Name="mnuFile1" Header="_File">
@@ -82,7 +95,7 @@
                             <!--Debug-->
                             <MenuItem Name="mnuDebugAndBuild" Header="_Debug and build">
                                 <MenuItem Name="mnuStartDebugging" Header="_Start Debugging"/>
-                                <MenuItem Name="mnuStartBuild" Header="_Start Build"/>
+                                <MenuItem Name="mnuBuildAndRun" Header="_Build and run" Command="{Binding Path=ExecuteComd}"/>
                             </MenuItem>
                             <!--Macros-->
                             <MenuItem Name="mnuMacros" Header="_Macros">
@@ -94,18 +107,20 @@
                             </MenuItem>
                             <!--Help-->
                             <MenuItem Name="mnuHelp1" Header="_Help">
+								<MenuItem Name="mnuViewCommands1" Header="_View Commands" Click="mnuViewCommands1_Click"/>
                                 <MenuItem Name="mnuAbout1" Header="_About"/>
                             </MenuItem>
                         </Menu>
                         <!--Box for Tabs-->
-                        <TabControl Name="IDETabs" MaxHeight="350">
-
+                        <TabControl Name="IDETabs">
+                            <RichTextBox Style="{StaticResource styleRBIDE}">
+                            </RichTextBox>
                         </TabControl>
                     </StackPanel>
                 </TabItem>
                 <!--Simulator tab-->
                 <TabItem Name="tabitmSimulator" Header="Simulator">
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" MinWidth="645">
                         <Menu VerticalAlignment="Top">
                             <!--File-->
                             <MenuItem Name="mnuFile2" Header="_File">
@@ -150,7 +165,7 @@
                 </TabItem>
                 <!--Info-Tab-->
                 <TabItem Header="Info">
-                    <StackPanel Name="Hello" Orientation="Horizontal">
+                    <StackPanel Name="Hello" Orientation="Horizontal" MinWidth="645">
                         <!--Left table-->
                         <ListBox HorizontalAlignment="Left" Width="145">
                             Tables available
@@ -163,7 +178,7 @@
                 </TabItem>
                 <!--Log-Tab-->
                 <TabItem Header="Log">
-                    <TextBlock Width="645">
+                    <TextBlock MinWidth="645">
                     Hello world - Log is here!
                     </TextBlock>
                 </TabItem>
