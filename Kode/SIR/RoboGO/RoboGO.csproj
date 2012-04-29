@@ -37,16 +37,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
-      <HintPath>..\packages\MvvmLightLibs.3.1.1\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+      <HintPath>..\MVVM Light\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.WPF4">
-      <HintPath>..\packages\MvvmLightLibs.3.1.1\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+      <HintPath>..\MVVM Light\GalaSoft.MvvmLight.WPF4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Windows.Interactivity">
-      <HintPath>..\packages\MvvmLightLibs.3.1.1\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\MVVM Light\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />

@@ -49,7 +49,9 @@ namespace SqlInteraction
             //commandtype?
             SqlDataReader reader = sql.runQuery(sql.makeCommand(command, new CommandType()), "read");
 
-            reader.t
+            //reader.t
+
+            return null;
         }
 
     }
