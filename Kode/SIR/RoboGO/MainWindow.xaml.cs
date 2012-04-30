@@ -39,13 +39,10 @@ namespace RoboGO
             psWindow = new PasswordWindow();
             gmsManualGUI = new GUIManualSteering();
             // Init
-            idevmViewModelIDE = new IDEViewModel();
+            idevmViewModelIDE = new IDEViewModel(this);
 
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
-
-            this.DataContext = this;
-            //mnuFile1.DataContext = new InOutService();
         }
 
         // A function within main that invokes function DisplayLogin
