@@ -7,5 +7,12 @@ namespace SqlInteraction
 {
     public class Cube
     {
+        public double Length { set; get; }
+        public double Width { set; get; }
+        public double Depth { set; get; }
+        public double Weight { set; get; }
+        public int BoxID { set; get; }
+        public int PositionID { set; get; }
+
     }
 }
