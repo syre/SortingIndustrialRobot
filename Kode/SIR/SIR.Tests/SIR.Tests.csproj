@@ -63,7 +63,6 @@
   <ItemGroup>
     <Compile Include="cubeInfoTest.cs" />
     <Compile Include="ideViewModelTests.cs" />
-    <Compile Include="InOutService_Test.cs" />
     <Compile Include="manualControllerTests.cs" />
     <Compile Include="PositionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

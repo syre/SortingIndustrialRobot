@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-/** \file MainWindow.xaml.cs */
+﻿/** \file MainWindow.xaml.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System.Windows;
-using Command;
 using DSL;
 using RoboGO.ViewModels;
-using System.Xml.Serialization;
-using GalaSoft.MvvmLight.Command;
-using Microsoft.Win32;
 
 
 namespace RoboGO
@@ -34,6 +25,12 @@ namespace RoboGO
         public MainWindow()
         {
             InitializeComponent();
+
+            DLLImport.CloseGripper();
+            DLLImport.CloseManual();
+            
+
+
 
             // Members initialize
             psWindow = new PasswordWindow();
