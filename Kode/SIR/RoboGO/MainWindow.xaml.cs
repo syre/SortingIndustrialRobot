@@ -30,7 +30,7 @@ namespace RoboGO
             psWindow = new PasswordWindow();
             gmsManualGUI = new GUIManualSteering();
             // Init
-            idevmViewModelIDE = new IDEViewModel(this);
+            idevmViewModelIDE = new IDEViewModel(IDETabs);
 
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;

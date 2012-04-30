@@ -48,7 +48,8 @@ namespace RoboGO.ViewModels
         public RelayCommand saveAs { get; private set; }
         public RelayCommand open { get; private set; }
         public RelayCommand closeTab { get; private set; }
-        private MainWindow mainWindow;
+
+        private TabControl ideTabs;
 
         // Members and properties
         private IScriptRunner isrScriptRunner;
@@ -86,10 +87,10 @@ namespace RoboGO.ViewModels
         #endregion
 
         // Functions
-        public IDEViewModel(MainWindow _mainWindow)
+        public IDEViewModel(TabControl _ideTabs)
         {
             // Members settings
-            mainWindow = _mainWindow;
+            ideTabs = _ideTabs;
             sCode = "";
             isrScriptRunner = Factory.getScriptRunnerInstance;
 
@@ -125,7 +126,7 @@ namespace RoboGO.ViewModels
 
         protected bool saveAs_CanExecute
         {
-            get { return (mainWindow.IDETabs.SelectedIndex >= 0); }
+            get { return (ideTabs.SelectedIndex >= 0); }
         }
 
         private void saveAs_Executed()
@@ -142,7 +143,7 @@ namespace RoboGO.ViewModels
         private void writeFile(SaveFileDialog saveDialog)
         {
             StreamWriter writer = new StreamWriter(saveDialog.OpenFile());
-            TextBox tempBox = (TextBox)(mainWindow.IDETabs.SelectedContent);
+            TextBox tempBox = (TextBox)(ideTabs.SelectedContent);
             writer.Write(tempBox.Text);
             writer.Close();
         }
@@ -187,7 +188,7 @@ namespace RoboGO.ViewModels
             newTab.Content = tempBox;
             FileInfo fi = new FileInfo(file);
             newTab.Header = fi.Name;
-            mainWindow.IDETabs.Items.Add(newTab);
+            ideTabs.Items.Add(newTab);
             tempReader.Close();
         }
 
@@ -200,12 +201,12 @@ namespace RoboGO.ViewModels
 
         protected bool closeTab_CanExecute
         {
-            get { return (mainWindow.IDETabs.SelectedIndex >= 0); }
+            get { return (ideTabs.SelectedIndex >= 0); }
         }
 
         private void closeTab_Executed()
         {
-            mainWindow.IDETabs.Items.Remove(mainWindow.IDETabs.SelectedItem);
+            ideTabs.Items.Remove(ideTabs.SelectedItem);
         }
 
         #endregion
