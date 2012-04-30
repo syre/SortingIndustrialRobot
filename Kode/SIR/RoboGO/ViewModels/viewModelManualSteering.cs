@@ -204,7 +204,15 @@ namespace RoboGO.ViewModels
         public ViewModelManualSteering()
         {
             // Model
-            mcManualControl = new ManualController();
+            try
+            {
+                mcManualControl = new ManualController();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Manualcontroller could not be set up.");
+            }
+            
 
             // Commands
             dcMoveAxisBaseRight = new DelegateCommand(moveAxisBaseRight);

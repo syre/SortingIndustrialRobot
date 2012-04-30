@@ -1,5 +1,7 @@
 ﻿/** \file MainWindow.xaml.cs */
 /** \author Robotic Global Organization(RoboGO) */
+
+using System;
 using System.Windows;
 using DSL;
 using RoboGO.ViewModels;
@@ -19,16 +21,12 @@ namespace RoboGO
             get { return (idevmViewModelIDE); }
         }
 
-        private PasswordWindow psWindow;
         private GUIManualSteering gmsManualGUI;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // Members initialize
-            psWindow = new PasswordWindow();
-            gmsManualGUI = new GUIManualSteering();
             // Init
             idevmViewModelIDE = new IDEViewModel(IDETabs);
 
@@ -53,11 +51,28 @@ namespace RoboGO
                 MessageBox.Show("User Logged In");
             else
                 this.Close();
+
+            psWindow.Close();
         }
 
         // Manual steering
         private void btnManuel_Click(object sender, RoutedEventArgs e)
         {
+            // Initialize
+            if (gmsManualGUI == null)
+            {
+                try
+                {
+                    gmsManualGUI = new GUIManualSteering();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                    gmsManualGUI = null;
+                    return;
+                }
+            }
+
             // If using Simulator
             if(ControlSystem.Factory.currentIRobotInstance == ControlSystem.Factory.getSimulatorInstance)
                 this.tabctrlMain.SelectedItem = this.tabitmSimulator;
@@ -67,9 +82,9 @@ namespace RoboGO
         // Clean up
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Close children
-            gmsManualGUI.Close();
-            psWindow.Close();
+            // Cleanup
+            if(gmsManualGUI != null) // Not modal so have to be checked for, for can not close in function which opens it
+                gmsManualGUI.Close();
         }
 
         private void mnuViewCommands1_Click(object sender, RoutedEventArgs e)
