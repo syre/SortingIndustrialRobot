@@ -19,6 +19,11 @@
         <Style TargetType="{x:Type Paragraph}">
             <Setter Property="Margin" Value="0"/>
         </Style>
+        <Style  TargetType="{x:Type TextBox}">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="AcceptsTab" Value="True" />
+        </Style>
     </Window.Resources>
 
     <!-- By adding viewbox, all content will be proportionally fitting-->
@@ -114,8 +119,9 @@
                         </Menu>
                         <!--Box for Tabs-->
                         <TabControl Name="IDETabs">
-                            <RichTextBox Style="{StaticResource styleRBIDE}">
-                            </RichTextBox>
+                            <!--<RichTextBox Style="{StaticResource styleRBIDE}">
+                            </RichTextBox>-->
+                            <TextBox />
                         </TabControl>
                     </StackPanel>
                 </TabItem>

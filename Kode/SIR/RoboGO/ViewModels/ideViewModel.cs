@@ -10,6 +10,7 @@ using DSL;
 using ControlSystem;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
+using System.Windows;
 
 namespace RoboGO.ViewModels
 {
@@ -143,7 +144,7 @@ namespace RoboGO.ViewModels
         private void writeFile(SaveFileDialog saveDialog)
         {
             StreamWriter writer = new StreamWriter(saveDialog.OpenFile());
-            TextBox tempBox = (TextBox)((TabItem)mainWindow.IDETabs.Items[0]).Content;
+            TextBox tempBox = (TextBox)(mainWindow.IDETabs.SelectedContent);
             writer.Write(tempBox.Text);
             writer.Close();
         }
@@ -181,12 +182,9 @@ namespace RoboGO.ViewModels
             Stream tempStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             StreamReader tempReader = new StreamReader(tempStream);
 
-            /// \warning Untested when richtextbox.
             TabItem newTab = new TabItem();
-            RichTextBox tempBox = new RichTextBox();
-            FlowDocument fdContent = new FlowDocument();
-            fdContent.Blocks.Add(new Paragraph(new Run(tempReader.ReadToEnd())));
-            tempBox.Document = fdContent;
+            TextBox tempBox = new TextBox();
+            tempBox.Text = tempReader.ReadToEnd();
 
             newTab.Content = tempBox;
             FileInfo fi = new FileInfo(file);
