@@ -20,11 +20,7 @@
             <Setter Property="Margin" Value="0"/>
         </Style>
     </Window.Resources>
-    <Window.InputBindings>
-        <KeyBinding Command="{Binding Path=SaveAs}" Gesture="CTRL+S" ></KeyBinding>
-        <KeyBinding Command="{Binding Path=Open}" Gesture="CTRL+O" ></KeyBinding>
-        <KeyBinding Command="{Binding Path=CloseTab}" Gesture="CTRL+Q" ></KeyBinding>
-    </Window.InputBindings>
+
     <!-- By adding viewbox, all content will be proportionally fitting-->
    <Viewbox>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -78,14 +74,19 @@
                 </TabItem>
                 <!-- IDE tab-->
                 <TabItem Name="tabIDE" Header="IDE">
+                    <TabItem.InputBindings>
+                            <KeyBinding Command="{Binding Path=saveAs}" Gesture="CTRL+S" ></KeyBinding>
+                            <KeyBinding Command="{Binding Path=open}" Gesture="CTRL+O" ></KeyBinding>
+                            <KeyBinding Command="{Binding Path=closeTab}" Gesture="CTRL+Q" ></KeyBinding>
+                    </TabItem.InputBindings>
                     <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="645">
                         <Menu VerticalAlignment="Top">
                             <!--File -->
                             <MenuItem Name="mnuFile1" Header="_File">
                                 <MenuItem Name="mnuFileNew1" Header="_New"/>
-                                <MenuItem Name="mnuFileOpen1" Header="_Open" Command="{Binding Path=Open}" />
-                                <MenuItem Name="mnuFileSave1" Header="_Save" Command="{Binding Path=SaveAs}"/>
-                                <MenuItem Name="mnuFileClose1" Header="Close" Command="{Binding Path=CloseTab}"/>
+                                <MenuItem Name="mnuFileOpen1" Header="_Open" Command="{Binding Path=open}" />
+                                <MenuItem Name="mnuFileSave1" Header="_Save" Command="{Binding Path=saveAs}"/>
+                                <MenuItem Name="mnuFileClose1" Header="Close" Command="{Binding Path=closeTab}"/>
                                 <MenuItem Name="mnuFileExit1" Header="_Exit"/>
                             </MenuItem>
                             <!--Edit-->
