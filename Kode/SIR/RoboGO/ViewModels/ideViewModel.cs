@@ -112,8 +112,6 @@ namespace RoboGO.ViewModels
             #endregion
         }
 
-
-
         #region CommandHandlers
         /// <summary>
         /// Execute the code.

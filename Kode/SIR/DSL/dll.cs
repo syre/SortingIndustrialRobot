@@ -127,7 +127,7 @@ namespace DSL
 
         // -Robot functions
         [DllImport(sDllFileLocation, EntryPoint = "?Initialization@@YAHFFP6AXPAX@Z1@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int initialization(short shrtMode, short shrtType, DLL.DgateCallBack funcprtCallBack, DLL.DgateCallBack funcptrCallBackError);
+        public static extern int initialization(short shrtMode, short shrtType, DLL.DgateCallBack funcptrCallBack, DLL.DgateCallBack funcptrCallBackError);
 
         [DllImport(sDllFileLocation, EntryPoint = "?Control@@YAHEH@Z", CallingConvention = CallingConvention.Cdecl)]
         public static extern int Control(byte bAxis, bool bIsOn);
