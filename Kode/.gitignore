@@ -36,7 +36,6 @@ _ReSharper*/
 *.resharper
 [Tt]est[Rr]esult*
 *.dotCover
-*.NUnit
 
 #Project files
 [Bb]uild/
