@@ -26,12 +26,6 @@ namespace RoboGO
         {
             InitializeComponent();
 
-            DLLImport.CloseGripper();
-            DLLImport.CloseManual();
-            
-
-
-
             // Members initialize
             psWindow = new PasswordWindow();
             gmsManualGUI = new GUIManualSteering();
