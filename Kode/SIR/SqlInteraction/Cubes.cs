@@ -33,6 +33,12 @@ namespace SqlInteraction
             sql = new SQLHandler();
         }
 
+        /// <summary>
+        /// Connecting with a username and password
+        /// </summary>
+        /// <param name="_username">Guess</param>
+        /// <param name="_password">Guess</param>
+        /// <returns>If it is connected</returns>
         public bool Connect(string _username, string _password)
         {
             username = _username;
@@ -41,17 +47,25 @@ namespace SqlInteraction
             return sql.setConnection(username, password, server, trustedConnection, database, ConnectionTimeout);
         }
 
-        public List<Cube> StoredCubesInDatabase()
+        public IEnumerable<Cube> StoredCubesInDatabase()
         {
             string command = "select * from " + database;
-            sql.makeCommand(command, new CommandType());
+            
+            SqlDataReader reader = sql.runQuery(sql.makeCommand(command, CommandType.Text), "read");
+            while (reader.Read())
+            {
 
-            //commandtype?
-            SqlDataReader reader = sql.runQuery(sql.makeCommand(command, new CommandType()), "read");
-
-            //reader.t
-
-            return null;
+                yield return new Cube()
+                                    {
+                                        BoxID = Convert.ToInt32(reader[0]),
+                                        PositionID = Convert.ToInt32(reader[1]),
+                                        Length = Convert.ToDouble(reader[2]),
+                                        Width = Convert.ToDouble(reader[3]),
+                                        Depth = Convert.ToDouble(reader[4]),
+                                        Weight = Convert.ToDouble(reader[5])
+                                    };
+            }
+            
         }
 
     }
