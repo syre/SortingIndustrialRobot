@@ -105,7 +105,7 @@ namespace SqlInteraction
         /// <param name="_command">Parameter is command to be executed</param>
         /// <param name="queryType">Parameter is what kind of query to execute (write/read)</param>
         /// <returns>Returns Null if write, if read returns a Datareader</returns>
-        public SqlDataReader runQuery(SqlCommand _command, string queryType)
+        public ISQLReader runQuery(SqlCommand _command, string queryType)
         {
 
             if(queryType.ToLower() == "write")
@@ -127,7 +127,7 @@ namespace SqlInteraction
                 if(reader.HasRows == false)
                     throw new Exception("There was nothing to read"); 
                
-                return reader;
+                return new SQLReader(reader);
             }
             else
             {
