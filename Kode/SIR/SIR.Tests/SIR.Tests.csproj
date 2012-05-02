@@ -62,10 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cubeInfoTest.cs" />
-    <Compile Include="DatabaseLogTests.cs" />
+    <Compile Include="databaseLogTests.cs" />
     <Compile Include="ideViewModelTests.cs" />
     <Compile Include="manualControllerTests.cs" />
-    <Compile Include="PositionTest.cs" />
+    <Compile Include="positionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulatorTests.cs" />
     <Compile Include="viewModelManualSteeringTests.cs" />

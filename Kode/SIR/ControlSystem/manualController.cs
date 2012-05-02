@@ -5,7 +5,6 @@ using DSL;
 
 namespace ControlSystem
 {
-    
     // Helper constants and enums
     /// <summary>
     /// What direction to move in when moving by axes.

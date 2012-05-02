@@ -9,7 +9,7 @@ using Rhino.Mocks;
 namespace SIR.Tests
 {
     [TestFixture]
-    class SimulatorTests
+    public class SimulatorTests
     {
         // Members
         private Simulator simTestObj;
