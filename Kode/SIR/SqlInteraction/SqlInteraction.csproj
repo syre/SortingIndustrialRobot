@@ -43,8 +43,10 @@
     <Compile Include="Cube.cs" />
     <Compile Include="Cubes.cs" />
     <Compile Include="ISQLHandler.cs" />
+    <Compile Include="ISQLReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLHandler.cs" />
+    <Compile Include="SQLReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
