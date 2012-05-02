@@ -42,8 +42,11 @@
   <ItemGroup>
     <Compile Include="Cube.cs" />
     <Compile Include="Cubes.cs" />
+    <Compile Include="DatabaseLog.cs" />
+    <Compile Include="ILogEvent.cs" />
     <Compile Include="ISQLHandler.cs" />
     <Compile Include="ISQLReader.cs" />
+    <Compile Include="LogEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLHandler.cs" />
     <Compile Include="SQLReader.cs" />

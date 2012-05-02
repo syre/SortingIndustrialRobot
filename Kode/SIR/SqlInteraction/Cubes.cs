@@ -51,7 +51,7 @@ namespace SqlInteraction
         {
             string command = "select * from " + database;
             
-            SqlDataReader reader = sql.runQuery(sql.makeCommand(command, CommandType.Text), "read");
+            /*SqlDataReader reader = sql.runQuery(sql.makeCommand(command, CommandType.Text), "read");
             while (reader.Read())
             {
 
@@ -64,8 +64,8 @@ namespace SqlInteraction
                                         Depth = Convert.ToDouble(reader[4]),
                                         Weight = Convert.ToDouble(reader[5])
                                     };
-            }
-            
+            }*/
+            return null;
         }
 
     }

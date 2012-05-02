@@ -84,6 +84,10 @@
       <Project>{FFECC616-7867-4305-B9C9-D6AC64159743}</Project>
       <Name>RoboGO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SqlInteraction\SqlInteraction.csproj">
+      <Project>{AEAEF8D6-5791-41F8-B143-866502B90F25}</Project>
+      <Name>SqlInteraction</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
