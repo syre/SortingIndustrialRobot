@@ -11,30 +11,6 @@ using ControlSystem;
 namespace RoboGO.ViewModels
 {
     /// <summary>
-    /// Class skeleton for commands.
-    /// </summary>
-    public class DelegateCommand : ICommand
-    {
-        private Action aMethod;
-        public DelegateCommand(Action _aMethodToExecute)
-        {
-            aMethod = _aMethodToExecute;
-        }
-
-        public bool CanExecute(object _objParam)
-        {
-            return (true);
-        }
-
-        public event EventHandler CanExecuteChanged;
-
-        public void Execute(object _objParam)
-        {
-            aMethod.Invoke();
-        }
-    }
-
-    /// <summary>
     /// ViewModel for GUIManualSteering.
     /// 
     /// \todo Way to inform View about errors, like not being connected to robot.(Example messaging.)

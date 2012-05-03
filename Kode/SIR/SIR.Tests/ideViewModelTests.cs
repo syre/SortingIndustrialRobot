@@ -87,10 +87,10 @@ namespace SIR.Tests
         {
             // Setup
             idevmTestObj = new IDEViewModel(new TabControl());
-            ExecuteCommand ecHolder;
+            DelegateCommand ecHolder;
 
             // Test
-            ecHolder = idevmTestObj.ExecuteComd;
+            ecHolder = idevmTestObj.delegateComd;
 
             // Verify
             Assert.AreNotEqual(null, ecHolder);

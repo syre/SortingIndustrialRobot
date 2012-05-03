@@ -15,29 +15,6 @@ using System.Windows;
 namespace RoboGO.ViewModels
 {
     /// <summary>
-    /// Command class for simple linking between one command and a function.
-    /// </summary>
-    public class ExecuteCommand : ICommand
-    {
-        private Action aMethod;
-        public ExecuteCommand(Action _aMethod)
-        {
-            aMethod = _aMethod;
-        }
-        public void Execute(object _objParam)
-        {
-            aMethod.Invoke();
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return (true);
-        }
-
-        public event EventHandler CanExecuteChanged;
-    }
-
-    /// <summary>
     /// ViewModel between IDEView and ScriptRunner.
     /// </summary>
     public class IDEViewModel
@@ -79,10 +56,10 @@ namespace RoboGO.ViewModels
         }
         #region Commands
 
-        private ExecuteCommand ecExecuteComd;
-        public ExecuteCommand ExecuteComd
+        private DelegateCommand ecDelegateComd;
+        public DelegateCommand delegateComd
         {
-            get { return (ecExecuteComd); }
+            get { return (ecDelegateComd); }
         }
         #endregion
 
@@ -109,7 +86,7 @@ namespace RoboGO.ViewModels
                     () => closeTab_Executed(),
                     () => closeTab_CanExecute);
 
-            ecExecuteComd = new ExecuteCommand(executeCode);
+            ecDelegateComd = new DelegateCommand(executeCode);
             #endregion
         }
 
