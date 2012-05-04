@@ -1,7 +1,7 @@
 ﻿/**
         \brief Class to handle global classes by using a factory and singleton patterns
         
-        \author RoboGO
+        \author Robotic Global Organization(RoboGO)
         \date 27-03-2012
 */
 

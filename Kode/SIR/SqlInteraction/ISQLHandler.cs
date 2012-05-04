@@ -1,4 +1,5 @@
 /** \file ISQLHandler.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System.Data;
 using System.Data.SqlClient;
 

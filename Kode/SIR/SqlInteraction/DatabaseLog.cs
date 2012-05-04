@@ -1,4 +1,6 @@
-﻿using System;
+﻿/** \file DatabaseLog.cs */
+/** \author Robotic Global Organization(RoboGO) */
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;

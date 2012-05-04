@@ -1,7 +1,7 @@
 ﻿/**
         \brief Class to handle all threads in system, everything handled by a unique description tag that stays with a thread from moment it gets added till it gets removed.
         
-        \author RoboGO
+        \author Robotic Global Organization(RoboGO)
         \date 18-03-2012
 
         \note Thread functions are to be defined as following - With start parameter: void functionname(object o) {} - Without start parameter: void functionname()

@@ -1,4 +1,6 @@
-﻿using System;
+﻿/** \file IWrapper.cs */
+/** \author Robotic Global Organization(RoboGO) */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +13,6 @@ namespace DSL
         /// Initializes the robot.
         /// 
         /// Note: Should wait for it to be done before calling other functions.
-        /// \todo Refactor delegate to contain ConfigData and ErrorInfo if found necessary.
         /// </summary>
         /// <param name="_shrtMode">Mode.(Use one of constants[Normally use online mode])</param>
         /// <param name="_shrtType">Type of connection.(Use one of constants[Normally use default])</param>
@@ -79,9 +80,6 @@ namespace DSL
            
         /// <summary>
         /// Flytter robotten til et punkt.
-        /// 
-        /// \warning Not using pos 2 in wrapped dll function.
-        /// \warning Seems to be unfunctional.
         /// </summary>
         /// <param name="_sNameOfVector">Navnet på vektoren i robotten.</param>
         /// <param name="_iIndex">Index for punkt.</param>
@@ -160,8 +158,6 @@ namespace DSL
         /// <summary>
         /// Returns the position of the robot.
         /// 
-        /// \warning Ignoring wrapper int return value.
-        /// \warning Not sure about buffer type to use in impl.
         /// </summary>
         /// <returns>Returns current position.</returns>
         VecPoint getCurrentPosition();

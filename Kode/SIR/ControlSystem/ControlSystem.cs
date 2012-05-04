@@ -1,7 +1,7 @@
 ﻿/**
         \brief Class to handle styresystem functions
         
-        \author RoboGO
+        \author Robotic Global Organization(RoboGO)
         \date 27-03-2012
 */
 

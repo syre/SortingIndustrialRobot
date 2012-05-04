@@ -1,7 +1,7 @@
 ﻿/**
         \brief Class that handles all of SQL interaction.
         
-        \author RoboGO
+        \author Robotic Global Organization(RoboGO)
         \date 09-04-2012
 */
 

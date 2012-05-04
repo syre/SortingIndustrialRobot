@@ -1,4 +1,5 @@
 ﻿/** \ISQLReader.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,11 @@ using System.Data.SqlClient;
 
 namespace SqlInteraction
 {
+    /// <summary>
+    /// Interface for class that read information from a SQL table.
+    /// 
+    /// Used primarily as holder for already gathered information from a database.
+    /// </summary>
     public interface ISQLReader
     {
         /// <summary>

@@ -62,6 +62,10 @@ namespace DSL
             ExecuteScript();
         }
 
+        /// <summary>
+        /// Sets the underlying IRobot that the scripts are used on.
+        /// </summary>
+        /// <param name="_iroboRobot">Robot to run script on.</param>
         public void setRobotInstance(IRobot _iroboRobot)
         {
             _robot = _iroboRobot;

@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DSL // Has to be changed
+namespace DSL
 {
     // Extra classes
     /// <summary>

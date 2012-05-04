@@ -1,4 +1,5 @@
 ﻿/** \file ILogEvent.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,11 @@ using System.Text;
 
 namespace SqlInteraction
 {
+    /// <summary>
+    /// Interface for event logs.
+    /// 
+    /// Used in conjunction with SQL database.
+    /// </summary>
     public interface ILogEvent
     {
         // If you set the values I WILL KILL YOU.
