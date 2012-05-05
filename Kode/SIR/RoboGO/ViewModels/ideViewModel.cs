@@ -1,4 +1,5 @@
-﻿using System;
+﻿/** \author Robotic Global Organization(RoboGO) */
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

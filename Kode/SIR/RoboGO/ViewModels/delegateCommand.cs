@@ -1,4 +1,5 @@
 ﻿/** \file delegateCommand.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Collections.Generic;
 using System.Linq;

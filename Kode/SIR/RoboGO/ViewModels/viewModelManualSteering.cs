@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using ControlSystem;
 
+/** \author Robotic Global Organization(RoboGO) */
 namespace RoboGO.ViewModels
 {
     /// <summary>

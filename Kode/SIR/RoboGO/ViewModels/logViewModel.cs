@@ -1,4 +1,5 @@
 ﻿/** \file logViewModel.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
