@@ -145,7 +145,8 @@ namespace ControlSystem
             robot = Factory.currentIRobotInstance;
             IsOnline();
         }
-        public void IsOnline()
+		
+        private void IsOnline()
         {
             if (!robot.isOnline()) 
                 throw new Exception();
