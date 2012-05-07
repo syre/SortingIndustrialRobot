@@ -33,7 +33,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -96,6 +96,7 @@
     <Compile Include="ViewModels\delegateCommand.cs" />
     <Compile Include="ViewModels\ideViewModel.cs" />
     <Compile Include="ViewModels\logViewModel.cs" />
+    <Compile Include="ViewModels\SimulatorViewModel.cs" />
     <Compile Include="ViewModels\viewModelManualSteering.cs" />
     <Page Include="CommandsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -229,6 +230,7 @@
     <Content Include="Images\gripper.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\gripper_closed.png" />
     <Content Include="Images\Key.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
