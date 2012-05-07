@@ -52,7 +52,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1E6EE5DE260C3C06B8160F03681E0350D5B09BF1</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>9B71131039BD21B9A9DDAC9106077CEC625310EE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>RoboGO_TemporaryKey.pfx</ManifestKeyFile>
