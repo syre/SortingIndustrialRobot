@@ -161,7 +161,7 @@
                             </Grid.RowDefinitions>
                             <!-- Content -->
                             <Label Content="Simulator" Grid.Row="0" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Center" FontSize="16" />
-                            <TextBox Name="txtbSimulator" Grid.Row="0" Grid.Column="1" Grid.RowSpan="7"/>
+                            <Canvas Name="DrawCanvas" Grid.Row="0" Grid.Column="1" Grid.RowSpan="7"/>
                             <Label Content="-- Time --" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="2,2,2,2"/>
                             <TextBox Name="txtbTime" Grid.Row="3" Grid.Column="0" Margin="2,2,2,2"/>
                             <Label Content="-- Position (x, y, z) --" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Margin="2,2,2,2"/>

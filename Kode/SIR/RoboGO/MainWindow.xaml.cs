@@ -16,6 +16,7 @@ namespace RoboGO
     {
         // Members and properties
         private IDEViewModel idevmViewModelIDE;
+        private SimulatorViewModel _simviewmodel;
         public IDEViewModel ViewModelIDE
         {
             get { return (idevmViewModelIDE); }
@@ -29,6 +30,7 @@ namespace RoboGO
 
             // Init
             idevmViewModelIDE = new IDEViewModel(IDETabs);
+            _simviewmodel = new SimulatorViewModel(DrawCanvas);
 
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;

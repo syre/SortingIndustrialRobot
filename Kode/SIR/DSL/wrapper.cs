@@ -24,6 +24,10 @@ namespace DSL
             iPitch = _iPitch;
             iRoll = _iRoll;
         }
+        public override string ToString()
+        {
+            return "("+iX + "," + iY + "," + iZ + "," + iPitch + "," + iRoll + ")";
+        }
     }
 
     /// <summary>
