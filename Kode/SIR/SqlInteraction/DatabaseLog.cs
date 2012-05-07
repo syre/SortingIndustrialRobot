@@ -3,12 +3,18 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 
 namespace SqlInteraction
 {
-    public class DatabaseLog
+    public interface IDatabaseLog
+    {
+        List<ILogEvent> getNormalEvents();
+        List<ILogEvent> getDebugEvents();
+        List<ILogEvent> getExceptionEvents();
+        List<ILogEvent> getAllLogs();
+    }
+
+    public class DatabaseLog : IDatabaseLog
     {
         // Members
         private ISQLHandler isqlHandler;

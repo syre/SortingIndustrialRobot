@@ -1,10 +1,10 @@
 ﻿/** \file logViewModel.cs */
 /** \author Robotic Global Organization(RoboGO) */
+
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+using System.Diagnostics.Eventing.Reader;
+using System.Windows.Input;
 using System.Windows.Threading;
 using SqlInteraction;
 
@@ -22,24 +22,19 @@ namespace RoboGO.ViewModels
     public class LogViewModel
     {
         #region Members and properties
-        private Dispatcher dUIDispatcher;
-        /// <summary>
-        /// Dispatcher to change this class´s dependency properties.
-        /// </summary>
-        public Dispatcher UIDispatcher
-        {
-            get { return (dUIDispatcher); }
-            set { dUIDispatcher = value; }
-        }
-
-        private DatabaseLog dlDatabaseLogLink;
+        private IDatabaseLog dlDatabaseLogLink;
         /// <summary>
         /// DatabaseLog used for communication with database.
         /// </summary>
-        public DatabaseLog DatabaseLogLink
+        public IDatabaseLog DatabaseLogLink
         {
             get { return (dlDatabaseLogLink); }
-            set { dlDatabaseLogLink = value; }
+            set 
+            { 
+                if(value == null)
+                    throw new NullReferenceException("DatabaseLogLink can not be null.");
+                dlDatabaseLogLink = value; 
+            }
         }
 
         private ILogEventCollection lstLogEvents;
@@ -49,48 +44,59 @@ namespace RoboGO.ViewModels
         public ILogEventCollection LogEvents
         {
             get { return (lstLogEvents); }
-            set { lstLogEvents = LogEvents; }
+            set 
+            {
+                if (value == null)
+                    throw new NullReferenceException("LogEvents can not be null.");
+                lstLogEvents = value; 
+            }
         }
         #region Commands
         private DelegateCommand dcCmdGetNormalEvents;
         /// <summary>
         /// Command for getting all Normal events from the database.
         /// </summary>
-        public DelegateCommand CmdGetNormalEvents
+        public ICommand CmdGetNormalEvents
         {
             get { return dcCmdGetNormalEvents; }
-            set { dcCmdGetNormalEvents = value; }
         }
 
         private DelegateCommand dcCmdGetDebugEvents;
         /// <summary>
         /// Command for getting all Debug events from the database.
         /// </summary>
-        public DelegateCommand CmdGetDebugEvents
+        public ICommand CmdGetDebugEvents
         {
             get { return dcCmdGetDebugEvents; }
-            set { dcCmdGetDebugEvents = value; }
         }
 
         private DelegateCommand dcCmdGetExceptionEvents;
         /// <summary>
         /// Command for getting all Exception events from the database.
         /// </summary>
-        public DelegateCommand CmdGetExceptionEvents
+        public ICommand CmdGetExceptionEvents
         {
             get { return dcCmdGetExceptionEvents; }
-            set { dcCmdGetExceptionEvents = value; }
         }
 
         private DelegateCommand dcCmdGetAllEvents;
         /// <summary>
-        /// Command for getting all all event types from the database.
+        /// Command for getting all event types from the database.
         /// </summary>
-        public DelegateCommand CmdGetAllEvents
+        public ICommand CmdGetAllEvents
         {
             get { return dcCmdGetAllEvents; }
-            set { dcCmdGetAllEvents = value; }
         }
+
+        private DelegateCommand dcCmdSaveLog;
+        /// <summary>
+        /// Command for saving the log.
+        /// </summary>
+        public ICommand CmdSaveLog
+        {
+            get { return dcCmdSaveLog; }
+        }
+
         #endregion
         #endregion
 
@@ -99,9 +105,19 @@ namespace RoboGO.ViewModels
         /// Normal constructor.
         /// </summary>
         /// <param name="_dUIDispatcher">Dispatcher for the UI.</param>
-        public LogViewModel(Dispatcher _dUIDispatcher)
+        public LogViewModel()
         {
             // Init
+            dcCmdSaveLog = new DelegateCommand(saveLogs);
+            dcCmdGetAllEvents = new DelegateCommand(updateWithAllEvents);
+            dcCmdGetExceptionEvents = new DelegateCommand(updateWithExceptionEvents);
+            dcCmdGetDebugEvents = new DelegateCommand(updateWithDebugEvents);
+            dcCmdGetNormalEvents = new DelegateCommand(updateWithNormalEvents);
+
+            lstLogEvents = new ILogEventCollection();
+
+            SQLHandler sqlHandler = new SQLHandler(); // Test for this?
+            dlDatabaseLogLink = new DatabaseLog(sqlHandler);
         }
 
         //
@@ -112,7 +128,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void updateWithNormalEvents()
         {
-            
+            dlDatabaseLogLink.getNormalEvents();
         }
 
         /// <summary>
@@ -120,7 +136,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void updateWithDebugEvents()
         {
-
+            dlDatabaseLogLink.getDebugEvents();
         }
 
         /// <summary>
@@ -137,6 +153,14 @@ namespace RoboGO.ViewModels
         public void updateWithAllEvents()
         {
 
+        }
+
+        /// <summary>
+        /// Saves log to file.
+        /// </summary>
+        public void saveLogs()
+        {
+            
         }
     }
 }
