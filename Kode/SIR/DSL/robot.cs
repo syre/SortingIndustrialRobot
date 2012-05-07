@@ -4,62 +4,181 @@ using System;
 
 namespace DSL
 {
+    /// <summary>
+    /// enum that specifies manual modes for the robot to be in
+    /// Axes dictates manual movement by axes
+    /// Coor dictates dictates manual movement by coordinates
+    /// Off dictates automatic movement (non-manual)
+    /// 
+    /// </summary>
     public enum ManualModeType
     {   
         Off,
         Axes,
         Coordinates
     }
-    public enum enumManualModeWhat
-    {
-        MANUAL_MOVE_BASE, // Axes
-        MANUAL_MOVE_SHOULDER,
-        MANUAL_MOVE_ELBOW,
-        MANUAL_MOVE_WRISTPITCH,
-        MANUAL_MOVE_WRISTROLL,
-        MANUAL_MOVE_GRIPPER,
-        MANUAL_MOVE_CONVEYERBELT,
-        MANUAL_MOVE_X, // Coordinates
-        MANUAL_MOVE_Y,
-        MANUAL_MOVE_Z,
-        MANUAL_MOVE_PITCH,
-        MANUAL_MOVE_ROLL
-    }
-    public enum ControlModeType
-    {
-        Off,
-        On
-    }
-
+    /// <summary>
+    /// The interface that Robot and Simulator are based on
+    /// </summary>
     public interface IRobot
     {
+        /// <summary>
+        ///  Closes gripper
+        /// </summary>
+        /// <returns></returns>
         bool closeGripper();
+        /// <summary>
+        /// Opens gripper
+        /// </summary>
+        /// <returns></returns>
         bool openGripper();
+        /// <summary>
+        /// Initializes robot with default values MODE_ONLINE and SYSTEM_TYPE_DEFAULT
+        /// </summary>
+        /// <returns></returns>
         bool initialization();
+        
         ManualModeType ManualMode { get; set; }
-        ControlModeType ControlMode { get; set; }
+        /// <summary>
+        /// Calls wrapper function for stopping all movement
+        /// </summary>
+        /// <returns></returns>
         bool stopAllMovement();
-        //tilføjet af Yusuf___________
+        /// <summary>
+        /// Moves by x coordinate only
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         bool moveByXCoordinate(int x);
+        /// <summary>
+        /// Moves by y coordinate only
+        /// </summary>
+        /// <param name="y"></param>
+        /// <returns></returns>
         bool moveByYCoordinate(int y);
+        /// <summary>
+        /// Moves by z coordinate only
+        /// </summary>
+        /// <param name="z"></param>
+        /// <returns></returns>
         bool moveByZCoordinate(int z);
+        /// <summary>
+        /// Moves by pitch only
+        /// </summary>
+        /// <param name="pitch"></param>
+        /// <returns></returns>
         bool moveByPitch( int pitch);
-        //____________________________
+        /// <summary>
+        /// Moves by roll only
+        /// </summary>
+        /// <param name="roll"></param>
+        /// <returns></returns>
         bool moveByRoll(int roll);
+        /// <summary>
+        /// moves by coordinates x, y and z
+        /// </summary>
+        /// <param name="_iX"></param>
+        /// <param name="_iY"></param>
+        /// <param name="_iZ"></param>
+        /// <returns></returns>
         bool movebyCoordinates(int _iX, int _iY, int _iZ);
+        /// <summary>
+        /// Function for moving by absolute coordinates
+        /// </summary>
+        /// <param name="_iX"> x-coordinate </param>
+        /// <param name="y"> y-coordinate </param>
+        /// <param name="z"> z-coordinate </param>
+        /// <param name="pitch"> pitch robot arm</param>
+        /// <param name="roll"> roll of robot arm</param>
+        /// <returns></returns>
         bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll);
+        /// <summary>
+        /// function for moving by relative coordinates
+        /// </summary>
+        /// <param name="_iX"></param>
+        /// <param name="_iY"></param>
+        /// <param name="_iZ"></param>
+        /// <param name="_iPitch"></param>
+        /// <param name="_iRoll"></param>
+        /// <returns></returns>
         bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll);
+        /// <summary>
+        ///  Returns jaw opening in milimeters
+        /// </summary>
+        /// <returns></returns>
         short getJawOpeningWidthMilimeters();
+        /// <summary>
+        ///  Returns jaw opening in percentage
+        /// </summary>
+        /// <returns></returns>
         short getJawOpeningWidthPercentage();
+        /// <summary>
+        /// Homes robot
+        /// </summary>
+        /// <returns></returns>
         bool homeRobot();
+        /// <summary>
+        /// Checks to see if robot is online
+        /// </summary>
+        /// <returns></returns>
         bool isOnline();
+        /// <summary>
+        /// Separate function for moving base of robot
+        /// </summary>
+        /// <param name="speed"></param>
+        /// <returns></returns>
         bool moveBase(int speed);
+        /// <summary>
+        /// Separate function for moving shoulder of robot
+        /// </summary>
+        /// <param name="_iSpeed"></param>
+        /// <returns></returns>
         bool moveShoulder(int speed);
+        /// <summary>
+        /// Separate function for moving wrist pitch of robot
+        /// </summary>
+        /// <param name="_iSpeed"></param>
+        /// <returns></returns>
         bool moveWristPitch(int speed);
+        /// <summary>
+        /// Separate function for moving wrist roll of robot
+        /// </summary>
+        /// <param name="_iSpeed"></param>
+        /// <returns></returns>
         bool moveWristRoll(int speed);
+        /// <summary>
+        /// Separate function for moving elbow of robot
+        /// </summary>
+        /// <param name="_iSpeed"></param>
+        /// <returns></returns>
         bool moveElbow(int speed);
+        /// <summary>
+        /// Separate function for moving robot gripper
+        /// </summary>
+        /// <param name="_iSpeed"></param>
+        /// <returns></returns>
         bool moveGripper(int speed);
+        /// <summary>
+        /// Separate function for moving robot conveyer belt
+        /// </summary>
+        /// <param name="_iSpeed"></param>
+        /// <returns></returns>
         bool moveConveyerBelt(int speed);
+        /// <summary>
+        /// Separate function for getting Current position in string
+        /// </summary>
+        /// <param name="_iX"></param>
+        /// <param name="_iY"></param>
+        /// <param name="_iZ"></param>
+        /// <param name="_iPitch"></param>
+        /// <param name="_iRoll"></param>
+        /// <returns></returns>
+        string getCurrentPositionAsString();
+
+        /// <summary>
+        /// function for getting current position as VecPoint
+        /// </summary>
+        /// <returns></returns>
         VecPoint getCurrentPosition();
     }
     public class Robot : IRobot
@@ -68,13 +187,13 @@ namespace DSL
         DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
         DLL.DgateCallBack dgateEventHandlerError = initError;
         DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
+        
         #region Robot mode properties
+        
         public ManualModeType ManualMode
         {
-            get
-            {
-                return ManualMode;
-            }
+            get { return ManualMode; }
+            
             set
             {
                 bool status = false;
@@ -106,31 +225,6 @@ namespace DSL
                     throw new Exception("Manual Mode Set returned false");
             }
         }
-        public ControlModeType ControlMode
-        {
-            get { return ControlMode; }
-            set
-            {
-                bool status;
-                if (value == ControlModeType.Off)
-                {
-                    status = _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
-                    if (status)
-                        ControlMode = value;
-                }
-                else if (value == ControlModeType.On)
-                {
-                    status = _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, false);
-                    if (status)
-                        ControlMode = value;
-                }
-                else
-                    throw new ArgumentOutOfRangeException("value", "ControlMode didnt set correctly");
-
-                if (!status)
-                    throw new Exception("Control Mode Set returned false");
-            }
-        }
         #endregion
 
         #region delegate functions
@@ -149,17 +243,19 @@ namespace DSL
         #endregion
 
         #region general robot methods
-
+        /// <summary>
+        /// gets an instance of the wrapper,
+        /// runs initialization method,
+        /// enables movement control for the AXIS_Robot and homes the robot
+        /// </summary>
         public Robot()
         {
             _wrapper = Wrapper.getInstance();
+            initialization();
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
             homeRobot();
-
         }
-        /// <summary>
-        /// Initializes robot with default values MODE_ONLINE and SYSTEM_TYPE_DEFAULT
-        /// </summary>
-        /// <returns></returns>
+
         public bool initialization() // implementing delegates
         {
             return _wrapper.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE,
@@ -167,27 +263,18 @@ namespace DSL
                                                   dgateEventHandlerSuccess,
                                                   dgateEventHandlerError);
         }
-        /// <summary>
-        /// Homes robot
-        /// </summary>
-        /// <returns></returns>
+
         public bool homeRobot() // implementing delegates
         {
             return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
         }
 
-        /// <summary>
-        /// Calls wrapper function for stopping all movement
-        /// </summary>
-        /// <returns></returns>
+
         public bool stopAllMovement()
         {
             return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
         }
-        /// <summary>
-        /// Checks to see if robot is online
-        /// </summary>
-        /// <returns></returns>
+
         public bool isOnline()
         {
             return _wrapper.isOnlineOkWrapped();
@@ -200,15 +287,7 @@ namespace DSL
         #endregion
 
         #region Coordinate movements
-        /// <summary>
-        /// Function for moving by absolute coordinates
-        /// </summary>
-        /// <param name="_iX"> x-coordinate </param>
-        /// <param name="y"> y-coordinate </param>
-        /// <param name="z"> z-coordinate </param>
-        /// <param name="pitch"> pitch robot arm</param>
-        /// <param name="roll"> roll of robot arm</param>
-        /// <returns></returns>
+
         public bool moveByAbsoluteCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
         {
             // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
@@ -222,13 +301,7 @@ namespace DSL
             return false; 
         }
 
-        /// <summary>
-        /// moves by coordinates x, y and z
-        /// </summary>
-        /// <param name="_iX"></param>
-        /// <param name="_iY"></param>
-        /// <param name="_iZ"></param>
-        /// <returns></returns>
+
         public bool movebyCoordinates(int _iX, int _iY, int _iZ)
         {
             ManualMode = ManualModeType.Coordinates;
@@ -242,15 +315,7 @@ namespace DSL
             return true;
         }
 
-        /// <summary>
-        /// function for moving by relative coordinates
-        /// </summary>
-        /// <param name="_iX"></param>
-        /// <param name="_iY"></param>
-        /// <param name="_iZ"></param>
-        /// <param name="_iPitch"></param>
-        /// <param name="_iRoll"></param>
-        /// <returns></returns>
+
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
             // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
@@ -265,71 +330,43 @@ namespace DSL
         #endregion
 
         #region Axis movements
-        /// <summary>
-        /// Separate function for moving base of robot
-        /// </summary>
-        /// <param name="speed"></param>
-        /// <returns></returns>
+
         public bool moveBase(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
             return  _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, _iSpeed);
         }
-        /// <summary>
-        /// Separate function for moving shoulder of robot
-        /// </summary>
-        /// <param name="_iSpeed"></param>
-        /// <returns></returns>
+
         public bool moveShoulder(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_SHOULDER, _iSpeed);
         }
-        /// <summary>
-        /// Separate function for moving elbow of robot
-        /// </summary>
-        /// <param name="_iSpeed"></param>
-        /// <returns></returns>
+
         public bool moveElbow(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ELBOW, _iSpeed);
         }
-        /// <summary>
-        /// Separate function for moving wrist pitch of robot
-        /// </summary>
-        /// <param name="_iSpeed"></param>
-        /// <returns></returns>
+
         public bool moveWristPitch(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTPITCH, _iSpeed);
         }
-        /// <summary>
-        /// Separate function for moving wrist roll of robot
-        /// </summary>
-        /// <param name="_iSpeed"></param>
-        /// <returns></returns>
+
         public bool moveWristRoll(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTROLL, _iSpeed);
         }
-        /// <summary>
-        /// Separate function for moving robot gripper
-        /// </summary>
-        /// <param name="_iSpeed"></param>
-        /// <returns></returns>
+
         public bool moveGripper(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_GRIPPER, _iSpeed);
         }
-        /// <summary>
-        /// Separate function for moving robot conveyer belt
-        /// </summary>
-        /// <param name="_iSpeed"></param>
-        /// <returns></returns>
+
         public bool moveConveyerBelt(int _iSpeed)
         {
             ManualMode = ManualModeType.Axes;
@@ -337,16 +374,8 @@ namespace DSL
         }
 
 
-        /// <summary>
-        /// Separate function for getting Current position of the gripper
-        /// </summary>
-        /// <param name="_iX"></param>
-        /// <param name="_iY"></param>
-        /// <param name="_iZ"></param>
-        /// <param name="_iPitch"></param>
-        /// <param name="_iRoll"></param>
-        /// <returns></returns>
-        public string getCurrentPositionRobot()
+
+        public string getCurrentPositionAsString()
         {
             
             VecPoint _vect;
@@ -359,10 +388,7 @@ namespace DSL
         #endregion
 
         #region gripper methods
-        /// <summary>
-        ///  Returns jaw opening in milimeters
-        /// </summary>
-        /// <returns></returns>
+
         public short getJawOpeningWidthMilimeters()
         {
             short milimeters = 0, dummypercentage = 0;
@@ -373,10 +399,7 @@ namespace DSL
                 throw new Exception("Error getting JawOpeningWidth in Milimeters"); 
 
         }
-        /// <summary>
-        ///  Returns jaw opening in percentage
-        /// </summary>
-        /// <returns></returns>
+
         public short getJawOpeningWidthPercentage()
         {
             short dummymilimeters = 0, percentage = 0;
@@ -386,18 +409,12 @@ namespace DSL
             else
                 throw new Exception("Error getting JawOpeningWidth in Percentage");
         }
-        /// <summary>
-        ///  Closes gripper
-        /// </summary>
-        /// <returns></returns>
+
         public bool closeGripper()
         {
            return _wrapper.closeGripperWrapped();
         }
-        /// <summary>
-        /// Opens gripper
-        /// </summary>
-        /// <returns></returns>
+
         public bool openGripper()
         {
             return _wrapper.openGripperWrapped();

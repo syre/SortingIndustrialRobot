@@ -26,22 +26,6 @@ namespace DSL
             }
         }
 
-        private ControlModeType _modeType;
-        public ControlModeType ControlMode
-        {
-            get { return _modeType; }
-            set
-            {
-                if (value == ControlModeType.Off || value == ControlModeType.On)
-                {
-                    iuiOutput.writeLine("Control mode set to: " + value);
-                    _modeType = value;
-                }
-                else
-                    iuiOutput.writeLine("Out of Range, Control mode unchanged");
-            }
-        }
-
         private IUI iuiOutput;
         public IUI IUIOutput
         {
@@ -55,7 +39,6 @@ namespace DSL
         public Simulator()
         {
             iuiOutput = new ConsoleUI(); // Don´t move location.
-            ControlMode = ControlModeType.Off;
             ManualMode = ManualModeType.Off;
             iuiOutput.writeLine("Simulation is started!");
         }
@@ -354,6 +337,21 @@ namespace DSL
         /// </summary>
         /// <returns></returns>
         public VecPoint getCurrentPosition()
+        {
+            try
+            {
+                throw new NotImplementedException();
+
+            }
+            catch (NotImplementedException e)
+            {
+                iuiOutput.writeLine(e.Message);
+            }
+
+            return null;
+        }
+
+        public string getCurrentPositionAsString()
         {
             try
             {
