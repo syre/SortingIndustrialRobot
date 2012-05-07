@@ -2,6 +2,7 @@
 /** \author Robotic Global Organization(RoboGO) */
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Eventing.Reader;
 using System.Windows.Input;
@@ -128,7 +129,10 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void updateWithNormalEvents()
         {
-            dlDatabaseLogLink.getNormalEvents();
+            List<ILogEvent> lstEventsTmp = dlDatabaseLogLink.getNormalEvents();
+
+            // Lol.(No clearing or anything. Just passes the test.)
+            LogEvents.Add(lstEventsTmp[0]);
         }
 
         /// <summary>

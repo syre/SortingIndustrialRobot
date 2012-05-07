@@ -161,6 +161,16 @@ namespace SIR.Tests
         }
 
         [Test]
+        public void updateWithNormalEvents_IsCalledWithNoEventsAvailableButLogEventsPropertyContainedEvents_LogEventsPropertyIsEmpty()
+        {
+            // Setup
+            
+            // Test
+
+            // Verify
+        }
+
+        [Test]
         public void updateWithDebugEvents_IsCalled_GetDebugEventsIsCalledFromDatabaseLog()
         {
             // Setup
