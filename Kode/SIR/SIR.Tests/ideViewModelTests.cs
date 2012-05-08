@@ -90,7 +90,7 @@ namespace SIR.Tests
             DelegateCommand ecHolder;
 
             // Test
-            ecHolder = idevmTestObj.delegateComd;
+            ecHolder = idevmTestObj.ExecuteComd;
 
             // Verify
             Assert.AreNotEqual(null, ecHolder);

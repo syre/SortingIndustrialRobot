@@ -40,12 +40,9 @@ namespace RoboGO
             idevmViewModelIDE = new IDEViewModel(IDETabs);
             _simviewmodel = new SimulatorViewModel(DrawCanvas);
             infoViewModel = new InfoViewModel();
-
-            // Data context
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
-            DatabaseTables.DataContext = infoViewModel.tables;
-            DatabaseTableValues.DataContext = infoViewModel.tableValues;
+            tabInfo.DataContext = infoViewModel;
         }
 
         // A function within main that invokes function DisplayLogin
@@ -111,18 +108,17 @@ namespace RoboGO
 
         private void tabctrlMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if ((string)((TabItem)tabctrlMain.SelectedItem).Name == "tabInfo")
+            if (((string)((TabItem)tabctrlMain.SelectedItem).Name == "tabInfo") && e.Handled == false)
             {
                 infoViewModel.loadAllTables();
-                DatabaseTables.DataContext = infoViewModel.tables;
             }
         }
 
         private void DatabaseTables_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            infoViewModel.tableSelectionChanged((string)((DataRowView)DatabaseTables.CurrentCell.Item)[0]);
-            DatabaseTableValues.DataContext = infoViewModel.tableValues;
-
+            if(!(DatabaseTables.SelectedIndex == -1))
+                infoViewModel.tableSelectionChanged((string)((DataRowView)DatabaseTables.CurrentCell.Item)[0]);
+            e.Handled = true;
         }
 
         private void DatabaseTableValuesSaveButton_Click(object sender, RoutedEventArgs e)

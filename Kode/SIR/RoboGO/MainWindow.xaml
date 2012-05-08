@@ -174,10 +174,10 @@
                 <TabItem Name="tabInfo" Header="Info">
                     <StackPanel Name="Hello" Orientation="Horizontal" MinWidth="645">
                         <!--Left table-->
-                        <DataGrid Name="DatabaseTables" HorizontalAlignment="Left" ItemsSource="{Binding}" SelectionChanged="DatabaseTables_SelectionChanged" IsReadOnly="True" />
+                        <DataGrid Name="DatabaseTables" HorizontalAlignment="Left" ItemsSource="{Binding Tables}" SelectionChanged="DatabaseTables_SelectionChanged" IsReadOnly="True" />
                         <!--Right table-->
                         <StackPanel>
-                            <DataGrid Name="DatabaseTableValues" HorizontalAlignment="Left" Width="500" ItemsSource="{Binding}" MinHeight="320" />
+                            <DataGrid Name="DatabaseTableValues" HorizontalAlignment="Left" Width="500" ItemsSource="{Binding TableValues}" MinHeight="320" />
                             <Button Content="Save" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="DatabaseTableValuesSave" Click="DatabaseTableValuesSaveButton_Click" />
                         </StackPanel>
                     </StackPanel>

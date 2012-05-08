@@ -11,31 +11,41 @@ using ControlSystem;
 
 namespace RoboGO.ViewModels
 {
-    public class InfoViewModel
+    public class InfoViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
 
         private SqlCommandBuilder tableValuesCommandBuilder;
 
         public SqlDataAdapter sqlDATables;
         public SqlDataAdapter sqlDATableValues;
 
-        private DataTable Tables;
-        public DataTable tables
+        private DataTable dtTables;
+        public DataTable Tables
         {
-            get { return Tables; }
+            get { return dtTables; }
             set 
             { 
-                Tables = value;
+                dtTables = value;
+                NotifyPropertyChanged("Tables");
             }
         }
 
-        private DataTable TableValues;
-        public DataTable tableValues
+        private DataTable dttableValues;
+        public DataTable TableValues
         {
-            get { return TableValues; }
+            get { return dttableValues; }
             set
             {
-                TableValues = value;
+                dttableValues = value;
+                NotifyPropertyChanged("TableValues");
             }
         }
 
@@ -51,8 +61,8 @@ namespace RoboGO.ViewModels
             sqlDATableValues = new SqlDataAdapter();
             sqlDATables = new SqlDataAdapter();
 
-            tables = new DataTable();
-            tableValues = new DataTable();
+            Tables = new DataTable();
+            TableValues = new DataTable();
 
             tableValuesCommandBuilder = new SqlCommandBuilder(sqlDATableValues);
 
@@ -65,7 +75,8 @@ namespace RoboGO.ViewModels
 
             DataTable tempTable = new DataTable();
             sqlDATables.Fill(tempTable);
-            tables = tempTable;
+            
+            Tables = tempTable;
         }
 
         public void tableSelectionChanged(string tableName)
@@ -75,13 +86,13 @@ namespace RoboGO.ViewModels
 
             DataTable tempTable = new DataTable();
             sqlDATableValues.Fill(tempTable);
-            tableValues = tempTable;
+            TableValues = tempTable;
         }
 
         public void tableSave()
         {
             tableValuesCommandBuilder.RefreshSchema();
-            sqlDATableValues.Update(tableValues);
+            sqlDATableValues.Update(TableValues);
         }
     }
 }

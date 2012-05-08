@@ -58,7 +58,7 @@ namespace RoboGO.ViewModels
         #region Commands
 
         private DelegateCommand ecDelegateComd;
-        public DelegateCommand delegateComd
+        public DelegateCommand ExecuteComd
         {
             get { return (ecDelegateComd); }
         }
