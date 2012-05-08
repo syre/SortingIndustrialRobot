@@ -46,7 +46,7 @@ namespace SqlInteraction
             username = _username;
             password = _password;
 
-            return sql.setConnection(username, password, server, trustedConnection, database, ConnectionTimeout);
+            return false; //sql.setConnection(username, password, server, trustedConnection, database, ConnectionTimeout);
         }
 
         public IEnumerable<Cube> StoredCubesInDatabase()

@@ -20,29 +20,23 @@ namespace SqlInteraction
 
         public SQLHandler()
         {
-            connection = new SqlConnection("user id=username;" +
-                                       "password=password;server=serverurl;" +
-                                       "Trusted_Connection=yes;" +
-                                       "database=database; " +
-                                       "connection timeout=30;");
+            connection = new SqlConnection("Data Source=webhotel10.iha.dk;Initial Catalog=F12I4PRJ4Gr3;Persist Security Info=True;User ID=F12I4PRJ4Gr3;Password=F12I4PRJ4Gr3");
         }
 
         /// <summary>
         /// Sets a new connection to use.
         /// </summary>
+        /// <param name="_server">Paramater for ip/domain to use</param>
+        /// <param name="_database">Parameter for which database to use</param>
         /// <param name="_username">Parameter for username to use</param>
         /// <param name="_password">Parameter for password to use</param>
-        /// <param name="_server">Paramater for ip/domain to use</param>
-        /// <param name="_trusted">Parameter if server is trusted or not</param>
-        /// <param name="_database">Parameter for which database to use</param>
-        /// <param name="_timeout">Parameter for what timeout should be</param>
-        public bool setConnection(string _username, string _password, string _server, string _trusted, string _database, string _timeout)
+        /// <param name="_timeout">Parameter for what timeout should be</param> 
+        public bool setConnection(string _server, string _database,   string _username, string _password, string _timeout)
         {
             bool check = true;
-
-            string tempString = "user id=" + _username + ";" + "password=" + _password + ";"
-                + "server=" + _server + ";" + "Trusted_Connection=" + _trusted + ";" + 
-                "database=" + _database + ";" + "connection timeout=" + _timeout + ";";
+            string tempString = "Data Source=" + _server + ";" + "Initial Catalog=" + _database + ";"
+                + "User ID=" + _username + ";" + "Password=" + _password + ";" + 
+                "Connection Timeout=" + _timeout + ";";
 
             string formerConnectionstring = connection.ConnectionString;
             connection.ConnectionString = tempString;

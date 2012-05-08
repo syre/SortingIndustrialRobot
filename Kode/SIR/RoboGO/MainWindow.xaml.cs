@@ -2,7 +2,9 @@
 /** \author Robotic Global Organization(RoboGO) */
 
 using System;
+using System.Data;
 using System.Windows;
+using System.Windows.Controls;
 using DSL;
 using RoboGO.ViewModels;
 
@@ -22,6 +24,12 @@ namespace RoboGO
             get { return (idevmViewModelIDE); }
         }
 
+        private InfoViewModel infoViewModel;
+        public InfoViewModel ViewModelInfo
+        {
+            get { return (infoViewModel); }
+        }
+
         private GUIManualSteering gmsManualGUI;
 
         public MainWindow()
@@ -31,9 +39,13 @@ namespace RoboGO
             // Init
             idevmViewModelIDE = new IDEViewModel(IDETabs);
             _simviewmodel = new SimulatorViewModel(DrawCanvas);
+            infoViewModel = new InfoViewModel();
 
             // Data context
+            // Data context
             tabIDE.DataContext = idevmViewModelIDE;
+            DatabaseTables.DataContext = infoViewModel.tables;
+            DatabaseTableValues.DataContext = infoViewModel.tableValues;
         }
 
         // A function within main that invokes function DisplayLogin
@@ -95,6 +107,27 @@ namespace RoboGO
             window.Owner = this;
             window.Show();
             window.NavigateToHelp();
+        }
+
+        private void tabctrlMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((string)((TabItem)tabctrlMain.SelectedItem).Name == "tabInfo")
+            {
+                infoViewModel.loadAllTables();
+                DatabaseTables.DataContext = infoViewModel.tables;
+            }
+        }
+
+        private void DatabaseTables_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            infoViewModel.tableSelectionChanged((string)((DataRowView)DatabaseTables.CurrentCell.Item)[0]);
+            DatabaseTableValues.DataContext = infoViewModel.tableValues;
+
+        }
+
+        private void DatabaseTableValuesSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            infoViewModel.tableSave();
         }
     }
 }

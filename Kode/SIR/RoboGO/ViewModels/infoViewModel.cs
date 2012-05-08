@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 using SqlInteraction;
+using ControlSystem;
 
 namespace RoboGO.ViewModels
 {
@@ -59,7 +60,7 @@ namespace RoboGO.ViewModels
 
         public void loadAllTables()
         {
-            SqlCommand tempCommandTables = tempSQL.makeCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'", CommandType.Text);
+            SqlCommand tempCommandTables = Factory.getSQLHandlerInstance.makeCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'", CommandType.Text);
             sqlDATables.SelectCommand = tempCommandTables;
 
             DataTable tempTable = new DataTable();
@@ -69,7 +70,7 @@ namespace RoboGO.ViewModels
 
         public void tableSelectionChanged(string tableName)
         {
-            SqlCommand tempCommandTableValues = tempSQL.makeCommand("SELECT * FROM " + tableName, CommandType.Text);
+            SqlCommand tempCommandTableValues = Factory.getSQLHandlerInstance.makeCommand("SELECT * FROM " + tableName, CommandType.Text);
             sqlDATableValues.SelectCommand = tempCommandTableValues;
 
             DataTable tempTable = new DataTable();

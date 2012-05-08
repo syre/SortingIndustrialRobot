@@ -52,6 +52,10 @@
       <Project>{03E26CE2-EAB1-4541-BA71-2373A38E5852}</Project>
       <Name>DSL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SqlInteraction\SqlInteraction.csproj">
+      <Project>{AEAEF8D6-5791-41F8-B143-866502B90F25}</Project>
+      <Name>SqlInteraction</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
