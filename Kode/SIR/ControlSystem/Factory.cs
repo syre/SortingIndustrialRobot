@@ -5,6 +5,7 @@
         \date 27-03-2012
 */
 
+using System.Data.SqlClient;
 using DSL;
 using SqlInteraction;
 
@@ -75,7 +76,7 @@ namespace ControlSystem
                         // Check to make sure its null
                         if (sqlHandlerInstance == null)
                         {
-                            sqlHandlerInstance = new SQLHandler();;
+                            sqlHandlerInstance = new SQLHandler();
                         }
                     }
                 }

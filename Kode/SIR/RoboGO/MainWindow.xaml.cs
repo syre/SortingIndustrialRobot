@@ -116,8 +116,10 @@ namespace RoboGO
 
         private void DatabaseTables_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(!(DatabaseTables.SelectedIndex == -1))
-                infoViewModel.tableSelectionChanged((string)((DataRowView)DatabaseTables.CurrentCell.Item)[0]);
+            if (DatabaseTables.SelectedIndex != -1)
+            {
+                infoViewModel.getTableInfo((string) ((DataRowView) DatabaseTables.CurrentCell.Item)[0]);
+            }
             e.Handled = true;
         }
 

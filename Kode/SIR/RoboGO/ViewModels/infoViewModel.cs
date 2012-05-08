@@ -1,4 +1,6 @@
-﻿using System;
+﻿/** \file infoViewModel.cs */
+/** \author Robotic Global Organization(RoboGO) */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,21 +15,15 @@ namespace RoboGO.ViewModels
 {
     public class InfoViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        }
-
+        // Members and properties
         private SqlCommandBuilder tableValuesCommandBuilder;
-
         public SqlDataAdapter sqlDATables;
         public SqlDataAdapter sqlDATableValues;
 
         private DataTable dtTables;
+        /// <summary>
+        /// Table list.
+        /// </summary>
         public DataTable Tables
         {
             get { return dtTables; }
@@ -39,6 +35,9 @@ namespace RoboGO.ViewModels
         }
 
         private DataTable dttableValues;
+        /// <summary>
+        /// Table information.
+        /// </summary>
         public DataTable TableValues
         {
             get { return dttableValues; }
@@ -48,16 +47,19 @@ namespace RoboGO.ViewModels
                 NotifyPropertyChanged("TableValues");
             }
         }
-
-        //Needs to be deleted.
-        private SQLHandler tempSQL;
         
-
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
+        
+        // Constructor
         public InfoViewModel()
         {
-            //Needs to be deleted.
-            tempSQL = new SQLHandler();
-
             sqlDATableValues = new SqlDataAdapter();
             sqlDATables = new SqlDataAdapter();
 
@@ -65,30 +67,72 @@ namespace RoboGO.ViewModels
             TableValues = new DataTable();
 
             tableValuesCommandBuilder = new SqlCommandBuilder(sqlDATableValues);
-
         }
 
+        /// <summary>
+        /// Loads information about all tables in database.(Loads in other thread.)
+        /// </summary>
+        private bool firstTimeGettingTables = true;
         public void loadAllTables()
         {
-            SqlCommand tempCommandTables = Factory.getSQLHandlerInstance.makeCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'", CommandType.Text);
-            sqlDATables.SelectCommand = tempCommandTables;
+            if (firstTimeGettingTables == false)
+                ControlSystem.Factory.getThreadHandlingInstance.removeThread("Tables");
+            if(firstTimeGettingTables == true)
+                firstTimeGettingTables = false;
 
-            DataTable tempTable = new DataTable();
-            sqlDATables.Fill(tempTable);
-            
-            Tables = tempTable;
+            ControlSystem.Factory.getThreadHandlingInstance.addThread(_loadAllTables, "Tables");
+            ControlSystem.Factory.getThreadHandlingInstance.start("Tables");
         }
 
-        public void tableSelectionChanged(string tableName)
+        // Real implementation
+        private void _loadAllTables()
         {
-            SqlCommand tempCommandTableValues = Factory.getSQLHandlerInstance.makeCommand("SELECT * FROM " + tableName, CommandType.Text);
-            sqlDATableValues.SelectCommand = tempCommandTableValues;
+            try
+            {
+                SqlCommand tempCommandTables = Factory.getSQLHandlerInstance.makeCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'", CommandType.Text);
+                sqlDATables.SelectCommand = tempCommandTables;
 
-            DataTable tempTable = new DataTable();
-            sqlDATableValues.Fill(tempTable);
-            TableValues = tempTable;
+                DataTable tempTable = new DataTable();
+                sqlDATables.Fill(tempTable);
+
+                tempTable.Columns[0].ColumnName = "Tables:"; // Better than TABLE_NAME
+                Tables = tempTable;
+            }
+            catch (SqlException exc)
+            {
+                // Handle error
+                UIService.showMessageBox(exc.Message, "Getting table values.");
+            }
         }
 
+        /// <summary>
+        /// Gets information from table.(Saved in TableValues.)
+        /// </summary>
+        /// <param name="tableName">Name of table.</param>
+        public void getTableInfo(string _objTableName)
+        {
+            try
+            {
+                string tableName = (string) _objTableName;
+                SqlCommand tempCommandTableValues = Factory.getSQLHandlerInstance.makeCommand("SELECT * FROM " + tableName, CommandType.Text);
+                sqlDATableValues.SelectCommand = tempCommandTableValues;
+
+                DataTable tempTable = new DataTable();
+
+                sqlDATableValues.Fill(tempTable);
+
+                TableValues = tempTable;
+            }
+            catch (SqlException exc)
+            {
+                // Handle error
+                UIService.showMessageBox(exc.Message, "Getting table values.");
+            }
+        }
+
+        /// <summary>
+        /// Saves table edits.
+        /// </summary>
         public void tableSave()
         {
             tableValuesCommandBuilder.RefreshSchema();

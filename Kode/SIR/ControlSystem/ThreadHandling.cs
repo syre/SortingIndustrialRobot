@@ -162,7 +162,7 @@ namespace ControlSystem
                     tempThreadHolder.threadPlaceHolder.Start();
                 }
 
-                throw new ArgumentException("Thread already started");
+                //throw new ArgumentException("Thread already started");
             }
 
             if(tempThreadHolder == null)

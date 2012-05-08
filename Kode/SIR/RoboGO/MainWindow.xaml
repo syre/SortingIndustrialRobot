@@ -177,7 +177,7 @@
                         <DataGrid Name="DatabaseTables" HorizontalAlignment="Left" ItemsSource="{Binding Tables}" SelectionChanged="DatabaseTables_SelectionChanged" IsReadOnly="True" />
                         <!--Right table-->
                         <StackPanel>
-                            <DataGrid Name="DatabaseTableValues" HorizontalAlignment="Left" Width="500" ItemsSource="{Binding TableValues}" MinHeight="320" />
+                            <DataGrid Name="DatabaseTableValues" HorizontalAlignment="Left" Width="500" ItemsSource="{Binding TableValues}" Height="320" VerticalScrollBarVisibility="Auto"/>
                             <Button Content="Save" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="DatabaseTableValuesSave" Click="DatabaseTableValuesSaveButton_Click" />
                         </StackPanel>
                     </StackPanel>
