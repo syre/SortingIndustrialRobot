@@ -135,8 +135,16 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void tableSave()
         {
-            tableValuesCommandBuilder.RefreshSchema();
-            sqlDATableValues.Update(TableValues);
+            try
+            {
+                tableValuesCommandBuilder.RefreshSchema();
+                sqlDATableValues.Update(TableValues);
+            }
+            catch (SqlException exc)
+            {
+                // Handle error
+                UIService.showMessageBox(exc.Message, "Getting table values.");
+            }
         }
     }
 }
