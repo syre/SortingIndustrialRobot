@@ -173,17 +173,20 @@
                         <DataGrid Name="DatabaseTables" HorizontalAlignment="Left" ItemsSource="{Binding Tables}" SelectionChanged="DatabaseTables_SelectionChanged" IsReadOnly="True" />
                         <!--Right table-->
                         <StackPanel>
-                            <DataGrid Name="DatabaseTableValues" HorizontalAlignment="Left" Width="500" ItemsSource="{Binding TableValues}" Height="320" VerticalScrollBarVisibility="Auto"/>
+                            <DataGrid Name="DatabaseTableValues" HorizontalAlignment="Left" Width="500" ItemsSource="{Binding TableValues}" Height="320" VerticalScrollBarVisibility="Auto" />
                             <Button Content="Save" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="DatabaseTableValuesSave" Click="DatabaseTableValuesSaveButton_Click" />
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
+<<<<<<< HEAD
                 <!--Log-Tab-->
                 <TabItem Header="Log" Width="100">
                     <TextBlock MinWidth="645">
                     Hello world - Log is here!
                     </TextBlock>
                 </TabItem>
+=======
+>>>>>>> 1776458a95d9c3ea3816259c4c342d54d9f4e3fc
             </TabControl>
         </Grid>
     </Viewbox>

@@ -97,7 +97,6 @@
     <Compile Include="ViewModels\delegateCommand.cs" />
     <Compile Include="ViewModels\ideViewModel.cs" />
     <Compile Include="ViewModels\infoViewModel.cs" />
-    <Compile Include="ViewModels\logViewModel.cs" />
     <Compile Include="ViewModels\SimulatorViewModel.cs" />
     <Compile Include="ViewModels\viewModelManualSteering.cs" />
     <Page Include="CommandsWindow.xaml">
