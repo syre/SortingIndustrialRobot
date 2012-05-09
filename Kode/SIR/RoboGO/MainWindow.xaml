@@ -182,12 +182,6 @@
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
-                <!--Log-Tab-->
-                <TabItem Header="Log">
-                    <TextBlock MinWidth="645">
-                    Hello world - Log is here!
-                    </TextBlock>
-                </TabItem>
             </TabControl>
         </Grid>
     </Viewbox>
