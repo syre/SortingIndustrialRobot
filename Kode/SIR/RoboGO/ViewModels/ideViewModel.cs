@@ -26,6 +26,7 @@ namespace RoboGO.ViewModels
         public RelayCommand saveAs { get; private set; }
         public RelayCommand open { get; private set; }
         public RelayCommand closeTab { get; private set; }
+        public RelayCommand newTab { get; private set; }
 
         private TabControl ideTabs;
 
@@ -76,8 +77,8 @@ namespace RoboGO.ViewModels
             
 
             saveAs = new RelayCommand(
-                () => saveAs_Executed(),
-                () => saveAs_CanExecute);
+                    () => saveAs_Executed(),
+                    () => saveAs_CanExecute);
 
             open = new RelayCommand(
                     () => open_Executed(),
@@ -86,6 +87,9 @@ namespace RoboGO.ViewModels
             closeTab = new RelayCommand(
                     () => closeTab_Executed(),
                     () => closeTab_CanExecute);
+            newTab = new RelayCommand(
+                    () => newTab_Executed(),
+                    () => newTab_CanExecute);
 
             ecDelegateComd = new DelegateCommand(executeCode);
             #endregion
@@ -101,7 +105,6 @@ namespace RoboGO.ViewModels
             isrScriptRunner.ExecuteScript();
         }
 
-
         protected bool saveAs_CanExecute
         {
             get { return (ideTabs.SelectedIndex >= 0); }
@@ -115,6 +118,7 @@ namespace RoboGO.ViewModels
             if (saveDialog.ShowDialog() == true)
             {
                 writeFile(saveDialog);
+                ((TabItem) ideTabs.SelectedItem).Header = Path.GetFileName(saveDialog.FileName);
             }
         }
 
@@ -185,6 +189,20 @@ namespace RoboGO.ViewModels
         private void closeTab_Executed()
         {
             ideTabs.Items.Remove(ideTabs.SelectedItem);
+        }
+
+        protected bool newTab_CanExecute
+        {
+            get { return true; }
+        }
+
+        private void newTab_Executed()
+        {
+            TabItem tiItem = new TabItem();
+            TextBox tbBox = new TextBox();
+            tiItem.Content = tbBox;
+            tiItem.Header = "New file";
+            ideTabs.Items.Add((tiItem));
         }
 
         #endregion

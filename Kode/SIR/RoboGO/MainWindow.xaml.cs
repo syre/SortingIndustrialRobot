@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using DSL;
 using RoboGO.ViewModels;
 
@@ -19,6 +20,8 @@ namespace RoboGO
         // Members and properties
         private IDEViewModel idevmViewModelIDE;
         private SimulatorViewModel _simviewmodel;
+        private MainWindowViewModel _mainwindowviewmodel;
+
         public IDEViewModel ViewModelIDE
         {
             get { return (idevmViewModelIDE); }
@@ -40,9 +43,13 @@ namespace RoboGO
             idevmViewModelIDE = new IDEViewModel(IDETabs);
             _simviewmodel = new SimulatorViewModel(DrawCanvas);
             infoViewModel = new InfoViewModel();
+            _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
+            tabitmSimulator.DataContext = _simviewmodel;
             tabInfo.DataContext = infoViewModel;
+            pgbStyresystem.DataContext = _mainwindowviewmodel;
+
         }
 
         // A function within main that invokes function DisplayLogin
@@ -88,7 +95,6 @@ namespace RoboGO
             if(ControlSystem.Factory.currentIRobotInstance == ControlSystem.Factory.getSimulatorInstance)
                 this.tabctrlMain.SelectedItem = this.tabitmSimulator;
             gmsManualGUI.Show();
-            gmsManualGUI = null;
         }
 
         // Clean up
@@ -127,6 +133,30 @@ namespace RoboGO
         private void DatabaseTableValuesSaveButton_Click(object sender, RoutedEventArgs e)
         {
             infoViewModel.tableSave();
+        }
+
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            if (cmbChoice.SelectedItem == cmbSimulator)
+            {
+                _mainwindowviewmodel.setSimulatorAsRobotInstance();
+            }
+            else if (cmbChoice.SelectedItem == cmbRobot)
+            {
+                if (!_mainwindowviewmodel.setRobotAsRobotInstance())
+                    MessageBox.Show("Could not connect to Robot", "Connection Error", MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+            }
+        }
+
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            _mainwindowviewmodel.stopRobotInstance();
+        }
+
+        private void btnCheckConnectivity_Click(object sender, RoutedEventArgs e)
+        {
+            _mainwindowviewmodel.checkIsOnline();
         }
     }
 }
