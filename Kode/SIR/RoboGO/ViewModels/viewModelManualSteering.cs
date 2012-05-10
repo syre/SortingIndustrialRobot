@@ -187,7 +187,7 @@ namespace RoboGO.ViewModels
             }
             catch (Exception)
             {
-                throw new Exception("Manualcontroller could not be set up.");
+                /// \warning Must be checked up later.
             }
             
 

@@ -33,8 +33,6 @@ namespace RoboGO
             get { return (infoViewModel); }
         }
 
-        private GUIManualSteering gmsManualGUI;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -65,9 +63,7 @@ namespace RoboGO
 
             psWindow.Owner = this;
             psWindow.ShowDialog();
-            if (psWindow.DialogResult.HasValue && psWindow.DialogResult.Value)
-                MessageBox.Show("User Logged In");
-            else
+            if (!(psWindow.DialogResult.HasValue && psWindow.DialogResult.Value))
                 this.Close();
 
             psWindow.Close();
@@ -76,33 +72,18 @@ namespace RoboGO
         // Manual steering
         private void btnManuel_Click(object sender, RoutedEventArgs e)
         {
-            // Initialize
-            if (gmsManualGUI == null)
-            {
-                try
-                {
-                    gmsManualGUI = new GUIManualSteering();
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show(exc.Message);
-                    gmsManualGUI = null;
-                    return;
-                }
-            }
+
+            GUIManualSteering gmsManualGUI = new GUIManualSteering();
 
             // If using Simulator
             if(ControlSystem.Factory.currentIRobotInstance == ControlSystem.Factory.getSimulatorInstance)
                 this.tabctrlMain.SelectedItem = this.tabitmSimulator;
-            gmsManualGUI.Show();
+            gmsManualGUI.ShowDialog();
         }
 
         // Clean up
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Cleanup
-            if(gmsManualGUI != null) // Not modal so have to be checked for, for can not close in function which opens it
-                gmsManualGUI.Close();
         }
 
         private void mnuViewCommands1_Click(object sender, RoutedEventArgs e)
@@ -135,7 +116,7 @@ namespace RoboGO
             infoViewModel.tableSave();
         }
 
-        private void Start_Click(object sender, RoutedEventArgs e)
+        private void SelectRobot_Click(object sender, RoutedEventArgs e)
         {
             if (cmbChoice.SelectedItem == cmbSimulator)
             {
