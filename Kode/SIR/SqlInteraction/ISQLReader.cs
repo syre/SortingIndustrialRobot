@@ -22,5 +22,10 @@ namespace SqlInteraction
         /// </summary>
         /// <returns>The row if any else empty list.</returns>
         List<object> readRow();
+
+        /// <summary>
+        /// Closes reader.
+        /// </summary>
+        void close();
     }
 }
