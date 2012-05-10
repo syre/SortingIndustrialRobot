@@ -68,6 +68,7 @@ namespace DSL
         /// <param name="_iroboRobot">Robot to run script on.</param>
         public void setRobotInstance(IRobot _iroboRobot)
         {
+            
             _robot = _iroboRobot;
             _scope.SetVariable("_robot", _robot);
         }
