@@ -86,9 +86,9 @@
                                     <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
                                 </Style>
                             </TabControl.Resources>
-                            <Grid>
+                            <TabItem>
                                 <TextBox />
-                           </Grid>
+                            </TabItem>
                         </TabControl>
                     </StackPanel>
                 </TabItem>
