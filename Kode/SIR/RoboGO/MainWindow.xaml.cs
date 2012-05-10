@@ -88,6 +88,7 @@ namespace RoboGO
             if(ControlSystem.Factory.currentIRobotInstance == ControlSystem.Factory.getSimulatorInstance)
                 this.tabctrlMain.SelectedItem = this.tabitmSimulator;
             gmsManualGUI.Show();
+            gmsManualGUI = null;
         }
 
         // Clean up

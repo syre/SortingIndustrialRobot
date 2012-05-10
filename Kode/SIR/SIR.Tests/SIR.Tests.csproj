@@ -62,7 +62,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="cubeInfoTest.cs" />
+=======
+>>>>>>> cf534ff4b89eb8b3677f526460915de06fe8893a
     <Compile Include="ideViewModelTests.cs" />
     <Compile Include="manualControllerTests.cs" />
     <Compile Include="positionTest.cs" />

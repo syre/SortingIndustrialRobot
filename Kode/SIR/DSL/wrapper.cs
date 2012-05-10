@@ -341,15 +341,15 @@ namespace DSL
         }
 
         /// <summary>
-        /// Flytter robotten til et punkt.
+        /// Moves the robot in a linear motion.
         /// 
         /// \warning Not using pos 2 in wrapped dll function.
         /// \warning Seems to be unfunctional.
         /// </summary>
-        /// <param name="_sNameOfVector">Navnet på vektoren i robotten.</param>
-        /// <param name="_iIndex">Index for punkt.</param>
+        /// <param name="_sNameOfVector">Name of the vector in the Robot.</param>
+        /// <param name="_iIndex">Index for point</param>
         /// <returns>Returns true on successfull call.</returns>
-        public bool moveLinearWrapped(string _sNameOfVector, int _iIndex)
+        public bool moveLinearWrapped(string _sNameOfVector, int _iIndex) // Can be changed to take Vector base class
         {
             int iReturn;
             iReturn = _dll.MoveLinear(_sNameOfVector, (short)_iIndex, null, 0); // Ignoring last value.

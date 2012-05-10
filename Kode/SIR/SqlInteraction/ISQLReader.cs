@@ -16,11 +16,6 @@ namespace SqlInteraction
     public interface ISQLReader
     {
         /// <summary>
-        /// The underlying reader.
-        /// </summary>
-        SqlDataReader SQLCoreReader {get; set; }
-
-        /// <summary>
         /// Reads one row from the table.
         /// 
         /// On next call reads next row. If any.
