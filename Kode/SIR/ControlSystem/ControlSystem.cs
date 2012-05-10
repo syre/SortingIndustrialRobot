@@ -13,7 +13,7 @@ namespace ControlSystem
     /// <summary>
     /// Class to handle all of styresystems useability
     /// </summary>
-    public class Styresystem
+    public class ControlSystem
     {
         /// <summary>
         /// Initialises the robot and homing it ready to use

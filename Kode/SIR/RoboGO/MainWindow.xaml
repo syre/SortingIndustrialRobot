@@ -7,18 +7,6 @@
         Loaded="WindowsLoaded"
         Icon="Images/Globus.JPG" Closing="Window_Closing">
     <Window.Resources>
-        <Style x:Key="styleRBIDE"  TargetType="{x:Type RichTextBox}">
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Height" Value="300" />
-            <Setter Property="Width" Value="645" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="AcceptsReturn" Value="True" />
-            <Setter Property="AcceptsTab" Value="True" />
-            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
-        </Style>
-        <Style TargetType="{x:Type Paragraph}">
-            <Setter Property="Margin" Value="0"/>
-        </Style>
         <Style  TargetType="{x:Type TextBox}">
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="AcceptsReturn" Value="True" />
@@ -71,19 +59,19 @@
                 <!-- IDE tab -->
                 <TabItem Name="tabIDE" Header="IDE" Width="100">
                     <TabItem.InputBindings>
-                            <KeyBinding Command="{Binding Path=saveAs}" Gesture="CTRL+S"/>
-                            <KeyBinding Command="{Binding Path=open}" Gesture="CTRL+O"/>
-                            <KeyBinding Command="{Binding Path=closeTab}" Gesture="CTRL+Q"/>
+                        <KeyBinding Command="{Binding Path=saveAs}" Gesture="CTRL+S"/>
+                        <KeyBinding Command="{Binding Path=open}" Gesture="CTRL+O"/>
+                        <KeyBinding Command="{Binding Path=closeTab}" Gesture="CTRL+W"/>
+                        <KeyBinding Command="{Binding Path=newTab}" Gesture="CTRL+N"/>
                     </TabItem.InputBindings>
                     <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="645">
                         <Menu VerticalAlignment="Top">
                             <!--File -->
                             <MenuItem Name="mnuFile1" Header="_File">
-                                <MenuItem Name="mnuFileNew1" Header="_New"/>
+                                <MenuItem Name="mnuFileNew1" Header="_New" Command="{Binding Path=newTab}"/>
                                 <MenuItem Name="mnuFileOpen1" Header="_Open" Command="{Binding Path=open}"/>
                                 <MenuItem Name="mnuFileSave1" Header="_Save" Command="{Binding Path=saveAs}"/>
                                 <MenuItem Name="mnuFileClose1" Header="Close" Command="{Binding Path=closeTab}"/>
-                                <MenuItem Name="mnuFileExit1" Header="_Exit"/>
                             </MenuItem>
                             <!--Debug-->
                             <MenuItem Name="mnuDebugAndBuild" Header="_Build">
@@ -97,16 +85,19 @@
                         </Menu>
                         <!--Box for Tabs-->
                         <TabControl Name="IDETabs">
+                            <TabControl.Resources>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="True" />
+                                    <Setter Property="AcceptsTab" Value="True" />
+                                    <Setter Property="MaxWidth" Value="630" />
+                                    <Setter Property="MinHeight" Value="300" />
+                                    <Setter Property="MaxHeight" Value="300" />
+                                    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                                </Style>
+                            </TabControl.Resources>
                             <Grid>
-                                <TextBox 
-                                    AcceptsReturn="True" 
-                                    AcceptsTab="True" 
-                                    MaxWidth="645" 
-                                    TextWrapping="Wrap" 
-                                    MinHeight="300" 
-                                    MaxHeight="300" 
-                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                    />
+                                <TextBox />
                            </Grid>
                         </TabControl>
                     </StackPanel>
