@@ -65,9 +65,7 @@ namespace RoboGO
 
             psWindow.Owner = this;
             psWindow.ShowDialog();
-            if (psWindow.DialogResult.HasValue && psWindow.DialogResult.Value)
-                MessageBox.Show("User Logged In");
-            else
+            if (psWindow.DialogResult.HasValue && !psWindow.DialogResult.Value)
                 this.Close();
 
             psWindow.Close();

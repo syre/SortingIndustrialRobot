@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using SqlInteraction;
 using ControlSystem;
@@ -101,7 +102,7 @@ namespace RoboGO.ViewModels
             catch (SqlException exc)
             {
                 // Handle error
-                UIService.showMessageBox(exc.Message, "Getting table values.");
+                UIService.showMessageBox(exc.Message, "Getting table values.", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -126,7 +127,7 @@ namespace RoboGO.ViewModels
             catch (SqlException exc)
             {
                 // Handle error
-                UIService.showMessageBox(exc.Message, "Getting table values.");
+                UIService.showMessageBox(exc.Message, "Getting table values.", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -143,7 +144,7 @@ namespace RoboGO.ViewModels
             catch (SqlException exc)
             {
                 // Handle error
-                UIService.showMessageBox(exc.Message, "Getting table values.");
+                UIService.showMessageBox(exc.Message, "Getting table values.", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }
