@@ -34,5 +34,10 @@ namespace SqlInteraction
             }
             return (new List<object>());
         }
+
+        public void close()
+        {
+            sqlDataReader.Close();
+        }
     }
 }

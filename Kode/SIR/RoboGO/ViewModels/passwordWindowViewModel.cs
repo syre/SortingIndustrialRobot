@@ -38,10 +38,12 @@ namespace RoboGO.ViewModels
                 {
                     
                 }
+                tempRead.close();
                 return true;
             }
             else
             {
+                tempRead.close();
                 return false;
             }
         }
