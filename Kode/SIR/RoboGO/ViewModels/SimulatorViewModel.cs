@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using DSL;
+using ControlSystem;
 namespace RoboGO.ViewModels
 {
     public class SimulatorViewModel
@@ -45,6 +46,11 @@ namespace RoboGO.ViewModels
             drawElbow();
             drawWrist();
             drawGripper();
+        }
+
+        public VecPoint getCurrentPosition()
+        {
+            return Factory.currentIRobotInstance.getCurrentPosition();
         }
 
         public void drawBase()

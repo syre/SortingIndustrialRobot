@@ -31,7 +31,7 @@ namespace SqlInteraction
             connection.Close();
         }
 
-        public SqlCommand CreateCommand()
+        public ISQLCommand CreateCommand()
         {
             return connection.CreateCommand();
         }

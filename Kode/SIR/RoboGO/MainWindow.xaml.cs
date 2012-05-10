@@ -46,6 +46,7 @@ namespace RoboGO
             _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
+            tabitmSimulator.DataContext = _simviewmodel;
             tabInfo.DataContext = infoViewModel;
             pgbStyresystem.DataContext = _mainwindowviewmodel;
 
