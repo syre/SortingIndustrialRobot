@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISQLCommand.cs" />
     <Compile Include="ISQLConnection.cs" />
     <Compile Include="ISQLHandler.cs" />
     <Compile Include="ISQLReader.cs" />

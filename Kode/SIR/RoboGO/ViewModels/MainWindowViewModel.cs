@@ -35,9 +35,17 @@ namespace RoboGO
             Factory.currentIRobotInstance = Factory.getSimulatorInstance;
         }
 
-        public void setRobotAsRobotInstance()
+        public bool setRobotAsRobotInstance()
         {
-            Factory.currentIRobotInstance = Factory.getRobotInstance;
+            try
+            {
+                Factory.currentIRobotInstance = Factory.getRobotInstance;
+            }
+            catch(DllNotFoundException)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void stopRobotInstance()

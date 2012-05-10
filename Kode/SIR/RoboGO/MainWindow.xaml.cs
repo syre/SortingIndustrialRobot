@@ -46,6 +46,7 @@ namespace RoboGO
             _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
+            tabitmSimulator.DataContext = _simviewmodel;
             tabInfo.DataContext = infoViewModel;
             pgbStyresystem.DataContext = _mainwindowviewmodel;
 
@@ -142,7 +143,9 @@ namespace RoboGO
             }
             else if (cmbChoice.SelectedItem == cmbRobot)
             {
-                _mainwindowviewmodel.setRobotAsRobotInstance();
+                if (!_mainwindowviewmodel.setRobotAsRobotInstance())
+                    MessageBox.Show("Could not connect to Robot", "Connection Error", MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
             }
         }
 
@@ -154,11 +157,6 @@ namespace RoboGO
         private void btnCheckConnectivity_Click(object sender, RoutedEventArgs e)
         {
             _mainwindowviewmodel.checkIsOnline();
-        }
-
-        private void cmbChoice_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            pgbStyresystem.Background = new SolidColorBrush(Colors.Gray);
         }
     }
 }
