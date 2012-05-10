@@ -51,7 +51,6 @@ namespace RoboGO
         public void stopRobotInstance()
         {
             Factory.currentIRobotInstance.stopAllMovement();
-            Factory.currentIRobotInstance = null;
         }
 
         public void checkIsOnline()

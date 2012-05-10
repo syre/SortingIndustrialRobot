@@ -1,4 +1,4 @@
-﻿<Window x:Class="RoboGO.GUIManualSteering"
+<Window x:Class="RoboGO.GUIManualSteering"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Manual Steering" Height="300" Width="300"
@@ -32,55 +32,55 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Base:" />
-                                <Button Name="axisBtnBaseLeft" Command="{Binding Path=MoveAxisBaseLeft}">
+                                <Button Name="axisBtnBaseLeft" PreviewMouseLeftButtonDown="AxisBtnBaseLeft_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
-                                <Button Name="axisBtnBaseRight" Command="{Binding Path=MoveAxisBaseRight}">
+                                <Button Name="axisBtnBaseRight" PreviewMouseLeftButtonDown="AxisBtnBaseRight_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowRight.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Shoulder:" />
-                                <Button Name="axisBtnShoulderLeft" Command="{Binding Path=MoveAxisShoulderLeft}">
+                                <Button Name="axisBtnShoulderLeft" PreviewMouseLeftButtonDown="AxisBtnShoulderLeft_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
-                                <Button Name="axisBtnShoulderRight" Command="{Binding Path=MoveAxisShoulderRight}">
+                                <Button Name="axisBtnShoulderRight" PreviewMouseLeftButtonDown="AxisBtnShoulderRight_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowRight.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Elbow:" />
-                                <Button Name="axisBtnElbowLeft" Command="{Binding Path=MoveAxisElbowLeft}">
+                                <Button Name="axisBtnElbowLeft" PreviewMouseLeftButtonDown="AxisBtnElbowLeft_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
-                                <Button Name="axisBtnElbowRight" Command="{Binding Path=MoveAxisElbowRight}">
+                                <Button Name="axisBtnElbowRight" PreviewMouseLeftButtonDown="AxisBtnElbowRight_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowRight.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Wrist Pitch:" />
-                                <Button Name="axisBtnWristPitchUp" Command="{Binding Path=MoveAxisPitchUp}">
+                                <Button Name="axisBtnWristPitchUp" PreviewMouseLeftButtonDown="AxisBtnWristPitchUp_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowUp.png"/>
                                 </Button>
-                                <Button Name="axisBtnWristPitchDown" Command="{Binding Path=MoveAxisPitchDown}">
+                                <Button Name="axisBtnWristPitchDown" PreviewMouseLeftButtonDown="AxisBtnWristPitchDown_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowDown.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Wrist Roll:" />
-                                <Button Name="axisWristRollLeft" Command="{Binding Path=MoveAxisRollLeft}">
+                                <Button Name="axisWristRollLeft" PreviewMouseLeftButtonDown="AxisWristRollLeft_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
-                                <Button Name="axisBtnWristRollRight" Command="{Binding Path=MoveAxisRollRight}">
+                                <Button Name="axisBtnWristRollRight" PreviewMouseLeftButtonDown="AxisBtnWristRollRight_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowRight.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Conveyer:" />
-                                <Button Name="axisBtnConveyerLeft" Command="{Binding Path=MoveAxisConveyerLeft}">
+                                <Button Name="axisBtnConveyerLeft" PreviewMouseLeftButtonDown="AxisBtnConveyerLeft_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowLeft.png"/>
                                 </Button>
-                                <Button Name="axisBtnConveyerRight" Command="{Binding Path=MoveAxisConveyerRight}">
+                                <Button Name="axisBtnConveyerRight" PreviewMouseLeftButtonDown="AxisBtnConveyerRight_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowRight.png" />
                                 </Button>
                             </StackPanel>
@@ -95,46 +95,46 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="X:" />
-                                <Button Name="coordBtnXInc" Command="{Binding Path=MoveCoordXIncreasing}">
+                                <Button Name="coordBtnXInc" PreviewMouseLeftButtonDown="CoordBtnXInc_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/cogInc.png"/>
                                 </Button>
-                                <Button Name="coordBtnXDec" Command="{Binding Path=MoveCoordXDecreasing}">
+                                <Button Name="coordBtnXDec" PreviewMouseLeftButtonDown="CoordBtnXDec_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/cogDec.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Y:" />
-                                <Button Name="coordBtnYInc" Command="{Binding Path=MoveCoordYIncreasing}">
+                                <Button Name="coordBtnYInc" PreviewMouseLeftButtonDown="CoordBtnYInc_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/cogInc.png"/>
                                 </Button>
-                                <Button Name="coordBtnYDec" Command="{Binding Path=MoveCoordYDecreasing}">
+                                <Button Name="coordBtnYDec" PreviewMouseLeftButtonDown="CoordBtnYDec_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/cogDec.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Z:" />
-                                <Button Name="coordBtnZInc" Command="{Binding Path=MoveCoordZIncreasing}">
+                                <Button Name="coordBtnZInc" PreviewMouseLeftButtonDown="CoordBtnZInc_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/cogInc.png"/>
                                 </Button>
-                                <Button Name="coordBtnZDec" Command="{Binding Path=MoveCoordZDecreasing}">
+                                <Button Name="coordBtnZDec" PreviewMouseLeftButtonDown="CoordBtnZDec_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/cogDec.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Wrist Pitch:" />
-                                <Button Name="coordBtnWristPitchInc" Command="{Binding Path=MoveCoordPitchIncreasing}">
+                                <Button Name="coordBtnWristPitchInc" PreviewMouseLeftButtonDown="CoordBtnWristPitchInc_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/cogInc.png"/>
                                 </Button>
-                                <Button Name="coordBtnWristPitchDec" Command="{Binding Path=MoveCoordPitchDecreasing}">
+                                <Button Name="coordBtnWristPitchDec" PreviewMouseLeftButtonDown="CoordBtnWristPitchDec_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/cogDec.png" />
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Wrist Roll:" />
-                                <Button Name="coordBtnWristRollInc" Command="{Binding Path=MoveCoordRollIncreasing}">
+                                <Button Name="coordBtnWristRollInc" PreviewMouseLeftButtonDown="CoordBtnWristRollInc_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/cogInc.png"/>
                                 </Button>
-                                <Button Name="coordBtnWristRollDec" Command="{Binding Path=MoveCoordRollDecreasing}">
+                                <Button Name="coordBtnWristRollDec" PreviewMouseLeftButtonDown="CoordBtnWristRollDec_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/cogDec.png" />
                                 </Button>
                             </StackPanel>

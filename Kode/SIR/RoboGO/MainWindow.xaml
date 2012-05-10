@@ -28,7 +28,7 @@
                     <ComboBoxItem Name="cmbRobot" Content="Robot"/>
                 </ComboBox>
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="Start!" Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Left" Click="Start_Click"/>
+                    <Button Content="Select" Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Left" Click="SelectRobot_Click"/>
                     <Button Content="Stop!"  Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Right" Click="Stop_Click"/>
                 </StackPanel>
                 <ProgressBar Height="25" Name="pgbStyresystem" Width="150" Margin="50,60,0,5" HorizontalAlignment="Left"/>

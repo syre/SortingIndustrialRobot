@@ -187,7 +187,7 @@ namespace RoboGO.ViewModels
             }
             catch (Exception)
             {
-                throw new Exception("Manualcontroller could not be set up.");
+                /// \warning Must be checked up later.
             }
             
 
@@ -216,6 +216,7 @@ namespace RoboGO.ViewModels
             dcMoveCoordPitchDecreasing = new DelegateCommand(moveCoordPitchDecreasing);
             dcMoveCoordRollIncreasing = new DelegateCommand(moveCoordRollIncreasing);
             dcMoveCoordRollDecreasing = new DelegateCommand(moveCoordRollDecreasing);
+
         }
 
         // -Steering: Made as simple interface as possible so minimum of logic required from View´s side.
@@ -276,6 +277,12 @@ namespace RoboGO.ViewModels
         {
             mcManualControl.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_LEFT);
         }
+
+        public void stopMovement()
+        {
+            mcManualControl.stopAllMovement();
+        }
+       
 #endregion
         #region Coordinates
         public void moveCoordXIncreasing()

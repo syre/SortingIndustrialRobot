@@ -101,7 +101,14 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void executeCode()
         {
-            isrScriptRunner.setScriptFromString(Code);
+        	try
+        	{
+        	isrScriptRunner.setScriptFromString(((TextBox)(ideTabs.SelectedContent)).Text);
+        	}
+        	catch(Exception e)
+        	{
+        		
+        	}
             isrScriptRunner.ExecuteScript();
         }
 
