@@ -16,5 +16,7 @@ namespace SqlInteraction
         ISQLReader runQuery(SqlCommand _command, string queryType);
 
         void changeConnectionparameter(string _parameter, string _parameterValue);
+
+        ISqlConnection Connection { set; get; }
     }
 }
