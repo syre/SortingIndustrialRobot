@@ -32,6 +32,13 @@ namespace RoboGO.ViewModels
         }
 
         #region Commands
+
+        private DelegateCommand dcSeekHome;
+        public ICommand SeekHome
+        {
+            get { return (dcSeekHome); }
+        }
+
         private DelegateCommand dcMoveAxisBaseRight;
         public ICommand MoveAxisBaseRight
         {
@@ -192,6 +199,7 @@ namespace RoboGO.ViewModels
             
 
             // Commands
+            dcSeekHome = new DelegateCommand(seekHome);
             dcMoveAxisBaseRight = new DelegateCommand(moveAxisBaseRight);
             dcMoveAxisBaseLeft = new DelegateCommand(moveAxisBaseLeft);
             dcMoveAxisShoulderRight = new DelegateCommand(moveAxisShoulderRight);
@@ -219,6 +227,10 @@ namespace RoboGO.ViewModels
         }
 
         // -Steering: Made as simple interface as possible so minimum of logic required from View´s side.
+        public void seekHome()
+        {
+            mcManualControl.RobotConnection.homeRobot();
+        }
         #region Axis
         public void moveAxisBaseRight()
         {

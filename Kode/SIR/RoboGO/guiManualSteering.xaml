@@ -16,12 +16,14 @@
     <!-- Content -->
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Gripper: " />
             <Button Name="axisBtnGripperOpen" Command="{Binding Path=OpenGripper}">
                 <Image Source="Images/arrowOpen.png"/>
             </Button>
             <Button Name="axisBtnGripperClose" Command="{Binding Path=CloseGripper}">
                 <Image Source="Images/arrowClose.png" />
+            </Button>
+            <Button Name="homeButton" Command="{Binding Path=SeekHome}">
+                
             </Button>
         </StackPanel>
             <TabControl>
