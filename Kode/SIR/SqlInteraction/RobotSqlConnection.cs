@@ -1,51 +1,44 @@
+using System.Data;
 using System.Data.SqlClient;
 
 namespace SqlInteraction
 {
     public class RobotSqlConnection : ISqlConnection
     {
-        private ConnectionState _state;
+        public RobotSqlConnection(string connectionstring)
+        {
+            connection = new SqlConnection(connectionstring);
+        }
+        private SqlConnection connection;
         public ConnectionState RobotConnectionState
         {
-            get { return _state; }
-            set
-            {
-                if(value == ConnectionState.Open && Sql.State == System.Data.ConnectionState.Open)
-                {
-                    _state = ConnectionState.Open;  
-                }
-                else
-                {
-                    _state = ConnectionState.Close;
-                }
-            }
+            get { return connection.State; }
         }
 
         public string Connectionstring
         {
-            get { return Sql.ConnectionString; }
-            set { Sql.ConnectionString = value; }
+            get { return connection.ConnectionString; }
+            set { connection.ConnectionString = value; }
         }
-
-        public SqlConnection Sql { get; set; }
 
         public void ConnectionOpen()
         {
-            Sql.Open();
-            RobotConnectionState = ConnectionState.Open;
+            connection.Open();
         }
 
         public void ConnectionClose()
         {
-            Sql.Close();
-            RobotConnectionState = ConnectionState.Close;
+            connection.Close();
         }
 
-        public ISqlCommand CreateCommand()
+        public SqlCommand CreateCommand()
         {
-            throw new System.NotImplementedException();
+            return connection.CreateCommand();
         }
 
-        public uint TimeOut { set; get; }
+        public int TimeOut
+        {
+            get { return connection.ConnectionTimeout; }
+        }
     }
 }

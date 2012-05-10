@@ -18,11 +18,11 @@ namespace SqlInteraction
     {
         private static volatile ISQLHandler singletonhandler;
         private static object syncobject = new Object();
-        private SqlConnection connection;
+        private RobotSqlConnection connection;
 
         private SQLHandler()
         {
-            connection = new SqlConnection("Data Source=webhotel10.iha.dk;Initial Catalog=F12I4PRJ4Gr3;Persist Security Info=True;User ID=F12I4PRJ4Gr3;Password=F12I4PRJ4Gr3");
+            connection = new RobotSqlConnection("Data Source=webhotel10.iha.dk;Initial Catalog=F12I4PRJ4Gr3;Persist Security Info=True;User ID=F12I4PRJ4Gr3;Password=F12I4PRJ4Gr3");
         }
 
         public static ISQLHandler GetInstance
@@ -55,26 +55,26 @@ namespace SqlInteraction
                 + "User ID=" + _username + ";" + "Password=" + _password + ";" + 
                 "Connection Timeout=" + _timeout + ";";
 
-            string formerConnectionstring = connection.ConnectionString;
-            connection.ConnectionString = tempString;
+            string formerConnectionstring = connection.Connectionstring;
+            connection.Connectionstring = tempString;
 
-            /*
+            
             try
             {
-                connection.Open();
-                connection.Close();
+                connection.ConnectionOpen();
+                connection.ConnectionClose();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 check = false;
             }
 
             if (!check)
             {
-                connection.ConnectionString = formerConnectionstring;
+                connection.Connectionstring = formerConnectionstring;
             }
-            */
-            return true;//check;
+            
+            return true;
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace SqlInteraction
         public SqlCommand makeCommand(string _commandText, CommandType _commandType)
         {
             SqlCommand command = connection.CreateCommand();
-            command.CommandTimeout = connection.ConnectionTimeout;
+            command.CommandTimeout = connection.TimeOut;
             command.CommandType = _commandType;
             command.CommandText = _commandText;
             
@@ -120,8 +120,8 @@ namespace SqlInteraction
         public ISQLReader runQuery(SqlCommand _command, string queryType)
         {
             // Check if connection is open and open is not.
-            if (connection.State == ConnectionState.Closed)
-                connection.Open();
+            if (connection.RobotConnectionState == ConnectionState.Closed)
+                connection.ConnectionOpen();
 
             // Type
             if(queryType.ToLower() == "write")
@@ -153,19 +153,19 @@ namespace SqlInteraction
         /// <param name="_parameterValue">Parameter is value to change the connection info to</param>
         public void changeConnectionparameter(string _parameter, string _parameterValue)
         {
-            int index = connection.ConnectionString.ToLower().IndexOf(_parameter.ToLower());
+            int index = connection.Connectionstring.ToLower().IndexOf(_parameter.ToLower(), StringComparison.Ordinal);
 
             if(index == -1 || _parameter == ";" || _parameter == " " || _parameter == "=")
                 throw new Exception(_parameter + " parameter not found or invalid");
 
-            int indexEqual = connection.ConnectionString.IndexOf('=', index);
-            int indexEnd = connection.ConnectionString.IndexOf(';', indexEqual);
+            int indexEqual = connection.Connectionstring.IndexOf('=', index);
+            int indexEnd = connection.Connectionstring.IndexOf(';', indexEqual);
 
-            string substringBefore = connection.ConnectionString.Substring(0, indexEqual+1);
-            string substringAfter = connection.ConnectionString.Substring(indexEnd);
+            string substringBefore = connection.Connectionstring.Substring(0, indexEqual+1);
+            string substringAfter = connection.Connectionstring.Substring(indexEnd);
 
             string tempString = substringBefore + _parameterValue + substringAfter;
-            connection.ConnectionString = tempString;
+            connection.Connectionstring = tempString;
         }
     }
 }

@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
 namespace SqlInteraction
 {
-    public enum ConnectionState
-    {
-        Close,
-        Open
-    }
     public interface ISqlConnection
     {
-        ConnectionState RobotConnectionState { set; get; }
+        ConnectionState RobotConnectionState { get; }
         string Connectionstring { set; get; }
         void ConnectionOpen();
         void ConnectionClose();
-        ISqlCommand CreateCommand();
-        uint TimeOut { set; get; }
+        SqlCommand CreateCommand();
+        int TimeOut { get; }
     }
 }
