@@ -22,7 +22,6 @@ namespace ControlSystem
         private static volatile Simulator simulatorInstance;
         private static volatile IRobot iRobotInstance;
         private static volatile ScriptRunner scriptRunnerInstance;
-        private static volatile ISQLHandler sqlHandlerInstance;
 
         // Static synchronization root object, for locking
         private static object objectThreadSync = new object();
@@ -30,7 +29,6 @@ namespace ControlSystem
         private static object objectSimulatorSync = new object();
         private static object objectIRobotSync = new object();
         private static object objectScriptRunnerSync = new object();
-        private static object objectSQLHandlerSync = new object();
 
 
        
@@ -59,33 +57,6 @@ namespace ControlSystem
                 return threadhandlingInstance;
             }
         }
-
-        /// <summary>
-        /// Returns the instance of SQLHandler or creates it if its not already
-        /// </summary>
-        public static ISQLHandler getSQLHandlerInstance
-        {
-            get
-            {
-                // Check that the instance is null
-                if (sqlHandlerInstance == null)
-                {
-                    // Lock the object
-                    lock (objectSQLHandlerSync)
-                    {
-                        // Check to make sure its null
-                        if (sqlHandlerInstance == null)
-                        {
-                            sqlHandlerInstance = new SQLHandler();
-                        }
-                    }
-                }
-
-                // Return the non-null instance of Singleton
-                return sqlHandlerInstance;
-            }
-        }
-
 
         /// <summary>
         /// Returns the instance of Robot or creates it if its not already
