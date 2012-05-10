@@ -23,10 +23,6 @@
             </Grid.ColumnDefinitions>
             <!--ControlSystem column-->
             <Menu VerticalAlignment="Top" Height="25" Margin="0,-10,0,0">
-                <!--Help-->
-                <MenuItem Name="mnuHelp" Header="_Help">
-                    <MenuItem Name="mnuAbout" Header="_About"/>
-                </MenuItem>
             </Menu>
             <StackPanel Width="245" Orientation="Vertical" Margin="0,-10,5,11">
                 
@@ -80,7 +76,6 @@
                             <!--Help-->
                             <MenuItem Name="mnuHelp1" Header="_Help">
 								<MenuItem Name="mnuViewCommands1" Header="_View Commands" Click="mnuViewCommands1_Click"/>
-                                <MenuItem Name="mnuAbout1" Header="_About"/>
                             </MenuItem>
                         </Menu>
                         <!--Box for Tabs-->
