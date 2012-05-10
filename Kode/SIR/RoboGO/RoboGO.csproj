@@ -233,6 +233,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Images\gripper_closed.png" />
+    <Content Include="Images\home.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Key.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
