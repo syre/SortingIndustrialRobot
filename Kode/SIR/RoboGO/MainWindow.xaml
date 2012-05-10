@@ -125,8 +125,7 @@
                             <Label Content="-- Time --" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="2,2,2,2"/>
                             <TextBox Name="txtbTime" Grid.Row="3" Grid.Column="0" Margin="2,2,2,2"/>
                             <Label Content="-- Position (x, y, z) --" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Margin="2,2,2,2"/>
-                            <TextBox Name="txtbPosition" Grid.Row="5" Grid.Column="0" Margin="2,2,2,2"/>
-                            <Button Name="btnCalibrate" Content="Calibrate!" Grid.Row="6" Grid.Column="0" Height="30" Margin="2,2,2,2"/>
+                            <TextBox Name="txtbPosition" Grid.Row="5" Grid.Column="0" Margin="2,2,2,2" Text="{Binding getCurrentPosition}"/>
                         </Grid>
                     </StackPanel>
                 </TabItem>
