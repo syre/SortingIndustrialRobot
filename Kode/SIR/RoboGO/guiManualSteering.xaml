@@ -16,7 +16,9 @@
     <!-- Content -->
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Gripper: " />
+            <Button Name="homeButton" Command="{Binding Path=SeekHome}">
+                <Image Source="Images/home.png" />
+            </Button>
             <Button Name="axisBtnGripperOpen" Command="{Binding Path=OpenGripper}">
                 <Image Source="Images/arrowOpen.png"/>
             </Button>
