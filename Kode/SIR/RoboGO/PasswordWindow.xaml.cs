@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RoboGO.ViewModels;
 
 namespace RoboGO
 {
@@ -18,9 +19,17 @@ namespace RoboGO
     /// </summary>
     public partial class PasswordWindow : Window
     {
+        private passwordWindowViewModel passWindowViewModel;
+        public passwordWindowViewModel PasswordWindowViewModel
+        {
+            get { return (passWindowViewModel); }
+        }
+
         public PasswordWindow()
         {
             InitializeComponent();
+
+            passWindowViewModel = new passwordWindowViewModel();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -33,8 +42,12 @@ namespace RoboGO
         {
             // Write code here to authenticate user
             // If authenticated, then set DialogResult=true
-            DialogResult = true;
-            this.Close();
+            if(passWindowViewModel.authenticate(txtUserName.Text, txtPassword.Password))
+            {
+                DialogResult = true;
+                this.Close();
+            }
+            
         }
     }
 }

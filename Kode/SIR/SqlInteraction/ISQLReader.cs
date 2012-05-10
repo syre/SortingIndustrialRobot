@@ -21,6 +21,11 @@ namespace SqlInteraction
         /// On next call reads next row. If any.
         /// </summary>
         /// <returns>The row if any else empty list.</returns>
-        List<string> readRow();
+        List<object> readRow();
+
+        /// <summary>
+        /// Closes reader.
+        /// </summary>
+        void close();
     }
 }
