@@ -65,7 +65,7 @@
                     <Button Content="Stop!"  Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Right"/>
                 </StackPanel>
                 <ProgressBar Height="25" Name="pgbStyresystem" Width="150" Margin="50,60,0,5" HorizontalAlignment="Left"/>
-                <Button Content="Check connectivity" Height="25" Name="btnCheckConnectivity" VerticalAlignment="Top" Width="160"/>
+                <Button Content="Check connectivity" Height="25" Name="btnCheckConnectivity" VerticalAlignment="Top" Width="160" Click="btnCheckConnectivity_Click" />
                 <DockPanel Margin="0,50,5,5">
                     <TextBlock DockPanel.Dock="Top" Height="23" Name="txtbOperation" Text="Manual Steering:" TextAlignment="Center" VerticalAlignment="Top"/>
                     <Button DockPanel.Dock="Bottom" Content="Operate" Name="btnManuel" Margin="5,5,5,5" Click="btnManuel_Click"/>
@@ -178,15 +178,13 @@
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
-<<<<<<< HEAD
                 <!--Log-Tab-->
                 <TabItem Header="Log" Width="100">
                     <TextBlock MinWidth="645">
                     Hello world - Log is here!
                     </TextBlock>
                 </TabItem>
-=======
->>>>>>> 1776458a95d9c3ea3816259c4c342d54d9f4e3fc
+
             </TabControl>
         </Grid>
     </Viewbox>
