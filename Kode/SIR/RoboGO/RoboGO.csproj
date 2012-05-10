@@ -97,10 +97,7 @@
     <Compile Include="ViewModels\delegateCommand.cs" />
     <Compile Include="ViewModels\ideViewModel.cs" />
     <Compile Include="ViewModels\infoViewModel.cs" />
-<<<<<<< HEAD
     <Compile Include="ViewModels\passwordWindowViewModel.cs" />
-=======
->>>>>>> cf534ff4b89eb8b3677f526460915de06fe8893a
     <Compile Include="ViewModels\SimulatorViewModel.cs" />
     <Compile Include="ViewModels\viewModelManualSteering.cs" />
     <Page Include="CommandsWindow.xaml">
@@ -160,7 +157,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="RoboGO_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ControlSystem\ControlSystem.csproj">

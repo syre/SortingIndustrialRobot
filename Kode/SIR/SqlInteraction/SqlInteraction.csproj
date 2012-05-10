@@ -41,12 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Cube.cs" />
-    <Compile Include="Cubes.cs" />
-    <Compile Include="ILogEvent.cs" />
-=======
->>>>>>> cf534ff4b89eb8b3677f526460915de06fe8893a
     <Compile Include="ISQLHandler.cs" />
     <Compile Include="ISQLReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
