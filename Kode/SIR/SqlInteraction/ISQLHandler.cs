@@ -7,7 +7,6 @@ namespace SqlInteraction
 {
     public interface ISQLHandler
     {
-        ISQLHandler GetInstance { get; }
         bool setConnection(string _server, string _database, string _username, string _password, string _timeout);
 
         SqlCommand makeCommand(string _commandText, CommandType _commandType);

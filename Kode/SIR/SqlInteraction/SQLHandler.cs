@@ -14,9 +14,9 @@ namespace SqlInteraction
     /// <summary>
     /// Handles all SQL interaction
     /// </summary>
-    public class SQLHandler
+    public class SQLHandler : ISQLHandler
     {
-        private static volatile SQLHandler singletonhandler;
+        private static volatile ISQLHandler singletonhandler;
         private static object syncobject = new Object();
         private SqlConnection connection;
 
@@ -25,7 +25,7 @@ namespace SqlInteraction
             connection = new SqlConnection("Data Source=webhotel10.iha.dk;Initial Catalog=F12I4PRJ4Gr3;Persist Security Info=True;User ID=F12I4PRJ4Gr3;Password=F12I4PRJ4Gr3");
         }
 
-        public static SQLHandler GetInstance
+        public static ISQLHandler GetInstance
         {
             get
             {

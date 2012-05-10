@@ -126,6 +126,7 @@ namespace ControlSystem
                 lock (objectIRobotSync)
                 {
                     iRobotInstance = value;
+                    getScriptRunnerInstance.setRobotInstance(value);
                 }
             }
         }
@@ -146,6 +147,7 @@ namespace ControlSystem
                         if (scriptRunnerInstance == null)
                         {
                             scriptRunnerInstance = ScriptRunner.getInstance();
+                            scriptRunnerInstance.setRobotInstance(currentIRobotInstance);
                         }
                     }
                 }
