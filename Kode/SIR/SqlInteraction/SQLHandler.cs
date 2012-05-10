@@ -18,11 +18,11 @@ namespace SqlInteraction
     {
         private static volatile ISQLHandler singletonhandler;
         private static object syncobject = new Object();
-        private RobotSqlConnection connection;
+        private ISqlConnection connection;
 
         private SQLHandler()
         {
-            connection = new RobotSqlConnection("Data Source=webhotel10.iha.dk;Initial Catalog=F12I4PRJ4Gr3;Persist Security Info=True;User ID=F12I4PRJ4Gr3;Password=F12I4PRJ4Gr3");
+            Connection = new RobotSqlConnection("Data Source=webhotel10.iha.dk;Initial Catalog=F12I4PRJ4Gr3;Persist Security Info=True;User ID=F12I4PRJ4Gr3;Password=F12I4PRJ4Gr3");
         }
 
         public static ISQLHandler GetInstance
@@ -40,6 +40,13 @@ namespace SqlInteraction
                 return singletonhandler;
             }
         }
+
+        public ISqlConnection Connection
+        {
+            get { return connection; }
+            set { connection = value; }
+        }
+
         /// <summary>
         /// Sets a new connection to use.
         /// </summary>
@@ -55,24 +62,21 @@ namespace SqlInteraction
                 + "User ID=" + _username + ";" + "Password=" + _password + ";" + 
                 "Connection Timeout=" + _timeout + ";";
 
-            string formerConnectionstring = connection.Connectionstring;
-            connection.Connectionstring = tempString;
-
+            string formerConnectionstring = Connection.Connectionstring;
+            Connection.Connectionstring = tempString;
+            
             
             try
             {
-                connection.ConnectionOpen();
-                connection.ConnectionClose();
+                Connection.ConnectionOpen();
+                Connection.ConnectionClose();
             }
             catch (Exception)
             {
                 check = false;
             }
 
-            if (!check)
-            {
-                connection.Connectionstring = formerConnectionstring;
-            }
+            Connection.Connectionstring = !check ? formerConnectionstring : tempString;
             
             return true;
         }
@@ -85,8 +89,8 @@ namespace SqlInteraction
         /// <returns></returns>
         public SqlCommand makeCommand(string _commandText, CommandType _commandType)
         {
-            SqlCommand command = connection.CreateCommand();
-            command.CommandTimeout = connection.TimeOut;
+            SqlCommand command = Connection.CreateCommand();
+            command.CommandTimeout = Connection.TimeOut;
             command.CommandType = _commandType;
             command.CommandText = _commandText;
             
@@ -120,8 +124,8 @@ namespace SqlInteraction
         public ISQLReader runQuery(SqlCommand _command, string queryType)
         {
             // Check if connection is open and open is not.
-            if (connection.RobotConnectionState == ConnectionState.Closed)
-                connection.ConnectionOpen();
+            if (Connection.RobotConnectionState == ConnectionState.Closed)
+                Connection.ConnectionOpen();
 
             // Type
             if(queryType.ToLower() == "write")
@@ -153,19 +157,19 @@ namespace SqlInteraction
         /// <param name="_parameterValue">Parameter is value to change the connection info to</param>
         public void changeConnectionparameter(string _parameter, string _parameterValue)
         {
-            int index = connection.Connectionstring.ToLower().IndexOf(_parameter.ToLower(), StringComparison.Ordinal);
+            int index = Connection.Connectionstring.ToLower().IndexOf(_parameter.ToLower(), StringComparison.Ordinal);
 
             if(index == -1 || _parameter == ";" || _parameter == " " || _parameter == "=")
                 throw new Exception(_parameter + " parameter not found or invalid");
 
-            int indexEqual = connection.Connectionstring.IndexOf('=', index);
-            int indexEnd = connection.Connectionstring.IndexOf(';', indexEqual);
+            int indexEqual = Connection.Connectionstring.IndexOf('=', index);
+            int indexEnd = Connection.Connectionstring.IndexOf(';', indexEqual);
 
-            string substringBefore = connection.Connectionstring.Substring(0, indexEqual+1);
-            string substringAfter = connection.Connectionstring.Substring(indexEnd);
+            string substringBefore = Connection.Connectionstring.Substring(0, indexEqual+1);
+            string substringAfter = Connection.Connectionstring.Substring(indexEnd);
 
             string tempString = substringBefore + _parameterValue + substringAfter;
-            connection.Connectionstring = tempString;
+            Connection.Connectionstring = tempString;
         }
     }
 }

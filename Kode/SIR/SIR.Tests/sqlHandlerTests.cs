@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Data.SqlClient;
 using NUnit.Framework;
 using Rhino.Mocks;
 using SqlInteraction;
@@ -17,32 +14,45 @@ namespace SIR.Tests
         private bool connection; 
 
         [Test]
-        public void SetSingletonSqlHandling()
+        public void SetSingletonSqlHandlingShouldNotBeNull()
         {
-            ISQLHandler handler = SQLHandler.GetInstance;
-
+            var handler = SQLHandler.GetInstance;
             Assert.IsNotNull(handler);
         }
 /*
         [Test]
-        public void ChangeConnectionstring()
+        public void SetConnectionStringToAnotherConnection()
         {
             ISQLHandler handler = SQLHandler.GetInstance;
-
-            connection = handler.setConnection("hdjdk", "uhuuh", "bbuiiu", "Bbibiuiu", "30");
-
-
-            Assert.AreNotEqual("dcfvgbhnjm",);
+            handler.Connection = MockRepository.GenerateMock<ISqlConnection>();
+            handler.setConnection("Minserver", "mindatabase", "yusuf", "michael", "30");
+            handler.Connection.AssertWasCalled(s => s.Connectionstring = "Data Source=Minserver;" +
+                                                                         "Initial Catalog=mindatabase;User ID=yusuf;" +                                                                      
+                                                                         "Password=michael;Connection Timeout=30;");
         }
 
         [Test]
-        public void SetSingletonSqlHandlingConnectionstring()
+        public void CheckIfCommandReturned()
         {
             ISQLHandler handler = SQLHandler.GetInstance;
+            handler.Connection  = MockRepository.GenerateStub<ISqlConnection>();
+            handler.Connection.Stub(t => t.CreateCommand()).Return(new SqlCommand());
 
-            Assert.AreEqual("Data Source=webhotel10.iha.dk;Initial Catalog=F12I4PRJ4Gr3;Persist Security Info=True;User " +
-                            "ID=F12I4PRJ4Gr3;Password=F12I4PRJ4Gr3", handler);
+            SqlCommand command = handler.Connection.CreateCommand();
+            Assert.IsNotNull(command);
+        }
+
+
+        [Test]
+        public void AddParameterTest()
+        {
+            ISQLHandler handler = SQLHandler.GetInstance;
+            handler.Connection = MockRepository.GenerateStub<ISqlConnection>();
+
         }
 */
+
+
+
     }
 }
