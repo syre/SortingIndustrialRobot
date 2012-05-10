@@ -10,7 +10,6 @@ namespace RoboGO.ViewModels
 {
     public class SimulatorViewModel
     {
-        //private IRobot _simulator;
         private Canvas _simulatorcanvas;
         private Image _gripper;
         private TransformGroup _grippertransform;
@@ -23,7 +22,6 @@ namespace RoboGO.ViewModels
         private Image _elbow;
         private TransformGroup _elbowtransform;
         private readonly ScaleTransform _04scale = new ScaleTransform(0.4,0.4);
-       // private bool gripperClosed { get; set; }
 
         public SimulatorViewModel(Canvas canvas)
         {
