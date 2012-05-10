@@ -11,9 +11,9 @@ namespace RoboGO
     public static class UIService
     {
         // Functions
-        public static void showMessageBox(string _sMessage, string _sCaption)
+        public static MessageBoxResult showMessageBox(string _sMessage, string _sCaption, MessageBoxButton _msbEnum, MessageBoxImage _msbImage)
         {
-            MessageBox.Show(_sMessage, _sCaption);
+            return(MessageBox.Show(_sMessage, _sCaption, _msbEnum, _msbImage));
         }
     }
 }

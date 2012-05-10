@@ -63,8 +63,9 @@ namespace RoboGO
 
             psWindow.Owner = this;
             psWindow.ShowDialog();
-            if (!(psWindow.DialogResult.HasValue && psWindow.DialogResult.Value))
-                this.Close();
+<<<<<<< .mine            if (!(psWindow.DialogResult.HasValue && psWindow.DialogResult.Value))
+=======            if (psWindow.DialogResult.HasValue && !psWindow.DialogResult.Value)
+>>>>>>> .theirs                this.Close();
 
             psWindow.Close();
         }

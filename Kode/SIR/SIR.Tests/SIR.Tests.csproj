@@ -67,6 +67,7 @@
     <Compile Include="positionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulatorTests.cs" />
+    <Compile Include="sqlHandlerTests.cs" />
     <Compile Include="viewModelManualSteeringTests.cs" />
     <Compile Include="wrapperTests.cs" />
   </ItemGroup>
