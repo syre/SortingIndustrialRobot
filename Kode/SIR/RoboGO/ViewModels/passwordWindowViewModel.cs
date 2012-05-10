@@ -18,8 +18,8 @@ namespace RoboGO.ViewModels
 
         public bool authenticate(string _loginName, string _loginPassword)
         {
-           SqlCommand tempCmd = Factory.getSQLHandlerInstance.makeCommand("SELECT Users.Name, Users.Password, Permissions.Name FROM Users INNER JOIN Permissions ON Users.Permission=Permissions.ID WHERE Users.Name ='"+_loginName+"' AND Users.Password ='"+_loginPassword+"'", CommandType.Text);
-            ISQLReader tempRead = Factory.getSQLHandlerInstance.runQuery(tempCmd, "read");
+           SqlCommand tempCmd = SQLHandler.GetInstance.makeCommand("SELECT Users.Name, Users.Password, Permissions.Name FROM Users INNER JOIN Permissions ON Users.Permission=Permissions.ID WHERE Users.Name ='"+_loginName+"' AND Users.Password ='"+_loginPassword+"'", CommandType.Text);
+           ISQLReader tempRead = SQLHandler.GetInstance.runQuery(tempCmd, "read");
 
             //int tempint = tempRead.readRow().Count;
             //List<object> tempObj = new List<object>(tempRead.readRow());

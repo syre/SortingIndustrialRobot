@@ -1,6 +1,8 @@
 ﻿/** \file robot.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
+using System.Data;
+using SqlInteraction;
 
 namespace DSL
 {
@@ -301,6 +303,17 @@ namespace DSL
             return false; 
         }
 
+        public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
+        {
+            // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
+            ManualMode = ManualModeType.Coordinates;
+
+            SIRVector tempRelVector = new RelCoordSirVector("relativeVector");
+            tempRelVector.addPoint(new VecPoint(_iX, _iY, _iZ, _iPitch, _iRoll));
+
+            ManualMode = ManualModeType.Off;
+            return false;
+        }
 
         public bool movebyCoordinates(int _iX, int _iY, int _iZ)
         {
@@ -315,18 +328,17 @@ namespace DSL
             return true;
         }
 
-
-        public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
+        public void moveByDatabasePosition(int ID)
         {
-            // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
-            ManualMode = ManualModeType.Coordinates;
-            
-            SIRVector tempRelVector = new RelCoordSirVector("relativeVector");
-            tempRelVector.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll ));
-
-            ManualMode = ManualModeType.Off;
-            return false;
+            var command = SQLHandler.GetInstance.makeCommand("SELECT ID FROM Position WHERE ID = " + ID, CommandType.Text);
+            var reader = SQLHandler.GetInstance.runQuery(command, "Read");
+            var list = reader.readRow();
+            // element 1 is ID, so starts from element 2 (X)
+            movebyCoordinates((int) list[1], (int) list[2], (int) list[3]);
         }
+
+
+        
         #endregion
 
         #region Axis movements
