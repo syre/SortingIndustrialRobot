@@ -7,11 +7,9 @@
         \note Thread functions are to be defined as following - With start parameter: void functionname(object o) {} - Without start parameter: void functionname()
 */
 
-
 using System;
 using System.Collections.Generic;
 using System.Threading;
-
 
 namespace ControlSystem 
 {
@@ -70,7 +68,6 @@ namespace ControlSystem
                 tempHolder.threadPlaceHolder = tempThread;
 
                 threadList.Add(tempHolder);
-
             }
 
             if (tempThreadHolder != null)
@@ -94,7 +91,6 @@ namespace ControlSystem
                 }
 
                 threadList.Remove(tempThreadHolder);
-
             }
             
             if(tempThreadHolder == null)
@@ -140,7 +136,6 @@ namespace ControlSystem
                         threadHolder.threadPlaceHolder.Join();
                     }
                 }
-
             }
 
             if(threadList.Count == 0)
