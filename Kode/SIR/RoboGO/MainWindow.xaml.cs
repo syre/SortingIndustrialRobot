@@ -48,7 +48,7 @@ namespace RoboGO
         // A function within main that invokes function DisplayLogin
         private void WindowsLoaded(object sender, RoutedEventArgs e)
         {
-            //DisplayLoginScreen();
+            DisplayLoginScreen();
         }
 
         // The Window which needs a login

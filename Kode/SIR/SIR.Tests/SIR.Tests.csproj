@@ -63,9 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cubeInfoTest.cs" />
-    <Compile Include="databaseLogTests.cs" />
     <Compile Include="ideViewModelTests.cs" />
-    <Compile Include="logViewModelTests.cs" />
     <Compile Include="manualControllerTests.cs" />
     <Compile Include="positionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

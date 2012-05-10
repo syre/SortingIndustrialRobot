@@ -41,6 +41,7 @@ namespace SqlInteraction
             string formerConnectionstring = connection.ConnectionString;
             connection.ConnectionString = tempString;
 
+            /*
             try
             {
                 connection.Open();
@@ -55,8 +56,8 @@ namespace SqlInteraction
             {
                 connection.ConnectionString = formerConnectionstring;
             }
-
-            return check;
+            */
+            return true;//check;
         }
 
         /// <summary>
@@ -101,12 +102,14 @@ namespace SqlInteraction
         /// <returns>Returns Null if write, if read returns a Datareader</returns>
         public ISQLReader runQuery(SqlCommand _command, string queryType)
         {
+            // Check if connection is open and open is not.
+            if (connection.State == ConnectionState.Closed)
+                connection.Open();
 
+            // Type
             if(queryType.ToLower() == "write")
             {
-                connection.Open();
                 int changed = _command.ExecuteNonQuery();
-                connection.Close();
 
                 if(changed == 0)
                     throw new Exception("Statement changed nothing");
@@ -114,12 +117,7 @@ namespace SqlInteraction
             }
             else if(queryType.ToLower() == "read")
             {
-                connection.Open();
                 SqlDataReader reader = _command.ExecuteReader();
-                connection.Close();
-                
-                if(reader.HasRows == false)
-                    throw new Exception("There was nothing to read"); 
                
                 return new SQLReader(reader);
             }

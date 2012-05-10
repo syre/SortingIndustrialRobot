@@ -21,18 +21,18 @@ namespace SqlInteraction
             SQLCoreReader = _sqlDataReader;
         }
 
-        public List<string> readRow()
+        public List<object> readRow()
         {
             if (sqlDataReader.Read())
             {
-                List<string> lstAttributes = new List<string>();
+                List<object> lstAttributes = new List<object>();
                 for(int i = 0; i < sqlDataReader.FieldCount; i++)
                 {
-                    lstAttributes.Add((string)sqlDataReader[i]);
+                    lstAttributes.Add(sqlDataReader[i]);
                 }
                 return (lstAttributes);
             }
-            return (new List<string>());
+            return (new List<object>());
         }
     }
 }
