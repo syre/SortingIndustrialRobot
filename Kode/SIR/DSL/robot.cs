@@ -462,7 +462,9 @@ namespace DSL
 
         public bool moveByYCoordinate(int _iY)
         {
-            ManualMode = ManualModeType.Coordinates;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
                 return false;
             return true;
@@ -471,7 +473,9 @@ namespace DSL
 
         public bool moveByZCoordinate(int _iZ)
         {
-            ManualMode = ManualModeType.Coordinates;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
                 return false;
             return true;
@@ -479,7 +483,9 @@ namespace DSL
 
         public bool moveByPitch(int _pitch)
         {
-            ManualMode = ManualModeType.Coordinates;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_PITCH, _pitch))
                 return false;
             return true;
@@ -487,7 +493,9 @@ namespace DSL
 
         public bool moveByRoll(int _roll)
         {
-            ManualMode = ManualModeType.Coordinates;
+                        _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ROLL, _roll))
                 return false;
             return true;

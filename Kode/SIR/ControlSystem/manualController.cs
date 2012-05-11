@@ -148,7 +148,6 @@ namespace ControlSystem
         public ManualController()
         {
             robot = Factory.currentIRobotInstance;
-            throw new Exception("Remove later!");
             IsOnline();
             speed = 50;
         }
