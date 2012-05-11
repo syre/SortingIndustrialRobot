@@ -1,0 +1,11 @@
+VERSION:3 SOURCE_TIMESTAMP:3C946460
+NODE:I LEVEL:0 LINE:20 "C:\cvavreval\inc\mega16.h"
+NODE:I LEVEL:0 LINE:21 "C:\cvavreval\inc\stdlib.h"
+NODE:M LEVEL:0 LINE:24 "XTAL"
+NODE:F LEVEL:0 LINE:39 "InitUART(unsigned long BaudRate,unsigned char DataBit)"
+NODE:F LEVEL:0 LINE:71 "CharReady(void)"
+NODE:F LEVEL:0 LINE:80 "ReadChar(void)"
+NODE:F LEVEL:0 LINE:95 "SendChar(unsigned char Tegn)"
+NODE:F LEVEL:0 LINE:109 "SendStringFlash(flash unsigned char * Streng)"
+NODE:F LEVEL:0 LINE:126 "SendStringSRAM(unsigned char * Streng)"
+NODE:F LEVEL:0 LINE:145 "SendInteger(int Tal)"
