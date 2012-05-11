@@ -50,6 +50,8 @@ namespace RoboGO.ViewModels
         private string sCode;
         /// <summary>
         /// Code to execute.
+        /// 
+        /// \warning Haven´t been used.
         /// </summary>
         public string Code
         {
@@ -66,12 +68,18 @@ namespace RoboGO.ViewModels
         #endregion
 
         // Functions
+        /// <summary>
+        /// Constructor which uses TabControl.
+        /// 
+        /// TabControl so can add and remove tab content.
+        /// </summary>
+        /// <param name="_ideTabs">TabControl used in main program in the IDE.</param>
         public IDEViewModel(TabControl _ideTabs)
         {
             // Members settings
             ideTabs = _ideTabs;
             sCode = "";
-            isrScriptRunner = Factory.getScriptRunnerInstance;
+            //isrScriptRunner = Factory.getScriptRunnerInstance;
 
             #region Commands
             
@@ -211,7 +219,6 @@ namespace RoboGO.ViewModels
             tiItem.Header = "New file";
             ideTabs.Items.Add((tiItem));
         }
-
         #endregion
     }
 }
