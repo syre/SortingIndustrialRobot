@@ -35,19 +35,26 @@ namespace RoboGO
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
-            this.Close();
+            Close();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             // Write code here to authenticate user
             // If authenticated, then set DialogResult=true
-            if(passWindowViewModel.authenticate(txtUserName.Text, txtPassword.Password))
+            if (passWindowViewModel.authenticate(txtUserName.Text, txtPassword.Password))
             {
                 DialogResult = true;
-                this.Close();
             }
-            
+            else
+            {
+                MessageBox.Show("Username and/or password incorrect!");
+                txtPassword.Password = string.Empty;
+                txtUserName.Text = string.Empty;
+                txtUserName.Focus();
+            }
+
+
         }
     }
 }
