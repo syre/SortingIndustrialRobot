@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 using SqlInteraction;
 using ControlSystem;
 
@@ -57,9 +59,10 @@ namespace RoboGO.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-        
+
+        private DataGrid tkt;
         // Constructor
-        public InfoViewModel()
+        public InfoViewModel(DataGrid moo)
         {
             sqlDATableValues = new SqlDataAdapter();
             sqlDATables = new SqlDataAdapter();
@@ -68,6 +71,8 @@ namespace RoboGO.ViewModels
             TableValues = new DataTable();
 
             tableValuesCommandBuilder = new SqlCommandBuilder(sqlDATableValues);
+
+            tkt = moo;
         }
 
         /// <summary>
@@ -145,6 +150,34 @@ namespace RoboGO.ViewModels
             {
                 // Handle error
                 UIService.showMessageBox(exc.Message, "Getting table values.", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        public void tablePrint()
+        {
+            PrintDialog printDlg = new PrintDialog();
+            if (printDlg.ShowDialog() == true)
+            {
+                System.Printing.PrintCapabilities capabilities = printDlg.PrintQueue.GetPrintCapabilities(printDlg.PrintTicket);
+
+                double height = tkt.ActualHeight;
+                double width = tkt.ActualWidth;
+                Transform tempTrans = tkt.LayoutTransform;
+
+                double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth/tkt.ActualWidth,
+                                        capabilities.PageImageableArea.ExtentHeight/tkt.ActualHeight);
+
+                tkt.LayoutTransform = new ScaleTransform(scale, scale);
+
+                Size sz = new Size(capabilities.PageImageableArea.ExtentWidth,
+                                   capabilities.PageImageableArea.ExtentHeight);
+
+                tkt.Measure(sz);
+                tkt.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), sz));
+                
+                printDlg.PrintVisual(tkt, "DatabasePrint");
+                
+                tkt.LayoutTransform = tempTrans;
             }
         }
     }
