@@ -1,0 +1,7 @@
+VERSION:3 SOURCE_TIMESTAMP:40AA7C4F
+NODE:I LEVEL:0 LINE:1 "C:\cvavreval\inc\mega16.h"
+NODE:I LEVEL:0 LINE:2 "C:\IHA\4.semester\I4INF1\lab1\uart.h"
+NODE:I LEVEL:0 LINE:3 "C:\cvavreval\inc\delay.h"
+NODE:M LEVEL:0 LINE:5 "ADSC"
+NODE:M LEVEL:0 LINE:6 "ADLAR"
+NODE:F LEVEL:0 LINE:9 "main(void)"

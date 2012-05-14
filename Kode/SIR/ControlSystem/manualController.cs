@@ -127,6 +127,11 @@ namespace ControlSystem
         /// </summary>
         /// <param name="_eidIncOrDec">Increasing or decreasing.</param>
         void moveCoordRoll(enumIncDec _eidIncOrDec);
+
+        /// <summary>
+        /// Stops movement of all axes.
+        /// </summary>
+        void stopAllMovement();
     }
 
     /// <summary>
@@ -143,8 +148,8 @@ namespace ControlSystem
         public ManualController()
         {
             robot = Factory.currentIRobotInstance;
-            throw new Exception("Remove later!");
             IsOnline();
+            speed = 50;
         }
 		
         private void IsOnline()
@@ -339,6 +344,12 @@ namespace ControlSystem
                 if (!robot.moveByRoll(-Speed))
                     throw new Exception();
             }
+        }
+        #endregion
+        #region Others
+        public void stopAllMovement()
+        {
+            robot.stopAllMovement();
         }
         #endregion
     }

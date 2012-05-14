@@ -226,8 +226,8 @@ namespace DSL
         /// Note: Should wait for it to be done before calling other functions.
         /// \todo Refactor delegate to contain ConfigData and ErrorInfo if found necessary.
         /// </summary>
-        /// <param name="_shrtMode">Mode.(Use one of constants[Normally use online mode])</param>
-        /// <param name="_shrtType">Type of connection.(Use one of constants[Normally use default])</param>
+        /// <param name="_sysmodeMode">Mode.[Normally use online mode]</param>
+        /// <param name="_systypeType">Type of connection.[Normally use default]</param>
         /// <param name="_funcptrSuccess">Function to be called on success.</param>
         /// <param name="_funcptrError">Function to be called on error.</param>
         /// <returns>Returns true on successful call.(But errors can still happen)</returns>
@@ -239,7 +239,7 @@ namespace DSL
         /// <summary>
         /// Turns control on and off for certain axis group.
         /// </summary>
-        /// <param name="bAxis">Axis group to affect.(Use enum)</param>
+        /// <param name="_axisSettingsGroup">Axis group to affect.</param>
         /// <param name="_bControlOnOrOff">To have it turned off or on.</param>
         /// <returns>Returns true on successful call.</returns>
         public bool controlWrapped(enumAxisSettings _axisSettingsGroup, bool _bControlOnOrOff) 
@@ -442,7 +442,8 @@ namespace DSL
         /// <param name="_enumGroup">Group can use:
         ///     Robot(Normally used)
         ///     Peripherals
-        ///     All</param>
+        ///     All
+        /// </param>
         /// <param name="_sVectorName">Name of vector.</param>
         /// <param name="_shrtLength">Length of vector.(Number of points.)</param>
         /// <returns>Returns true on successfull call.</returns>

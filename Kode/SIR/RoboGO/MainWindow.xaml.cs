@@ -39,8 +39,8 @@ namespace RoboGO
 
             // Init
             idevmViewModelIDE = new IDEViewModel(IDETabs);
-            _simviewmodel = new SimulatorViewModel(DrawCanvas);
-            infoViewModel = new InfoViewModel();
+            infoViewModel = new InfoViewModel(DatabaseTableValues);
+            _simviewmodel = new SimulatorViewModel(DrawCanvas,Elbow,Wrist,Gripper,Shoulder,Base);
             _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
@@ -138,6 +138,11 @@ namespace RoboGO
         private void btnCheckConnectivity_Click(object sender, RoutedEventArgs e)
         {
             _mainwindowviewmodel.checkIsOnline();
+        }
+
+        private void DatabasePrintButton_Click(object sender, RoutedEventArgs e)
+        {
+            infoViewModel.tablePrint();
         }
     }
 }
