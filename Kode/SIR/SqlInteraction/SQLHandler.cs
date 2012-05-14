@@ -1,20 +1,9 @@
-<<<<<<< HEAD
-﻿/** \file SQLHandler.cs */
-
-=======
 ﻿/** \file ISQLHandler.cs */
 /** \author Robotic Global Organization(RoboGO) */
->>>>>>> cfe803f93fee06ed002fd80ed83fd6695bc5bd07
+
 using System;
 using System.Data;
 using System.Data.SqlClient;
-
-/**
-        \brief Class for SQL interaction.
-        
-        \author Robotic Global Organization(RoboGO)
-        \date 09-04-2012
-*/
 
 namespace SqlInteraction
 {

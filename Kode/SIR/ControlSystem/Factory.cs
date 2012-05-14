@@ -1,20 +1,9 @@
-<<<<<<< HEAD
-﻿/** \file factory.cs */
-=======
 ﻿/** \file Factory.cs */
 /** \author Robotic Global Organization(RoboGO) */
->>>>>>> cfe803f93fee06ed002fd80ed83fd6695bc5bd07
 
 using System.Data.SqlClient;
 using DSL;
 using SqlInteraction;
-
-/**
-        \brief Singleton Factory Class
-        
-        \author Robotic Global Organization(RoboGO)
-        \date 27-03-2012
-*/
 
 namespace ControlSystem
 {
@@ -36,8 +25,6 @@ namespace ControlSystem
         private static object objectSimulatorSync = new object();
         private static object objectIRobotSync = new object();
         private static object objectScriptRunnerSync = new object();
-
-
        
         /// <summary>
         /// Returns the instance of ThreadHandler or creates it if its not already
