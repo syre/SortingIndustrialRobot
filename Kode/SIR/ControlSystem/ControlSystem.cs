@@ -1,10 +1,5 @@
-﻿/**
-        \brief Class to handle styresystem functions
-        
-        \author Robotic Global Organization(RoboGO)
-        \date 27-03-2012
-*/
-
+﻿/** \file ControlSystem.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System;
 using DSL;
 

@@ -1,9 +1,5 @@
-﻿/**
-        \brief Class to handle global classes by using a factory and singleton patterns
-        
-        \author Robotic Global Organization(RoboGO)
-        \date 27-03-2012
-*/
+﻿/** \file Factory.cs */
+/** \author Robotic Global Organization(RoboGO) */
 
 using System.Data.SqlClient;
 using DSL;
@@ -59,7 +55,7 @@ namespace ControlSystem
         }
 
         /// <summary>
-        /// Returns the instance of Robot or creates it if its not already
+        /// Returns the instance of Robot or creates it if it's not already created
         /// </summary>
         public static Robot getRobotInstance
         {
@@ -85,7 +81,7 @@ namespace ControlSystem
         }
 
         /// <summary>
-        /// Returns the instance of Simulator or creates it if its not already
+        /// Returns the instance of Simulator or creates it if its not already created
         /// </summary>
         public static Simulator getSimulatorInstance
         {
@@ -131,7 +127,7 @@ namespace ControlSystem
             }
         }
         /// <summary>
-        /// Returns the instance of ScriptRunner or creates it if its not already
+        /// Returns the instance of ScriptRunner or creates it if its not already created
         /// </summary>
         public static ScriptRunner getScriptRunnerInstance
         {
