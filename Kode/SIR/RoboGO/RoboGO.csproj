@@ -70,9 +70,11 @@
     <Reference Include="GalaSoft.MvvmLight.WPF4">
       <HintPath>..\MVVM Light\GalaSoft.MvvmLight.WPF4.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\MVVM Light\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -233,6 +235,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Images\gripper_closed.png" />
+    <Content Include="Images\home.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Key.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

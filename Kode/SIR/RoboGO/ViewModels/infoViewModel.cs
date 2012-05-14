@@ -5,10 +5,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using Microsoft.Win32;
 using SqlInteraction;
 using ControlSystem;
 
@@ -57,9 +62,10 @@ namespace RoboGO.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-        
+
+        private DataGrid tkt;
         // Constructor
-        public InfoViewModel()
+        public InfoViewModel(DataGrid moo)
         {
             sqlDATableValues = new SqlDataAdapter();
             sqlDATables = new SqlDataAdapter();
@@ -68,6 +74,8 @@ namespace RoboGO.ViewModels
             TableValues = new DataTable();
 
             tableValuesCommandBuilder = new SqlCommandBuilder(sqlDATableValues);
+
+            tkt = moo;
         }
 
         /// <summary>
@@ -145,6 +153,101 @@ namespace RoboGO.ViewModels
             {
                 // Handle error
                 UIService.showMessageBox(exc.Message, "Getting table values.", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        /// <summary>
+        /// Exports the table to CSV string.
+        /// 
+        /// Source: http://dotnetpulse.blogspot.com/2006/11/systemdata-export-table-to-csv-file.html
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <param name="printHeaders">
+        /// if set to <c>true</c> print headers.</param>
+        /// <returns>CSV formated string</returns>
+        private static string ExportTableToCsvString(DataTable table, bool printHeaders)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (printHeaders)
+            {
+                //write the headers.
+                for (int colCount = 0;
+                     colCount < table.Columns.Count; colCount++)
+                {
+                    sb.Append(table.Columns[colCount].ColumnName);
+                    if (colCount != table.Columns.Count - 1)
+                    {
+                        sb.Append(",");
+                    }
+                    else
+                    {
+                        sb.AppendLine();
+                    }
+                }
+            }
+
+            // Write all the rows.
+            for (int rowCount = 0;
+                 rowCount < table.Rows.Count; rowCount++)
+            {
+                for (int colCount = 0;
+                     colCount < table.Columns.Count; colCount++)
+                {
+                    sb.Append(table.Rows[rowCount][colCount]);
+                    if (colCount != table.Columns.Count - 1)
+                    {
+                        sb.Append(",");
+                    }
+                }
+                if (rowCount != table.Rows.Count - 1)
+                {
+                    sb.AppendLine();
+                }
+            }
+
+            return sb.ToString();
+        }
+        public void tablePrint()
+        {
+            /*PrintDialog printDlg = new PrintDialog();
+            if (printDlg.ShowDialog() == true)
+            {
+                /*
+                System.Printing.PrintCapabilities capabilities = printDlg.PrintQueue.GetPrintCapabilities(printDlg.PrintTicket);
+
+                double height = tkt.ActualHeight;
+                double width = tkt.ActualWidth;
+                Transform tempTrans = tkt.LayoutTransform;
+
+                double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth/tkt.ActualWidth,
+                                        capabilities.PageImageableArea.ExtentHeight/tkt.ActualHeight);
+
+                tkt.LayoutTransform = new ScaleTransform(scale, scale);
+
+                Size sz = new Size(capabilities.PageImageableArea.ExtentWidth,
+                                   capabilities.PageImageableArea.ExtentHeight);
+
+                tkt.Measure(sz);
+                tkt.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), sz));
+                
+                printDlg.PrintVisual(tkt, "DatabasePrint");
+                
+                tkt.LayoutTransform = tempTrans;
+                
+                
+            }*/
+            if (TableValues.Rows.Count > 0)
+            {
+                SaveFileDialog sfdDialog = new SaveFileDialog(); /// \warning Using UI dialog.
+                sfdDialog.DefaultExt = ".csv";
+                sfdDialog.Filter = "CSV Files(*.csv)|*.csv";
+                if (sfdDialog.ShowDialog() == true)
+                {
+                    string cvsData = ExportTableToCsvString(TableValues, true);
+                    StreamWriter sw = new StreamWriter(sfdDialog.FileName);
+                    sw.Write(cvsData);
+                    sw.Close();
+                }
             }
         }
     }

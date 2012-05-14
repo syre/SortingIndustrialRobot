@@ -191,10 +191,10 @@ namespace DSL
         DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
         
         #region Robot mode properties
-        
+        private ManualModeType _manualmode;
         public ManualModeType ManualMode
         {
-            get { return ManualMode; }
+            get { return _manualmode; }
             
             set
             {
@@ -203,21 +203,21 @@ namespace DSL
                 {
                     status = _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
                     if (status)
-                        ManualMode = value;
+                        _manualmode = value;
                 }
 
                 else if (value == ManualModeType.Coordinates)
                 {
                     status = _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
                     if (status)
-                        ManualMode = value;
+                        _manualmode = value;
                 }
 
                 else if (value == ManualModeType.Off)
                 {
                     status = _wrapper.closeManualWrapped();
                     if (status)
-                        ManualMode = value;
+                        _manualmode = value;
                 }
 
                 else
@@ -255,7 +255,7 @@ namespace DSL
             _wrapper = Wrapper.getInstance();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
-            homeRobot();
+            //homeRobot();
         }
 
         public bool initialization() // implementing delegates
@@ -345,43 +345,58 @@ namespace DSL
 
         public bool moveBase(int _iSpeed)
         {
-            ManualMode = ManualModeType.Axes;
+            //ManualMode = ManualModeType.Axes;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return  _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, _iSpeed);
         }
 
         public bool moveShoulder(int _iSpeed)
         {
-            ManualMode = ManualModeType.Axes;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_SHOULDER, _iSpeed);
         }
 
         public bool moveElbow(int _iSpeed)
         {
-            ManualMode = ManualModeType.Axes;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ELBOW, _iSpeed);
         }
 
         public bool moveWristPitch(int _iSpeed)
         {
-            ManualMode = ManualModeType.Axes;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTPITCH, _iSpeed);
         }
 
         public bool moveWristRoll(int _iSpeed)
         {
-            ManualMode = ManualModeType.Axes;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTROLL, _iSpeed);
         }
 
         public bool moveGripper(int _iSpeed)
         {
-            ManualMode = ManualModeType.Axes;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_GRIPPER, _iSpeed);
         }
 
         public bool moveConveyerBelt(int _iSpeed)
         {
-            ManualMode = ManualModeType.Axes;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, _iSpeed);
         }
 
@@ -436,7 +451,10 @@ namespace DSL
         #region MovejustOneCordinate
         public bool moveByXCoordinate(int _iX)
         {
-            ManualMode = ManualModeType.Coordinates;
+            //ManualMode = ManualModeType.Coordinates;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
                 return false;
             return true;
@@ -444,7 +462,9 @@ namespace DSL
 
         public bool moveByYCoordinate(int _iY)
         {
-            ManualMode = ManualModeType.Coordinates;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
                 return false;
             return true;
@@ -453,7 +473,9 @@ namespace DSL
 
         public bool moveByZCoordinate(int _iZ)
         {
-            ManualMode = ManualModeType.Coordinates;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
                 return false;
             return true;
@@ -461,7 +483,9 @@ namespace DSL
 
         public bool moveByPitch(int _pitch)
         {
-            ManualMode = ManualModeType.Coordinates;
+            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_PITCH, _pitch))
                 return false;
             return true;
@@ -469,7 +493,9 @@ namespace DSL
 
         public bool moveByRoll(int _roll)
         {
-            ManualMode = ManualModeType.Coordinates;
+                        _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ROLL, _roll))
                 return false;
             return true;

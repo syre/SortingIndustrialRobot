@@ -8,19 +8,36 @@ using System.Text;
 
 namespace SqlInteraction
 {
+    /// <summary>
+    /// Class to read table data.
+    /// </summary>
     public class SQLReader : ISQLReader
     {
         private SqlDataReader sqlDataReader;
+        /// <summary>
+        /// Core reader used for functions.
+        /// </summary>
         public SqlDataReader SQLCoreReader
         {
             get { return (sqlDataReader); }
             set { sqlDataReader = value; }
         }
+        
+        /// <summary>
+        /// Constructor which takes a SqlDataReader used for the functions.
+        /// </summary>
+        /// <param name="_sqlDataReader">Data reader for the functions.</param>
         public SQLReader(SqlDataReader _sqlDataReader)
         {
             SQLCoreReader = _sqlDataReader;
         }
 
+        /// <summary>
+        /// Read one table row.
+        /// 
+        /// For each call the next row is read.
+        /// </summary>
+        /// <returns>List of objects from the table. Empty list if end of table or no data in table.</returns>
         public List<object> readRow()
         {
             if (sqlDataReader.Read())
@@ -35,6 +52,11 @@ namespace SqlInteraction
             return (new List<object>());
         }
 
+        /// <summary>
+        /// Closes the reader and its connection with the database connection.
+        /// 
+        /// Use this or you can lock other functions from using the database connect.
+        /// </summary>
         public void close()
         {
             sqlDataReader.Close();

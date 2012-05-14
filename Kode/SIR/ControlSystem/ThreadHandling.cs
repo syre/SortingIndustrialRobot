@@ -137,9 +137,6 @@ namespace ControlSystem
                     }
                 }
             }
-
-            if(threadList.Count == 0)
-                throw new Exception("No running threads");
         }
 
         /// <summary>
