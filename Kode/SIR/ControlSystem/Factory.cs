@@ -1,13 +1,15 @@
-﻿/**
-        \brief Class to handle global classes by using a factory and singleton patterns
-        
-        \author Robotic Global Organization(RoboGO)
-        \date 27-03-2012
-*/
+﻿/** \file factory.cs */
 
 using System.Data.SqlClient;
 using DSL;
 using SqlInteraction;
+
+/**
+        \brief Singleton Factory Class
+        
+        \author Robotic Global Organization(RoboGO)
+        \date 27-03-2012
+*/
 
 namespace ControlSystem
 {

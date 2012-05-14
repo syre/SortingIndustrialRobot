@@ -1,12 +1,14 @@
-﻿/**
-        \brief Class to handle styresystem functions
+﻿/** \file controlSystem.cs */
+
+using System;
+using DSL;
+
+/**
+        \brief Class for ControlSystem
         
         \author Robotic Global Organization(RoboGO)
         \date 27-03-2012
 */
-
-using System;
-using DSL;
 
 namespace ControlSystem
 {
