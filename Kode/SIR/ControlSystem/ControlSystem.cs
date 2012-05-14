@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿/** \file controlSystem.cs */
 
 using System;
@@ -10,6 +11,13 @@ using DSL;
         \date 27-03-2012
 */
 
+=======
+﻿/** \file ControlSystem.cs */
+/** \author Robotic Global Organization(RoboGO) */
+using System;
+using DSL;
+
+>>>>>>> cfe803f93fee06ed002fd80ed83fd6695bc5bd07
 namespace ControlSystem
 {
     /// <summary>

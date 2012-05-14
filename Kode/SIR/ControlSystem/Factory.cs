@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿/** \file factory.cs */
+=======
+﻿/** \file Factory.cs */
+/** \author Robotic Global Organization(RoboGO) */
+>>>>>>> cfe803f93fee06ed002fd80ed83fd6695bc5bd07
 
 using System.Data.SqlClient;
 using DSL;
@@ -61,7 +66,7 @@ namespace ControlSystem
         }
 
         /// <summary>
-        /// Returns the instance of Robot or creates it if its not already
+        /// Returns the instance of Robot or creates it if it's not already created
         /// </summary>
         public static Robot getRobotInstance
         {
@@ -87,7 +92,7 @@ namespace ControlSystem
         }
 
         /// <summary>
-        /// Returns the instance of Simulator or creates it if its not already
+        /// Returns the instance of Simulator or creates it if its not already created
         /// </summary>
         public static Simulator getSimulatorInstance
         {
@@ -133,7 +138,7 @@ namespace ControlSystem
             }
         }
         /// <summary>
-        /// Returns the instance of ScriptRunner or creates it if its not already
+        /// Returns the instance of ScriptRunner or creates it if its not already created
         /// </summary>
         public static ScriptRunner getScriptRunnerInstance
         {

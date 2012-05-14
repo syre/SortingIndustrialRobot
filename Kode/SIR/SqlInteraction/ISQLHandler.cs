@@ -5,6 +5,9 @@ using System.Data.SqlClient;
 
 namespace SqlInteraction
 {
+	///	<summary>
+	///	Interface for handling class of sql
+	///	</summary>
     public interface ISQLHandler
     {
         /// <summary>
