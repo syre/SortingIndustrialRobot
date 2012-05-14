@@ -16,15 +16,15 @@ namespace SqlInteraction
     public interface ISQLReader
     {
         /// <summary>
-        /// Reads one row from the table.
+        /// Read one table row.
         /// 
-        /// On next call reads next row. If any.
+        /// For each call the next row is read.
         /// </summary>
-        /// <returns>The row if any else empty list.</returns>
+        /// <returns>List of objects from the table. Empty list if end of table or no data in table.</returns>
         List<object> readRow();
 
         /// <summary>
-        /// Closes reader.
+        /// Closes the reader.
         /// </summary>
         void close();
     }
