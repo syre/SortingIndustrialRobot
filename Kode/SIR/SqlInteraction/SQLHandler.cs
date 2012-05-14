@@ -1,10 +1,5 @@
-﻿/**
-        \brief Class that handles all of SQL interaction.
-        
-        \author Robotic Global Organization(RoboGO)
-        \date 09-04-2012
-*/
-
+﻿/** \file ISQLHandler.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Data;
 using System.Data.SqlClient;
