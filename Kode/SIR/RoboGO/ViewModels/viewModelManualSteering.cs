@@ -50,6 +50,9 @@ namespace RoboGO.ViewModels
             try
             {
                 mcManualControl = new ManualController();
+                dcOpenGripper = new DelegateCommand(openGripper);
+                dcCloseGripper = new DelegateCommand(closeGripper);
+                dcHomeRobot = new DelegateCommand(seekHome);
             }
             catch (Exception)
             {
@@ -268,6 +271,14 @@ namespace RoboGO.ViewModels
         {
             mcManualControl.stopAllMovement();
         }
+        #endregion
+        #region commands
+        private DelegateCommand dcOpenGripper;
+        public ICommand OpenGripper { get { return (dcOpenGripper); } }
+        private DelegateCommand dcCloseGripper;
+        public ICommand CloseGripper { get { return (dcCloseGripper); } }
+        private DelegateCommand dcHomeRobot;
+        public ICommand SeekHome { get { return dcHomeRobot; } }
         #endregion
     }
 }

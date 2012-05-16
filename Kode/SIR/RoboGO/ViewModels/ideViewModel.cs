@@ -79,7 +79,7 @@ namespace RoboGO.ViewModels
             // Members settings
             ideTabs = _ideTabs;
             sCode = "";
-            //isrScriptRunner = Factory.getScriptRunnerInstance;
+            isrScriptRunner = Factory.getScriptRunnerInstance;
 
             #region Commands
             
