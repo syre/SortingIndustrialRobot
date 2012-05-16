@@ -1,5 +1,11 @@
-﻿/**
-        \brief Class to handle all threads in system, everything handled by a unique description tag that stays with a thread from moment it gets added till it gets removed.
+﻿/** \file threadHandling.cs */
+
+using System;
+using System.Collections.Generic;
+using System.Threading;
+
+/**
+        \brief Class to handle system threads.
         
         \author Robotic Global Organization(RoboGO)
         \date 18-03-2012
@@ -7,14 +13,14 @@
         \note Thread functions are to be defined as following - With start parameter: void functionname(object o) {} - Without start parameter: void functionname()
 */
 
-using System;
-using System.Collections.Generic;
-using System.Threading;
-
 namespace ControlSystem 
 {
+    /// <summary>
+    /// Class to handle all threads in system, everything handled by a unique description tag that stays with a thread from moment it gets added till it gets removed.
+    /// </summary>
     public class ThreadHandling
     {
+        // List of threads
         private List<ThreadHolder> threadList;
  
         /// <summary>
@@ -205,19 +211,25 @@ namespace ControlSystem
         }
 
         /// <summary>
-        /// Class that holds the description of the thread and the thread itself
+        /// Class that holds the description of the thread and the thread itself for usage
         /// </summary>
         public class ThreadHolder
         {
             private string description;
             private Thread thread;
 
+            /// <summary>
+            /// Variable that holds the description for a thread.
+            /// </summary>
             public string stringDescription
             {
                 get { return description; }
                 set { description = value; }
             }
 
+            /// <summary>
+            /// Variable that holds the thread instance
+            /// </summary>
             public Thread threadPlaceHolder
             {
                 get { return thread; }

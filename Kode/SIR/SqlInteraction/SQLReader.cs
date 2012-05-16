@@ -32,12 +32,6 @@ namespace SqlInteraction
             SQLCoreReader = _sqlDataReader;
         }
 
-        /// <summary>
-        /// Read one table row.
-        /// 
-        /// For each call the next row is read.
-        /// </summary>
-        /// <returns>List of objects from the table. Empty list if end of table or no data in table.</returns>
         public List<object> readRow()
         {
             if (sqlDataReader.Read())
@@ -55,7 +49,7 @@ namespace SqlInteraction
         /// <summary>
         /// Closes the reader and its connection with the database connection.
         /// 
-        /// Use this or you can lock other functions from using the database connect.
+        /// Use this or you can lock other functions from using the database connection.
         /// </summary>
         public void close()
         {
