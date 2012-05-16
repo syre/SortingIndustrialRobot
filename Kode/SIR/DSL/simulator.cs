@@ -362,6 +362,11 @@ namespace DSL
             return _currentposition;
         }
 
+        public void moveByDatabasePosition(int _iCubeID)
+        {
+            throw new NotImplementedException();
+        }
+
         public string getCurrentPositionAsString()
         {
             return _currentposition.ToString();

@@ -2,6 +2,7 @@
 /** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Data;
+using System.Management.Instrumentation;
 using SqlInteraction;
 
 namespace DSL
@@ -182,6 +183,12 @@ namespace DSL
         /// </summary>
         /// <returns></returns>
         VecPoint getCurrentPosition();
+
+        /// <summary>
+        /// Moves to position from Cube ID.(From Database.)
+        /// </summary>
+        /// <param name="_iCubeID">ID of Cube.</param>
+        void moveByDatabasePosition(int _iCubeID);
     }
     public class Robot : IRobot
     {
@@ -328,21 +335,20 @@ namespace DSL
             return true;
         }
 
-        public void moveByDatabasePosition(int ID)
+        public void moveByDatabasePosition(int _iCubeID)
         {
-            var command = SQLHandler.GetInstance.makeCommand("SELECT ID FROM Position WHERE ID = " + ID, CommandType.Text);
-            var reader = SQLHandler.GetInstance.runQuery(command, "Read");
-            var list = reader.readRow();
-            // element 1 is ID, so starts from element 2 (X)
-            movebyCoordinates((int) list[1], (int) list[2], (int) list[3]);
+            var sqlcmdCommand = SQLHandler.GetInstance.makeCommand("SELECT ID FROM Position WHERE ID = " + _iCubeID, CommandType.Text);
+            var isqlrdrReader = SQLHandler.GetInstance.runQuery(sqlcmdCommand, "Read");
+            var lstCoordinates = isqlrdrReader.readRow();
+            // element 0 is ID, so starts from element 1(X)
+            if(lstCoordinates.Count != 0)
+                movebyCoordinates((int) lstCoordinates[1], (int)lstCoordinates[2], (int)lstCoordinates[3]);
+            else
+                throw new InstanceNotFoundException("No cube with that ID found.");
         }
-
-
-        
         #endregion
 
         #region Axis movements
-
         public bool moveBase(int _iSpeed)
         {
             //ManualMode = ManualModeType.Axes;
@@ -411,7 +417,6 @@ namespace DSL
             return (_vect.iX.ToString() + " " + _vect.iY.ToString() + " " + _vect.iZ.ToString() + " " + _vect.iPitch.ToString() + " " + _vect.iRoll.ToString());
 
         }
-
         #endregion
 
         #region gripper methods
