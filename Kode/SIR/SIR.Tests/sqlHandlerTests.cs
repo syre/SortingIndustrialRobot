@@ -10,9 +10,6 @@ namespace SIR.Tests
     [TestFixture]
     public class sqlHandlerTests
     {
-
-        private bool connection; 
-
         [Test]
         public void SetSingletonSqlHandlingShouldNotBeNull()
         {
