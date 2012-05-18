@@ -1,6 +1,8 @@
 ﻿/** \file scriptRunner.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
+using System.IO;
+using System.Text;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 
@@ -16,6 +18,7 @@ namespace DSL
         void setRobotInstance(IRobot _iroboRobot);
         void setScriptFromFile(string _sPath);
         void setScriptFromString(string _sScript);
+        string readFromOutputStream();
         void ExecuteScript();
     }
     /// <summary>
@@ -31,6 +34,7 @@ namespace DSL
         private static ScriptSource _source;
         private static ScriptScope _scope;
         private static ErrorReporter _reporter;
+        private static MemoryStream _outputstream;
         private static IRobot _robot;
 
         // Singleton
@@ -57,9 +61,12 @@ namespace DSL
             _engine = Python.GetEngine(_runtime);
             _scope = _engine.CreateScope();
             _reporter = new ErrorReporter();
+            _outputstream = new MemoryStream();
+            _runtime.IO.SetOutput(_outputstream,new StreamWriter(_outputstream));
             // initializing robot methods from methods.py file placed in root dir
             setScriptFromFile("methods.py");
             ExecuteScript();
+        
         }
 
         /// <summary>
@@ -101,6 +108,24 @@ namespace DSL
                // compilation failed - alert user
                throw new Exception("compilation failed");
            }
+        }
+
+        public string  readFromOutputStream()
+        {
+            int length = (int)_outputstream.Length;
+
+            Byte[] bytes = new Byte[length];
+
+            _outputstream.Seek(0, SeekOrigin.Begin);
+            _outputstream.Read(bytes, 0, (int)_outputstream.Length);
+
+            string tempString = Encoding.GetEncoding("utf-8").GetString(bytes, 0, (int)_outputstream.Length);
+            
+            if(tempString.EndsWith("\r\n"))
+            {
+                tempString = tempString.Substring(0, tempString.LastIndexOf("\r"));
+            }
+            return tempString;
         }
 
         /// <summary>

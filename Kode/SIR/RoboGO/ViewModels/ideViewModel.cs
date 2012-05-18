@@ -29,7 +29,7 @@ namespace RoboGO.ViewModels
         public RelayCommand newTab { get; private set; }
 
         private TabControl ideTabs;
-
+        private TextBox outputbox;
         // Members and properties
         private IScriptRunner isrScriptRunner;
         /// <summary>
@@ -74,10 +74,11 @@ namespace RoboGO.ViewModels
         /// TabControl so can add and remove tab content.
         /// </summary>
         /// <param name="_ideTabs">TabControl used in main program in the IDE.</param>
-        public IDEViewModel(TabControl _ideTabs)
+        public IDEViewModel(TabControl _ideTabs, TextBox _outputbox)
         {
             // Members settings
             ideTabs = _ideTabs;
+            outputbox = _outputbox;
             sCode = "";
             isrScriptRunner = Factory.getScriptRunnerInstance;
 
@@ -118,6 +119,8 @@ namespace RoboGO.ViewModels
         	    UIService.showMessageBox(e.Message, "ScriptRunner", MessageBoxButton.OK, MessageBoxImage.Error);
         	}
             isrScriptRunner.ExecuteScript();
+            outputbox.Text = isrScriptRunner.readFromOutputStream();
+            outputbox.ScrollToEnd();
         }
 
         protected bool saveAs_CanExecute

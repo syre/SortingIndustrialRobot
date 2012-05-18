@@ -10,7 +10,6 @@
             <Setter Property="AcceptsTab" Value="True" />
         </Style>
     </Window.Resources>
-
     <!-- By adding viewbox, all content will be proportionally fitting-->
    <Viewbox Height="410">
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -81,8 +80,8 @@
                                     <Setter Property="AcceptsReturn" Value="True" />
                                     <Setter Property="AcceptsTab" Value="True" />
                                     <Setter Property="MaxWidth" Value="630" />
-                                    <Setter Property="MinHeight" Value="300" />
-                                    <Setter Property="MaxHeight" Value="300" />
+                                    <Setter Property="MinHeight" Value="200" />
+                                    <Setter Property="MaxHeight" Value="200" />
                                     <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
                                 </Style>
                             </TabControl.Resources>
@@ -90,6 +89,8 @@
                                 <TextBox />
                             </TabItem>
                         </TabControl>
+                        <Label Content="DSL Output:"/>
+                             <TextBox Name="DSLOutputBox" MaxHeight="100" MinHeight="100" VerticalScrollBarVisibility="Auto" />
                     </StackPanel>
                 </TabItem>
                 <!--Simulator tab-->

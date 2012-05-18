@@ -38,7 +38,7 @@ namespace RoboGO
             InitializeComponent();
 
             // Init
-            idevmViewModelIDE = new IDEViewModel(IDETabs);
+            idevmViewModelIDE = new IDEViewModel(IDETabs,DSLOutputBox);
             infoViewModel = new InfoViewModel(DatabaseTableValues);
             _simviewmodel = new SimulatorViewModel(DrawCanvas,Elbow,Wrist,Gripper,Shoulder,Base);
             _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
@@ -144,5 +144,6 @@ namespace RoboGO
         {
             infoViewModel.tablePrint();
         }
+
     }
 }
