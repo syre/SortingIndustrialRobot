@@ -16,7 +16,7 @@ def WaitFor(arg):
 
 # coordinates movement function
 def moveByCoordinates(x,y,z):
-	return _robot.moveByCoordinates(x,y,z)
+	return _robot.movebyCoordinates(x,y,z)
 
 def moveByAbsoluteCoordinates(x,y,z,pitch,roll):
 	return _robot.moveByAbsoluteCoordinates(x,y,z,pitch,roll)

@@ -2,23 +2,11 @@
 /** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Data;
+using System.Management.Instrumentation;
 using SqlInteraction;
 
 namespace DSL
 {
-    /// <summary>
-    /// enum that specifies manual modes for the robot to be in
-    /// Axes dictates manual movement by axes
-    /// Coor dictates dictates manual movement by coordinates
-    /// Off dictates automatic movement (non-manual)
-    /// 
-    /// </summary>
-    public enum ManualModeType
-    {   
-        Off,
-        Axes,
-        Coordinates
-    }
     /// <summary>
     /// The interface that Robot and Simulator are based on
     /// </summary>
@@ -40,7 +28,6 @@ namespace DSL
         /// <returns></returns>
         bool initialization();
         
-        ManualModeType ManualMode { get; set; }
         /// <summary>
         /// Calls wrapper function for stopping all movement
         /// </summary>
@@ -182,6 +169,12 @@ namespace DSL
         /// </summary>
         /// <returns></returns>
         VecPoint getCurrentPosition();
+
+        /// <summary>
+        /// Moves to position from Cube ID.(From Database.)
+        /// </summary>
+        /// <param name="_iCubeID">ID of Cube.</param>
+        void moveByDatabasePosition(int _iCubeID);
     }
     public class Robot : IRobot
     {
@@ -189,45 +182,6 @@ namespace DSL
         DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
         DLL.DgateCallBack dgateEventHandlerError = initError;
         DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
-        
-        #region Robot mode properties
-        private ManualModeType _manualmode;
-        public ManualModeType ManualMode
-        {
-            get { return _manualmode; }
-            
-            set
-            {
-                bool status = false;
-                if (value == ManualModeType.Axes)
-                {
-                    status = _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
-                    if (status)
-                        _manualmode = value;
-                }
-
-                else if (value == ManualModeType.Coordinates)
-                {
-                    status = _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
-                    if (status)
-                        _manualmode = value;
-                }
-
-                else if (value == ManualModeType.Off)
-                {
-                    status = _wrapper.closeManualWrapped();
-                    if (status)
-                        _manualmode = value;
-                }
-
-                else
-                    throw new ArgumentOutOfRangeException("value", "ManualMode didnt set correctly");
-
-                if (!status)
-                    throw new Exception("Manual Mode Set returned false");
-            }
-        }
-        #endregion
 
         #region delegate functions
         static void initSuccess(IntPtr _iptrArg)
@@ -294,55 +248,48 @@ namespace DSL
         {
             // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
             
-            ManualMode = ManualModeType.Coordinates;
             SIRVector tempCordVector = new AbsCoordSirVector("absoluteVector");
             tempCordVector.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll));
             _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, "absoluteVector",5); // shrtlength??
-            _wrapper.moveLinearWrapped("defaultVector", 5); // index??    
-            ManualMode = ManualModeType.Off;
+            _wrapper.moveLinearWrapped("defaultVector", 5); // index?? 
             return false; 
         }
 
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
             // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
-            ManualMode = ManualModeType.Coordinates;
 
             SIRVector tempRelVector = new RelCoordSirVector("relativeVector");
             tempRelVector.addPoint(new VecPoint(_iX, _iY, _iZ, _iPitch, _iRoll));
 
-            ManualMode = ManualModeType.Off;
             return false;
         }
 
         public bool movebyCoordinates(int _iX, int _iY, int _iZ)
         {
-            ManualMode = ManualModeType.Coordinates;
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
                 return false;
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
                 return false;
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
                 return false;
-            ManualMode = ManualModeType.Off;
             return true;
         }
 
-        public void moveByDatabasePosition(int ID)
+        public void moveByDatabasePosition(int _iCubeID)
         {
-            var command = SQLHandler.GetInstance.makeCommand("SELECT ID FROM Position WHERE ID = " + ID, CommandType.Text);
-            var reader = SQLHandler.GetInstance.runQuery(command, "Read");
-            var list = reader.readRow();
-            // element 1 is ID, so starts from element 2 (X)
-            movebyCoordinates((int) list[1], (int) list[2], (int) list[3]);
+            var sqlcmdCommand = SQLHandler.GetInstance.makeCommand("SELECT ID FROM Position WHERE ID = " + _iCubeID, CommandType.Text);
+            var isqlrdrReader = SQLHandler.GetInstance.runQuery(sqlcmdCommand, "Read");
+            var lstCoordinates = isqlrdrReader.readRow();
+            // element 0 is ID, so starts from element 1(X)
+            if(lstCoordinates.Count != 0)
+                movebyCoordinates((int) lstCoordinates[1], (int)lstCoordinates[2], (int)lstCoordinates[3]);
+            else
+                throw new InstanceNotFoundException("No cube with that ID found.");
         }
-
-
-        
         #endregion
 
         #region Axis movements
-
         public bool moveBase(int _iSpeed)
         {
             //ManualMode = ManualModeType.Axes;
@@ -411,7 +358,6 @@ namespace DSL
             return (_vect.iX.ToString() + " " + _vect.iY.ToString() + " " + _vect.iZ.ToString() + " " + _vect.iPitch.ToString() + " " + _vect.iRoll.ToString());
 
         }
-
         #endregion
 
         #region gripper methods

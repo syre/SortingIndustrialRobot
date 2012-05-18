@@ -146,6 +146,7 @@
                             <TextBox Name="txtbTime" Grid.Row="3" Grid.Column="0" Margin="2,2,2,2"/>
                             <Label Content="-- Position (x, y, z, pitch, roll) --" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Margin="2,2,2,2"/>
                             <TextBox Name="txtbPosition" Grid.Row="5" Grid.Column="0" Margin="2,2,2,2" Text="{Binding CurrentPosition, Mode=OneWay}" />
+                            <TextBox Name="txtblockUIOutput" Grid.Column="0" Grid.Row="1" Text="{Binding UIText.Buffer, Mode=OneWay}" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                         </Grid>
                     </StackPanel>
                 </TabItem>

@@ -79,7 +79,7 @@ namespace RoboGO.ViewModels
             // Members settings
             ideTabs = _ideTabs;
             sCode = "";
-            //isrScriptRunner = Factory.getScriptRunnerInstance;
+            isrScriptRunner = Factory.getScriptRunnerInstance;
 
             #region Commands
             
@@ -111,11 +111,11 @@ namespace RoboGO.ViewModels
         {
         	try
         	{
-        	isrScriptRunner.setScriptFromString(((TextBox)(ideTabs.SelectedContent)).Text);
+        	   isrScriptRunner.setScriptFromString(((TextBox)(ideTabs.SelectedContent)).Text);
         	}
         	catch(Exception e)
         	{
-        		
+        	    UIService.showMessageBox(e.Message, "ScriptRunner", MessageBoxButton.OK, MessageBoxImage.Error);
         	}
             isrScriptRunner.ExecuteScript();
         }
