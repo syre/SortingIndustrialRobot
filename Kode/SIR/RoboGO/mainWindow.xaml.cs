@@ -1,12 +1,9 @@
 ﻿/** \file MainWindow.xaml.cs */
 /** \author Robotic Global Organization(RoboGO) */
 
-using System;
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using DSL;
 using RoboGO.ViewModels;
 
 

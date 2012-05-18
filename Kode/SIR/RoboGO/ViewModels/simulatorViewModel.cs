@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using DSL;
 using ControlSystem;
-using System.ComponentModel;
-﻿using ControlSystem;
 
 
 namespace RoboGO.ViewModels

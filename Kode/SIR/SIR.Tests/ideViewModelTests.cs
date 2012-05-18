@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using ControlSystem;
 using DSL;
 using NUnit.Framework;
 using Rhino.Mocks;
-using RoboGO;
 using RoboGO.ViewModels;
 
 namespace SIR.Tests

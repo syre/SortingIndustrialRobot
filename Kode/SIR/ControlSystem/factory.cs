@@ -1,9 +1,7 @@
 ﻿/** \file Factory.cs */
 /** \author Robotic Global Organization(RoboGO) */
 
-using System.Data.SqlClient;
 using DSL;
-using SqlInteraction;
 
 namespace ControlSystem
 {
