@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,11 @@ using DSL;
 using ControlSystem;
 using System.ComponentModel;
 
+=======
+﻿using ControlSystem;
+
+
+>>>>>>> ba98bec3173ec6a78836ef8ffe7d265198a4f0d0
 namespace RoboGO.ViewModels
 {
     public class SimulatorViewModel
