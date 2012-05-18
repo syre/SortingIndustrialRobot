@@ -42,12 +42,17 @@ namespace RoboGO
         {
             // Write code here to authenticate user
             // If authenticated, then set DialogResult=true
-            if(passWindowViewModel.authenticate(txtUserName.Text, txtPassword.Password))
+            if (passWindowViewModel.authenticate(txtUserName.Text, txtPassword.Password))
             {
                 DialogResult = true;
                 this.Close();
             }
-            
+            else
+            {
+                MessageBox.Show("Username or/and Password failed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
         }
     }
 }
