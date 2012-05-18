@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ControlSystem;
 
-namespace DSL
+
+namespace RoboGO.ViewModels
 {
     public class simulatorViewModel
     {
