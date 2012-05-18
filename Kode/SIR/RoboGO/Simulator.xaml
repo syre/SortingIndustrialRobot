@@ -14,9 +14,7 @@
             <StackPanel Grid.Column="0">
                 <Label Content="Simulator" FontWeight="Bold" HorizontalAlignment="Center" FontSize="16"  Margin="5"/>
                 <TextBox Name="txtblockUIOutput" Text="{Binding UIText.Buffer, Mode=OneWay}" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Height="120" Margin="5"/>
-                <Label Content="-- Time --" HorizontalAlignment="Center" Margin="5"/>
-                <TextBox Name="txtbTime" Margin="5"/>
-                <Label Content="-- Position (x, y, z, pitch, roll) --" HorizontalAlignment="Center" Margin="5"/>
+                <Label Content="-- Position ( y , z ) --" HorizontalAlignment="Center" Margin="5"/>
                 <TextBox Name="txtbPosition" Text="{Binding CurrentPosition, Mode=OneWay}" Margin="5" />
             </StackPanel>
         </Border>
@@ -32,7 +30,7 @@
             <Polyline Points="0,0 10,20 -5,40 -250,0 -250,-15 0,0 " Fill="Gray" Stroke="Gray" Canvas.Left="405" Canvas.Top="141"/>
             <Polyline Points="0,0 30,7 -50,100 -65,90 0,0" Fill="Gray" Canvas.Left="155" Canvas.Top="125"/>
             <Polyline Points="0,0 0,30 20,30 20,60 10,60 10,40 -20,40 -20,60 -30,60 -30,30 -10,30 -10,0 0,0" 
-                      Stroke="Gray" Fill="Gray" Canvas.Left="106" Canvas.Top="212" Width="26" />
+                      Stroke="Gray" Fill="Gray" Canvas.Left="104" Canvas.Top="212" Width="31" />
         </Canvas>
     </Grid>
 </UserControl>
