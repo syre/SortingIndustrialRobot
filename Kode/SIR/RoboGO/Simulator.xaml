@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="RoboGO.Simulator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="348" d:DesignWidth="647">
+    <Grid Height="344">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="192"/>
+            <ColumnDefinition Width="453"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="0,0,5,0">
+            <StackPanel Grid.Column="0">
+                <Label Content="Simulator" FontWeight="Bold" HorizontalAlignment="Center" FontSize="16"  Margin="5"/>
+                <TextBox Name="txtblockUIOutput" Text="{Binding UIText.Buffer, Mode=OneWay}" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Height="120" Margin="5"/>
+                <Label Content="-- Time --" HorizontalAlignment="Center" Margin="5"/>
+                <TextBox Name="txtbTime" Margin="5"/>
+                <Label Content="-- Position (x, y, z, pitch, roll) --" HorizontalAlignment="Center" Margin="5"/>
+                <TextBox Name="txtbPosition" Text="{Binding CurrentPosition, Mode=OneWay}" Margin="5" />
+            </StackPanel>
+        </Border>
+
+        <Canvas Grid.Column="1">
+            <!--The ranctangle's dont move (static)-->
+            <Rectangle Canvas.Left="253" Canvas.Top="268" Height="48" Name="rectangle1" 
+                       Width="144" Fill="Gray" Stroke="Gray" />
+            <Rectangle Canvas.Left="297" Canvas.Top="93" Height="209" Name="rectangle2" Stroke="Gray" 
+                       Width="56" Fill="Gray" RadiusX="30" RadiusY="30"/>
+            
+            <!--Polylines will move--> 
+            <Polyline Points="0,0 10,20 -5,40 -250,0 -250,-15 0,0 " Fill="Gray" Stroke="Gray" Canvas.Left="405" Canvas.Top="141"/>
+            <Polyline Points="0,0 30,7 -50,100 -65,90 0,0" Fill="Gray" Canvas.Left="155" Canvas.Top="125"/>
+            <Polyline Points="0,0 0,30 20,30 20,60 10,60 10,40 -20,40 -20,60 -30,60 -30,30 -10,30 -10,0 0,0" 
+                      Stroke="Gray" Fill="Gray" Canvas.Left="106" Canvas.Top="212" Width="26" />
+        </Canvas>
+    </Grid>
+</UserControl>
