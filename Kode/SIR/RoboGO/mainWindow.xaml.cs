@@ -37,7 +37,7 @@ namespace RoboGO
             InitializeComponent();
 
             // Init
-            idevmViewModelIDE = new IDEViewModel(IDETabs);
+            idevmViewModelIDE = new IDEViewModel(IDETabs,DSLOutputBox);
             infoViewModel = new InfoViewModel(DatabaseTableValues);
             _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
             // Data context
@@ -141,5 +141,6 @@ namespace RoboGO
         {
             infoViewModel.tablePrint();
         }
+
     }
 }

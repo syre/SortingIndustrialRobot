@@ -104,6 +104,8 @@
     <Compile Include="ViewModels\infoViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\passwordWindowViewModel.cs" />
+    <Compile Include="ViewModels\positionModel.cs" />
+    <Compile Include="ViewModels\positionViewModel.cs" />
     <Compile Include="ViewModels\SimulatorViewModel.cs" />
     <Compile Include="ViewModels\viewModelManualSteering.cs" />
     <Page Include="CommandsWindow.xaml">
