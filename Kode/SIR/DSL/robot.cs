@@ -8,19 +8,6 @@ using SqlInteraction;
 namespace DSL
 {
     /// <summary>
-    /// enum that specifies manual modes for the robot to be in
-    /// Axes dictates manual movement by axes
-    /// Coor dictates dictates manual movement by coordinates
-    /// Off dictates automatic movement (non-manual)
-    /// 
-    /// </summary>
-    public enum ManualModeType
-    {   
-        Off,
-        Axes,
-        Coordinates
-    }
-    /// <summary>
     /// The interface that Robot and Simulator are based on
     /// </summary>
     public interface IRobot
@@ -41,7 +28,6 @@ namespace DSL
         /// <returns></returns>
         bool initialization();
         
-        ManualModeType ManualMode { get; set; }
         /// <summary>
         /// Calls wrapper function for stopping all movement
         /// </summary>
@@ -196,45 +182,6 @@ namespace DSL
         DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
         DLL.DgateCallBack dgateEventHandlerError = initError;
         DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
-        
-        #region Robot mode properties
-        private ManualModeType _manualmode;
-        public ManualModeType ManualMode
-        {
-            get { return _manualmode; }
-            
-            set
-            {
-                bool status = false;
-                if (value == ManualModeType.Axes)
-                {
-                    status = _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
-                    if (status)
-                        _manualmode = value;
-                }
-
-                else if (value == ManualModeType.Coordinates)
-                {
-                    status = _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
-                    if (status)
-                        _manualmode = value;
-                }
-
-                else if (value == ManualModeType.Off)
-                {
-                    status = _wrapper.closeManualWrapped();
-                    if (status)
-                        _manualmode = value;
-                }
-
-                else
-                    throw new ArgumentOutOfRangeException("value", "ManualMode didnt set correctly");
-
-                if (!status)
-                    throw new Exception("Manual Mode Set returned false");
-            }
-        }
-        #endregion
 
         #region delegate functions
         static void initSuccess(IntPtr _iptrArg)
@@ -301,37 +248,31 @@ namespace DSL
         {
             // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
             
-            ManualMode = ManualModeType.Coordinates;
             SIRVector tempCordVector = new AbsCoordSirVector("absoluteVector");
             tempCordVector.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll));
             _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, "absoluteVector",5); // shrtlength??
-            _wrapper.moveLinearWrapped("defaultVector", 5); // index??    
-            ManualMode = ManualModeType.Off;
+            _wrapper.moveLinearWrapped("defaultVector", 5); // index?? 
             return false; 
         }
 
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
             // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
-            ManualMode = ManualModeType.Coordinates;
 
             SIRVector tempRelVector = new RelCoordSirVector("relativeVector");
             tempRelVector.addPoint(new VecPoint(_iX, _iY, _iZ, _iPitch, _iRoll));
 
-            ManualMode = ManualModeType.Off;
             return false;
         }
 
         public bool movebyCoordinates(int _iX, int _iY, int _iZ)
         {
-            ManualMode = ManualModeType.Coordinates;
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
                 return false;
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
                 return false;
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
                 return false;
-            ManualMode = ManualModeType.Off;
             return true;
         }
 

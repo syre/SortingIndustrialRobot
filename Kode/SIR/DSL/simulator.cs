@@ -9,24 +9,7 @@ namespace DSL
         #region properties
 
         private VecPoint _currentposition;
-        private ManualModeType _type;
         public bool gripperClosed { get; set; }
-        public ManualModeType ManualMode
-        {
-            get { return _type; }
-            set
-            {
-                if (value == ManualModeType.Axes || value == ManualModeType.Off ||
-                    value == ManualModeType.Coordinates)
-                {
-                    iuiOutput.writeLine("Manual mode set to: " + value);
-                    _type = value;
-                }
-
-                else
-                    iuiOutput.writeLine("Out of Range, Manual mode unchanged");
-            }
-        }
 
         private IUI iuiOutput;
         public IUI IUIOutput
@@ -42,7 +25,6 @@ namespace DSL
         {
             _currentposition = new VecPoint(0,0,0,0,0);
             iuiOutput = new ConsoleUI(); // Don´t move location.
-            ManualMode = ManualModeType.Off;
             iuiOutput.writeLine("Simulation is started!");
         }
 
@@ -99,23 +81,14 @@ namespace DSL
         /// <returns></returns>
         public bool moveByCoordinates(int _x, int _y, int _z, int _pitch, int _roll)
         {
-            //If ManualMode is set to on
-            if (ManualMode != ManualModeType.Off)
-            {
-                iuiOutput.writeLine("The robot is moving to X: " + _x + "  Y: " + _y + "  Z: " + _z + "  Pitch: " +
-                                  _pitch + " Roll: " + _roll);
-                _currentposition.iX = _x;
-                _currentposition.iY = _y;
-                _currentposition.iZ = _z;
-                _currentposition.iPitch = _pitch;
-                _currentposition.iRoll = _roll;
-                return true;
-            }
-            //Message like exception.
-            else
-                iuiOutput.writeLine("Please deactivate automode");
-
-            return false;
+            iuiOutput.writeLine("The robot is moving to X: " + _x + "  Y: " + _y + "  Z: " + _z + "  Pitch: " +
+                              _pitch + " Roll: " + _roll);
+            _currentposition.iX = _x;
+            _currentposition.iY = _y;
+            _currentposition.iZ = _z;
+            _currentposition.iPitch = _pitch;
+            _currentposition.iRoll = _roll;
+            return true;
         }
 
         public short getJawOpeningWidthMilimeters()
@@ -154,7 +127,6 @@ namespace DSL
         /// <returns>true if robot goes home.</returns>
         public bool homeRobot()
         {
-            ManualMode = ManualModeType.Coordinates;
             moveByCoordinates(0, 0, 0, 0, 0);
             iuiOutput.writeLine("Robot moved to home position");
             return true;

@@ -250,59 +250,17 @@ namespace SIR.Tests
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
-        #endregion 
-        #region Tests of functions that not only returns true and writes to screen.
         [Test]
-        public void moveByCoordinates_CallingItWithManuaModeAxes_WritesToUI()
+        public void moveByCoordinates_CallingIt_WritesToUI()
         {
             IUI iuiMock = MockRepository.GenerateMock<IUI>();
             simTestObj.IUIOutput = iuiMock;
-            simTestObj.ManualMode = ManualModeType.Axes;
 
             simTestObj.moveByCoordinates(1,1,1,1,1); // Dummy values
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
-        [Test]
-        public void moveByCoordinates_CallingItWithManuaModeCoord_WritesToUI()
-        {
-            IUI iuiMock = MockRepository.GenerateMock<IUI>();
-            simTestObj.IUIOutput = iuiMock;
-            simTestObj.ManualMode = ManualModeType.Coordinates;
-
-            simTestObj.moveByCoordinates(1, 1, 1, 1, 1); // Dummy values
-
-            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
-        }
-        [Test]
-        public void moveByCoordinates_CallingItWithManuaModeOff_WritesToUI()
-        {
-            IUI iuiMock = MockRepository.GenerateMock<IUI>();
-            simTestObj.IUIOutput = iuiMock;
-            simTestObj.ManualMode = ManualModeType.Coordinates;
-
-            simTestObj.moveByCoordinates(1, 1, 1, 1, 1); // Dummy values
-
-            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
-        }
-        [Test]
-        public void moveByCoordinates_ManualModeIsAxes_ReturnsTrue()
-        {
-            simTestObj.ManualMode = ManualModeType.Axes;
-            Assert.IsTrue(simTestObj.moveByCoordinates(1,1,1,1,1));
-        }
-        [Test]
-        public void moveByCoordinates_ManualModeIsCoord_ReturnsTrue()
-        {
-            simTestObj.ManualMode = ManualModeType.Coordinates;
-            Assert.IsTrue(simTestObj.moveByCoordinates(1,1,1,1,1));
-        }
-        [Test]
-        public void moveByCoordanates_ManualModeOff_ReturnsFalse()
-        {
-            simTestObj.ManualMode = ManualModeType.Off;
-            Assert.IsFalse(simTestObj.moveByCoordinates(1,1,1,1,1));
-        }
+        #endregion
         #region Revision V2 of IRobot
         [Test]
         public void getCurrentPosition_CallingIt_DoesNotReturnNull()
@@ -319,7 +277,6 @@ namespace SIR.Tests
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
-        #endregion
         #endregion
     }
 }

@@ -25,6 +25,13 @@
             <Button Name="axisBtnGripperClose" Command="{Binding Path=CloseGripper}">
                 <Image Source="Images/arrowClose.png" />
             </Button>
+            <!-- Speed -->
+            <TextBlock Text="Speed: " />
+            <Slider Value="{Binding Speed}" Maximum="100" Minimum="0" Width="100"/>
+            <TextBlock>
+                <Run Text="{Binding Speed}" />
+                <Run Text="%" />
+            </TextBlock>
         </StackPanel>
             <TabControl>
             <!-- Axis movement -->

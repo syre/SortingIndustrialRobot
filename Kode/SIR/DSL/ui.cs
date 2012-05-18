@@ -1,6 +1,8 @@
 ﻿/** \file iUI.cs */
 /** \author Robotic Global Organization(RoboGO) */
 /** \brief Contains interfaces and classes for simple communication with the UI. */
+using System.Text;
+using System.ComponentModel;
 
 namespace DSL
 {
@@ -37,6 +39,45 @@ namespace DSL
         public void writeLine(string _sMsg, params object[] _paramobjArgument)
         {
             System.Console.WriteLine(_sMsg, _paramobjArgument);
+        }
+    }
+    
+    /** \brief String UI for writing to a string variable. */
+    public class StringUI : IUI, INotifyPropertyChanged
+    {
+        // Members and properties
+        private StringBuilder sbBuffer;
+        public string Buffer
+        {
+            get{return(sbBuffer.ToString());}
+        }
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        
+        // Functions
+        public StringUI()
+        {
+            sbBuffer = new StringBuilder();
+        }
+        
+        public void write(string _sMsg, params object[] _paramobjArgument)
+        {
+            sbBuffer.Append("* " + string.Format(_sMsg, _paramobjArgument));
+            NotifyPropertyChanged("Buffer");
+        }
+
+        public void writeLine(string _sMsg, params object[] _paramobjArgument)
+        {
+            sbBuffer.Append("* " + string.Format(_sMsg, _paramobjArgument) + "\n");
+            NotifyPropertyChanged("Buffer");
         }
     }
 }
