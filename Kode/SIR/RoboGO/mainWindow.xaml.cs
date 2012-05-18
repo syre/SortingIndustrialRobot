@@ -19,7 +19,6 @@ namespace RoboGO
     {
         // Members and properties
         private IDEViewModel idevmViewModelIDE;
-        private SimulatorViewModel _simviewmodel;
         private MainWindowViewModel _mainwindowviewmodel;
 
         public IDEViewModel ViewModelIDE
@@ -40,11 +39,9 @@ namespace RoboGO
             // Init
             idevmViewModelIDE = new IDEViewModel(IDETabs);
             infoViewModel = new InfoViewModel(DatabaseTableValues);
-            _simviewmodel = new SimulatorViewModel(DrawCanvas,Elbow,Wrist,Gripper,Shoulder,Base);
             _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
-            tabitmSimulator.DataContext = _simviewmodel;
             tabInfo.DataContext = infoViewModel;
             pgbStyresystem.DataContext = _mainwindowviewmodel;
 

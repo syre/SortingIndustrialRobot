@@ -8,7 +8,7 @@ namespace DSL
     {
         #region properties
 
-        private VecPoint _currentposition;
+        
         public bool gripperClosed { get; set; }
 
         private IUI iuiOutput;
@@ -18,12 +18,19 @@ namespace DSL
             set { iuiOutput = value; }
         }
 
+        private VecPoint _currentposition;
+        public VecPoint Currentposition
+        {
+            get { return _currentposition; }
+            set { _currentposition = value; }
+        }
+
         #endregion
 
         #region Methods
         public Simulator()
         {
-            _currentposition = new VecPoint(0,0,0,0,0);
+            Currentposition = new VecPoint(0,0,0,0,0);
             iuiOutput = new ConsoleUI(); // Don´t move location.
             iuiOutput.writeLine("Simulation is started!");
         }
@@ -83,11 +90,11 @@ namespace DSL
         {
             iuiOutput.writeLine("The robot is moving to X: " + _x + "  Y: " + _y + "  Z: " + _z + "  Pitch: " +
                               _pitch + " Roll: " + _roll);
-            _currentposition.iX = _x;
-            _currentposition.iY = _y;
-            _currentposition.iZ = _z;
-            _currentposition.iPitch = _pitch;
-            _currentposition.iRoll = _roll;
+            Currentposition.iX = _x;
+            Currentposition.iY = _y;
+            Currentposition.iZ = _z;
+            Currentposition.iPitch = _pitch;
+            Currentposition.iRoll = _roll;
             return true;
         }
 
@@ -228,11 +235,11 @@ namespace DSL
         public bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll)
         {
             iuiOutput.writeLine("Absolute Coordinate X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", x,y,z,pitch,roll);
-            _currentposition.iX = x;
-            _currentposition.iY = y;
-            _currentposition.iZ = z;
-            _currentposition.iPitch = pitch;
-            _currentposition.iRoll = roll;
+            Currentposition.iX = x;
+            Currentposition.iY = y;
+            Currentposition.iZ = z;
+            Currentposition.iPitch = pitch;
+            Currentposition.iRoll = roll;
             return true;
         }
 
@@ -244,11 +251,11 @@ namespace DSL
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
             iuiOutput.writeLine("Absolute Coordinate X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", _iX, _iY, _iZ, _iPitch, _iRoll);
-            _currentposition.iX += _iX;
-            _currentposition.iY += _iY;
-            _currentposition.iZ += _iZ;
-            _currentposition.iPitch += _iPitch;
-            _currentposition.iRoll += _iRoll;
+            Currentposition.iX += _iX;
+            Currentposition.iY += _iY;
+            Currentposition.iZ += _iZ;
+            Currentposition.iPitch += _iPitch;
+            Currentposition.iRoll += _iRoll;
             return true;
         }
 
@@ -260,7 +267,7 @@ namespace DSL
         public bool moveByXCoordinate(int x)
         {
             iuiOutput.writeLine("New Cordinate X: "+ x);
-            _currentposition.iX = x;
+            Currentposition.iX = x;
             return true;
         }
 
@@ -272,7 +279,7 @@ namespace DSL
         public bool moveByYCoordinate(int y)
         {
             iuiOutput.writeLine("New Cordinate Y: " + y);
-            _currentposition.iY = y;
+            Currentposition.iY = y;
             return true;
         }
         /// <summary>
@@ -283,7 +290,7 @@ namespace DSL
         public bool moveByZCoordinate(int z)
         {
             iuiOutput.writeLine("New Cordinate Y: " + z);
-            _currentposition.iZ = z;
+            Currentposition.iZ = z;
             return true;
         }
 
@@ -295,7 +302,7 @@ namespace DSL
         public bool moveByPitch(int pitch)
         {
             iuiOutput.writeLine("New Cordinate Pitch: " + pitch);
-            _currentposition.iPitch = pitch;
+            Currentposition.iPitch = pitch;
             return true;
         }
 
@@ -307,7 +314,7 @@ namespace DSL
         public bool moveByRoll(int roll)
         {
             iuiOutput.writeLine("New Cordinate Roll: " + roll);
-            _currentposition.iRoll = roll;
+            Currentposition.iRoll = roll;
             return true;
         }
 
@@ -319,9 +326,9 @@ namespace DSL
         public bool movebyCoordinates(int _iX, int _iY, int _iZ)
         {
             iuiOutput.writeLine("New Coordinates X: "+_iX+"  Y: "+_iY+"  Z: "+_iZ);
-            _currentposition.iX = _iX;
-            _currentposition.iY = _iY;
-            _currentposition.iZ = _iZ;
+            Currentposition.iX = _iX;
+            Currentposition.iY = _iY;
+            Currentposition.iZ = _iZ;
             return true;
         }
 
@@ -331,7 +338,7 @@ namespace DSL
         /// <returns></returns>
         public VecPoint getCurrentPosition()
         {
-            return _currentposition;
+            return Currentposition;
         }
 
         public void moveByDatabasePosition(int _iCubeID)
@@ -341,7 +348,7 @@ namespace DSL
 
         public string getCurrentPositionAsString()
         {
-            return _currentposition.ToString();
+            return Currentposition.ToString();
         }
         #endregion
 
