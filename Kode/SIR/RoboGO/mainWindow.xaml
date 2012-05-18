@@ -71,6 +71,7 @@
                             <!--Help-->
                             <MenuItem Name="mnuHelp1" Header="_Help">
 								<MenuItem Name="mnuViewCommands1" Header="_View Commands" Click="mnuViewCommands1_Click"/>
+                                <MenuItem Name="mnuAboutBox" Header="_About" Click="mnuAboutBox_Click"/>
                             </MenuItem>
                         </Menu>
                         <!--Box for Tabs-->
@@ -87,7 +88,7 @@
                                 </Style>
                             </TabControl.Resources>
                             <TabItem>
-                                <TextBox />
+                                <TextBox/>
                             </TabItem>
                         </TabControl>
                         <Label Content="DSL Output:"/>

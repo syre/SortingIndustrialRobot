@@ -1,18 +1,13 @@
 ﻿/** \file infoViewModel.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using Microsoft.Win32;
 using SqlInteraction;
 using ControlSystem;
@@ -25,6 +20,8 @@ namespace RoboGO.ViewModels
         private SqlCommandBuilder tableValuesCommandBuilder;
         public SqlDataAdapter sqlDATables;
         public SqlDataAdapter sqlDATableValues;
+
+        private DataGrid guiDatabaseValues;
 
         private DataTable dtTables;
         /// <summary>
@@ -63,9 +60,8 @@ namespace RoboGO.ViewModels
             }
         }
 
-        private DataGrid tkt;
         // Constructor
-        public InfoViewModel(DataGrid moo)
+        public InfoViewModel(DataGrid _databaseValues)
         {
             sqlDATableValues = new SqlDataAdapter();
             sqlDATables = new SqlDataAdapter();
@@ -75,7 +71,7 @@ namespace RoboGO.ViewModels
 
             tableValuesCommandBuilder = new SqlCommandBuilder(sqlDATableValues);
 
-            tkt = moo;
+            guiDatabaseValues = _databaseValues;
         }
 
         /// <summary>
@@ -129,6 +125,19 @@ namespace RoboGO.ViewModels
                 DataTable tempTable = new DataTable();
 
                 sqlDATableValues.Fill(tempTable);
+
+                if(Factory.currentIUserInstance.permissionDictionary[_objTableName])
+                {
+                    guiDatabaseValues.IsReadOnly = false;
+                    guiDatabaseValues.IsEnabled = true;
+                }
+                else
+                {
+                    guiDatabaseValues.IsReadOnly = true;
+                    guiDatabaseValues.IsEnabled = false;
+                    if(_objTableName == "Users")
+                        tempTable.Clear();
+                }
 
                 TableValues = tempTable;
             }

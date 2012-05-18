@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using ControlSystem;
 using SqlInteraction;
 
@@ -26,18 +23,16 @@ namespace RoboGO.ViewModels
             List<object> lstRowsItems = tempRead.readRow();
             if(lstRowsItems.Count > 0)
             {
+                
                 if(((string)lstRowsItems[2]) == "Admin")
                 {
-                   
+                   Factory.currentIUserInstance = new Admin();
                 }
                 else if (((string)lstRowsItems[2]) == "User")
                 {
-                    
+                    Factory.currentIUserInstance = new User();
                 }
-                else if (((string)lstRowsItems[2]) == "Technician")
-                {
-                    
-                }
+
                 tempRead.close();
                 return true;
             }

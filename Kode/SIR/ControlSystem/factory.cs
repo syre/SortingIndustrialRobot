@@ -1,9 +1,7 @@
 ﻿/** \file Factory.cs */
 /** \author Robotic Global Organization(RoboGO) */
 
-using System.Data.SqlClient;
 using DSL;
-using SqlInteraction;
 
 namespace ControlSystem
 {
@@ -18,13 +16,14 @@ namespace ControlSystem
         private static volatile Simulator simulatorInstance;
         private static volatile IRobot iRobotInstance;
         private static volatile ScriptRunner scriptRunnerInstance;
-
+        private static volatile IUser ICurrentUser;
         // Static synchronization root object, for locking
         private static object objectThreadSync = new object();
         private static object objectRobotSync = new object();
         private static object objectSimulatorSync = new object();
         private static object objectIRobotSync = new object();
         private static object objectScriptRunnerSync = new object();
+        private static object objectUserSync = new object();
        
         /// <summary>
         /// Returns the instance of ThreadHandler or creates it if its not already
@@ -148,6 +147,24 @@ namespace ControlSystem
 
                 // Return the non-null instance of Singleton
                 return scriptRunnerInstance;
+            }
+        }
+
+        /// <summary>
+        /// Returns the current logged in user
+        /// </summary>
+        public static IUser currentIUserInstance
+        {
+            get
+            {
+                return ICurrentUser;
+            }
+            set
+            {
+                lock (objectUserSync)
+                {
+                    ICurrentUser = value;
+                }
             }
         }
     }

@@ -95,6 +95,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="aboutBox.xaml.cs">
+      <DependentUpon>aboutBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Simulator.xaml.cs">
       <DependentUpon>Simulator.xaml</DependentUpon>
     </Compile>
@@ -108,6 +111,10 @@
     <Compile Include="ViewModels\positionViewModel.cs" />
     <Compile Include="ViewModels\SimulatorViewModel.cs" />
     <Compile Include="ViewModels\viewModelManualSteering.cs" />
+    <Page Include="aboutBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CommandsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -250,6 +257,7 @@
     <Content Include="Images\Key.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\RoboGOAnimated.gif" />
     <Content Include="Images\shoulder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

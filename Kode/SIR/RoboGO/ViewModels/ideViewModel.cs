@@ -1,12 +1,7 @@
 ﻿/** \author Robotic Global Organization(RoboGO) */
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
 using DSL;
 using ControlSystem;
 using GalaSoft.MvvmLight.Command;
