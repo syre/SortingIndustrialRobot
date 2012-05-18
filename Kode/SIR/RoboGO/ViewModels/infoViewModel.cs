@@ -26,6 +26,8 @@ namespace RoboGO.ViewModels
         public SqlDataAdapter sqlDATables;
         public SqlDataAdapter sqlDATableValues;
 
+        private DataGrid guiDatabaseValues;
+
         private DataTable dtTables;
         /// <summary>
         /// Table list.
@@ -63,9 +65,8 @@ namespace RoboGO.ViewModels
             }
         }
 
-        private DataGrid tkt;
         // Constructor
-        public InfoViewModel(DataGrid moo)
+        public InfoViewModel(DataGrid _databaseValues)
         {
             sqlDATableValues = new SqlDataAdapter();
             sqlDATables = new SqlDataAdapter();
@@ -75,7 +76,7 @@ namespace RoboGO.ViewModels
 
             tableValuesCommandBuilder = new SqlCommandBuilder(sqlDATableValues);
 
-            tkt = moo;
+            guiDatabaseValues = _databaseValues;
         }
 
         /// <summary>
@@ -129,6 +130,19 @@ namespace RoboGO.ViewModels
                 DataTable tempTable = new DataTable();
 
                 sqlDATableValues.Fill(tempTable);
+
+                if(Factory.currentIUserInstance.permissionDictionary[_objTableName])
+                {
+                    guiDatabaseValues.IsReadOnly = false;
+                    guiDatabaseValues.IsEnabled = true;
+                }
+                else
+                {
+                    guiDatabaseValues.IsReadOnly = true;
+                    guiDatabaseValues.IsEnabled = false;
+                    if(_objTableName == "Users")
+                        tempTable.Clear();
+                }
 
                 TableValues = tempTable;
             }
