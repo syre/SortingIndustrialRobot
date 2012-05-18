@@ -358,6 +358,8 @@ namespace DSL
             return (_vect.iX.ToString() + " " + _vect.iY.ToString() + " " + _vect.iZ.ToString() + " " + _vect.iPitch.ToString() + " " + _vect.iRoll.ToString());
 
         }
+
+
         #endregion
 
         #region gripper methods
