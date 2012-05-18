@@ -16,7 +16,7 @@ namespace SIR.Tests
             var handler = SQLHandler.GetInstance;
             Assert.IsNotNull(handler);
         }
-/*
+
         [Test]
         public void SetConnectionStringToAnotherConnection()
         {
@@ -47,7 +47,6 @@ namespace SIR.Tests
             handler.Connection = MockRepository.GenerateStub<ISqlConnection>();
 
         }
-*/
 
 
 

@@ -9,6 +9,8 @@ using System.Windows.Media.Imaging;
 using DSL;
 using ControlSystem;
 using System.ComponentModel;
+﻿using ControlSystem;
+
 
 namespace RoboGO.ViewModels
 {
@@ -25,6 +27,7 @@ namespace RoboGO.ViewModels
         private XYCalculate _xyCalculate;
         private readonly ScaleTransform _04scale = new ScaleTransform(0.4,0.4);
         private StringUI suiSimulatorUI;
+        private PositionViewModel _positionViewModel;
         
         /// <summary>
         /// Text simulator writes.
@@ -36,12 +39,16 @@ namespace RoboGO.ViewModels
         
         public string CurrentPosition
         {
-            get { return Factory.currentIRobotInstance.getCurrentPosition().ToString(); }
+            get 
+            {   _positionViewModel.update();
+                return _positionViewModel.getXYZPR();
+            }
         }
 
         // Functions
         public SimulatorViewModel(Canvas simcanvas,Image elbow, Image wrist, Image gripper, Image shoulder, Image base_)
         {
+            _positionViewModel = new PositionViewModel();
             _simulatorcanvas = simcanvas;
             //_sim = Factory.currentIRobotInstance;
             suiSimulatorUI = new StringUI();
