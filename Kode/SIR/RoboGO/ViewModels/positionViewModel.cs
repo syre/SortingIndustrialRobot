@@ -37,6 +37,10 @@ namespace RoboGO.ViewModels
             _positionModel.PositionVec = Factory.currentIRobotInstance.getCurrentPosition();
         }
 
+        public void update(VecPoint _vect)
+        {
+            _positionModel.PositionVec = _vect;
+        }
 
         /// <summary>
         /// Get the current position
