@@ -1,7 +1,9 @@
 ﻿<Window x:Class="RoboGO.aboutBox"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SIR" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow">
+        Title="SIR" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" 
+        xmlns:winForms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -11,7 +13,10 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <MediaElement LoadedBehavior="Play" Grid.Row="0" Grid.Column="0" Margin="10" Source="Images\RoboGOAnimated.gif"/>
+        <wfi:WindowsFormsHost>
+            <winForms:PictureBox x:Name="picBoxLogo">
+            </winForms:PictureBox>
+        </wfi:WindowsFormsHost>
         <TextBlock 
             Grid.Row="1"
             Grid.Column="0"

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Forms;
 
 namespace RoboGO
 {
@@ -10,6 +11,14 @@ namespace RoboGO
         public aboutBox()
         {
             InitializeComponent();
+            try
+            {
+            picBoxLogo.Image =  System.Drawing.Image.FromFile(@"Images\R3oboGOAnimated.gif");
+            }
+            catch(System.Exception e)
+            {
+                UIService.showMessageBox("Resource 'Images\\RoboGOAnimated.gif' not found.", "Loading image", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
