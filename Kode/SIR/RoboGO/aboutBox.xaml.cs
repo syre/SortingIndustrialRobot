@@ -13,7 +13,7 @@ namespace RoboGO
             InitializeComponent();
             try
             {
-            picBoxLogo.Image =  System.Drawing.Image.FromFile(@"Images\R3oboGOAnimated.gif");
+                picBoxLogo.Image =  System.Drawing.Image.FromFile(@"Images\RoboGOAnimated.gif");
             }
             catch(System.Exception e)
             {

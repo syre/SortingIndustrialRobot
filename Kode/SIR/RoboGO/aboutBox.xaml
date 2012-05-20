@@ -7,13 +7,12 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <wfi:WindowsFormsHost>
+        <wfi:WindowsFormsHost Grid.Column="0" Grid.Row="0" Margin="10">
             <winForms:PictureBox x:Name="picBoxLogo">
             </winForms:PictureBox>
         </wfi:WindowsFormsHost>
