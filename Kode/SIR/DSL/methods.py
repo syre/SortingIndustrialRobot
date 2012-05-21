@@ -63,3 +63,10 @@ def moveConveyorBelt(speed):
 
 def isOnline():
 	return _robot.isOnline()
+
+def insertBox(positionid,length,width,depth,weight):
+        command = SQLHandler.GetInstance().makeCommand("INSERT INTO BoxInfo VALUES "+(str)positionid+","+(str)length+","+(str)width+","+(str)depth+","+(str)weight,CommandType.Text)
+        SQLHandler.GetInstance().runQuery(command,"write")
+def removeBox(boxid):
+        command = SQLHandler.GetInstance().makeCommand("DELETE FROM BoxInfo WHERE BoxID = "+(str)boxid)
+        SQLHandler.GetInstance().runQuery(command,"write")
