@@ -38,7 +38,7 @@ CREATE TABLE Users (
     ID             INT IDENTITY(1,1) NOT NULL UNIQUE,
     Name           VARCHAR(20) NOT NULL,
     Description    VARCHAR(255) NOT NULL,
-    Permission     INT NULL,
+    Permission     INT NOT NULL,
 CONSTRAINT pk_Users PRIMARY KEY CLUSTERED (ID),
 CONSTRAINT fk_Users FOREIGN KEY (Permission)
     REFERENCES Permissions (ID)
@@ -89,7 +89,7 @@ GO
 -- Z			   :
 --
 CREATE TABLE Position (
-	PositionID			INT PRIMARY KEY NOT NULL IDENTITY,
+	PositionID			INT PRIMARY KEY NOT NULL,
 	X INT,
 	Y INT,
 	Z INT)
