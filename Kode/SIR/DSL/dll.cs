@@ -115,7 +115,17 @@ namespace DSL
 
         public int GetCurrentPosition(ref int[] _ibufEnc, ref int[] _ibufJoint, ref int[] _ibufXYZ)
         {
-            return GetCurrentPosition(ref _ibufEnc, ref _ibufJoint, ref _ibufXYZ);
+            return DLLImport.GetCurrentPosition(ref _ibufEnc, ref _ibufJoint, ref _ibufXYZ);
+        }
+
+        public int Time(byte _bGroup, long _mTime)
+        {
+            return DLLImport.Time(_bGroup, _mTime);
+        }
+
+        public int Speed(byte _bGroup, long mSpeed)
+        {
+            return DLLImport.Speed(_bGroup, mSpeed);
         }
     }
     #endregion
@@ -179,6 +189,14 @@ namespace DSL
 
         [DllImport(sDllFileLocation, EntryPoint = "?GetCurrentPosition@@YAHPAY07J00@Z", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCurrentPosition(ref int[] ibufEnc, ref int[] ibufJoint, ref int[] ibufXYZ);
-        #endregion
+
+        [DllImport(sDllFileLocation, EntryPoint = "?Time@@YAHEJ@Z", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int Time(byte _bGroup, long _mTime);
+
+        [DllImport(sDllFileLocation, EntryPoint = "?Speed@@YAHEJ@Z", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int Speed(byte _bGroup, long _mSpeed);
+
+
+    #endregion
     }
 }

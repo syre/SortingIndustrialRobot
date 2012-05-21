@@ -184,7 +184,25 @@ namespace DSL
         /// </summary>
         /// <returns>Returns 1 if called</returns>
         int GetCurrentPosition(ref int[] _ibufEnc, ref int[] _ibufJoint, ref int[] _ibufXYZ);
-        
+
+        /// <summary>
+        /// Set time for movements
+        /// 
+        /// </summary>
+        /// <param name="_bGroup">Which joint to set time (& for all)</param>
+        /// <param name="_mTime">Time in milisecond</param>
+        /// <returns>Returns 1 if called</returns>
+        int Time(byte _bGroup, long _mTime);
+
+        /// <summary>
+        /// Set speed for movements
+        /// 
+        /// </summary>
+        /// <param name="_bGroup">Which joint to set time (& for all)</param>
+        /// <param name="_mSpeed">speed from 0-100%</param>
+        /// <returns>Returns 1 if called</returns>
+        int Speed(byte _bGroup, long _mSpeed);
+
         #endregion
 
     }

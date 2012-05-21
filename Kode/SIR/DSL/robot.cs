@@ -175,6 +175,34 @@ namespace DSL
         /// </summary>
         /// <param name="_iCubeID">ID of Cube.</param>
         void moveByDatabasePosition(int _iCubeID);
+
+        /// <summary>
+        /// Sets the time future movement should take.
+        /// </summary>
+        /// <param name="_bGroup">bool ucGroup
+        ///       Axis group to which the time should be applied
+        ///       '&' for all axes
+        ///       '0'-'7' for axis movements
+        ///       'A' for robot movements
+        ///       'B' for peripheral movements
+        ///       'G' for gripper movements
+        /// <param name="_mTime">
+        ///       Time in milliseconds</param>
+        bool Time(byte _bGroup, long _mTime);
+
+        /// <summary>
+        ///     Sets the speed future movement should take.
+        /// </summary>
+        /// <param name="_bGroup">bool ucGroup
+        ///       Axis group to which the time should be applied
+        ///       '&' for all axes
+        ///       '0'-'7' for axis movements
+        ///       'A' for robot movements
+        ///       'B' for peripheral movements
+        ///       'G' for gripper movements
+        /// <param name="_mSpeed">
+        ///      Speed in percent of max speed</param>
+        bool Speed(byte _bGroup, long _mSpeed);
     }
     public class Robot : IRobot
     {
@@ -209,6 +237,7 @@ namespace DSL
             _wrapper = Wrapper.getInstance();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
+           Time(Wrapper.enumBGroup.GroupAnd, 60000);
             //homeRobot();
         }
 
@@ -240,6 +269,17 @@ namespace DSL
         {
             return _wrapper.getCurrentPosition();
         }
+
+        public bool Time(Wrapper.enumBGroup _bGroup, long _mTime)
+        {
+            return _wrapper.TimeWrapped((byte)_bGroup, _mTime);
+        }
+
+        public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
+        {
+            return _wrapper.SpeedWrapped((byte)_bGroup, _mSpeed);
+        }
+
         #endregion
 
         #region Coordinate movements
