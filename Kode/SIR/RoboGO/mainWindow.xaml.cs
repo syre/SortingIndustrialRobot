@@ -143,7 +143,8 @@ namespace RoboGO
         {
             aboutBox abBox = new aboutBox();
             abBox.Owner = this;
-            abBox.Show();
+            abBox.ShowDialog();
+            
         }
 
     }
