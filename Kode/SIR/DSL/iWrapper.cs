@@ -158,6 +158,38 @@ namespace DSL
         /// <returns>Returns current position.</returns>
         VecPoint getCurrentPosition();
 
+
+        /// <summary>
+        /// Sets the time future movement should take.
+        /// </summary>
+        /// <param name="_bGroup">bool ucGroup
+        ///       Axis group to which the time should be applied
+        ///       '&' for all axes
+        ///       '0'-'7' for axis movements
+        ///       'A' for robot movements
+        ///       'B' for peripheral movements
+        ///       'G' for gripper movements
+        /// <param name="_mTime">
+        ///       Time in milliseconds</param>
+        /// <returns>Returns true if time has been succesfully set, false otherwise.</returns>
+        bool TimeWrapped(Wrapper.enumBGroup _bGroup, long _mTime);
+
+
+        /// <summary>
+        ///     Sets the speed future movement should take.
+        /// </summary>
+        /// <param name="_bGroup">bool ucGroup
+        ///       Axis group to which the time should be applied
+        ///       '&' for all axes
+        ///       '0'-'7' for axis movements
+        ///       'A' for robot movements
+        ///       'B' for peripheral movements
+        ///       'G' for gripper movements
+        /// <param name="_mSpeed">
+        ///      Speed in percent of max speed</param>
+        /// <returns>Returns true if the speed has been succesfully set, false otherwise..</returns>
+        bool SpeedWrapped(Wrapper.enumBGroup _bGroup, long _mSpeed);
+        
         byte axisSettingsToByte(Wrapper.enumAxisSettings axisSettingsArg);
         byte manualMovementToByte(Wrapper.enumManualModeWhat enumArg);
     }

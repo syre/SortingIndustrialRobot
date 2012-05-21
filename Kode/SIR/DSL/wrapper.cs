@@ -196,6 +196,26 @@ namespace DSL
             MANUAL_MOVE_ROLL
         }
 
+
+        /// <summary>
+        /// For chosing what part to move when setting Time or Speed
+        /// </summary>
+        public enum enumBGroup
+        {
+            GroupAnd,
+            Group0,  //axis movements
+            Group1,
+            Group2,
+            Group3,
+            Group4,
+            Group5,
+            Group6,
+            Group7,
+            GroupA, //for robot movements
+            GroupB, //for peripheral movements
+            GroupG  //for gripper movements
+        }
+
         // Functions
         // -Constructors and destructors
         private Wrapper()
@@ -260,6 +280,21 @@ namespace DSL
             iReturnValue = _dll.IsOnLineOk();
             return ((iReturnValue == 1) ? true : false);
         }
+
+        public bool TimeWrapped(enumBGroup _bGroup, long _mTime)
+        {
+            int iReturnValue;
+            iReturnValue = _dll.Time((byte)_bGroup, _mTime);
+            return ((iReturnValue == 1) ? true : false);
+        }
+
+        public bool SpeedWrapped(enumBGroup _bGroup, long _mSpeed)
+        {
+            int iReturnValue;
+            iReturnValue = _dll.Speed((byte)_bGroup, _mSpeed);
+            return ((iReturnValue == 1) ? true : false);
+        }
+
         #endregion
 
         #region Movement

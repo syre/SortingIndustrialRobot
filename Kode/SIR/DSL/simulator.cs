@@ -318,6 +318,20 @@ namespace DSL
             return true;
         }
 
+
+        public bool Time(Wrapper.enumBGroup _bGroup, long _mTime)
+        {
+            iuiOutput.writeLine("New Timer for future movements: " + _mTime + "Miliseconds");
+            return true;
+
+        }
+
+        public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
+        {
+            iuiOutput.writeLine("New Speed for future movements: " + _mSpeed + "%");
+            return true;
+        }
+
         /// <summary>
         /// Moves all coordinates
         /// </summary>
@@ -341,9 +355,9 @@ namespace DSL
             return Currentposition;
         }
 
-        public void moveByDatabasePosition(int _iCubeID)
+        public bool moveToCubePosition(int _iCubeID)
         {
-            throw new NotImplementedException();
+            iuiOutput.writeLine("Moved to position with cube id"+_iCubeID);
         }
 
         public string getCurrentPositionAsString()

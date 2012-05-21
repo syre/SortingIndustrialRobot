@@ -145,7 +145,7 @@ namespace RoboGO.ViewModels
 
         private void saveAs_Executed_SaveFileDialog_Settings(SaveFileDialog _saveDialog)
         {
-            _saveDialog.Filter = "TXT Files(*.txt)|*.txt";
+            _saveDialog.Filter = "IronPython Files(*.py)|*.py";
             _saveDialog.DefaultExt = "xml";
             _saveDialog.AddExtension = true;
         }
@@ -189,7 +189,7 @@ namespace RoboGO.ViewModels
 
         private static void open_Executed_Settings(OpenFileDialog openDialog)
         {
-            openDialog.Filter = "TXT Files(*.txt)|*.txt";
+            openDialog.Filter = "IronPython Files(*.py)|*.py";
             openDialog.CheckFileExists = true;
             openDialog.Multiselect = true;
         }
