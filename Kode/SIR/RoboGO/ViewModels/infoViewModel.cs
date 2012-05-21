@@ -94,7 +94,7 @@ namespace RoboGO.ViewModels
         {
             try
             {
-                SqlCommand tempCommandTables = SQLHandler.GetInstance.makeCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'", CommandType.Text);
+                SqlCommand tempCommandTables = SQLHandler.GetInstance.makeCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'");
                 sqlDATables.SelectCommand = tempCommandTables;
 
                 DataTable tempTable = new DataTable();
@@ -119,7 +119,7 @@ namespace RoboGO.ViewModels
             try
             {
                 string tableName = (string) _objTableName;
-                SqlCommand tempCommandTableValues = SQLHandler.GetInstance.makeCommand("SELECT * FROM " + tableName, CommandType.Text);
+                SqlCommand tempCommandTableValues = SQLHandler.GetInstance.makeCommand("SELECT * FROM " + tableName);
                 sqlDATableValues.SelectCommand = tempCommandTableValues;
 
                 DataTable tempTable = new DataTable();

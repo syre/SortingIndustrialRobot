@@ -75,11 +75,11 @@ namespace SqlInteraction
             return true;
         }
 
-        public SqlCommand makeCommand(string _commandText, CommandType _commandType)
+        public SqlCommand makeCommand(string _commandText)
         {
             SqlCommand command = Connection.CreateCommand();
             command.CommandTimeout = Connection.TimeOut;
-            command.CommandType = _commandType;
+            command.CommandType = CommandType.Text;
             command.CommandText = _commandText;
             
             return command;

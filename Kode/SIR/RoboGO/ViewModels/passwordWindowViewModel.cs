@@ -15,7 +15,7 @@ namespace RoboGO.ViewModels
 
         public bool authenticate(string _loginName, string _loginPassword)
         {
-           SqlCommand tempCmd = SQLHandler.GetInstance.makeCommand("SELECT Users.Name, Users.Password, Permissions.Name FROM Users INNER JOIN Permissions ON Users.Permission=Permissions.ID WHERE Users.Name ='"+_loginName+"' AND Users.Password ='"+_loginPassword+"'", CommandType.Text);
+           SqlCommand tempCmd = SQLHandler.GetInstance.makeCommand("SELECT Users.Name, Users.Password, Permissions.Name FROM Users INNER JOIN Permissions ON Users.Permission=Permissions.ID WHERE Users.Name ='"+_loginName+"' AND Users.Password ='"+_loginPassword+"'");
            ISQLReader tempRead = SQLHandler.GetInstance.runQuery(tempCmd, "read");
 
             //int tempint = tempRead.readRow().Count;

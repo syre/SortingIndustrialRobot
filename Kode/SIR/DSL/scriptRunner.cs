@@ -37,6 +37,7 @@ namespace DSL
         private static ErrorReporter _reporter;
         private static MemoryStream _outputstream;
         private static IRobot _robot;
+        private static ISQLHandler _sqlhandler;
 
         // Singleton
         private static ScriptRunner srInstance;
@@ -64,10 +65,10 @@ namespace DSL
             _reporter = new ErrorReporter();
             _outputstream = new MemoryStream();
             _runtime.IO.SetOutput(_outputstream,new StreamWriter(_outputstream));
+            _sqlhandler = SQLHandler.GetInstance;
             // initializing robot methods from methods.py file placed in root dir
-            setScriptFromFile("methods.py");
+            setScriptFromFile(@"DSL_metoder\methods.py");
             ExecuteScript();
-        
         }
 
         /// <summary>
@@ -75,10 +76,10 @@ namespace DSL
         /// </summary>
         /// <param name="_iroboRobot">Robot to run script on.</param>
         public void setRobotInstance(IRobot _iroboRobot)
-        {
-            
+        {    
             _robot = _iroboRobot;
             _scope.SetVariable("_robot", _robot);
+            _scope.SetVariable("_sqlhandler", SQLHandler.GetInstance);
         }
 
         /// <summary>

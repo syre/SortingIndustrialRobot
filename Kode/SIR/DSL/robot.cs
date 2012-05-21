@@ -318,7 +318,7 @@ namespace DSL
 
         public void moveByDatabasePosition(int _iCubeID)
         {
-            var sqlcmdCommand = SQLHandler.GetInstance.makeCommand("SELECT ID FROM Position WHERE ID = " + _iCubeID, CommandType.Text);
+            var sqlcmdCommand = SQLHandler.GetInstance.makeCommand("SELECT ID FROM Position WHERE ID = " + _iCubeID);
             var isqlrdrReader = SQLHandler.GetInstance.runQuery(sqlcmdCommand, "Read");
             var lstCoordinates = isqlrdrReader.readRow();
             // element 0 is ID, so starts from element 1(X)

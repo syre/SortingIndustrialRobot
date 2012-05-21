@@ -27,7 +27,7 @@ namespace SqlInteraction
         /// <param name="_commandText">Parameter for the command text</param>
         /// <param name="_commandType">Parameter for what type text needs to be interpreted</param>
         /// <returns>Returns the SqlCommand made from the given parameters</returns>
-        SqlCommand makeCommand(string _commandText, CommandType _commandType);
+        SqlCommand makeCommand(string _commandText);
 
         /// <summary>
         /// Function adds a parameter to the command.

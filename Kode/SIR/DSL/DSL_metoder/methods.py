@@ -1,9 +1,8 @@
 import clr
 clr.AddReference("DSL")
 import DSL
-
-def DummyHello(name):
-	_robot.HelloName(name)
+clr.AddReference("System.Data")
+import System.Data.SqlClient
 
 def GoTo(x,y,z):
 	return 0
@@ -65,8 +64,9 @@ def isOnline():
 	return _robot.isOnline()
 
 def insertBox(positionid,length,width,depth,weight):
-        command = SQLHandler.GetInstance().makeCommand("INSERT INTO BoxInfo VALUES "+(str)positionid+","+(str)length+","+(str)width+","+(str)depth+","+(str)weight,CommandType.Text)
-        SQLHandler.GetInstance().runQuery(command,"write")
+        command = _sqlhandler.makeCommand("INSERT INTO BoxInfo VALUES ("+str(positionid)+","+str(length)+","+str(width)+","+str(depth)+","+str(weight)+")")
+        _sqlhandler.runQuery(command,"write")
+
 def removeBox(boxid):
-        command = SQLHandler.GetInstance().makeCommand("DELETE FROM BoxInfo WHERE BoxID = "+(str)boxid)
-        SQLHandler.GetInstance().runQuery(command,"write")
+        command = _sqlhandler.makeCommand("DELETE FROM BoxInfo WHERE BoxID = "+str(boxid))
+        _sqlhandler.runQuery(command,"write")
