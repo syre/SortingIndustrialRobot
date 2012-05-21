@@ -174,7 +174,7 @@ namespace DSL
         /// Moves to position from Cube ID.(From Database.)
         /// </summary>
         /// <param name="_iCubeID">ID of Cube.</param>
-        void moveByDatabasePosition(int _iCubeID);
+        bool moveToCubePosition(int _iCubeID);
 
         /// <summary>
         /// Sets the time future movement should take.
@@ -316,16 +316,19 @@ namespace DSL
             return true;
         }
 
-        public void moveByDatabasePosition(int _iCubeID)
+        public bool moveToCubePosition(int _iCubeID)
         {
             var sqlcmdCommand = SQLHandler.GetInstance.makeCommand("SELECT ID FROM Position WHERE ID = " + _iCubeID);
             var isqlrdrReader = SQLHandler.GetInstance.runQuery(sqlcmdCommand, "Read");
             var lstCoordinates = isqlrdrReader.readRow();
             // element 0 is ID, so starts from element 1(X)
-            if(lstCoordinates.Count != 0)
-                movebyCoordinates((int) lstCoordinates[1], (int)lstCoordinates[2], (int)lstCoordinates[3]);
+            if (lstCoordinates.Count != 0)
+            {
+                movebyCoordinates((int)lstCoordinates[1], (int)lstCoordinates[2], (int)lstCoordinates[3]);
+                return true;
+            }
             else
-                throw new InstanceNotFoundException("No cube with that ID found.");
+                return false;
         }
         #endregion
 

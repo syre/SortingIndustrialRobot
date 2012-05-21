@@ -99,12 +99,18 @@ def isOnline():
         else:
                 print "robot is offline"
 
-def insertBox(positionid,length,width,depth,weight):
-        command = _sqlhandler.makeCommand("INSERT INTO BoxInfo VALUES ("+str(positionid)+","+str(length)+","+str(width)+","+str(depth)+","+str(weight)+")")
+def insertBox(position_id,length,width,depth,weight):
+        command = _sqlhandler.makeCommand("INSERT INTO BoxInfo VALUES ("+str(position_id)+","+str(length)+","+str(width)+","+str(depth)+","+str(weight)+")")
         _sqlhandler.runQuery(command,"write")
         print "box inserted succesfully"
 
-def removeBox(boxid):
+def removeBox(box_id):
         command = _sqlhandler.makeCommand("DELETE FROM BoxInfo WHERE BoxID = "+str(boxid))
         _sqlhandler.runQuery(command,"write")
         print "box removed succesfully"
+
+def moveToCubePosition(cube_id):
+        if (_robot.moveToCubePosition == True):
+                print "moved succesfully to cube position"
+        else:
+                print "moved unsuccessfully / could not find cube with cube_id"

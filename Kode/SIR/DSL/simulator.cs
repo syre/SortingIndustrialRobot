@@ -355,9 +355,9 @@ namespace DSL
             return Currentposition;
         }
 
-        public void moveByDatabasePosition(int _iCubeID)
+        public bool moveToCubePosition(int _iCubeID)
         {
-            throw new NotImplementedException();
+            iuiOutput.writeLine("Moved to position with cube id"+_iCubeID);
         }
 
         public string getCurrentPositionAsString()
