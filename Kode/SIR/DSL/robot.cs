@@ -188,7 +188,7 @@ namespace DSL
         ///       'G' for gripper movements
         /// <param name="_mTime">
         ///       Time in milliseconds</param>
-        bool Time(byte _bGroup, long _mTime);
+        bool Time(Wrapper.enumBGroup _bGroup, long _mTime);
 
         /// <summary>
         ///     Sets the speed future movement should take.
@@ -202,7 +202,7 @@ namespace DSL
         ///       'G' for gripper movements
         /// <param name="_mSpeed">
         ///      Speed in percent of max speed</param>
-        bool Speed(byte _bGroup, long _mSpeed);
+        bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed);
     }
     public class Robot : IRobot
     {
@@ -272,12 +272,12 @@ namespace DSL
 
         public bool Time(Wrapper.enumBGroup _bGroup, long _mTime)
         {
-            return _wrapper.TimeWrapped((byte)_bGroup, _mTime);
+            return _wrapper.TimeWrapped(_bGroup, _mTime);
         }
 
         public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
         {
-            return _wrapper.SpeedWrapped((byte)_bGroup, _mSpeed);
+            return _wrapper.SpeedWrapped(_bGroup, _mSpeed);
         }
 
         #endregion

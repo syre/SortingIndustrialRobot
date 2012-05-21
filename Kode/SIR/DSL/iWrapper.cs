@@ -172,7 +172,7 @@ namespace DSL
         /// <param name="_mTime">
         ///       Time in milliseconds</param>
         /// <returns>Returns true if time has been succesfully set, false otherwise.</returns>
-        bool TimeWrapped(byte _bGroup, long _mTime);
+        bool TimeWrapped(Wrapper.enumBGroup _bGroup, long _mTime);
 
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace DSL
         /// <param name="_mSpeed">
         ///      Speed in percent of max speed</param>
         /// <returns>Returns true if the speed has been succesfully set, false otherwise..</returns>
-        bool SpeedWrapped(byte _bGroup, long _mSpeed);
+        bool SpeedWrapped(Wrapper.enumBGroup _bGroup, long _mSpeed);
         
         byte axisSettingsToByte(Wrapper.enumAxisSettings axisSettingsArg);
         byte manualMovementToByte(Wrapper.enumManualModeWhat enumArg);
