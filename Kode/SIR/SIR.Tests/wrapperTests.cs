@@ -25,126 +25,234 @@ namespace SIR.Tests
            
         }
 
-        private IWrapper _wrapper;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _wrapper = MockRepository.GenerateMock<IWrapper>();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            _wrapper = null;
-        }
-        
+        // Tests
+        #region Constructor
         [Test]
-        public void Initialization_TestWasCalled_True()
+        public void Wrapper_IsCalled_DLLPropertyIsNotNull()
         {
-            _wrapper.AssertWasCalled(t => t.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE,
-                                                  Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT,
-                                                  dgateEventHandlerSuccess,
-                                                  dgateEventHandlerError));
+            
         }
-        
-        [Test]
-        public void Control_TestWasCalled_True()
-        {
-            _wrapper.AssertWasCalled(t => t.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true));
-        }
-        
-        [Test]
-        public void Home_TestWasCalled_True()
-        {
-            _wrapper.AssertWasCalled(t => t.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming));
-        }
-        
-        [Test]
-        public void OpenGripper_TestWasCalled_True()
-        {
-           _wrapper.AssertWasCalled(t => t.openGripperWrapped());
-        }
+        #endregion
 
+        #region Initialization and settings
         [Test]
-        public void CloseGripper_TestWasCalled_True()
-        {
-            _wrapper.AssertWasCalled(t => t.closeGripperWrapped());
-        }   
-
-        [Test]
-        public void GetJaw_Milimeters_TestWasCalled_true()
-        {
-            short milimeters = 0, dummypercentage = 0;
-            _wrapper.AssertWasCalled(t => t.getJawWrapped(ref milimeters, ref dummypercentage));
-        }
-        
-        [Test]
-        public void EnterManual()
-        {
-            _wrapper.AssertWasCalled(t => t.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES));
-        }
-
-        [Test]
-        public void CloseManual()
-        {
-            _wrapper.AssertWasCalled(t => t.closeManualWrapped());
-        }
-
-        [Test]
-        public void MoveManual()
-        {
-            _wrapper.AssertWasCalled(t => t.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, 1000));
-        }
-
-        [Test]
-        public void WatchMotion()
-        {
-           // _wrapper.AssertWasCalled(t => t.watchMotionWrapped());
-        }
-
-        [Test]
-        public void WatchDigitalInput()
+        public void initializationWrapped_IsCalled_CallsDllInitialization()
         {
 
         }
-
         [Test]
-        public void CloseWatchDigitalInput()
+        public void initializationWrapped_DllInitializationReturns1_ReturnsTrue()
         {
 
         }
-
         [Test]
-        public void IsOnLineOK()
-        {
-            _wrapper.AssertWasCalled(t => t.isOnlineOkWrapped());
-        }
-
-        [Test]
-        public void MoveLinear()
+        public void initializationWrapped_DllInitializationReturns0_ReturnsFalse()
         {
 
         }
-
         [Test]
-        public void DefineVector()
+        public void initializationWrapped_IsCalled_CallsDllInitializationWithRightSystemModeParameter()
+        {
+            
+        }
+        [Test]
+        public void initializationWrapped_IsCalled_CallsDllInitializationWithRightSystemTypeParameter()
         {
 
         }
-
         [Test]
-        public void Teach()
+        public void initializationWrapped_IsCalled_CallsDllInitializationWithRightSuccessCallBackParameter()
         {
 
         }
-
         [Test]
-        public void GetCurrentPosition()
+        public void initializationWrapped_IsCalled_CallsDllInitializationWithRightErrorCallBackParameter()
         {
-            _wrapper.AssertWasCalled(t => t.getCurrentPosition());
+
         }
-        
+        [Test]
+        public void controlWrapped_IsCalled_CallsDllControl()
+        {
+
+        }
+        [Test]
+        public void controlWrapped_DllControlReturns1_ReturnsTrue()
+        {
+            
+        }
+        [Test]
+        public void controlWrapped_DllControlReturns0_ReturnsFalse()
+        {
+
+        }
+        [Test]
+        public void controlWrapped_IsCalled_CallsDllWithRightAxisSettingsParameter()
+        {
+
+        }
+        [Test]
+        public void controlWrapped_IsCalled_CallsDllWithRightControlParam()
+        {
+
+        }
+        [Test]
+        public void isOnlineOkWrapped_IsCalled_CallsDllIsOnLineOk()
+        {
+            
+        }
+        [Test]
+        public void isOnlineOkWrapped_DllIsOnLineOkReturns0_ReturnsFalse()
+        {
+
+        }
+        [Test]
+        public void isOnlineOkWrapped_DllIsOnLineOkReturns1_ReturnsTrue()
+        {
+
+        }
+        #endregion
+        #region Movement
+        [Test]
+        public void homeWrapped_IsCalled_CallsDllHome()
+        {
+            
+        }
+        [Test]
+        public void homeWrapped_DllHomeReturns1_ReturnsTrue()
+        {
+
+        }
+        [Test]
+        public void homeWrapped_DllHomeReturns0_ReturnsFalse()
+        {
+
+        }
+        [Test]
+        public void homeWrapped_IsCalled_CallsDllHomeWithRightAxisSettingsParameter()
+        {
+
+        }
+        [Test]
+        public void homeWrapped_IsCalled_CallsDllHomeWithRightCallBackParameter()
+        {
+
+        }
+        [Test]
+        public void enterManualWrapped_IsCalled_CallsDllEnterManual()
+        {
+            
+        }
+        [Test]
+        public void enterManualWrapped_DllEnterManualReturns0_ReturnsFalse()
+        {
+            
+        }
+        [Test]
+        public void enterManualWrapped_DllEnterManualReturns1_ReturnsTrue()
+        {
+
+        }
+        [Test]
+        public void enterManualWrapped_ParamIsAxes_DllEnterManualCalledWith0()
+        {
+
+        }
+        [Test]
+        public void enterManualWrapped_ParamIsCoord_DllEnterManualCalledWith1()
+        {
+
+        }
+        [Test]
+        public void closeManualWrapped_IsCalled_CallsDllCloseManual()
+        {
+            
+        }
+        [Test]
+        public void closeManual_DllCloseManualReturns0_ReturnsFalse()
+        {
+            
+        }
+        [Test]
+        public void closeManual_DllCloseManualReturns1_ReturnsTrue()
+        {
+
+        }
+        [Test]
+        public void moveManualWrapped_IsCalled_CallsDllMoveManual()
+        {
+            
+        }
+        [Test]
+        public void moveManualWrapped_DllMoveManualReturns0_ReturnsFalse()
+        {
+
+        }
+        [Test]
+        public void moveManualWrapped_DllMoveManualReturns1_ReturnsTrue()
+        {
+
+        }
+        [Test]
+        public void moveManualWrapped_IsCalled_CallsDllMoveManualWithRightManualModeParameter()
+        {
+
+        }
+        [Test]
+        public void moveManualWrapped_IsCalled_CallsDllMoveManualWithRightSpeedParameter()
+        {
+
+        }
+        [Test]
+        public void stopWrapped_IsCalled_CallsDllStop()
+        {
+            
+        }
+        [Test]
+        public void stopWrapped_DllStopReturns0_ReturnsFalse()
+        {
+
+        }
+        [Test]
+        public void stopWrapped_DllStopReturns1_ReturnsTrue()
+        {
+
+        }
+        [Test]
+        public void stopWrapped_IsCalled_CallsDllStopWithRightAxisParameter()
+        {
+
+        }
+        [Test]
+        public void moveLinearWrapped_IsCalled_CallsDllMoveLinear()
+        {
+            
+        }
+        [Test]
+        public void moveLinearWrapped_DllMoveLinearReturns0_ReturnsFalse()
+        {
+
+        }
+        [Test]
+        public void moveLinearWrapped_DllMoveLinearReturns1_ReturnsTrue()
+        {
+
+        }
+        [Test]
+        public void moveLinearWrapped_IsCalled_DllMoveLinearIsCalledWithRightStringParameter()
+        {
+
+        }
+        [Test]
+        public void moveLinearWrapped_IsCalled_DllMoveLinearIsCalledWithRightIntParameter()
+        {
+
+        }
+        #endregion
+        #region Gripper
+        #endregion
+        #region Event handling
+        #endregion
+        #region Vectors
+        #endregion
     }
-     
 }
