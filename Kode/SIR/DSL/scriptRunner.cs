@@ -64,7 +64,9 @@ namespace DSL
             _scope = _engine.CreateScope();
             _reporter = new ErrorReporter();
             _outputstream = new MemoryStream();
+            // sets both outputs to our output memory stream
             _runtime.IO.SetOutput(_outputstream,new StreamWriter(_outputstream));
+            _runtime.IO.SetErrorOutput(_outputstream,new StreamWriter(_outputstream));
             _sqlhandler = SQLHandler.GetInstance;
             // initializing robot methods from methods.py file placed in root dir
             setScriptFromFile(@"DSL_metoder\methods.py");
