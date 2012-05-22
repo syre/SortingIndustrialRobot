@@ -358,6 +358,7 @@ namespace DSL
         public bool moveToCubePosition(int _iCubeID)
         {
             iuiOutput.writeLine("Moved to position with cube id"+_iCubeID);
+            return(true);
         }
 
         public string getCurrentPositionAsString()
