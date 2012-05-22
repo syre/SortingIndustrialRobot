@@ -34,36 +34,23 @@ namespace RoboGO
             InitializeComponent();
 
             // Init
-            idevmViewModelIDE = new IDEViewModel(IDETabs,DSLOutputBox);
+            idevmViewModelIDE = new IDEViewModel(IDETabs);
             infoViewModel = new InfoViewModel(DatabaseTableValues);
             _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
             tabInfo.DataContext = infoViewModel;
             pgbStyresystem.DataContext = _mainwindowviewmodel;
-
         }
 
-        // A function within main that invokes function DisplayLogin
+        #region Events
+        // Displaying login screen on load
         private void WindowsLoaded(object sender, RoutedEventArgs e)
         {
             DisplayLoginScreen();
         }
 
-        // The Window which needs a login
-        private void DisplayLoginScreen()
-        {
-            PasswordWindow psWindow = new PasswordWindow();
-
-            psWindow.Owner = this;
-            psWindow.ShowDialog();
-			if (psWindow.DialogResult.HasValue && !psWindow.DialogResult.Value)               
-                this.Close();
-
-            psWindow.Close();
-        }
-
-        // Manual steering
+        // Show manual steering controls
         private void btnManuel_Click(object sender, RoutedEventArgs e)
         {
 
@@ -80,6 +67,7 @@ namespace RoboGO
         {
         }
 
+        // Show available commands
         private void mnuViewCommands1_Click(object sender, RoutedEventArgs e)
         {
             CommandsWindow window = new CommandsWindow();
@@ -88,6 +76,7 @@ namespace RoboGO
             window.NavigateToHelp();
         }
 
+        // Load tables from database when right tab
         private void tabctrlMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (((string)((TabItem)tabctrlMain.SelectedItem).Name == "tabInfo") && e.Handled == false)
@@ -96,6 +85,7 @@ namespace RoboGO
             }
         }
 
+        // Get information from selected table
         private void DatabaseTables_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DatabaseTables.SelectedIndex != -1)
@@ -105,11 +95,13 @@ namespace RoboGO
             e.Handled = true;
         }
 
+        // Save table to databse
         private void DatabaseTableValuesSaveButton_Click(object sender, RoutedEventArgs e)
         {
             infoViewModel.tableSave();
         }
 
+        // Select between simulator and robot
         private void SelectRobot_Click(object sender, RoutedEventArgs e)
         {
             if (cmbChoice.SelectedItem == cmbSimulator)
@@ -124,28 +116,50 @@ namespace RoboGO
             }
         }
 
+        // Stop all robot action
         private void Stop_Click(object sender, RoutedEventArgs e)
         {
             _mainwindowviewmodel.stopRobotInstance();
         }
 
+        // Check connection of robot
         private void btnCheckConnectivity_Click(object sender, RoutedEventArgs e)
         {
             _mainwindowviewmodel.checkIsOnline();
         }
 
+        // Print current shown table
         private void DatabasePrintButton_Click(object sender, RoutedEventArgs e)
         {
             infoViewModel.tablePrint();
         }
 
+        // Show about box
         private void mnuAboutBox_Click(object sender, RoutedEventArgs e)
         {
             aboutBox abBox = new aboutBox();
             abBox.Owner = this;
             abBox.ShowDialog();
-            
         }
 
+        // Scroll to newest text in code output
+        private void DSLOutputBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DSLOutputBox.ScrollToEnd();
+        }
+        #endregion
+
+        // Helper function for displaying login screen
+        private void DisplayLoginScreen()
+        {
+            PasswordWindow psWindow = new PasswordWindow();
+
+            psWindow.Owner = this;
+            psWindow.ShowDialog();
+            if (psWindow.DialogResult.HasValue && !psWindow.DialogResult.Value)
+                this.Close();
+
+            psWindow.Close();
+        }
     }
 }

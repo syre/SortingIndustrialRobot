@@ -272,12 +272,12 @@ namespace DSL
 
         public bool Time(Wrapper.enumBGroup _bGroup, long _mTime)
         {
-            return _wrapper.TimeWrapped(_bGroup, _mTime);
+            return _wrapper.timeWrapped(_bGroup, _mTime);
         }
 
         public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
         {
-            return _wrapper.SpeedWrapped(_bGroup, _mSpeed);
+            return _wrapper.speedWrapped(_bGroup, _mSpeed);
         }
 
         #endregion

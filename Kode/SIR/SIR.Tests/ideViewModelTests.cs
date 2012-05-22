@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
+using ControlSystem;
 using DSL;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -17,23 +18,13 @@ namespace SIR.Tests
         #region Constructor
         [Test]
         [STAThread]
-        public void IDEViewModel_CallsIt_CodeIsNotNull()
-        {
-            // Test
-            idevmTestObj = new IDEViewModel(new TabControl(), new TextBox());
-
-            // Verify
-            Assert.IsTrue(idevmTestObj.Code != null);
-        }
-        [Test]
-        [STAThread]
         public void IDEViewModel_CallsIt_ScriptRunnerIsSetToFactoryScriptRunner()
         {
             // Test
-            idevmTestObj = new IDEViewModel(new TabControl(), new TextBox());
+            idevmTestObj = new IDEViewModel(new TabControl());
 
             // Verify
-            //Assert.IsTrue(idevmTestObj.ScriptExecuter == Factory.getScriptRunnerInstance);
+            Assert.IsTrue(idevmTestObj.ScriptExecuter == Factory.getScriptRunnerInstance);
         }
         #endregion
         #region Properties
@@ -42,7 +33,7 @@ namespace SIR.Tests
         public void ScriptExecuter_SetsIt_ScriptExecutionerIsSaved()
         {
             // Setup
-            idevmTestObj = new IDEViewModel(new TabControl(), new TextBox());
+            idevmTestObj = new IDEViewModel(new TabControl());
             IScriptRunner isrRunner = MockRepository.GenerateStub<IScriptRunner>();
 
             // Test
@@ -57,30 +48,17 @@ namespace SIR.Tests
         public void ScriptExecuter_SetsItToNull_ThrowsException()
         {
             // Setup
-            idevmTestObj = new IDEViewModel(new TabControl(), new TextBox());
+            idevmTestObj = new IDEViewModel(new TabControl());
 
             // Test
             idevmTestObj.ScriptExecuter = null;
         }
         [Test]
         [STAThread]
-        public void Code_SetsItToHello_CodeIsSaved()
-        {
-            // Setup
-            idevmTestObj = new IDEViewModel(new TabControl(), new TextBox());
-
-            // Test
-            idevmTestObj.Code = "Hello";
-
-            // Verify
-            Assert.AreEqual("Hello", idevmTestObj.Code);
-        }
-        [Test]
-        [STAThread]
         public void ExecuteComd_CallsIt_DoesNotReturnNull()
         {
             // Setup
-            idevmTestObj = new IDEViewModel(new TabControl(), new TextBox());
+            idevmTestObj = new IDEViewModel(new TabControl());
             DelegateCommand ecHolder;
 
             // Test
@@ -97,7 +75,7 @@ namespace SIR.Tests
         public void executeCode_CallsIt_CallsScriptRunnersetScriptFromString()
         {
             // Setup
-            idevmTestObj = new IDEViewModel(new TabControl(), new TextBox());
+            idevmTestObj = new IDEViewModel(new TabControl());
             IScriptRunner isrRunner = MockRepository.GenerateMock<IScriptRunner>();
             idevmTestObj.ScriptExecuter = isrRunner;
 
@@ -109,26 +87,10 @@ namespace SIR.Tests
         }
         [Test]
         [STAThread]
-        public void executeCode_CallsIt_CallsScriptRunnersetScriptFromStringEqualCodeProperty()
-        {
-            // Setup
-            idevmTestObj = new IDEViewModel(new TabControl(), new TextBox());
-            IScriptRunner isrRunner = MockRepository.GenerateMock<IScriptRunner>();
-            idevmTestObj.ScriptExecuter = isrRunner;
-            idevmTestObj.Code = "Hello";
-
-            // Test
-            idevmTestObj.executeCode();
-
-            // Verify
-            isrRunner.AssertWasCalled(t => t.setScriptFromString(idevmTestObj.Code));
-        }
-        [Test]
-        [STAThread]
         public void executeCode_CallsIt_CallsScriptRunnerExecuteScript()
         {
             // Setup
-            idevmTestObj = new IDEViewModel(new TabControl(), new TextBox());
+            idevmTestObj = new IDEViewModel(new TabControl());
             IScriptRunner isrRunner = MockRepository.GenerateMock<IScriptRunner>();
             idevmTestObj.ScriptExecuter = isrRunner;
 
@@ -143,7 +105,7 @@ namespace SIR.Tests
         public void executeCode_CallsIt_ScriptRunnersetScriptFromStringIsCalledBeforeExecuteScript()
         {
             // Setup
-            idevmTestObj = new IDEViewModel(new TabControl(), new TextBox());
+            idevmTestObj = new IDEViewModel(new TabControl());
             MockRepository mockrepo = new MockRepository();
             IScriptRunner isrRunner = mockrepo.DynamicMock<IScriptRunner>();
             idevmTestObj.ScriptExecuter = isrRunner;

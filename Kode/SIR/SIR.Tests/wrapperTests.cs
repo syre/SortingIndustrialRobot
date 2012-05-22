@@ -291,6 +291,166 @@ namespace SIR.Tests
             // Verify
             Assert.IsTrue(bReturnValue);
         }
+        [Test]
+        public void timeWrapped_IsCalled_CallsDllTime()
+        {
+            // Setup
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.Time(Arg<byte>.Is.Anything, Arg<long>.Is.Anything))
+                .Return(1);
+
+            // Test
+            wTestObj.timeWrapped(Wrapper.enumBGroup.Group4, 1000);
+
+            // Verify
+            idllMock.AssertWasCalled(t => t.Time(Arg<byte>.Is.Anything, Arg<long>.Is.Anything));
+        }
+        [Test]
+        public void timeWrapped_DllTimeReturns0_ReturnsFalse()
+        {
+            // Setup
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.Time(Arg<byte>.Is.Anything, Arg<long>.Is.Anything))
+                .Return(0);
+
+            // Test
+            bool bReturnValue = wTestObj.timeWrapped(Wrapper.enumBGroup.Group4, 1000);
+
+            // Verify
+            Assert.IsFalse(bReturnValue);
+        }
+        [Test]
+        public void timeWrapped_DllTimeReturns1_ReturnsTrue()
+        {
+            // Setup
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.Time(Arg<byte>.Is.Anything, Arg<long>.Is.Anything))
+                .Return(1);
+
+            // Test
+            bool bReturnValue = wTestObj.timeWrapped(Wrapper.enumBGroup.Group4, 1000);
+
+            // Verify
+            Assert.IsTrue(bReturnValue);
+        }
+        [Test]
+        public void timeWrapped_IsCalled_CallsDllTimeWithRightGroupParameter()
+        {
+            // Setup
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.Time(Arg<byte>.Is.Anything, Arg<long>.Is.Anything))
+                .Return(1);
+
+            // Test
+            wTestObj.timeWrapped(Wrapper.enumBGroup.Group4, 1000);
+
+            // Verify
+            idllMock.AssertWasCalled(t => t.Time(Arg<byte>.Is.Equal(5), Arg<long>.Is.Anything));
+        }
+        [Test]
+        public void timeWrapped_IsCalled_CallsDllTimeWithRightTimeParameter()
+        {
+            // Setup
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.Time(Arg<byte>.Is.Anything, Arg<long>.Is.Anything))
+                .Return(1);
+
+            // Test
+            wTestObj.timeWrapped(Wrapper.enumBGroup.Group4, 1000);
+
+            // Verify
+            idllMock.AssertWasCalled(t => t.Time(Arg<byte>.Is.Anything, Arg<long>.Is.Equal(1000)));
+        }
+        [Test]
+        public void speedWrapped_IsCalled_CallsDllSpeed()
+        {
+            // Setup
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.Speed(Arg<byte>.Is.Anything, Arg<long>.Is.Anything))
+                .Return(1);
+
+            // Test
+            wTestObj.speedWrapped(Wrapper.enumBGroup.Group4, 1000);
+
+            // Verify
+            idllMock.AssertWasCalled(t => t.Speed(Arg<byte>.Is.Anything, Arg<long>.Is.Anything));
+        }
+        [Test]
+        public void speedWrapped_DllSpeedReturns0_ReturnsFalse()
+        {
+            // Setup
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.Speed(Arg<byte>.Is.Anything, Arg<long>.Is.Anything))
+                .Return(0);
+
+            // Test
+            bool bReturnValue = wTestObj.speedWrapped(Wrapper.enumBGroup.Group4, 1000);
+
+            // Verify
+            Assert.IsFalse(bReturnValue);
+        }
+        [Test]
+        public void speedWrapped_DllSpeedReturns1_ReturnsTrue()
+        {
+            // Setup
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.Speed(Arg<byte>.Is.Anything, Arg<long>.Is.Anything))
+                .Return(1);
+
+            // Test
+            bool bReturnValue = wTestObj.speedWrapped(Wrapper.enumBGroup.Group4, 1000);
+
+            // Verify
+            Assert.IsTrue(bReturnValue);
+        }
+        [Test]
+        public void speedWrapped_IsCalled_CallsDllSpeedWithRightGroupParameter()
+        {
+            // Setup
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.Speed(Arg<byte>.Is.Anything, Arg<long>.Is.Anything))
+                .Return(1);
+
+            // Test
+            wTestObj.speedWrapped(Wrapper.enumBGroup.Group4, 1000);
+
+            // Verify
+            idllMock.AssertWasCalled(t => t.Speed(Arg<byte>.Is.Equal(5), Arg<long>.Is.Anything));
+        }
+        [Test]
+        public void speedWrapped_IsCalled_CallsDllSpeedWithRightSpeedParameter()
+        {
+            // Setup
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.Speed(Arg<byte>.Is.Anything, Arg<long>.Is.Anything))
+                .Return(1);
+
+            // Test
+            wTestObj.speedWrapped(Wrapper.enumBGroup.Group4, 1000);
+
+            // Verify
+            idllMock.AssertWasCalled(t => t.Speed(Arg<byte>.Is.Anything, Arg<long>.Is.Equal(1000)));
+        }
         #endregion
         #region Movement
         [Test]

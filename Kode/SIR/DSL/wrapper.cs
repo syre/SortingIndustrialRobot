@@ -198,7 +198,7 @@ namespace DSL
 
 
         /// <summary>
-        /// For chosing what part to move when setting Time or Speed
+        /// For chosing what part to move when setting Time or Speed.
         /// </summary>
         public enum enumBGroup
         {
@@ -256,12 +256,7 @@ namespace DSL
             int iReturnValue = _dll.Initialization((short)_sysmodeMode, (short)_systypeType, _funcptrSuccess, _funcptrError);
             return ((iReturnValue == 1)? true : false);
         }
-        /// <summary>
-        /// Turns control on and off for certain axis group.
-        /// </summary>
-        /// <param name="_axisSettingsGroup">Axis group to affect.</param>
-        /// <param name="_bControlOnOrOff">To have it turned off or on.</param>
-        /// <returns>Returns true on successful call.</returns>
+
         public bool controlWrapped(enumAxisSettings _axisSettingsGroup, bool _bControlOnOrOff) 
         { 
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
@@ -270,10 +265,6 @@ namespace DSL
             return ((iReturnValue == 1) ? true : false);
         }
 
-        /// <summary>
-        /// Tells about the robot being online.
-        /// </summary>
-        /// <returns>Returns true if it is, false otherwise.</returns>
         public bool isOnlineOkWrapped()
         {
             int iReturnValue;
@@ -281,14 +272,14 @@ namespace DSL
             return ((iReturnValue == 1) ? true : false);
         }
 
-        public bool TimeWrapped(enumBGroup _bGroup, long _mTime)
+        public bool timeWrapped(enumBGroup _bGroup, long _mTime)
         {
             int iReturnValue;
             iReturnValue = _dll.Time((byte)_bGroup, _mTime);
             return ((iReturnValue == 1) ? true : false);
         }
 
-        public bool SpeedWrapped(enumBGroup _bGroup, long _mSpeed)
+        public bool speedWrapped(enumBGroup _bGroup, long _mSpeed)
         {
             int iReturnValue;
             iReturnValue = _dll.Speed((byte)_bGroup, _mSpeed);
@@ -298,18 +289,6 @@ namespace DSL
         #endregion
 
         #region Movement
-        /// <summary>
-        /// Homes a axis group.
-        /// Should be called before calling most movement functions.
-        /// </summary>
-        /// <param name="_axisSettingsGroup">The axis group.(Use enum)</param>
-        /// <param name="_funcptrHomingEventHandler">Function to be called for homing events.
-        /// 
-        /// Values being passed in event:
-        ///     0xff: Homing started
-        ///     1 - 8: Axis n being homed.
-        ///     0x40: Homing ended.</param>
-        /// <returns>Returns true on successful call.</returns>
         public bool homeWrapped(enumAxisSettings _axisSettingsGroup, DLL.DgateCallBackByteRefArg _funcptrHomingEventHandler)
         {
             byte bArg = axisSettingsToByte(_axisSettingsGroup);
@@ -317,12 +296,7 @@ namespace DSL
             iReturnValue = _dll.Home((byte) bArg, _funcptrHomingEventHandler);
             return ((iReturnValue == 1) ? true : false);
         }
-        /// <summary>
-        /// Must be called to use manual movement. 
-		/// Seems to stop previous movement of any object(Axis) that was moving before.
-        /// </summary>
-        /// <param name="_enummanMoveType">What to move by.(Axis(0), Coordinates(1))</param>
-        /// <returns>Returns true on successful call.</returns>
+
         public bool enterManualWrapped(enumManualType _enummanMoveType)
         {
             short shrtTmp;
@@ -341,33 +315,21 @@ namespace DSL
             iReturnValue = _dll.EnterManual(shrtTmp);
             return ((iReturnValue == 1) ? true : false);
         }
-        /// <summary>
-        /// Stops manual mode.
-        /// </summary>
-        /// <returns>Returns true on successful call.</returns>
+
         public bool closeManualWrapped()
         {
             int iReturnValue;
             iReturnValue = _dll.CloseManual();
             return ((iReturnValue == 1) ? true : false);
         }
-        /// <summary>
-        /// Moves the robot.
-        /// homeWrapped must have been called if moving by coordinates.
-		/// enterManual seems have to be called before each call to this function.
-		/// Use stopWrapped to stop motion afterwards.(Moving some other part of the system also stops the previous movement, since the system can only handle one object(Axis) moving at a time.)
-        /// </summary>
+
         public bool moveManualWrapped(enumManualModeWhat _enumWhatToMove, int _lSpeed)
         {
             int iReturnValue;
             iReturnValue = _dll.MoveManual(manualMovementToByte(_enumWhatToMove), _lSpeed);
             return ((iReturnValue == 1) ? true : false);
         }
-        /// <summary>
-        /// Stops movement of axis.
-        /// </summary>
-        /// <param name="_bWhatToStop">Axis to stop.</param>
-        /// <returns>Returns true on successful call.</returns>
+
         public bool stopWrapped(enumAxisSettings _bWhatToStop) /// \todo Refactor.
         {
             int iReturnValue;
@@ -393,34 +355,20 @@ namespace DSL
         #endregion
 
         #region Gripper
-        /// <summary>
-        /// Opens the gripper.
-        /// </summary>
-        /// <returns>Returns true on successful call.</returns>
         public bool openGripperWrapped()
         {
             int iReturnValue;
             iReturnValue = _dll.OpenGripper();
             return ((iReturnValue == 1) ? true : false);
         }
-        /// <summary>
-        /// Closes the gripper.
-        /// </summary>
-        /// <returns>Returns true on successful call.</returns>
+
         public bool closeGripperWrapped()
         {
             int iReturnValue;
             iReturnValue = _dll.CloseGripper();
             return ((iReturnValue == 1) ? true : false);
         }
-        /// <summary>
-        /// Gives information about how much open the gripper is.(Between the 'fingers')
-        /// 
-        /// Note: Probably most useful to use the _shrtWidth arg.
-        /// </summary>
-        /// <param name="_shrtPerc">Data in percentage.</param>
-        /// <param name="_shrtWidth">Data in width.(mm)</param>
-        /// <returns>Returns true on successful call.</returns>
+
         public bool getJawWrapped(ref short _shrtPerc, ref short _shrtWidth)
         {
             int iReturnValue;
@@ -442,11 +390,6 @@ namespace DSL
             _dll.WatchMotion(_funcptrCallbackEnd, _funcptrCallbackStart);
         }
 
-        /// <summary>
-        /// Adds a function to be called when digital input changes.
-        /// </summary>
-        /// <param name="_funcptrCallbackEvent">The function to be called.</param>
-        /// <returns>Returns true if successful call.</returns>
         public bool watchDigitalInputWrapped(DLL.DgateCallBackLongArg _funcptrCallbackEvent)
         {
             int iReturnValue;
@@ -454,12 +397,6 @@ namespace DSL
             return ((iReturnValue == 1) ? true : false);
         }
 
-        /// <summary>
-        /// Stops watching of digital inputs.
-        /// 
-        /// Note: Probably means no more events.
-        /// </summary>
-        /// <returns>Returns true if successful call.</returns>
         public bool closeWatchDigitalInputWrapped()
         {
             int iReturnValue;
@@ -469,32 +406,13 @@ namespace DSL
         #endregion
 
         #region Vectors
-        /// <summary>
-        /// Defines a new vector in robot memory.
-        /// 
-        /// Note: Good idea to have in program one of the SIRVector classes to contains vector information.
-        /// </summary>
-        /// <param name="_enumGroup">Group can use:
-        ///     Robot(Normally used)
-        ///     Peripherals
-        ///     All
-        /// </param>
-        /// <param name="_sVectorName">Name of vector.</param>
-        /// <param name="_shrtLength">Length of vector.(Number of points.)</param>
-        /// <returns>Returns true on successfull call.</returns>
         public bool defineVectorWrapped(enumAxisSettings _enumGroup, string _sVectorName, short _shrtLength)
         {
             int iReturn;
             iReturn = _dll.DefineVector(axisSettingsToByte(_enumGroup), _sVectorName, _shrtLength);
             return (iReturn == 1);
         }
-        /// <summary>
-        /// Add the vector points to the vector with the same name. 
-        /// 
-        /// Note: Should call 'defineVectorWrapped' first.
-        /// </summary>
-        /// <param name="vecTheSirVector">The vector with the points.</param>
-        /// <returns>Returns true on succeessfull call.</returns>
+
         public bool teachWrapped(SIRVector vecTheSirVector)
         {
             int iReturn;
@@ -535,7 +453,7 @@ namespace DSL
 
         #region Helper functions
 
-        public byte axisSettingsToByte(enumAxisSettings axisSettingsArg)
+        private byte axisSettingsToByte(enumAxisSettings axisSettingsArg)
         {
             byte bArg;
             switch (axisSettingsArg)
@@ -582,7 +500,7 @@ namespace DSL
             return(bArg);
         }
 
-        public byte manualMovementToByte(enumManualModeWhat enumArg)
+        private byte manualMovementToByte(enumManualModeWhat enumArg)
         {
             byte bArg;
             switch (enumArg)

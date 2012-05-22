@@ -1,5 +1,6 @@
 ﻿/** \author Robotic Global Organization(RoboGO) */
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Controls;
 using DSL;
@@ -13,7 +14,7 @@ namespace RoboGO.ViewModels
     /// <summary>
     /// ViewModel between IDEView and ScriptRunner.
     /// </summary>
-    public class IDEViewModel
+    public class IDEViewModel : INotifyPropertyChanged
     {
         /// <summary>
         /// Command that controls saveAs
@@ -23,9 +24,36 @@ namespace RoboGO.ViewModels
         public RelayCommand closeTab { get; private set; }
         public RelayCommand newTab { get; private set; }
 
+        #region Properties
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void notifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
+
         private TabControl ideTabs;
-        private TextBox outputbox;
-        // Members and properties
+        /// <summary>
+        /// TabControl for all the textboxes.
+        /// </summary>
+        public TabControl IdeTabs
+        {
+            get { return ideTabs; }
+            set { ideTabs = value; }
+        }
+
+        private string sDSLOutput;
+        /// <summary>
+        /// Where print statements gets printed.
+        /// </summary>
+        public string CodeOutput
+        {
+            get { return sDSLOutput; }
+            set { sDSLOutput = value; notifyPropertyChanged("CodeOutput");}
+        }
+
         private IScriptRunner isrScriptRunner;
         /// <summary>
         /// ScriptRunner using to execute code.
@@ -41,18 +69,7 @@ namespace RoboGO.ViewModels
                     isrScriptRunner = value;
             }
         }
-
-        private string sCode;
-        /// <summary>
-        /// Code to execute.
-        /// 
-        /// \warning Haven´t been used.
-        /// </summary>
-        public string Code
-        {
-            get { return (sCode); }
-            set { sCode = value; }
-        }
+        #endregion
         #region Commands
 
         private DelegateCommand ecDelegateComd;
@@ -69,12 +86,10 @@ namespace RoboGO.ViewModels
         /// TabControl so can add and remove tab content.
         /// </summary>
         /// <param name="_ideTabs">TabControl used in main program in the IDE.</param>
-        public IDEViewModel(TabControl _ideTabs, TextBox _outputbox)
+        public IDEViewModel(TabControl _ideTabs)
         {
             // Members settings
             ideTabs = _ideTabs;
-            outputbox = _outputbox;
-            sCode = "";
             isrScriptRunner = Factory.getScriptRunnerInstance;
 
             #region Commands
@@ -114,8 +129,7 @@ namespace RoboGO.ViewModels
         	    UIService.showMessageBox(e.Message, "ScriptRunner", MessageBoxButton.OK, MessageBoxImage.Error);
         	}
             isrScriptRunner.ExecuteScript();
-            outputbox.Text = isrScriptRunner.readFromOutputStream();
-            outputbox.ScrollToEnd();
+            CodeOutput = isrScriptRunner.readFromOutputStream();
         }
 
         protected bool saveAs_CanExecute
@@ -168,7 +182,6 @@ namespace RoboGO.ViewModels
                     openFile(file);
                 }
             }
-
         }
 
         private void openFile(string file)
