@@ -6,9 +6,7 @@ namespace DSL
 {
     public class Simulator : IRobot
     {
-        #region properties
-
-        
+        #region Properties
         public bool gripperClosed { get; set; }
 
         private IUI iuiOutput;
@@ -46,7 +44,7 @@ namespace DSL
         }
 
         /// <summary>
-        /// It will close the gripper
+        /// Close the gripper
         /// </summary>
         /// <returns>Returns true if the gripper closes</returns>
         public bool closeGripper()
@@ -57,7 +55,7 @@ namespace DSL
         }
 
         /// <summary>
-        /// Opens the robot gripper
+        /// Opens the gripper
         /// </summary>
         /// <returns>returns true if the gripper opens</returns>
         public bool openGripper()
@@ -78,7 +76,7 @@ namespace DSL
         }
 
         /// <summary>
-        /// function for moving by coordinates
+        /// Function for moving by coordinates
         /// </summary>
         /// <param name="_x"> x-coordinate </param>
         /// <param name="_y"> y-coordinate </param>
@@ -98,6 +96,10 @@ namespace DSL
             return true;
         }
 
+        /// <summary>
+        /// Gets width of jaw opening in milimeters
+        /// </summary>
+        /// <returns></returns>
         public short getJawOpeningWidthMilimeters()
         {
             try
@@ -113,6 +115,10 @@ namespace DSL
             return 0;
         }
 
+        /// <summary>
+        /// Gets width of jaw opening in percent
+        /// </summary>
+        /// <returns></returns>
         public short getJawOpeningWidthPercentage()
         {
             try
@@ -129,7 +135,7 @@ namespace DSL
         }
 
         /// <summary>
-        /// Robot to start position
+        /// Setting robot to start position
         /// </summary>
         /// <returns>true if robot goes home.</returns>
         public bool homeRobot()
@@ -152,7 +158,7 @@ namespace DSL
         /// <summary>
         /// Moving the base
         /// </summary>
-        /// <param name="speed"> speed</param>
+        /// <param name="speed">speed</param>
         /// <returns>always true</returns>
         public bool moveBase(int speed)
         {
@@ -164,7 +170,7 @@ namespace DSL
         /// Moving the shoulder
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>lways true</returns>
+        /// <returns>always true</returns>
         public bool moveShoulder(int speed)
         {
             iuiOutput.writeLine("Shoulder moving");
@@ -244,7 +250,7 @@ namespace DSL
         }
 
         /// <summary>
-        /// Moving from the realative position (current position)
+        /// Moving from the relative position (current position)
         /// </summary>
         /// <params name="ALL">represents each coordinate values</params>
         /// <returns>always true</returns>
@@ -260,72 +266,83 @@ namespace DSL
         }
 
         /// <summary>
-        /// Moves Just X coordinate
+        /// Moves just X coordinate
         /// </summary>
         /// <param name="x">value for the x coordinate</param>
         /// <returns>always true</returns>
         public bool moveByXCoordinate(int x)
         {
-            iuiOutput.writeLine("New Cordinate X: "+ x);
+            iuiOutput.writeLine("New Coordinate X: "+ x);
             Currentposition.iX = x;
             return true;
         }
 
         /// <summary>
-        /// Moves Just Y coordinate
+        /// Moves just Y coordinate
         /// </summary>
         /// <param name="y">value for the y coordinate</param>
         /// <returns>always true</returns>
         public bool moveByYCoordinate(int y)
         {
-            iuiOutput.writeLine("New Cordinate Y: " + y);
+            iuiOutput.writeLine("New Coordinate Y: " + y);
             Currentposition.iY = y;
             return true;
         }
         /// <summary>
-        /// Moves Just Z coordinate
+        /// Moves just Z coordinate
         /// </summary>
         /// <param name="z">value for the z coordinate</param>
         /// <returns>always true</returns>
         public bool moveByZCoordinate(int z)
         {
-            iuiOutput.writeLine("New Cordinate Y: " + z);
+            iuiOutput.writeLine("New Coordinate Y: " + z);
             Currentposition.iZ = z;
             return true;
         }
 
         /// <summary>
-        /// Moves Just pitch coordinate
+        /// Moves just pitch coordinate
         /// </summary>
         /// <param name="pitch">value for the pitch coordinate</param>
         /// <returns>always true</returns>
         public bool moveByPitch(int pitch)
         {
-            iuiOutput.writeLine("New Cordinate Pitch: " + pitch);
+            iuiOutput.writeLine("New Coordinate Pitch: " + pitch);
             Currentposition.iPitch = pitch;
             return true;
         }
 
         /// <summary>
-        /// Moves Just roll coordinate
+        /// Moves just roll coordinate
         /// </summary>
         /// <param name="roll">value for the roll coordinate</param>
         /// <returns>always true</returns>
         public bool moveByRoll(int roll)
         {
-            iuiOutput.writeLine("New Cordinate Roll: " + roll);
+            iuiOutput.writeLine("New Coordinate Roll: " + roll);
             Currentposition.iRoll = roll;
             return true;
         }
 
-
+        /// <summary>
+        /// Time for future movements in miliseconds
+        /// </summary>
+        /// <param name="_bGroup">Part of the robot </param> 
+        /// /// <param name="_mTime">Value for time</param>
+        /// <returns>always true</returns>
         public bool Time(Wrapper.enumBGroup _bGroup, long _mTime)
         {
-            iuiOutput.writeLine("New Timer for future movements: " + _mTime + "Miliseconds");
+            iuiOutput.writeLine("New Time for future movements: " + _mTime + "Miliseconds");
             return true;
 
         }
 
+        /// <summary>
+        /// Speed for future movements in percent
+        /// </summary>
+        /// <param name="_bGroup">Part of the robot </param> 
+        /// /// <param name="_mSpeed">Value for speed</param>
+        /// <returns>always true</returns>
         public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
         {
             iuiOutput.writeLine("New Speed for future movements: " + _mSpeed + "%");
@@ -347,9 +364,9 @@ namespace DSL
         }
 
         /// <summary>
-        /// NO COMMENt
+        /// Gets current position
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Currentposition</returns>
         public VecPoint getCurrentPosition()
         {
             return Currentposition;
@@ -357,7 +374,7 @@ namespace DSL
 
         public bool moveToCubePosition(int _iCubeID)
         {
-            iuiOutput.writeLine("Moved to position with cube id"+_iCubeID);
+            iuiOutput.writeLine("Moved to position with cube ID"+_iCubeID);
             return(true);
         }
 
