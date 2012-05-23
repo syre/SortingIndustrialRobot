@@ -53,6 +53,7 @@
                         <KeyBinding Command="{Binding Path=open}" Gesture="CTRL+O"/>
                         <KeyBinding Command="{Binding Path=closeTab}" Gesture="CTRL+W"/>
                         <KeyBinding Command="{Binding Path=newTab}" Gesture="CTRL+N"/>
+                        <KeyBinding Command="{Binding Path=ExecuteComd}" Gesture="CTRL+B" />
                     </TabItem.InputBindings>
                     <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="645">
                         <Menu VerticalAlignment="Top">

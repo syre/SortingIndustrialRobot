@@ -15,14 +15,6 @@ namespace RoboGO.ViewModels
     /// </summary>
     public class IDEViewModel : INotifyPropertyChanged
     {
-        /// <summary>
-        /// Command that controls saveAs
-        /// </summary>
-        public RelayCommand saveAs { get; private set; }
-        public RelayCommand open { get; private set; }
-        public RelayCommand closeTab { get; private set; }
-        public RelayCommand newTab { get; private set; }
-
         #region Properties
         public event PropertyChangedEventHandler PropertyChanged;
         private void notifyPropertyChanged(String info)
@@ -70,12 +62,17 @@ namespace RoboGO.ViewModels
         }
         #endregion
         #region Commands
-
         private DelegateCommand ecDelegateComd;
         public DelegateCommand ExecuteComd
         {
             get { return (ecDelegateComd); }
         }
+        
+        public RelayCommand saveAs { get; private set; }
+        public RelayCommand open { get; private set; }
+        public RelayCommand closeTab { get; private set; }
+        public RelayCommand newTab { get; private set; }
+        public RelayCommand build { get; private set; }
         #endregion
 
         // Functions
@@ -105,6 +102,7 @@ namespace RoboGO.ViewModels
             closeTab = new RelayCommand(
                     () => closeTab_Executed(),
                     () => closeTab_CanExecute);
+            
             newTab = new RelayCommand(
                     () => newTab_Executed(),
                     () => newTab_CanExecute);
