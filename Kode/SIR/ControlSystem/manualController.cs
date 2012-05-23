@@ -223,7 +223,7 @@ namespace ControlSystem
             bool ifEverythingOk = false;
 
             if (_ecoGripper == enumCloseOpen.MANUAL_OPEN)
-                ifEverythingOk = robot.openGripper()
+                ifEverythingOk = robot.openGripper();
             
             if (_ecoGripper == enumCloseOpen.MANUAL_CLOSE)
                 ifEverythingOk = robot.closeGripper();
