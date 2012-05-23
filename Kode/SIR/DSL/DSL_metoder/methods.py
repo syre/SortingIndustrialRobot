@@ -6,12 +6,12 @@ import System.Data.SqlClient
 
 # coordinates movement function
 def moveByCoordinates(x,y,z):
-	if (_robot.movebyCoordinates(x,y,z) == True):
+        if (_robot.movebyCoordinates(x,y,z) == True):
                 print "moved by coordinates succesful"
         else:
                 print "moved by coordinates unsuccessfully"
 
-def moveByAbsoluteCoordinates(x,y,z,pitch,roll):
+def moveByAbsoluteCoordinates(x,y,z,pitch,roll):	
         if (_robot.moveByAbsoluteCoordinates(x,y,z,pitch,roll) == True):
                 print "moved by absolute coordinates succesful"
         else:
@@ -25,13 +25,13 @@ def moveByRelativeCoordinates(x,y,z,pitch,roll):
 
 # gripper functions
 def openGripper():
-	if(_robot.openGripper() == True):
+        if(_robot.openGripper() == True):
                 print "gripper opened successfully"
         else:
                 print "gripper failed to open"
 
 def closeGripper():
-        if (robot.closeGripper() == True):
+        if (_robot.closeGripper() == True):
                 print "gripper closed succesfully"
         else:
                 print "gripper failed to close"
@@ -39,13 +39,13 @@ def closeGripper():
 # standard robot functions
 
 def Initialization():
-	if (_robot.Initialization() == True):
+        if (_robot.Initialization() == True):
                 print "robot initialized successfully"
         else:
                 print "robot failed to initialize"
 
 def seekHome(): 
-	if (_robot.homeRobot() == True):
+        if (_robot.homeRobot() == True):
                 print "robot homed successfully"
         else:
                 print "robot homed unsuccesfully"
@@ -64,37 +64,37 @@ def moveBase(speed):
                 print "failed to move base"
 
 def moveShoulder(speed):
-	if (_robot.moveShoulder(speed) == True):
+        if (_robot.moveShoulder(speed) == True):
                 print "moving shoulder with "+str(speed)+"% speed"
         else:
                 print "failed to move shoulder"
 
 def moveElbow(speed):
-	if (_robot.moveElbow(speed) == True):
+        if (_robot.moveElbow(speed) == True):
                 print "moving elbow with "+str(speed)+"% speed"
         else:
                 print "failed to move elbow"
 
 def moveWristRoll(speed):
-	if (_robot.moveWristRoll(speed) == True):
+        if (_robot.moveWristRoll(speed) == True):
                 print "moving wrist with "+str(speed)+"% speed"
         else:
                 print "failed to move wrist"
 
 def moveGripper(speed):
-	if (_robot.moveGripper(speed) == True):
+        if (_robot.moveGripper(speed) == True):
                 print "moving gripper with "+str(speed)+"% speed"
         else:
                 print "failed to move gripper"
 
 def moveConveyorBelt(speed):
-	if (_robot.moveConveyerBelt(speed) == True):
+        if (_robot.moveConveyerBelt(speed) == True):
                 print "moving conveyor belt with "+str(speed)+"% speed"
         else:
                 print "failed to move conveyor belt"
 
 def isOnline():
-	if (_robot.isOnline() == True):
+        if (_robot.isOnline() == True):
                 print "robot is online"
         else:
                 print "robot is offline"
