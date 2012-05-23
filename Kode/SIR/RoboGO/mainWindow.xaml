@@ -110,9 +110,9 @@
                         <DataGrid Name="DatabaseTables" HorizontalAlignment="Left" ItemsSource="{Binding Tables}" SelectionChanged="DatabaseTables_SelectionChanged" IsReadOnly="True" />
                         <!--Right table-->
                         <StackPanel>
-                            <DataGrid Name="DatabaseTableValues" HorizontalAlignment="Left" Width="500" ItemsSource="{Binding TableValues}" Height="320" VerticalScrollBarVisibility="Auto" />
-                            <Button Content="Print" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="DatabasePrintButton" Click="DatabasePrintButton_Click" />
-                            <Button Content="Save" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="DatabaseTableValuesSave" Click="DatabaseTableValuesSaveButton_Click" />
+                            <DataGrid Name="DatabaseTableValues" HorizontalAlignment="Left" Width="500" ItemsSource="{Binding TableValues}" Height="300" VerticalScrollBarVisibility="Auto" />
+                            <Button Content="Print" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="DatabasePrintButton" Margin="5" Click="DatabasePrintButton_Click" />
+                            <Button Content="Save" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="DatabaseTableValuesSave" Margin="5" Click="DatabaseTableValuesSaveButton_Click" />
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
