@@ -147,20 +147,17 @@ namespace DSL
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
         bool moveGripper(int speed);
+        
         /// <summary>
         /// Separate function for moving robot conveyer belt
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
         bool moveConveyerBelt(int speed);
+        
         /// <summary>
         /// Separate function for getting Current position in string
         /// </summary>
-        /// <param name="_iX"></param>
-        /// <param name="_iY"></param>
-        /// <param name="_iZ"></param>
-        /// <param name="_iPitch"></param>
-        /// <param name="_iRoll"></param>
         /// <returns></returns>
         string getCurrentPositionAsString();
 

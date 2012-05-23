@@ -103,17 +103,7 @@ namespace DSL
         /// <returns></returns>
         public short getJawOpeningWidthMilimeters()
         {
-            try
-            {
-                throw new NotImplementedException();
-
-            }
-            catch (NotImplementedException e)
-            {
-                iuiOutput.writeLine(e.Message);
-            }
-
-            return 0;
+            return 10;
         }
 
         /// <summary>
@@ -122,17 +112,7 @@ namespace DSL
         /// <returns></returns>
         public short getJawOpeningWidthPercentage()
         {
-            try
-            {
-                throw new NotImplementedException();
-
-            }
-            catch (NotImplementedException e)
-            {
-                iuiOutput.writeLine(e.Message);
-            }
-
-            return 0;
+            return 10;
         }
 
         /// <summary>
@@ -160,7 +140,7 @@ namespace DSL
         /// Moving the base
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveBase(int speed)
         {
            iuiOutput.writeLine("Base moving");
@@ -171,7 +151,7 @@ namespace DSL
         /// Moving the shoulder
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveShoulder(int speed)
         {
             iuiOutput.writeLine("Shoulder moving");
@@ -182,7 +162,7 @@ namespace DSL
         /// Moving the wrist Pitch
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveWristPitch(int speed)
         {
             iuiOutput.writeLine("Wrist Pitch moving");
@@ -193,7 +173,7 @@ namespace DSL
         /// Moving the Wrist Roll
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveWristRoll(int speed)
         {
             iuiOutput.writeLine("Wrist Roll moving");
@@ -204,7 +184,7 @@ namespace DSL
         /// Moving the elbow
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveElbow(int speed)
         {
             iuiOutput.writeLine("Elbow moving");
@@ -215,7 +195,7 @@ namespace DSL
         /// Moving the gripper
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveGripper(int speed)
         {
             iuiOutput.writeLine("Gripper moving");
@@ -226,7 +206,7 @@ namespace DSL
         /// Moving the Conveyer Belt
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveConveyerBelt(int speed)
         {
             iuiOutput.writeLine("Conveyer Belt moving");
@@ -238,7 +218,7 @@ namespace DSL
         /// Moving from the absolute position (home position)
         /// </summary>
         /// <params name="ALL">represents each coordinate values</params>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll)
         {
             iuiOutput.writeLine("Absolute Coordinate X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", x,y,z,pitch,roll);
@@ -254,7 +234,7 @@ namespace DSL
         /// Moving from the relative position (current position)
         /// </summary>
         /// <params name="ALL">represents each coordinate values</params>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
             iuiOutput.writeLine("Absolute Coordinate X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", _iX, _iY, _iZ, _iPitch, _iRoll);
@@ -270,7 +250,7 @@ namespace DSL
         /// Moves just X coordinate
         /// </summary>
         /// <param name="x">value for the x coordinate</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByXCoordinate(int x)
         {
             iuiOutput.writeLine("New Coordinate X: "+ x);
@@ -282,7 +262,7 @@ namespace DSL
         /// Moves just Y coordinate
         /// </summary>
         /// <param name="y">value for the y coordinate</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByYCoordinate(int y)
         {
             iuiOutput.writeLine("New Coordinate Y: " + y);
@@ -293,7 +273,7 @@ namespace DSL
         /// Moves just Z coordinate
         /// </summary>
         /// <param name="z">value for the z coordinate</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByZCoordinate(int z)
         {
             iuiOutput.writeLine("New Coordinate Y: " + z);
@@ -305,7 +285,7 @@ namespace DSL
         /// Moves just pitch coordinate
         /// </summary>
         /// <param name="pitch">value for the pitch coordinate</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByPitch(int pitch)
         {
             iuiOutput.writeLine("New Coordinate Pitch: " + pitch);
@@ -317,7 +297,7 @@ namespace DSL
         /// Moves just roll coordinate
         /// </summary>
         /// <param name="roll">value for the roll coordinate</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByRoll(int roll)
         {
             iuiOutput.writeLine("New Coordinate Roll: " + roll);
@@ -330,7 +310,7 @@ namespace DSL
         /// </summary>
         /// <param name="_bGroup">Part of the robot </param> 
         /// /// <param name="_mTime">Value for time</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool Time(Wrapper.enumBGroup _bGroup, long _mTime)
         {
             iuiOutput.writeLine("New Time for future movements: " + _mTime + "Miliseconds");
@@ -343,7 +323,7 @@ namespace DSL
         /// </summary>
         /// <param name="_bGroup">Part of the robot </param> 
         /// /// <param name="_mSpeed">Value for speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
         {
             iuiOutput.writeLine("New Speed for future movements: " + _mSpeed + "%");
@@ -354,7 +334,7 @@ namespace DSL
         /// Moves all coordinates
         /// </summary>
         /// <params>value for the three coordinates</params>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool movebyCoordinates(int _iX, int _iY, int _iZ)
         {
             iuiOutput.writeLine("New Coordinates X: "+_iX+"  Y: "+_iY+"  Z: "+_iZ);
@@ -373,6 +353,7 @@ namespace DSL
             return Currentposition;
         }
 
+        
         public bool moveToCubePosition(int _iCubeID)
         {
             iuiOutput.writeLine("Moved to position with cube ID"+_iCubeID);
