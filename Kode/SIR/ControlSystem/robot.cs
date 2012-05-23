@@ -195,10 +195,20 @@ namespace ControlSystem
         /// <param name="_mSpeed">
         ///      Speed in percent of max speed</param>
         bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed);
+
+
+        /// <summary>
+        ///     Get the Weight from serielSTK
+        /// </summary>
+        /// <returns>the wieght in double</returns>
+        double getWeight();
+
+
     }
     public class Robot : IRobot
     {
         private IWrapper _wrapper;
+        private SerialSTK _serialStk;
         DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
         DLL.DgateCallBack dgateEventHandlerError = initError;
         DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
@@ -226,6 +236,7 @@ namespace ControlSystem
         /// </summary>
         public Robot()
         {
+            _serialStk = new SerialSTK();
             _wrapper = Wrapper.getInstance();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
@@ -270,6 +281,11 @@ namespace ControlSystem
         public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
         {
             return _wrapper.speedWrapped(_bGroup, _mSpeed);
+        }
+
+        public double getWeight()
+        {
+            return _serialStk.ReadADC();
         }
 
         #endregion
