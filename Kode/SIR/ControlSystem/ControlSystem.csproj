@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controlSystem.cs" />
     <Compile Include="factory.cs" />
     <Compile Include="manualController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

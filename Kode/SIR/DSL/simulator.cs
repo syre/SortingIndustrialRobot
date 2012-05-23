@@ -9,6 +9,7 @@ namespace DSL
         #region Properties
         public bool gripperClosed { get; set; }
 
+
         private IUI iuiOutput;
         public IUI IUIOutput
         {
@@ -28,6 +29,7 @@ namespace DSL
         #region Methods
         public Simulator()
         {
+
             Currentposition = new VecPoint(0,0,0,0,0);
             iuiOutput = new ConsoleUI(); // Don´t move location.
             iuiOutput.writeLine("Simulation is started!");
@@ -382,6 +384,13 @@ namespace DSL
         {
             return Currentposition.ToString();
         }
+
+        public double getWeight()
+        {
+            iuiOutput.writeLine("Weight: 10,12");
+            return 10.12;
+        }
+
         #endregion
 
     }

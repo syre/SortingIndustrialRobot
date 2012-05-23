@@ -46,7 +46,16 @@ namespace RoboGO
 
         public void stopRobotInstance()
         {
-            Factory.currentIRobotInstance.stopAllMovement();
+            ThreadHandling tempThreadHandler = Factory.getThreadHandlingInstance;
+
+            tempThreadHandler.abortAllAndWait();
+
+            IRobot tempIRobot = Factory.currentIRobotInstance;
+
+            if (tempIRobot == null)
+                throw new Exception("No chosen running method found");
+            if (!tempIRobot.stopAllMovement())
+                throw new Exception("Could not stop robot");
         }
 
         public void checkIsOnline()
