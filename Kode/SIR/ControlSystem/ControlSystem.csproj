@@ -32,6 +32,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython-2.7.2.1\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules">
+      <HintPath>..\IronPython-2.7.2.1\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython-2.7.2.1\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.AspNet">
+      <HintPath>..\IronPython-2.7.2.1\Microsoft.Scripting.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython-2.7.2.1\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,21 +59,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dll.cs" />
+    <Compile Include="errorReporter.cs" />
     <Compile Include="factory.cs" />
+    <Compile Include="iDLL.cs" />
+    <Compile Include="iWrapper.cs" />
     <Compile Include="manualController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="robot.cs" />
+    <Compile Include="scriptRunner.cs" />
+    <Compile Include="serialSTK.cs" />
+    <Compile Include="simulator.cs" />
     <Compile Include="threadHandling.cs" />
+    <Compile Include="ui.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="wrapper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DSL\DSL.csproj">
-      <Project>{03E26CE2-EAB1-4541-BA71-2373A38E5852}</Project>
-      <Name>DSL</Name>
-    </ProjectReference>
+    <Content Include="DSLFiler\methods.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DSLFiler\USBC.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SqlInteraction\SqlInteraction.csproj">
       <Project>{AEAEF8D6-5791-41F8-B143-866502B90F25}</Project>
       <Name>SqlInteraction</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DSLFiler\USBC.INI">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

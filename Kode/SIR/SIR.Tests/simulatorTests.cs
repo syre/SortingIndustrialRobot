@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using DSL;
+﻿using ControlSystem;
+using NUnit.Framework;
 using Rhino.Mocks;
 
 namespace SIR.Tests

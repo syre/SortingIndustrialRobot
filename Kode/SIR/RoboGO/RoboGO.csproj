@@ -187,10 +187,6 @@
       <Project>{1B49DF99-175F-4DC5-9FD5-6ED464267C67}</Project>
       <Name>ControlSystem</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DSL\DSL.csproj">
-      <Project>{03E26CE2-EAB1-4541-BA71-2373A38E5852}</Project>
-      <Name>DSL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SqlInteraction\SqlInteraction.csproj">
       <Project>{AEAEF8D6-5791-41F8-B143-866502B90F25}</Project>
       <Name>SqlInteraction</Name>

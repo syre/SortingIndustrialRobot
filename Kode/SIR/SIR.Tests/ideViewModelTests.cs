@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
 using ControlSystem;
-using DSL;
 using NUnit.Framework;
 using Rhino.Mocks;
 using RoboGO.ViewModels;
