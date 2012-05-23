@@ -92,7 +92,7 @@
                             </TabItem>
                         </TabControl>
                         <Label Content="DSL Output:"/>
-                             <TextBox Name="DSLOutputBox" Text="{Binding CodeOutput}" MaxHeight="100" MinHeight="100" VerticalScrollBarVisibility="Auto" TextChanged="DSLOutputBox_TextChanged" />
+                             <TextBox Name="DSLOutputBox" Text="{Binding CodeOutput}" MaxHeight="100" MinHeight="100" VerticalScrollBarVisibility="Auto" IsReadOnly="True" TextChanged="DSLOutputBox_TextChanged" />
                     </StackPanel>
                 </TabItem>
                 <!--Simulator tab-->

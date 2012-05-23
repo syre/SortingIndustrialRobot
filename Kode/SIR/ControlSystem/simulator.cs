@@ -70,7 +70,7 @@ namespace ControlSystem
         /// Initializes the robot to default values
         /// </summary>
         /// <returns>true if the initialization is ok!</returns>
-        public bool initialization()
+        private bool initialization()
         {
             iuiOutput.writeLine("The system is online, and system types is set to default!");
             return true;

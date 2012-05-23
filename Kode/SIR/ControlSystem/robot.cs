@@ -22,11 +22,6 @@ namespace ControlSystem
         /// </summary>
         /// <returns></returns>
         bool openGripper();
-        /// <summary>
-        /// Initializes robot with default values MODE_ONLINE and SYSTEM_TYPE_DEFAULT
-        /// </summary>
-        /// <returns></returns>
-        bool initialization();
         
         /// <summary>
         /// Calls wrapper function for stopping all movement
@@ -238,7 +233,7 @@ namespace ControlSystem
             //homeRobot();
         }
 
-        public bool initialization() // implementing delegates
+        private bool initialization() // implementing delegates
         {
             return _wrapper.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE,
                                                   Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT,
