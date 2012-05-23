@@ -161,5 +161,14 @@ namespace RoboGO
 
             psWindow.Close();
         }
+        
+        void Button_Click(object sender, RoutedEventArgs e)
+        {
+            idevmViewModelIDE.CodeClear();
+            DSLOutputBox.Clear();
+        }
+        
+      
+        
     }
 }

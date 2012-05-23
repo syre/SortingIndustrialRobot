@@ -130,6 +130,11 @@ namespace RoboGO.ViewModels
             isrScriptRunner.ExecuteScript();
             CodeOutput = isrScriptRunner.readFromOutputStream();
         }
+        
+        public void CodeClear()
+        {
+            isrScriptRunner.clearOutputStream();
+        }
 
         protected bool saveAs_CanExecute
         {
