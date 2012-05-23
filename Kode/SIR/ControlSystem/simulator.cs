@@ -7,9 +7,7 @@ namespace ControlSystem
 {
     public class Simulator : IRobot
     {
-        #region Properties
-        public bool gripperClosed { get; set; }
-
+        #region Properties and members
         private IUI iuiOutput;
         public IUI IUIOutput
         {
@@ -23,6 +21,7 @@ namespace ControlSystem
             get { return _currentposition; }
             set { _currentposition = value; }
         }
+        public bool bGripperIsOpen;
 
         #endregion
 
@@ -32,6 +31,7 @@ namespace ControlSystem
             Currentposition = new VecPoint(0,0,0,0,0);
             iuiOutput = new ConsoleUI(); // Don´t move location.
             iuiOutput.writeLine("Simulation is started!");
+            bGripperIsOpen = false;
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace ControlSystem
         public bool closeGripper()
         {
             iuiOutput.writeLine("Gripper closing!");
-            gripperClosed = true;
+            bGripperIsOpen = false;
             return true;
         }
 
@@ -62,7 +62,7 @@ namespace ControlSystem
         public bool openGripper()
         {
             iuiOutput.writeLine("Gripper opening!");
-            gripperClosed = false;
+            bGripperIsOpen = true;
             return true;
         }
 
@@ -103,7 +103,9 @@ namespace ControlSystem
         /// <returns></returns>
         public short getJawOpeningWidthMilimeters()
         {
-            return 10;
+            if(bGripperIsOpen)
+                return(200);
+            return(0);
         }
 
         /// <summary>
@@ -112,7 +114,9 @@ namespace ControlSystem
         /// <returns></returns>
         public short getJawOpeningWidthPercentage()
         {
-            return 10;
+            if(bGripperIsOpen)
+                return(100);
+            return(0);
         }
 
         /// <summary>
@@ -199,6 +203,10 @@ namespace ControlSystem
         public bool moveGripper(int speed)
         {
             iuiOutput.writeLine("Gripper moving");
+            if(speed > 0)
+                bGripperIsOpen = true;
+            else if(speed < 0)
+                bGripperIsOpen = false;
             return true;
         }
 
