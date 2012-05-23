@@ -1,7 +1,6 @@
 ﻿/** \file PositionViewModel.cs */
 /** \author Robotic Global Organization(RoboGO) */
 
-using DSL;
 using ControlSystem;
 
 namespace RoboGO.ViewModels

@@ -3,7 +3,6 @@
 using NUnit.Framework;
 using Rhino.Mocks;
 using ControlSystem;
-using DSL;
 
 namespace SIR.Tests
 {
