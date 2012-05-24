@@ -153,8 +153,14 @@ namespace RoboGO.ViewModels
         	{
         	    UIService.showMessageBox(e.Message, "ScriptRunner", MessageBoxButton.OK, MessageBoxImage.Error);
         	}
-            if(Factory.getThreadHandlingInstance.find("ExecuteScript").threadPlaceHolder.IsAlive == true)
-                Factory.getThreadHandlingInstance.abortAndWait("ExecuteScript");
+
+            if (Factory.getThreadHandlingInstance.find("ExecuteScript").threadPlaceHolder.IsAlive == true)
+            {
+                if (UIService.showMessageBox("Another program already running, please wait for it to finish\n\nWould you like to abort it and continue?", "Build", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                {
+                    Factory.getThreadHandlingInstance.abortAndWait("ExecuteScript");
+                }
+            }
             Factory.getThreadHandlingInstance.start("ExecuteScript");
         }
 

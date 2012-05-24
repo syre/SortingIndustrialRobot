@@ -47,7 +47,9 @@ namespace ControlSystem
 
                 tempHolder.stringDescription = _description;
                 tempHolder.threadPlaceHolder = tempThread;
-            
+                tempHolder.isWithParameter = false;
+                tempHolder.objectFunctionHolder = _threadStart;
+
                 threadList.Add(tempHolder);
             }
 
@@ -72,6 +74,8 @@ namespace ControlSystem
 
                 tempHolder.stringDescription = _description;
                 tempHolder.threadPlaceHolder = tempThread;
+                tempHolder.isWithParameter = true;
+                tempHolder.objectFunctionHolder = _parameterizedThreadStart;
 
                 threadList.Add(tempHolder);
             }
@@ -156,6 +160,11 @@ namespace ControlSystem
             {
                 if (!tempThreadHolder.threadPlaceHolder.IsAlive)
                 {
+                    if (tempThreadHolder.threadPlaceHolder.ThreadState == ThreadState.Aborted || tempThreadHolder.threadPlaceHolder.ThreadState == ThreadState.Stopped)
+                    {
+                        remakeThread(tempThreadHolder);
+                    }
+
                     tempThreadHolder.threadPlaceHolder.Start();
                 }
                 else
@@ -179,6 +188,11 @@ namespace ControlSystem
             {
                 if (!tempThreadHolder.threadPlaceHolder.IsAlive)
                 {
+                    if (tempThreadHolder.threadPlaceHolder.ThreadState == ThreadState.Aborted || tempThreadHolder.threadPlaceHolder.ThreadState == ThreadState.Stopped)
+                    {
+                        remakeThread(tempThreadHolder);
+                    }
+
                     tempThreadHolder.threadPlaceHolder.Start(_obj);                 
                 }
 
@@ -187,6 +201,26 @@ namespace ControlSystem
 
             if(tempThreadHolder == null)
                 throw new ArgumentException("No thread found");
+        }
+
+        /// <summary>
+        /// Remakes the thread so it can run under same name again.
+        /// </summary>
+        /// <param name="_threadHolder">Parameter is threadholder which holds what needs to be copied</param>
+        private void remakeThread(ThreadHolder _threadHolder)
+        {
+            Thread threadTemporary;
+
+            if (_threadHolder.isWithParameter)
+            {
+                threadTemporary = new Thread((ParameterizedThreadStart)_threadHolder.objectFunctionHolder);
+            }
+            else
+            {
+                threadTemporary = new Thread((ThreadStart)_threadHolder.objectFunctionHolder);
+            }
+
+            _threadHolder.threadPlaceHolder = threadTemporary;
         }
 
 
@@ -215,6 +249,8 @@ namespace ControlSystem
         {
             private string description;
             private Thread thread;
+            private object objectFunction;
+            private bool boolHaveParameter;
 
             /// <summary>
             /// Variable that holds the description for a thread.
@@ -232,6 +268,24 @@ namespace ControlSystem
             {
                 get { return thread; }
                 set { thread = value; }
+            }
+
+            /// <summary>
+            /// Variable that holds ref to function incase it needs to be restarted
+            /// </summary>
+            public object objectFunctionHolder
+            {
+                get { return objectFunction; }
+                set { objectFunction = value; }
+            }
+
+            /// <summary>
+            /// Variable that holds if the current thread is a function to be used with parameter
+            /// </summary>
+            public bool isWithParameter
+            {
+                get { return boolHaveParameter; }
+                set { boolHaveParameter = value; }
             }
         }
     }
