@@ -57,7 +57,7 @@ namespace ControlSystem
         }
 
         /// <summary>
-        /// Overloaded addThread function, so that it can add threads with a parameterizedThreadStart (object) to a thread list by a description
+        /// Overloaded addThread function, so that it can add threads with a parameterizedThreadStart to a thread list by a description
         /// </summary>
         /// <param name="_parameterizedThreadStart">Parameter is name of function that needs its own thread, as its paramterizedThreadStart, it means it have to be a function with parameter object: (functionname(object example){})</param>
         /// <param name="_description">Description which the thread needs to be saved as (unique)</param>
@@ -120,7 +120,6 @@ namespace ControlSystem
                     tempThreadHolder.threadPlaceHolder.Join();
                 }
 
-                throw new ArgumentException("Thread not running");
             }
 
             if (tempThreadHolder == null)
@@ -166,7 +165,6 @@ namespace ControlSystem
             if(tempThreadHolder == null)
                 throw new ArgumentException("No thread found");
         }
-
 
         /// <summary>
         /// Starts the thread from supplied description if found but with a given parameter object

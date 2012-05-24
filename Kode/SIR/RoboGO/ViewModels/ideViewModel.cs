@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Threading;
 using System.Windows.Controls;
 using ControlSystem;
 using GalaSoft.MvvmLight.Command;
@@ -90,6 +91,7 @@ namespace RoboGO.ViewModels
             // Members settings
             ideTabs = _ideTabs;
             isrScriptRunner = Factory.getScriptRunnerInstance;
+            Factory.getThreadHandlingInstance.addThread(executeCodeThread, "ExecuteScript");
 
             #region Commands
             
@@ -127,6 +129,13 @@ namespace RoboGO.ViewModels
         	{
         	    UIService.showMessageBox(e.Message, "ScriptRunner", MessageBoxButton.OK, MessageBoxImage.Error);
         	}
+            if(Factory.getThreadHandlingInstance.find("ExecuteScript").threadPlaceHolder.IsAlive == true)
+                Factory.getThreadHandlingInstance.abortAndWait("ExecuteScript");
+            Factory.getThreadHandlingInstance.start("ExecuteScript");
+        }
+
+        private void executeCodeThread()
+        {
             isrScriptRunner.ExecuteScript();
             CodeOutput = isrScriptRunner.readFromOutputStream();
         }
