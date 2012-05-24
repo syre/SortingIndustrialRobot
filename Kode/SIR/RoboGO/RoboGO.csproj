@@ -110,6 +110,7 @@
     <Compile Include="ViewModels\delegateCommand.cs" />
     <Compile Include="ViewModels\ideViewModel.cs" />
     <Compile Include="ViewModels\infoViewModel.cs" />
+    <Compile Include="ViewModels\IntellisenseViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\passwordWindowViewModel.cs" />
     <Compile Include="ViewModels\positionModel.cs" />
