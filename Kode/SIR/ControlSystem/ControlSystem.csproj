@@ -59,6 +59,7 @@
     <Compile Include="iDLL.cs" />
     <Compile Include="iWrapper.cs" />
     <Compile Include="manualController.cs" />
+    <Compile Include="MethodList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="robot.cs" />
     <Compile Include="scriptRunner.cs" />
