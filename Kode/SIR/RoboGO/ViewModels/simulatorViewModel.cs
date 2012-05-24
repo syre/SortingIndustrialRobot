@@ -6,6 +6,11 @@ using ControlSystem;
 
 namespace RoboGO.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the simulator class.
+    /// 
+    /// Note: Uses StringUI class for output.
+    /// </summary>
     public class SimulatorViewModel
     {
         // Members and properties
@@ -16,13 +21,16 @@ namespace RoboGO.ViewModels
         private PositionViewModel _positionViewModel;
         
         /// <summary>
-        /// Text simulator writes.
+        /// Simulator output.
         /// </summary>
         public StringUI UIText
         {
             get{return(suiSimulatorUI);}
         }
         
+        /// <summary>
+        /// Current position of the simulator.
+        /// </summary>
         public string CurrentPosition
         {
             get 
@@ -32,6 +40,11 @@ namespace RoboGO.ViewModels
         }
 
         // Functions
+        /// <summary>
+        /// Default constructor setting up simulator.
+        /// 
+        /// Note: Edits Factory->Simulator.
+        /// </summary>
         public SimulatorViewModel()
         {
             _positionViewModel = new PositionViewModel();
@@ -45,16 +58,36 @@ namespace RoboGO.ViewModels
 
     }
 
+    /// <summary>
+    /// Class for calculating position of robot.
+    /// 
+    /// Note: Used by simulator.
+    /// </summary>
     public class XYCalculate
     {
         private const int wristLenght = 45;
         private const int elbowLenght = 75;
         private VecPoint _point;
+        
+        /// <summary>
+        /// Rotation of the elbow.
+        /// </summary>
         public double elbowRotate;
+        
+        /// <summary>
+        /// Gripper x position.
+        /// </summary>
         public double gripperX;
+        
+        /// <summary>
+        /// Gripper y position.
+        /// </summary>
         public double gripperY;
 
-
+        /// <summary>
+        /// Constructor taking a VecPoint that it uses for calculting position.
+        /// </summary>
+        /// <param name="p"></param>
         public XYCalculate(VecPoint p)
         {
             _point = p;
@@ -63,21 +96,22 @@ namespace RoboGO.ViewModels
             elbow();
             
             gripper();
-
         }
 
+        /// <summary>
+        /// Calculate elbow position.
+        /// </summary>
         public void elbow()
         {
             if(_point.iX >= 0 && _point.iY <= 125)
             {
-                
                elbowRotate = ((double)180/(double)125) * (-(double)_point.iY);
-            
-                
             }
-            
         }
 
+        /// <summary>
+        /// Calculate gripper position.
+        /// </summary>
         public void gripper()
         {
             gripperX = _point.iX;

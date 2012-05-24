@@ -3,6 +3,9 @@
 
 namespace ControlSystem
 {
+    /// <summary>
+    /// Interface for a wrapper wrapping the USBC.dll file.
+    /// </summary>
     public interface IWrapper
     {
         /// <summary>

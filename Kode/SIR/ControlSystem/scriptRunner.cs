@@ -21,6 +21,7 @@ namespace ControlSystem
         void setScriptFromFile(string _sPath);
         void setScriptFromString(string _sScript);
         string readFromOutputStream();
+        void clearOutputStream();
         void ExecuteScript();
     }
     /// <summary>
@@ -131,6 +132,11 @@ namespace ControlSystem
                 tempString = tempString.Substring(0, tempString.LastIndexOf("\r"));
             }
             return tempString;
+        }
+        
+        public void clearOutputStream()
+        {
+            _outputstream.SetLength(0);
         }
 
         /// <summary>

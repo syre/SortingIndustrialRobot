@@ -22,11 +22,6 @@ namespace ControlSystem
         /// </summary>
         /// <returns></returns>
         bool openGripper();
-        /// <summary>
-        /// Initializes robot with default values MODE_ONLINE and SYSTEM_TYPE_DEFAULT
-        /// </summary>
-        /// <returns></returns>
-        bool initialization();
         
         /// <summary>
         /// Calls wrapper function for stopping all movement
@@ -140,27 +135,24 @@ namespace ControlSystem
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
-        bool moveElbow(int speed);
+        bool moveElbow(int _iSpeed);
         /// <summary>
         /// Separate function for moving robot gripper
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
         bool moveGripper(int speed);
+        
         /// <summary>
         /// Separate function for moving robot conveyer belt
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
         bool moveConveyerBelt(int speed);
+        
         /// <summary>
         /// Separate function for getting Current position in string
         /// </summary>
-        /// <param name="_iX"></param>
-        /// <param name="_iY"></param>
-        /// <param name="_iZ"></param>
-        /// <param name="_iPitch"></param>
-        /// <param name="_iRoll"></param>
         /// <returns></returns>
         string getCurrentPositionAsString();
 
@@ -203,10 +195,24 @@ namespace ControlSystem
         /// <param name="_mSpeed">
         ///      Speed in percent of max speed</param>
         bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed);
+
+
+        /// <summary>
+        ///     Get the Weight from serielSTK
+        /// </summary>
+        /// <returns>the wieght in double</returns>
+        double getWeight();
+
+
     }
+    
+    /// <summary>
+    /// IRobot implementation using the SCORBOT for operations.
+    /// </summary>
     public class Robot : IRobot
     {
         private IWrapper _wrapper;
+        private SerialSTK _serialStk;
         DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
         DLL.DgateCallBack dgateEventHandlerError = initError;
         DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
@@ -234,6 +240,7 @@ namespace ControlSystem
         /// </summary>
         public Robot()
         {
+            _serialStk = new SerialSTK();
             _wrapper = Wrapper.getInstance();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
@@ -241,7 +248,7 @@ namespace ControlSystem
             //homeRobot();
         }
 
-        public bool initialization() // implementing delegates
+        private bool initialization() // implementing delegates
         {
             return _wrapper.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE,
                                                   Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT,
@@ -278,6 +285,11 @@ namespace ControlSystem
         public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
         {
             return _wrapper.speedWrapped(_bGroup, _mSpeed);
+        }
+
+        public double getWeight()
+        {
+            return _serialStk.ReadADC();
         }
 
         #endregion

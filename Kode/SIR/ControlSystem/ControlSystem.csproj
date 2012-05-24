@@ -53,7 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controlSystem.cs" />
     <Compile Include="dll.cs" />
     <Compile Include="errorReporter.cs" />
     <Compile Include="factory.cs" />

@@ -1,13 +1,18 @@
-﻿using System;
+﻿/** \file serialSTK.cs */
+/** \author Robotic Global Organization(RoboGO) */
+using System;
+using System.Collections.Generic;
 using System.IO.Ports;
 
 namespace ControlSystem
 {
+    /// <summary>
+    /// Class for functions to communicating with the STK kit.(Serial communication.)
+    /// </summary>
     public class SerialSTK
     {
         
             private SerialPort sp;
-
             /// <summary>
             /// Classconstructor
             /// </summary>
@@ -16,10 +21,16 @@ namespace ControlSystem
             /// <param name="parity"> Parity </param>
             /// <param name="dataBits"> Databits </param>
             /// <param name="stopBits"> Stopbits </param>
-            public SerialSTK(string port = "COM4", int baud = 9600, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
+            public SerialSTK(int baud = 9600, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
             {
-                sp = new SerialPort(port, baud, parity, dataBits, stopBits);
+                string[] ports = SerialPort.GetPortNames();
+
+                foreach (string port in ports)
+                {
+                    sp = new SerialPort(port, baud, parity, dataBits, stopBits);
+                }
             }
+
 
             /// <summary>
             /// Opens for communication
@@ -59,10 +70,9 @@ namespace ControlSystem
                 sp.Open();
                 sp.Write("R\n");
                 temp = Convert.ToDouble(sp.ReadLine());
-                temp = (double)1000 / (double)1023 * Math.Round(temp, 2);
+                temp = (double)950 / (double)1023 * Math.Round(temp, 2);
                 sp.Close();
                 return temp;
             }
-        
     }
 }

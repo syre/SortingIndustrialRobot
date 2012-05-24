@@ -5,12 +5,17 @@ using System.Threading;
 
 namespace ControlSystem
 {
+    /// <summary>
+    /// IRobot implementation using IUI output interface for simulating robot behavior.
+    /// </summary>
     public class Simulator : IRobot
     {
-        #region Properties
-        public bool gripperClosed { get; set; }
+        #region Properties and members
 
         private IUI iuiOutput;
+        /// <summary>
+        /// Output for writing robot operations.
+        /// </summary>
         public IUI IUIOutput
         {
             get { return iuiOutput; }
@@ -18,20 +23,30 @@ namespace ControlSystem
         }
 
         private VecPoint _currentposition;
+        /// <summary>
+        /// Its current position.
+        /// </summary>
         public VecPoint Currentposition
         {
             get { return _currentposition; }
             set { _currentposition = value; }
         }
-
+        private bool bGripperIsOpen;
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Default constructor.
+        /// 
+        /// Note: Uses console output as standard.
+        /// </summary>
         public Simulator()
         {
+
             Currentposition = new VecPoint(0,0,0,0,0);
             iuiOutput = new ConsoleUI(); // Don´t move location.
             iuiOutput.writeLine("Simulation is started!");
+            bGripperIsOpen = false;
         }
 
         /// <summary>
@@ -52,7 +67,7 @@ namespace ControlSystem
         {
             Thread.Sleep(5000);
             iuiOutput.writeLine("Gripper closing!");
-            gripperClosed = true;
+            bGripperIsOpen = false;
             return true;
         }
 
@@ -64,7 +79,7 @@ namespace ControlSystem
         {
             Thread.Sleep(10000);
             iuiOutput.writeLine("Gripper opening!");
-            gripperClosed = false;
+            bGripperIsOpen = true;
             return true;
         }
 
@@ -72,7 +87,7 @@ namespace ControlSystem
         /// Initializes the robot to default values
         /// </summary>
         /// <returns>true if the initialization is ok!</returns>
-        public bool initialization()
+        private bool initialization()
         {
             iuiOutput.writeLine("The system is online, and system types is set to default!");
             return true;
@@ -105,17 +120,9 @@ namespace ControlSystem
         /// <returns></returns>
         public short getJawOpeningWidthMilimeters()
         {
-            try
-            {
-                throw new NotImplementedException();
-
-            }
-            catch (NotImplementedException e)
-            {
-                iuiOutput.writeLine(e.Message);
-            }
-
-            return 0;
+            if(bGripperIsOpen)
+                return(200);
+            return(0);
         }
 
         /// <summary>
@@ -124,17 +131,9 @@ namespace ControlSystem
         /// <returns></returns>
         public short getJawOpeningWidthPercentage()
         {
-            try
-            {
-                throw new NotImplementedException();
-
-            }
-            catch (NotImplementedException e)
-            {
-                iuiOutput.writeLine(e.Message);
-            }
-
-            return 0;
+            if(bGripperIsOpen)
+                return(100);
+            return(0);
         }
 
         /// <summary>
@@ -162,7 +161,7 @@ namespace ControlSystem
         /// Moving the base
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveBase(int speed)
         {
            iuiOutput.writeLine("Base moving");
@@ -173,7 +172,7 @@ namespace ControlSystem
         /// Moving the shoulder
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveShoulder(int speed)
         {
             iuiOutput.writeLine("Shoulder moving");
@@ -184,7 +183,7 @@ namespace ControlSystem
         /// Moving the wrist Pitch
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveWristPitch(int speed)
         {
             iuiOutput.writeLine("Wrist Pitch moving");
@@ -195,7 +194,7 @@ namespace ControlSystem
         /// Moving the Wrist Roll
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveWristRoll(int speed)
         {
             iuiOutput.writeLine("Wrist Roll moving");
@@ -206,7 +205,7 @@ namespace ControlSystem
         /// Moving the elbow
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveElbow(int speed)
         {
             iuiOutput.writeLine("Elbow moving");
@@ -217,10 +216,14 @@ namespace ControlSystem
         /// Moving the gripper
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveGripper(int speed)
         {
             iuiOutput.writeLine("Gripper moving");
+            if(speed > 0)
+                bGripperIsOpen = true;
+            else if(speed < 0)
+                bGripperIsOpen = false;
             return true;
         }
 
@@ -228,7 +231,7 @@ namespace ControlSystem
         /// Moving the Conveyer Belt
         /// </summary>
         /// <param name="speed">speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveConveyerBelt(int speed)
         {
             iuiOutput.writeLine("Conveyer Belt moving");
@@ -240,7 +243,7 @@ namespace ControlSystem
         /// Moving from the absolute position (home position)
         /// </summary>
         /// <params name="ALL">represents each coordinate values</params>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll)
         {
             iuiOutput.writeLine("Absolute Coordinate X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", x,y,z,pitch,roll);
@@ -256,7 +259,7 @@ namespace ControlSystem
         /// Moving from the relative position (current position)
         /// </summary>
         /// <params name="ALL">represents each coordinate values</params>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
             iuiOutput.writeLine("Absolute Coordinate X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", _iX, _iY, _iZ, _iPitch, _iRoll);
@@ -272,7 +275,7 @@ namespace ControlSystem
         /// Moves just X coordinate
         /// </summary>
         /// <param name="x">value for the x coordinate</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByXCoordinate(int x)
         {
             iuiOutput.writeLine("New Coordinate X: "+ x);
@@ -284,7 +287,7 @@ namespace ControlSystem
         /// Moves just Y coordinate
         /// </summary>
         /// <param name="y">value for the y coordinate</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByYCoordinate(int y)
         {
             iuiOutput.writeLine("New Coordinate Y: " + y);
@@ -295,7 +298,7 @@ namespace ControlSystem
         /// Moves just Z coordinate
         /// </summary>
         /// <param name="z">value for the z coordinate</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByZCoordinate(int z)
         {
             iuiOutput.writeLine("New Coordinate Y: " + z);
@@ -307,7 +310,7 @@ namespace ControlSystem
         /// Moves just pitch coordinate
         /// </summary>
         /// <param name="pitch">value for the pitch coordinate</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByPitch(int pitch)
         {
             iuiOutput.writeLine("New Coordinate Pitch: " + pitch);
@@ -319,7 +322,7 @@ namespace ControlSystem
         /// Moves just roll coordinate
         /// </summary>
         /// <param name="roll">value for the roll coordinate</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool moveByRoll(int roll)
         {
             iuiOutput.writeLine("New Coordinate Roll: " + roll);
@@ -332,7 +335,7 @@ namespace ControlSystem
         /// </summary>
         /// <param name="_bGroup">Part of the robot </param> 
         /// /// <param name="_mTime">Value for time</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool Time(Wrapper.enumBGroup _bGroup, long _mTime)
         {
             iuiOutput.writeLine("New Time for future movements: " + _mTime + "Miliseconds");
@@ -345,7 +348,7 @@ namespace ControlSystem
         /// </summary>
         /// <param name="_bGroup">Part of the robot </param> 
         /// /// <param name="_mSpeed">Value for speed</param>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
         {
             iuiOutput.writeLine("New Speed for future movements: " + _mSpeed + "%");
@@ -356,7 +359,7 @@ namespace ControlSystem
         /// Moves all coordinates
         /// </summary>
         /// <params>value for the three coordinates</params>
-        /// <returns>always true</returns>
+        /// <returns>Always true.</returns>
         public bool movebyCoordinates(int _iX, int _iY, int _iZ)
         {
             iuiOutput.writeLine("New Coordinates X: "+_iX+"  Y: "+_iY+"  Z: "+_iZ);
@@ -375,6 +378,7 @@ namespace ControlSystem
             return Currentposition;
         }
 
+        
         public bool moveToCubePosition(int _iCubeID)
         {
             iuiOutput.writeLine("Moved to position with cube ID"+_iCubeID);
@@ -385,6 +389,13 @@ namespace ControlSystem
         {
             return Currentposition.ToString();
         }
+
+        public double getWeight()
+        {
+            iuiOutput.writeLine("Weight: 10,12");
+            return 10.12;
+        }
+
         #endregion
 
     }

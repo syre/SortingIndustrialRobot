@@ -69,21 +69,6 @@ namespace SIR.Tests
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
         [Test]
-        public void initialization_CallingIt_ReturnsTrue()
-        {
-            Assert.IsTrue(simTestObj.initialization());
-        }
-        [Test]
-        public void initialization_CallingIt_WritesToUI()
-        {
-            IUI iuiMock = MockRepository.GenerateMock<IUI>();
-            simTestObj.IUIOutput = iuiMock;
-
-            simTestObj.initialization();
-
-            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
-        }
-        [Test]
         public void isOnline_CallingIt_ReturnsTrue()
         {
             Assert.IsTrue(simTestObj.isOnline());

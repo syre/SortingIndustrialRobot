@@ -76,8 +76,13 @@ namespace ControlSystem
 
         public void writeLine(string _sMsg, params object[] _paramobjArgument)
         {
-            sbBuffer.Append("* " + string.Format(_sMsg, _paramobjArgument) + "\n");
+            sbBuffer.AppendLine("* " + string.Format(_sMsg, _paramobjArgument));
             NotifyPropertyChanged("Buffer");
+        }
+        
+        public void clearString()
+        {
+            sbBuffer.Clear();
         }
     }
 }

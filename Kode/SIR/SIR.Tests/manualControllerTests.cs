@@ -283,51 +283,35 @@ namespace SIR.Tests
             irMock.AssertWasCalled(t => t.moveElbow(mcTestObj.Speed));
         }
         [Test]
-        public void moveAxisGripper_CalledWithArgOpen_CallsRobotmoveGripper()
+        public void moveAxisGripper_CalledWithArgOpen_CallsRobotopenGripper()
         {
             // Setup
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
-            irMock.Stub(t => t.moveGripper(Arg<int>.Is.Anything)).Return(true);
+            irMock.Stub(t => t.openGripper()).Return(true);
 
             // Test
             mcTestObj.moveAxisGripper(enumCloseOpen.MANUAL_OPEN);
 
             // Verify
-            irMock.AssertWasCalled(t => t.moveGripper(Arg<int>.Is.Anything));
+            irMock.AssertWasCalled(t => t.openGripper());
         }
         [Test]
-        public void moveAxisGripper_CalledWithArgClose_CallsRobotmoveGripperWithNegativeSpeedValue()
+        public void moveAxisGripper_CalledWithArgClose_CallsRobotcloseGripper()
         {
             // Setup
             IRobot irMock = MockRepository.GenerateMock<IRobot>();
             mcTestObj = new ManualController();
             mcTestObj.RobotConnection = irMock;
             mcTestObj.Speed = 50;
-            irMock.Stub(t => t.moveGripper(Arg<int>.Is.Anything)).Return(true);
+            irMock.Stub(t => t.closeGripper()).Return(true);
 
             // Test
             mcTestObj.moveAxisGripper(enumCloseOpen.MANUAL_CLOSE);
 
             // Verify
-            irMock.AssertWasCalled(t => t.moveGripper(-mcTestObj.Speed));
-        }
-        [Test]
-        public void moveAxisGripper_CalledWithArgOpen_CallsRobotmoveGripperWithPositiveSpeedValue()
-        {
-            // Setup
-            IRobot irMock = MockRepository.GenerateMock<IRobot>();
-            mcTestObj = new ManualController();
-            mcTestObj.RobotConnection = irMock;
-            mcTestObj.Speed = 50;
-            irMock.Stub(t => t.moveGripper(Arg<int>.Is.Anything)).Return(true);
-
-            // Test
-            mcTestObj.moveAxisGripper(enumCloseOpen.MANUAL_OPEN);
-
-            // Verify
-            irMock.AssertWasCalled(t => t.moveGripper(mcTestObj.Speed));
+            irMock.AssertWasCalled(t => t.closeGripper());
         }
         [Test]
         public void moveAxisPitch_CalledWithArgDown_CallsRobotmoveWristPitch()
