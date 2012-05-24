@@ -11,7 +11,6 @@ namespace ControlSystem
         {
             Add("closeGripper()");
             Add("insertBox(positionid,length,width,depth,weight)");
-            Add("insertBox(positionid,length,width,depth,weight)");
             Add("isOnline()");
             Add("moveBase(speed)");
             Add("moveByAbsoluteCoordinates(x,y,z,pitch,roll)");

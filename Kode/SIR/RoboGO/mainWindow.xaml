@@ -55,48 +55,66 @@
                         <KeyBinding Command="{Binding Path=newTab}" Gesture="CTRL+N"/>
                         <KeyBinding Command="{Binding Path=ExecuteComd}" Gesture="CTRL+B" />
                     </TabItem.InputBindings>
-                    <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="645">
-                        <Menu VerticalAlignment="Top">
-                            <!--File -->
-                            <MenuItem Name="mnuFile1" Header="_File">
-                                <MenuItem Name="mnuFileNew1" Header="_New" Command="{Binding Path=newTab}"/>
-                                <MenuItem Name="mnuFileOpen1" Header="_Open" Command="{Binding Path=open}"/>
-                                <MenuItem Name="mnuFileSave1" Header="_Save" Command="{Binding Path=saveAs}"/>
-                                <MenuItem Name="mnuFileClose1" Header="Close" Command="{Binding Path=closeTab}"/>
-                            </MenuItem>
-                            <!--Debug-->
-                            <MenuItem Name="mnuDebugAndBuild" Header="_Build">
-                                <MenuItem Name="mnuBuild" Header="_Build" Command="{Binding Path=ExecuteComd}"/>
-                            </MenuItem>
-                            <!--Help-->
-                            <MenuItem Name="mnuHelp1" Header="_Help">
-								<MenuItem Name="mnuViewCommands1" Header="_View Commands" Click="mnuViewCommands1_Click"/>
-                                <MenuItem Name="mnuAboutBox" Header="_About" Click="mnuAboutBox_Click"/>
-                            </MenuItem>
-                        </Menu>
-                        <!--Box for Tabs-->
-                        <TabControl Name="IDETabs">
-                            <TabControl.Resources>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                    <Setter Property="AcceptsReturn" Value="True" />
-                                    <Setter Property="AcceptsTab" Value="True" />
-                                    <Setter Property="MaxWidth" Value="630" />
-                                    <Setter Property="MinHeight" Value="200" />
-                                    <Setter Property="MaxHeight" Value="200" />
-                                    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-                                </Style>
-                            </TabControl.Resources>
-                            <TabItem>
-                                <TextBox/>
-                            </TabItem>
-                        </TabControl>
-                        <StackPanel Orientation="Horizontal"> 
-                            <Label Content="DSL Output:"/>
-                            <Button Content="Clear" Click="Button_Click"/>
+                    <Canvas Width="645">
+                        <Popup Name="popup" Width="350" Height="100" Canvas.Left="123" Canvas.Top="52"
+                               StaysOpen="False" IsOpen="False">
+                            <Grid>
+                                <Border Background="White">
+                                    <ListBox Name="list" ItemsSource="{Binding}" PreviewKeyDown="list_PreviewKeyDown"  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin='2' Padding="4" Width="320" BorderBrush="Gray" BorderThickness="2">
+                                                    <TextBlock Text="{Binding}" FontFamily="Lucida Console"  Width="310"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Border>
+                            </Grid>
+                        </Popup>
+                        <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="645">
+                            <Menu VerticalAlignment="Top">
+                                <!--File -->
+                                <MenuItem Name="mnuFile1" Header="_File">
+                                    <MenuItem Name="mnuFileNew1" Header="_New" Command="{Binding Path=newTab}"/>
+                                    <MenuItem Name="mnuFileOpen1" Header="_Open" Command="{Binding Path=open}"/>
+                                    <MenuItem Name="mnuFileSave1" Header="_Save" Command="{Binding Path=saveAs}"/>
+                                    <MenuItem Name="mnuFileClose1" Header="Close" Command="{Binding Path=closeTab}"/>
+                                </MenuItem>
+                                <!--Debug-->
+                                <MenuItem Name="mnuDebugAndBuild" Header="_Build">
+                                    <MenuItem Name="mnuBuild" Header="_Build" Command="{Binding Path=ExecuteComd}"/>
+                                </MenuItem>
+                                <!--Help-->
+                                <MenuItem Name="mnuHelp1" Header="_Help">
+                                    <MenuItem Name="mnuViewCommands1" Header="_View Commands" Click="mnuViewCommands1_Click"/>
+                                    <MenuItem Name="mnuAboutBox" Header="_About" Click="mnuAboutBox_Click"/>
+                                </MenuItem>
+                            </Menu>
+                            <!--Box for Tabs-->
+                            <TabControl Name="IDETabs">
+                                <TabControl.Resources>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="True" />
+                                        <Setter Property="AcceptsTab" Value="True" />
+                                        <Setter Property="MaxWidth" Value="630" />
+                                        <Setter Property="MinHeight" Value="200" />
+                                        <Setter Property="MaxHeight" Value="200" />
+                                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                                    </Style>
+                                </TabControl.Resources>
+                                <TabItem>
+                                    <TextBox PreviewKeyDown="TextBox_KeyDown"/>
+                                </TabItem>
+                            </TabControl>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="DSL Output:"/>
+                                <Button Content="Clear" Click="Button_Click"/>
+                            </StackPanel>
+                            <TextBox Name="DSLOutputBox" Text="{Binding CodeOutput}" MaxHeight="100" MinHeight="100" VerticalScrollBarVisibility="Auto" IsReadOnly="True" TextChanged="DSLOutputBox_TextChanged" />
                         </StackPanel>
-                        <TextBox Name="DSLOutputBox" Text="{Binding CodeOutput}" MaxHeight="100" MinHeight="100" VerticalScrollBarVisibility="Auto" IsReadOnly="True" TextChanged="DSLOutputBox_TextChanged" />
-                    </StackPanel>
+                    </Canvas>
                 </TabItem>
                 <!--Simulator tab-->
                 <TabItem Name="tabitmSimulator" Header="Simulator" Width="100">

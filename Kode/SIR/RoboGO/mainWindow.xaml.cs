@@ -4,6 +4,7 @@
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using RoboGO.ViewModels;
 
 
@@ -14,9 +15,17 @@ namespace RoboGO
     /// </summary>
     public partial class MainWindow : Window
     {
+        private TextBox txtbox;
         // Members and properties
         private IDEViewModel idevmViewModelIDE;
         private MainWindowViewModel _mainwindowviewmodel;
+        private IntellisenseViewModel sense;
+
+        public IntellisenseViewModel Sense
+        {
+            get { return sense; }
+            set { sense = value; }
+        }
 
         public IDEViewModel ViewModelIDE
         {
@@ -37,13 +46,30 @@ namespace RoboGO
             idevmViewModelIDE = new IDEViewModel(IDETabs);
             infoViewModel = new InfoViewModel(DatabaseTableValues);
             _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
+            Sense = new IntellisenseViewModel();
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
             tabInfo.DataContext = infoViewModel;
             pgbStyresystem.DataContext = _mainwindowviewmodel;
+            list.DataContext = Sense.UpdatedCollection;
         }
 
         #region Events
+        //Handle textbox IntelliSense
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtbox = sender as TextBox;
+            if (txtbox != null)
+                Sense.showMethodsPopUP(txtbox.GetRectFromCharacterIndex(txtbox.CaretIndex), txtbox, popup, list, e);
+        }
+
+        //Choose a function from the list
+        private void list_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+            Sense.list_KeyDown(listBox, e, txtbox, popup);
+        }
+
         // Displaying login screen on load
         private void WindowsLoaded(object sender, RoutedEventArgs e)
         {
