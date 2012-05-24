@@ -53,6 +53,9 @@ namespace RoboGO.ViewModels
             }
         }
         
+		/// <summary>
+		/// Called when dependency properties changed.(Used in view.)
+		/// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String info)
         {
@@ -120,7 +123,7 @@ namespace RoboGO.ViewModels
         /// <summary>
         /// Gets information from table.(Saved in TableValues.)
         /// </summary>
-        /// <param name="tableName">Name of table.</param>
+        /// <param name="_objTableName">Name of table.</param>
         public void getTableInfo(string _objTableName)
         {
             try

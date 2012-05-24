@@ -18,6 +18,9 @@ namespace RoboGO.ViewModels
     public class IDEViewModel : INotifyPropertyChanged
     {
         #region Properties
+		/// <summary>
+		/// Called when dependency properties changed.(Used in view.)
+		/// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         private void notifyPropertyChanged(String info)
         {
@@ -65,6 +68,9 @@ namespace RoboGO.ViewModels
         #endregion
         #region Commands
         private DelegateCommand ecDelegateComd;
+		/// <summary>
+		/// Executes the code.
+		/// </summary>
         public DelegateCommand ExecuteComd
         {
             get { return (ecDelegateComd); }
@@ -166,6 +172,10 @@ namespace RoboGO.ViewModels
             isrScriptRunner.clearOutputStream();
         }
 
+		/// <summary>
+		/// Tells if able to save code.
+		/// </summary>
+		/// <returns>True if tab selected./returns>
         protected bool saveAs_CanExecute
         {
             get { return (ideTabs.SelectedIndex >= 0); }
@@ -198,6 +208,10 @@ namespace RoboGO.ViewModels
             _saveDialog.AddExtension = true;
         }
 
+		/// <summary>
+		/// Tells if able to open file.
+		/// </summary>
+		/// <returns>Always return true.</returns>
         protected bool open_CanExecute
         {
             get { return true; }
@@ -241,6 +255,10 @@ namespace RoboGO.ViewModels
             openDialog.Multiselect = true;
         }
 
+		/// <summary>
+		/// Tells if able to close tab.
+		/// </summary>
+		/// <returns>True if 1 or more tabs.</returns>
         protected bool closeTab_CanExecute
         {
             get { return (ideTabs.SelectedIndex >= 0); }
@@ -251,6 +269,10 @@ namespace RoboGO.ViewModels
             ideTabs.Items.Remove(ideTabs.SelectedItem);
         }
 
+		/// <summary>
+		/// Tells if able to open a new tab.
+		/// </summary>
+		/// <returns>Always true.</returns>
         protected bool newTab_CanExecute
         {
             get { return true; }

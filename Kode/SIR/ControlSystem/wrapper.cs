@@ -54,6 +54,9 @@ namespace ControlSystem
         // Members
         protected string sName;
         protected List<VecPoint> lstPoints;
+		/// <summary>
+		/// Type of vector.(Should be set in classes inheriting from this.)
+		/// </summary>
         protected int iType; // What kind of pointer
 
         // Functions
@@ -107,7 +110,10 @@ namespace ControlSystem
     /// </summary>
     public class AbsCoordSirVector : SIRVector
     {
-        // Functions 
+        // Functions
+		/// <summary>
+		/// Contructors whichs sets up type and name of vector.
+		/// </summary>
         public AbsCoordSirVector(string _sName)
         {
             sName = _sName;
@@ -121,7 +127,10 @@ namespace ControlSystem
     /// </summary>
     public class RelCoordSirVector : SIRVector
     {
-        // Functions 
+        // Functions
+		/// <summary>
+		/// Contructors whichs sets up type and name of vector.
+		/// </summary>
         public RelCoordSirVector(string _sName)
         {
             sName = _sName;
@@ -146,6 +155,9 @@ namespace ControlSystem
         // Members
         // -Normal
         private IDLL _dll;
+		/// <summary>
+		/// Dll used for functions.
+		/// </summary>
         public IDLL DLL
         {
             get { return (_dll); }

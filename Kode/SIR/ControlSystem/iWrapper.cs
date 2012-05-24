@@ -23,7 +23,7 @@ namespace ControlSystem
         /// <summary>
         /// Turns control on and off for certain axis group.
         /// </summary>
-        /// <param name="bAxis">Axis group to affect.(Use enum)</param>
+        /// <param name="_axisSettingsGroup">Axis group to affect.(Use enum)</param>
         /// <param name="_bControlOnOrOff">To have it turned off or on.</param>
         /// <returns>Returns true on successful call.</returns>
         bool controlWrapped(Wrapper.enumAxisSettings _axisSettingsGroup, bool _bControlOnOrOff);
@@ -169,8 +169,8 @@ namespace ControlSystem
         ///       'A' for robot movements
         ///       'B' for peripheral movements
         ///       'G' for gripper movements
-        /// <param name="_mTime">
-        ///       Time in milliseconds</param>
+		/// </param>
+        /// <param name="_mTime">Time in milliseconds</param>
         /// <returns>Returns true if time has been succesfully set, false otherwise.</returns>
         bool timeWrapped(Wrapper.enumBGroup _bGroup, long _mTime);
 
@@ -185,8 +185,8 @@ namespace ControlSystem
         ///       'A' for robot movements
         ///       'B' for peripheral movements
         ///       'G' for gripper movements
-        /// <param name="_mSpeed">
-        ///      Speed in percent of max speed</param>
+		/// </param>
+        /// <param name="_mSpeed">Speed in percent of max speed</param>
         /// <returns>Returns true if the speed has been succesfully set, false otherwise..</returns>
         bool speedWrapped(Wrapper.enumBGroup _bGroup, long _mSpeed);
     }
