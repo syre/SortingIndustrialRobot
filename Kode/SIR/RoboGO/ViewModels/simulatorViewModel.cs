@@ -1,8 +1,9 @@
-﻿using System.Windows;
+﻿/** \file simulatorViewModel.cs */
+/** \author Robotic Global Organization(RoboGO) */
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using ControlSystem;
-
 
 namespace RoboGO.ViewModels
 {

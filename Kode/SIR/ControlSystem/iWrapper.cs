@@ -1,4 +1,4 @@
-﻿/** \file IWrapper.cs */
+﻿/** \file iWrapper.cs */
 /** \author Robotic Global Organization(RoboGO) */
 
 namespace ControlSystem
@@ -158,7 +158,6 @@ namespace ControlSystem
         /// </summary>
         /// <returns>Returns current position.</returns>
         VecPoint getCurrentPosition();
-
 
         /// <summary>
         /// Sets the time future movement should take.

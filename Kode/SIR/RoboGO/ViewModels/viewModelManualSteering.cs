@@ -1,9 +1,9 @@
 ﻿/** \file viewModelManualSteering.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Windows.Input;
 using ControlSystem;
 
-/** \author Robotic Global Organization(RoboGO) */
 namespace RoboGO.ViewModels
 {
     /// <summary>
@@ -269,10 +269,21 @@ namespace RoboGO.ViewModels
         #endregion
         #region commands
         private DelegateCommand dcOpenGripper;
+        /// <summary>
+        /// Open the gripper.
+        /// </summary>
         public ICommand OpenGripper { get { return (dcOpenGripper); } }
         private DelegateCommand dcCloseGripper;
+        
+        /// <summary>
+        /// Close the gripper.
+        /// </summary>
         public ICommand CloseGripper { get { return (dcCloseGripper); } }
+        
         private DelegateCommand dcHomeRobot;
+        /// <summary>
+        /// Home the robot.
+        /// </summary>
         public ICommand SeekHome { get { return dcHomeRobot; } }
         #endregion
     }

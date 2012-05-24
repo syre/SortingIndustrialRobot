@@ -17,11 +17,36 @@ namespace ControlSystem
     /// </summary>
     public interface IScriptRunner
     {
+        /// <summary>
+        /// Sets the underlying IRobot that the scripts are used on.
+        /// </summary>
+        /// <param name="_iroboRobot">Robot to run script on.</param>
         void setRobotInstance(IRobot _iroboRobot);
+        
+        /// <summary>
+        /// Loads script from a file
+        /// </summary>
         void setScriptFromFile(string _sPath);
+        
+        /// <summary>
+        ///  Loads script from a string
+        /// </summary>
         void setScriptFromString(string _sScript);
+        
+        /// <summary>
+        /// Returns all input from the program.
+        /// </summary>
+        /// <returns>Output from program.</returns>
         string readFromOutputStream();
+        
+        /// <summary>
+        /// Clear the output.
+        /// </summary>
         void clearOutputStream();
+        
+        /// <summary>
+        /// Executes loaded script
+        /// </summary>
         void ExecuteScript();
     }
     /// <summary>
@@ -75,10 +100,6 @@ namespace ControlSystem
             ExecuteScript();
         }
 
-        /// <summary>
-        /// Sets the underlying IRobot that the scripts are used on.
-        /// </summary>
-        /// <param name="_iroboRobot">Robot to run script on.</param>
         public void setRobotInstance(IRobot _iroboRobot)
         {    
             _robot = _iroboRobot;
@@ -86,9 +107,6 @@ namespace ControlSystem
             _scope.SetVariable("_sqlhandler", SQLHandler.GetInstance);
         }
 
-        /// <summary>
-        ///  Loads script from a file
-        /// </summary>
         public void setScriptFromFile(string _sPath)
         {
             _source = _engine.CreateScriptSourceFromFile(_sPath);
@@ -101,9 +119,6 @@ namespace ControlSystem
             }
         }
 
-        /// <summary>
-        ///  Loads script from a string
-        /// </summary>
         public void setScriptFromString(string _sScript)
         {
            _source = _engine.CreateScriptSourceFromString(_sScript);
@@ -139,9 +154,6 @@ namespace ControlSystem
             _outputstream.SetLength(0);
         }
 
-        /// <summary>
-        ///  Executes loaded script
-        /// </summary>
         public void ExecuteScript()
         {
             if (_source != null)

@@ -1,4 +1,4 @@
-﻿/** \file iUI.cs */
+﻿/** \file ui.cs */
 /** \author Robotic Global Organization(RoboGO) */
 /** \brief Contains interfaces and classes for simple communication with the UI. */
 using System.Text;
@@ -6,7 +6,9 @@ using System.ComponentModel;
 
 namespace ControlSystem
 {
-    /** \brief Simple interface for UI interaction.(Text writing) */
+    /// <summary>
+    /// Simple interface for UI interaction.
+    /// </summary>
     public interface IUI
     {
         /// <summary>
@@ -28,7 +30,9 @@ namespace ControlSystem
         void writeLine(string sMsg, params object[] paramobjArgument);
     }
 
-    /** \brief Console UI for writing to the console output. */
+    /// <summary>
+    /// Console UI for writing to the console output.
+    /// </summary>
     public class ConsoleUI : IUI
     {
         public void write(string _sMsg, params object[] _paramobjArgument)
@@ -42,11 +46,16 @@ namespace ControlSystem
         }
     }
     
-    /** \brief String UI for writing to a string variable. */
+    /// <summary>
+    /// String UI for writing to a string variable.
+    /// </summary>
     public class StringUI : IUI, INotifyPropertyChanged
     {
         // Members and properties
         private StringBuilder sbBuffer;
+        /// <summary>
+        /// Buffer used for output.
+        /// </summary>
         public string Buffer
         {
             get{return(sbBuffer.ToString());}
@@ -63,6 +72,9 @@ namespace ControlSystem
         }
         
         // Functions
+        /// <summary>
+        /// Default constructor that sets up string buffer.
+        /// </summary>
         public StringUI()
         {
             sbBuffer = new StringBuilder();
@@ -80,6 +92,9 @@ namespace ControlSystem
             NotifyPropertyChanged("Buffer");
         }
         
+        /// <summary>
+        /// Clears the buffer.
+        /// </summary>
         public void clearString()
         {
             sbBuffer.Clear();

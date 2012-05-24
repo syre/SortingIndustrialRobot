@@ -202,8 +202,6 @@ namespace ControlSystem
         /// <param name="_mSpeed">speed from 0-100%</param>
         /// <returns>Returns 1 if called</returns>
         int Speed(byte _bGroup, long _mSpeed);
-
         #endregion
-
     }
 }

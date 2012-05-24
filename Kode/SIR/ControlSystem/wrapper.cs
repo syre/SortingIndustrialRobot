@@ -16,6 +16,15 @@ namespace ControlSystem
         public int iZ;
         public int iPitch;
         public int iRoll;
+        
+        /// <summary>
+        /// Constructor setting up the point location.
+        /// </summary>
+        /// <param name="_iX">X coordinate.</param>
+        /// <param name="_iY">Y coordinate.</param>
+        /// <param name="_iZ">Z coordinate.</param>
+        /// <param name="_iPitch">Pitch.</param>
+        /// <param name="_iRoll">Roll.</param>
         public VecPoint(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
             iX = _iX;
@@ -24,6 +33,11 @@ namespace ControlSystem
             iPitch = _iPitch;
             iRoll = _iRoll;
         }
+        
+        /// <summary>
+        /// The position in string format.
+        /// </summary>
+        /// <returns>The position.("(x,y,z,pitch,roll)")</returns>
         public override string ToString()
         {
             return "("+iX + "," + iY + "," + iZ + "," + iPitch + "," + iRoll + ")";
@@ -43,27 +57,49 @@ namespace ControlSystem
         protected int iType; // What kind of pointer
 
         // Functions
+        /// <summary>
+        /// Number of points in vector.
+        /// </summary>
+        /// <returns>Number of points.</returns>
         public int getSize()
         {
             return (lstPoints.Count);
         }
+        
+        /// <summary>
+        /// Add a point to the vector.
+        /// </summary>
+        /// <param name="pNewVecPoint"></param>
         public void addPoint(VecPoint pNewVecPoint)
         {
             lstPoints.Add(pNewVecPoint);     
         }
+        
+        /// <summary>
+        /// Gets a point from the vector.
+        /// </summary>
+        /// <param name="iIndex">Index of the point.</param>
+        /// <returns>The point.</returns>
         public VecPoint getPoint(int iIndex)
         {
             return (lstPoints[iIndex]);
         }
+        
+        /// <summary>
+        /// Name of the vector.
+        /// </summary>
         public string Name
         {
             get { return sName; }
         }
+        
+        /// <summary>
+        /// Type of the vector.(Relative or Absolute.)
+        /// </summary>
         public int Type
         {
             get { return iType; }
         }
-
     }
 
     /// <summary>
@@ -93,7 +129,6 @@ namespace ControlSystem
             iType = -32767;
         }
     }
-
    
     /// <summary>
     /// Contains a wrapper for the C++ functions in the dll file(USBC.dll).

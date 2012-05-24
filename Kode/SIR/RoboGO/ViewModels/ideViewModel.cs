@@ -1,4 +1,5 @@
-﻿/** \author Robotic Global Organization(RoboGO) */
+﻿/** \file ideViewModel.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -69,10 +70,29 @@ namespace RoboGO.ViewModels
             get { return (ecDelegateComd); }
         }
         
+        /// <summary>
+        /// Save file from current tab.
+        /// </summary>
         public RelayCommand saveAs { get; private set; }
+        
+        /// <summary>
+        /// Open file.
+        /// </summary>
         public RelayCommand open { get; private set; }
+        
+        /// <summary>
+        /// Close current tab.
+        /// </summary>
         public RelayCommand closeTab { get; private set; }
+        
+        /// <summary>
+        /// Make a new tab.
+        /// </summary>
         public RelayCommand newTab { get; private set; }
+        
+        /// <summary>
+        /// Build the current code.
+        /// </summary>
         public RelayCommand build { get; private set; }
         #endregion
 
@@ -138,6 +158,9 @@ namespace RoboGO.ViewModels
             CodeOutput = isrScriptRunner.readFromOutputStream();
         }
         
+        /// <summary>
+        /// Clear the code output shown.
+        /// </summary>
         public void CodeClear()
         {
             isrScriptRunner.clearOutputStream();
