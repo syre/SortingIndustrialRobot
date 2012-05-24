@@ -1,9 +1,14 @@
-﻿using System;
+﻿/** \file serialSTK.cs */
+/** \author Robotic Global Organization(RoboGO) */
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 
 namespace ControlSystem
 {
+    /// <summary>
+    /// Class for functions to communicating with the STK kit.(Serial communication.)
+    /// </summary>
     public class SerialSTK
     {
         
@@ -24,7 +29,6 @@ namespace ControlSystem
                 {
                     sp = new SerialPort(port, baud, parity, dataBits, stopBits);
                 }
-                
             }
 
 
@@ -70,6 +74,5 @@ namespace ControlSystem
                 sp.Close();
                 return temp;
             }
-        
     }
 }

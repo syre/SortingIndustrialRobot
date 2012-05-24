@@ -5,11 +5,17 @@ using System.Threading;
 
 namespace ControlSystem
 {
+    /// <summary>
+    /// IRobot implementation using IUI output interface for simulating robot behavior.
+    /// </summary>
     public class Simulator : IRobot
     {
         #region Properties and members
 
         private IUI iuiOutput;
+        /// <summary>
+        /// Output for writing robot operations.
+        /// </summary>
         public IUI IUIOutput
         {
             get { return iuiOutput; }
@@ -17,16 +23,23 @@ namespace ControlSystem
         }
 
         private VecPoint _currentposition;
+        /// <summary>
+        /// Its current position.
+        /// </summary>
         public VecPoint Currentposition
         {
             get { return _currentposition; }
             set { _currentposition = value; }
         }
-        public bool bGripperIsOpen;
-
+        private bool bGripperIsOpen;
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Default constructor.
+        /// 
+        /// Note: Uses console output as standard.
+        /// </summary>
         public Simulator()
         {
 

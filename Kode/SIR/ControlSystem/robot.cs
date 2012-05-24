@@ -135,7 +135,7 @@ namespace ControlSystem
         /// </summary>
         /// <param name="_iSpeed"></param>
         /// <returns></returns>
-        bool moveElbow(int speed);
+        bool moveElbow(int _iSpeed);
         /// <summary>
         /// Separate function for moving robot gripper
         /// </summary>
@@ -205,6 +205,10 @@ namespace ControlSystem
 
 
     }
+    
+    /// <summary>
+    /// IRobot implementation using the SCORBOT for operations.
+    /// </summary>
     public class Robot : IRobot
     {
         private IWrapper _wrapper;
