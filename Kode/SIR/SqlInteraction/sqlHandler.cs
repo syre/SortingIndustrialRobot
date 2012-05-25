@@ -59,7 +59,6 @@ namespace SqlInteraction
             string formerConnectionstring = Connection.Connectionstring;
             Connection.Connectionstring = tempString;
             
-            
             try
             {
                 Connection.ConnectionOpen();

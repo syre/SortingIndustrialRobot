@@ -1,11 +1,12 @@
 ﻿/** \file PositionViewModel.cs */
 /** \author Robotic Global Organization(RoboGO) */
-
-using DSL;
 using ControlSystem;
 
 namespace RoboGO.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the position class.
+    /// </summary>
     public class PositionViewModel
     {
         private PositionModel _positionModel;
@@ -34,6 +35,10 @@ namespace RoboGO.ViewModels
             _positionModel.PositionVec = Factory.currentIRobotInstance.getCurrentPosition();
         }
 
+        /// <summary>
+        /// Sets the current position.
+        /// </summary>
+        /// <param name="_vect">The new position.</param>
         public void update(VecPoint _vect)
         {
             _positionModel.PositionVec = _vect;

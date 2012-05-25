@@ -25,7 +25,6 @@ namespace SqlInteraction
         /// Creates a command that can be used for sql interaction
         /// </summary>
         /// <param name="_commandText">Parameter for the command text</param>
-        /// <param name="_commandType">Parameter for what type text needs to be interpreted</param>
         /// <returns>Returns the SqlCommand made from the given parameters</returns>
         SqlCommand makeCommand(string _commandText);
 

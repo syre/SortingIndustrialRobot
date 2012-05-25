@@ -14,16 +14,18 @@ using ControlSystem;
 
 namespace RoboGO.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the tables.(From the database.)
+    /// </summary>
     public class InfoViewModel : INotifyPropertyChanged
     {
         // Members and properties
         private SqlCommandBuilder tableValuesCommandBuilder;
-        public SqlDataAdapter sqlDATables;
-        public SqlDataAdapter sqlDATableValues;
-
+        private SqlDataAdapter sqlDATables;
+        private SqlDataAdapter sqlDATableValues;
         private DataGrid guiDatabaseValues;
-
         private DataTable dtTables;
+        
         /// <summary>
         /// Table list.
         /// </summary>
@@ -51,6 +53,9 @@ namespace RoboGO.ViewModels
             }
         }
         
+		/// <summary>
+		/// Called when dependency properties changed.(Used in view.)
+		/// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String info)
         {
@@ -61,6 +66,10 @@ namespace RoboGO.ViewModels
         }
 
         // Constructor
+        /// <summary>
+        /// Constructor taking a DataGrid for showing values.(Also setting permissions[Read/Edit].)
+        /// </summary>
+        /// <param name="_databaseValues">DataGrid from GUI.</param>
         public InfoViewModel(DataGrid _databaseValues)
         {
             sqlDATableValues = new SqlDataAdapter();
@@ -74,10 +83,11 @@ namespace RoboGO.ViewModels
             guiDatabaseValues = _databaseValues;
         }
 
+
+        private bool firstTimeGettingTables = true;
         /// <summary>
         /// Loads information about all tables in database.(Loads in other thread.)
         /// </summary>
-        private bool firstTimeGettingTables = true;
         public void loadAllTables()
         {
             if (firstTimeGettingTables == false)
@@ -113,7 +123,7 @@ namespace RoboGO.ViewModels
         /// <summary>
         /// Gets information from table.(Saved in TableValues.)
         /// </summary>
-        /// <param name="tableName">Name of table.</param>
+        /// <param name="_objTableName">Name of table.</param>
         public void getTableInfo(string _objTableName)
         {
             try
@@ -216,35 +226,12 @@ namespace RoboGO.ViewModels
 
             return sb.ToString();
         }
+        
+        /// <summary>
+        /// 'Prints' the currently selected table to a CSV comma seperated file.
+        /// </summary>
         public void tablePrint()
         {
-            /*PrintDialog printDlg = new PrintDialog();
-            if (printDlg.ShowDialog() == true)
-            {
-                /*
-                System.Printing.PrintCapabilities capabilities = printDlg.PrintQueue.GetPrintCapabilities(printDlg.PrintTicket);
-
-                double height = tkt.ActualHeight;
-                double width = tkt.ActualWidth;
-                Transform tempTrans = tkt.LayoutTransform;
-
-                double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth/tkt.ActualWidth,
-                                        capabilities.PageImageableArea.ExtentHeight/tkt.ActualHeight);
-
-                tkt.LayoutTransform = new ScaleTransform(scale, scale);
-
-                Size sz = new Size(capabilities.PageImageableArea.ExtentWidth,
-                                   capabilities.PageImageableArea.ExtentHeight);
-
-                tkt.Measure(sz);
-                tkt.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), sz));
-                
-                printDlg.PrintVisual(tkt, "DatabasePrint");
-                
-                tkt.LayoutTransform = tempTrans;
-                
-                
-            }*/
             if (TableValues.Rows.Count > 0)
             {
                 SaveFileDialog sfdDialog = new SaveFileDialog(); /// \warning Using UI dialog.

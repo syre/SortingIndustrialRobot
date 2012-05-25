@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using DSL;
+﻿using ControlSystem;
+using NUnit.Framework;
 using Rhino.Mocks;
 
 namespace SIR.Tests
@@ -65,21 +65,6 @@ namespace SIR.Tests
             simTestObj.IUIOutput = iuiMock;
 
             simTestObj.openGripper();
-
-            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
-        }
-        [Test]
-        public void initialization_CallingIt_ReturnsTrue()
-        {
-            Assert.IsTrue(simTestObj.initialization());
-        }
-        [Test]
-        public void initialization_CallingIt_WritesToUI()
-        {
-            IUI iuiMock = MockRepository.GenerateMock<IUI>();
-            simTestObj.IUIOutput = iuiMock;
-
-            simTestObj.initialization();
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }

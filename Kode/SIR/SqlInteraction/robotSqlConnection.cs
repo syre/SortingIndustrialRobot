@@ -3,8 +3,15 @@ using System.Data.SqlClient;
 
 namespace SqlInteraction
 {
+    /// <summary>
+    /// SQLConnection to connect to a database.
+    /// </summary>
     public class RobotSqlConnection : ISqlConnection
     {
+        /// <summary>
+        /// Constructor that connects to a database with the information specified.
+        /// </summary>
+        /// <param name="connectionstring">Information for connection.</param>
         public RobotSqlConnection(string connectionstring)
         {
             connection = new SqlConnection(connectionstring);

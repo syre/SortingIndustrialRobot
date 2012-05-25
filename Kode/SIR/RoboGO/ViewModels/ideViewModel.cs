@@ -1,9 +1,10 @@
-﻿/** \author Robotic Global Organization(RoboGO) */
+﻿/** \file ideViewModel.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Threading;
 using System.Windows.Controls;
-using DSL;
 using ControlSystem;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
@@ -16,15 +17,10 @@ namespace RoboGO.ViewModels
     /// </summary>
     public class IDEViewModel : INotifyPropertyChanged
     {
-        /// <summary>
-        /// Command that controls saveAs
-        /// </summary>
-        public RelayCommand saveAs { get; private set; }
-        public RelayCommand open { get; private set; }
-        public RelayCommand closeTab { get; private set; }
-        public RelayCommand newTab { get; private set; }
-
         #region Properties
+		/// <summary>
+		/// Called when dependency properties changed.(Used in view.)
+		/// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         private void notifyPropertyChanged(String info)
         {
@@ -71,12 +67,39 @@ namespace RoboGO.ViewModels
         }
         #endregion
         #region Commands
-
         private DelegateCommand ecDelegateComd;
+		/// <summary>
+		/// Executes the code.
+		/// </summary>
         public DelegateCommand ExecuteComd
         {
             get { return (ecDelegateComd); }
         }
+        
+        /// <summary>
+        /// Save file from current tab.
+        /// </summary>
+        public RelayCommand saveAs { get; private set; }
+        
+        /// <summary>
+        /// Open file.
+        /// </summary>
+        public RelayCommand open { get; private set; }
+        
+        /// <summary>
+        /// Close current tab.
+        /// </summary>
+        public RelayCommand closeTab { get; private set; }
+        
+        /// <summary>
+        /// Make a new tab.
+        /// </summary>
+        public RelayCommand newTab { get; private set; }
+        
+        /// <summary>
+        /// Build the current code.
+        /// </summary>
+        public RelayCommand build { get; private set; }
         #endregion
 
         // Functions
@@ -91,6 +114,7 @@ namespace RoboGO.ViewModels
             // Members settings
             ideTabs = _ideTabs;
             isrScriptRunner = Factory.getScriptRunnerInstance;
+            Factory.getThreadHandlingInstance.addThread(executeCodeThread, "ExecuteScript");
 
             #region Commands
             
@@ -106,6 +130,7 @@ namespace RoboGO.ViewModels
             closeTab = new RelayCommand(
                     () => closeTab_Executed(),
                     () => closeTab_CanExecute);
+            
             newTab = new RelayCommand(
                     () => newTab_Executed(),
                     () => newTab_CanExecute);
@@ -128,10 +153,39 @@ namespace RoboGO.ViewModels
         	{
         	    UIService.showMessageBox(e.Message, "ScriptRunner", MessageBoxButton.OK, MessageBoxImage.Error);
         	}
+
+            if (Factory.getThreadHandlingInstance.find("ExecuteScript").threadPlaceHolder.IsAlive == true)
+            {
+                if (UIService.showMessageBox("Another program already running, please wait for it to finish\n\nWould you like to abort it and continue?", "Build", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                {
+                    Factory.getThreadHandlingInstance.abortAndWait("ExecuteScript");
+                }
+                else
+                {
+                    return;
+                }
+            }
+            Factory.getThreadHandlingInstance.start("ExecuteScript");
+        }
+
+        private void executeCodeThread()
+        {
             isrScriptRunner.ExecuteScript();
             CodeOutput = isrScriptRunner.readFromOutputStream();
         }
+        
+        /// <summary>
+        /// Clear the code output shown.
+        /// </summary>
+        public void CodeClear()
+        {
+            isrScriptRunner.clearOutputStream();
+        }
 
+		/// <summary>
+		/// Tells if able to save code.
+		/// </summary>
+		/// <returns>True if tab selected./returns>
         protected bool saveAs_CanExecute
         {
             get { return (ideTabs.SelectedIndex >= 0); }
@@ -164,6 +218,10 @@ namespace RoboGO.ViewModels
             _saveDialog.AddExtension = true;
         }
 
+		/// <summary>
+		/// Tells if able to open file.
+		/// </summary>
+		/// <returns>Always return true.</returns>
         protected bool open_CanExecute
         {
             get { return true; }
@@ -207,6 +265,10 @@ namespace RoboGO.ViewModels
             openDialog.Multiselect = true;
         }
 
+		/// <summary>
+		/// Tells if able to close tab.
+		/// </summary>
+		/// <returns>True if 1 or more tabs.</returns>
         protected bool closeTab_CanExecute
         {
             get { return (ideTabs.SelectedIndex >= 0); }
@@ -217,6 +279,10 @@ namespace RoboGO.ViewModels
             ideTabs.Items.Remove(ideTabs.SelectedItem);
         }
 
+		/// <summary>
+		/// Tells if able to open a new tab.
+		/// </summary>
+		/// <returns>Always true.</returns>
         protected bool newTab_CanExecute
         {
             get { return true; }
