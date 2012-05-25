@@ -11,27 +11,38 @@
             <Setter Property="AcceptsTab" Value="True" />
         </Style>
     </Window.Resources>
-    <!-- By adding viewbox, all content will be proportionally fitting-->
-   <Viewbox Height="410">
+    
+    <!-- Window content -->
+    <Viewbox Height="410"> <!-- By adding viewbox, all content will be proportionally fitting-->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="258"/>
+                <ColumnDefinition Width="397" />
             </Grid.ColumnDefinitions>
-            <!--ControlSystem column-->
+            
+            <!-- ControlSystem controls -->
             <StackPanel Width="245" Orientation="Vertical" Margin="0,-10,5,11">
                 <TextBlock Text="Control System" TextAlignment="Center" VerticalAlignment="Top" Margin="5,20,5,5" FontWeight="Bold" FontStretch="Expanded" FontSize="20" />
+                
+                <!-- Robot selection -->
                 <TextBlock Text=" Choose Robot or Simulator" TextAlignment="Center" Margin="5,30,5,5"/>
                 <ComboBox Name="cmbChoice" Margin="5,5,5,5" SelectedIndex="0" MinWidth="180" Width="180">
                     <ComboBoxItem Name="cmbSimulator" Content="Simulator"/>
                     <ComboBoxItem Name="cmbRobot" Content="Robot"/>
                 </ComboBox>
+                
+                <!-- Robot control -->
                 <StackPanel Orientation="Horizontal">
                     <Button Content="Select" Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Left" Click="SelectRobot_Click"/>
                     <Button Content="Stop!"  Margin="20,5,5,5" Width="90" Height="25" HorizontalAlignment="Right" Click="Stop_Click"/>
                 </StackPanel>
+                
+                <!-- Robot status -->
                 <ProgressBar Height="25" Name="pgbStyresystem" Width="150" Margin="50,60,0,5" HorizontalAlignment="Left"/>
                 <Button Content="Check connectivity" Height="25" Name="btnCheckConnectivity" VerticalAlignment="Top" Width="160" Click="btnCheckConnectivity_Click" />
+                
+                <!-- Manual steering -->
                 <DockPanel Margin="0,50,5,5">
                     <TextBlock DockPanel.Dock="Top" Height="23" Name="txtbOperation" Text="Manual Steering:" TextAlignment="Center" VerticalAlignment="Top"/>
                     <Button 
@@ -44,10 +55,13 @@
                         Click="btnManuel_Click"/>
                 </DockPanel>
             </StackPanel>
-            <!--Tabs column-->
-            <TabControl Name="tabctrlMain" Grid.Column="1" SelectionChanged="tabctrlMain_SelectionChanged" Margin="0,0,0,0">
+            
+            <!-- Tabs for IDE, Simulator and Database information -->
+            <TabControl Name="tabctrlMain" Grid.Column="1" SelectionChanged="tabctrlMain_SelectionChanged" Grid.ColumnSpan="2">
+                
                 <!-- IDE tab -->
                 <TabItem Name="tabIDE" Header="IDE" Width="100">
+                    <!-- IDE shortcuts -->
                     <TabItem.InputBindings>
                         <KeyBinding Command="{Binding Path=saveAs}" Gesture="CTRL+S"/>
                         <KeyBinding Command="{Binding Path=open}" Gesture="CTRL+O"/>
@@ -55,7 +69,9 @@
                         <KeyBinding Command="{Binding Path=newTab}" Gesture="CTRL+N"/>
                         <KeyBinding Command="{Binding Path=ExecuteComd}" Gesture="CTRL+B" />
                     </TabItem.InputBindings>
+                    
                     <Canvas Width="645">
+                        <!-- Intellisense popup -->
                         <Popup Name="popup" Width="350" Height="100" Canvas.Left="123" Canvas.Top="52"
                                StaysOpen="False" IsOpen="False">
                             <Grid>
@@ -72,28 +88,37 @@
                                 </Border>
                             </Grid>
                         </Popup>
+                        
+                        <!-- IDE content -->
                         <StackPanel Orientation="Vertical" Name="spIDE" MinWidth="645">
                             <Menu VerticalAlignment="Top">
-                                <!--File -->
+                                <!-- File menu -->
                                 <MenuItem Name="mnuFile1" Header="_File">
                                     <MenuItem Name="mnuFileNew1" Header="_New" Command="{Binding Path=newTab}"/>
                                     <MenuItem Name="mnuFileOpen1" Header="_Open" Command="{Binding Path=open}"/>
                                     <MenuItem Name="mnuFileSave1" Header="_Save" Command="{Binding Path=saveAs}"/>
                                     <MenuItem Name="mnuFileClose1" Header="Close" Command="{Binding Path=closeTab}"/>
                                 </MenuItem>
-                                <!--Debug-->
+                                <!-- Debug menu -->
                                 <MenuItem Name="mnuDebugAndBuild" Header="_Build">
                                     <MenuItem Name="mnuBuild" Header="_Build" Command="{Binding Path=ExecuteComd}"/>
                                 </MenuItem>
-                                <!--Help-->
+                                <!-- Help menu -->
                                 <MenuItem Name="mnuHelp1" Header="_Help">
                                     <MenuItem Name="mnuViewCommands1" Header="_View Commands" Click="mnuViewCommands1_Click"/>
                                     <MenuItem Name="mnuAboutBox" Header="_About" Click="mnuAboutBox_Click"/>
                                 </MenuItem>
                             </Menu>
-                            <!--Box for Tabs-->
+                            
+                            <!-- File tabs -->
                             <TabControl Name="IDETabs">
                                 <TabControl.Resources>
+                                    
+                                    <!-- Style for code file -->
+                                    <Style TargetType="{x:Type TabItem}" >
+                                        <Setter Property="Height" Value="20" />
+                                        <Setter Property="Width" Value="70" />
+                                    </Style>
                                     <Style TargetType="TextBox">
                                         <Setter Property="TextWrapping" Value="Wrap" />
                                         <Setter Property="AcceptsReturn" Value="True" />
@@ -104,10 +129,12 @@
                                         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
                                     </Style>
                                 </TabControl.Resources>
-                                <TabItem>
-                                    <TextBox PreviewKeyDown="TextBox_KeyDown"/>
+                                <TabItem Header="New file">
+                                    <TextBox PreviewKeyDown="TextBox_KeyDown"/> <!-- Intellisense -->
                                 </TabItem>
                             </TabControl>
+                            
+                            <!-- DSL output -->
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="DSL Output:"/>
                                 <Button Content="Clear" Click="Button_Click"/>
@@ -116,18 +143,21 @@
                         </StackPanel>
                     </Canvas>
                 </TabItem>
+                
                 <!--Simulator tab-->
                 <TabItem Name="tabitmSimulator" Header="Simulator" Width="100">
                     <Grid>
                         <S:Simulator VerticalAlignment="Center" />
                     </Grid>
                 </TabItem>
+                
                 <!--Info-Tab-->
                 <TabItem Name="tabInfo" Header="Info" Width="100">
                     <StackPanel Name="Hello" Orientation="Horizontal" MinWidth="645">
-                        <!--Left table-->
+                        <!-- Available tables -->
                         <DataGrid Name="DatabaseTables" HorizontalAlignment="Left" ItemsSource="{Binding Tables}" SelectionChanged="DatabaseTables_SelectionChanged" IsReadOnly="True" />
-                        <!--Right table-->
+                        
+                        <!-- Selected table -->
                         <StackPanel>
                             <DataGrid Name="DatabaseTableValues" HorizontalAlignment="Left" Width="500" ItemsSource="{Binding TableValues}" Height="300" VerticalScrollBarVisibility="Auto" />
                             <Button Content="Print" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="DatabasePrintButton" Margin="5" Click="DatabasePrintButton_Click" />

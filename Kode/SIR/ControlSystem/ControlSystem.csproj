@@ -58,6 +58,7 @@
     <Compile Include="factory.cs" />
     <Compile Include="iDLL.cs" />
     <Compile Include="iWrapper.cs" />
+    <Compile Include="logger.cs" />
     <Compile Include="manualController.cs" />
     <Compile Include="MethodList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

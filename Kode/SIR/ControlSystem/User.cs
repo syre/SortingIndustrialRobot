@@ -39,7 +39,7 @@ namespace ControlSystem
             permissionDictionary.Add("Software", false);
             permissionDictionary.Add("Position", true);
             permissionDictionary.Add("BoxInfo", false);
-            permissionDictionary.Add("SystemComponentTable", false);
+            permissionDictionary.Add("Logs", false);
             permissionDictionary.Add("Users", false);
         }
     }
@@ -65,7 +65,7 @@ namespace ControlSystem
             permissionDictionary.Add("Software", true);
             permissionDictionary.Add("Position", true);
             permissionDictionary.Add("BoxInfo", true);
-            permissionDictionary.Add("SystemComponentTable", true);
+            permissionDictionary.Add("Logs", true);
             permissionDictionary.Add("Users", true);
         }
     }
