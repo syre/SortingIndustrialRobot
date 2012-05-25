@@ -221,10 +221,10 @@ namespace RoboGO.ViewModels
 		/// <summary>
 		/// Tells if able to open file.
 		/// </summary>
-		/// <returns>Always return true.</returns>
+		/// <returns>Returns true if number of tabs is below 9</returns>
         protected bool open_CanExecute
         {
-            get { return true; }
+            get { return ideTabs.Items.Count < 9; }
         }
 
         private void open_Executed()
@@ -285,10 +285,10 @@ namespace RoboGO.ViewModels
 		/// <summary>
 		/// Tells if able to open a new tab.
 		/// </summary>
-		/// <returns>Always true.</returns>
+		/// <returns>Returns true if number of tabs is below 9 </returns>
         protected bool newTab_CanExecute
         {
-            get { return true; }
+            get { return ideTabs.Items.Count < 9; }
         }
 
         private void newTab_Executed()
