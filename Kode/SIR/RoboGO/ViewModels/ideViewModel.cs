@@ -160,6 +160,10 @@ namespace RoboGO.ViewModels
                 {
                     Factory.getThreadHandlingInstance.abortAndWait("ExecuteScript");
                 }
+                else
+                {
+                    return;
+                }
             }
             Factory.getThreadHandlingInstance.start("ExecuteScript");
         }
