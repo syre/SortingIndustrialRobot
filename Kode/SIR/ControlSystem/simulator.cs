@@ -65,7 +65,6 @@ namespace ControlSystem
         /// <returns>Returns true if the gripper closes</returns>
         public bool closeGripper()
         {
-            Thread.Sleep(5000);
             iuiOutput.writeLine("Gripper closing!");
             bGripperIsOpen = false;
             return true;
@@ -77,7 +76,6 @@ namespace ControlSystem
         /// <returns>returns true if the gripper opens</returns>
         public bool openGripper()
         {
-            Thread.Sleep(10000);
             iuiOutput.writeLine("Gripper opening!");
             bGripperIsOpen = true;
             return true;
