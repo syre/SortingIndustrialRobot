@@ -17,7 +17,8 @@
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="258"/>
+                <ColumnDefinition Width="397" />
             </Grid.ColumnDefinitions>
             
             <!-- ControlSystem controls -->
@@ -56,7 +57,7 @@
             </StackPanel>
             
             <!-- Tabs for IDE, Simulator and Database information -->
-            <TabControl Name="tabctrlMain" Grid.Column="1" SelectionChanged="tabctrlMain_SelectionChanged" Margin="0,0,0,0">
+            <TabControl Name="tabctrlMain" Grid.Column="1" SelectionChanged="tabctrlMain_SelectionChanged" Grid.ColumnSpan="2">
                 
                 <!-- IDE tab -->
                 <TabItem Name="tabIDE" Header="IDE" Width="100">
@@ -112,7 +113,12 @@
                             <!-- File tabs -->
                             <TabControl Name="IDETabs">
                                 <TabControl.Resources>
+                                    
                                     <!-- Style for code file -->
+                                    <Style TargetType="{x:Type TabItem}" >
+                                        <Setter Property="Height" Value="20" />
+                                        <Setter Property="Width" Value="70" />
+                                    </Style>
                                     <Style TargetType="TextBox">
                                         <Setter Property="TextWrapping" Value="Wrap" />
                                         <Setter Property="AcceptsReturn" Value="True" />
@@ -123,7 +129,7 @@
                                         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
                                     </Style>
                                 </TabControl.Resources>
-                                <TabItem>
+                                <TabItem Header="New file">
                                     <TextBox PreviewKeyDown="TextBox_KeyDown"/> <!-- Intellisense -->
                                 </TabItem>
                             </TabControl>
