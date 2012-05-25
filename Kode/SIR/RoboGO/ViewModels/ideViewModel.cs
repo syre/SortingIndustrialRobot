@@ -276,6 +276,9 @@ namespace RoboGO.ViewModels
 
         private void closeTab_Executed()
         {
+            if(ideTabs.Items.Count == 1)
+                newTab_Executed();
+
             ideTabs.Items.Remove(ideTabs.SelectedItem);
         }
 
