@@ -81,22 +81,18 @@ namespace RoboGO.ViewModels
             tableValuesCommandBuilder = new SqlCommandBuilder(sqlDATableValues);
 
             guiDatabaseValues = _databaseValues;
+
+            Factory.getThreadHandlingInstance.addThread(_loadAllTables, "Tables");
         }
 
 
-        private bool firstTimeGettingTables = true;
         /// <summary>
         /// Loads information about all tables in database.(Loads in other thread.)
         /// </summary>
         public void loadAllTables()
         {
-            if (firstTimeGettingTables == false)
-                ControlSystem.Factory.getThreadHandlingInstance.removeThread("Tables");
-            if(firstTimeGettingTables == true)
-                firstTimeGettingTables = false;
-
-            ControlSystem.Factory.getThreadHandlingInstance.addThread(_loadAllTables, "Tables");
-            ControlSystem.Factory.getThreadHandlingInstance.start("Tables");
+            Factory.getThreadHandlingInstance.abortAndWait("Tables");
+            Factory.getThreadHandlingInstance.start("Tables");
         }
 
         // Real implementation
