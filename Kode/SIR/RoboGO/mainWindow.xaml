@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="RoboGO" WindowStartupLocation="CenterScreen" 
         xmlns:S="clr-namespace:RoboGO"
         Loaded="WindowsLoaded"
-        Icon="Images/Globus.JPG" Closing="Window_Closing" Width="921" SizeToContent="Manual" Height="425">
+        Icon="Images/Globus.JPG" Closing="Window_Closing" Width="915" Height="473">
     <Window.Resources>
         <Style  TargetType="{x:Type TextBox}">
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -72,20 +72,27 @@
                     
                     <Canvas Width="645">
                         <!-- Intellisense popup -->
-                        <Popup Name="popup" Width="350" Height="100" Canvas.Left="123" Canvas.Top="52"
-                               StaysOpen="False" IsOpen="False">
+                        <Popup Name="popup" Width="400" Height="100" Canvas.Left="123" Canvas.Top="52"
+                               StaysOpen="False" IsOpen="False" AllowsTransparency="True">
+                            
                             <Grid>
-                                <Border Background="White">
-                                    <ListBox Name="list" ItemsSource="{Binding}" PreviewKeyDown="list_PreviewKeyDown"  ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <Border  Margin='2' Padding="4" Width="320" BorderBrush="Gray" BorderThickness="2">
-                                                    <TextBlock Text="{Binding}" FontFamily="Lucida Console"  Width="310"/>
-                                                </Border>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
-                                </Border>
+                                <ListBox Name="list" ItemsSource="{Binding}" PreviewKeyDown="list_PreviewKeyDown"  
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <ListBox.Background>
+                                        <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                                            <GradientStop Color="#FFFFC934" Offset="0"/>
+                                            <GradientStop Color="#FFFFFFFF" Offset="0.567"/>
+                                        </LinearGradientBrush>
+                                    </ListBox.Background>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border CornerRadius="3" Margin='1' Padding="3" Width="360" BorderBrush="LimeGreen" 
+                                                    BorderThickness="2" Background="WhiteSmoke">
+                                                <TextBlock Text="{Binding}" FontFamily="Lucida Console" Foreground="Black"  Width="350"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
                             </Grid>
                         </Popup>
                         
@@ -127,6 +134,8 @@
                                         <Setter Property="MinHeight" Value="200" />
                                         <Setter Property="MaxHeight" Value="200" />
                                         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                                        <Setter Property="FontFamily" Value="Lucida Console"/>
+                                        <Setter Property="FontSize" Value="14"/>
                                     </Style>
                                 </TabControl.Resources>
                                 <TabItem Header="New file">
@@ -139,7 +148,9 @@
                                 <Label Content="DSL Output:"/>
                                 <Button Content="Clear" Click="Button_Click"/>
                             </StackPanel>
-                            <TextBox Name="DSLOutputBox" Text="{Binding CodeOutput}" MaxHeight="100" MinHeight="100" VerticalScrollBarVisibility="Auto" IsReadOnly="True" TextChanged="DSLOutputBox_TextChanged" />
+                            <TextBox Name="DSLOutputBox" Text="{Binding CodeOutput}" MaxHeight="100" 
+                                     MinHeight="100" VerticalScrollBarVisibility="Auto" IsReadOnly="True" 
+                                     TextChanged="DSLOutputBox_TextChanged" FontFamily="Lucida Console" FontSize="14"  />
                         </StackPanel>
                     </Canvas>
                 </TabItem>
