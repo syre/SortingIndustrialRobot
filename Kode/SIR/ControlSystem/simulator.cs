@@ -238,12 +238,16 @@ namespace ControlSystem
             return true;
         }
 
-        // Interface V2 additions
+        // Interface V2 additions       
         /// <summary>
         /// Moving from the absolute position (home position)
         /// </summary>
-        /// <params name="ALL">represents each coordinate values</params>
-        /// <returns>Always true.</returns>
+        /// <param name="x">Parameter is of which x coordinate to use</param>
+        /// <param name="y">Parameter is of which y coordinate to use</param>
+        /// <param name="z">Parameter is of which z coordinate to use</param>
+        /// <param name="pitch">Parameter is of which pitch to use</param>
+        /// <param name="roll">Parameter is of which roll to use</param>
+        /// <returns>Always true</returns>
         public bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll)
         {
             iuiOutput.writeLine("Absolute Coordinate X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", x,y,z,pitch,roll);
@@ -258,8 +262,12 @@ namespace ControlSystem
         /// <summary>
         /// Moving from the relative position (current position)
         /// </summary>
-        /// <params name="ALL">represents each coordinate values</params>
-        /// <returns>Always true.</returns>
+        /// <param name="_iX">Parameter of which x coordinate to use</param>
+        /// <param name="_iY">Parameter of which y coordinate to use</param>
+        /// <param name="_iZ">Parameter of which z coordinate to use</param>
+        /// <param name="_iPitch">Parameter of which Pitch to use</param>
+        /// <param name="_iRoll">Parameter of which Roll to use</param>
+        /// <returns>Always true</returns>
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
             iuiOutput.writeLine("Robot moving with relative coordinates X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", _iX, _iY, _iZ, _iPitch, _iRoll);
