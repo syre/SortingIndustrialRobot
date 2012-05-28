@@ -295,10 +295,12 @@ namespace RoboGO.ViewModels
 
         private void closeTab_Executed()
         {
+            TabItem tiTemp = currentlySelectedTab;
+
             if(obsCollectionTabs.Count == 1)
                 newTab_Executed();
 
-            obsCollectionTabs.Remove(currentlySelectedTab);
+            obsCollectionTabs.Remove(tiTemp);
         }
 
 		/// <summary>

@@ -604,6 +604,7 @@ namespace SIR.Tests
             // Verify
             idllMock.AssertWasCalled(t => t.EnterManual(1));
         }
+
         [Test]
         public void closeManualWrapped_IsCalled_CallsDllCloseManual()
         {
@@ -888,6 +889,22 @@ namespace SIR.Tests
 
             // Verify
             idllMock.AssertWasCalled(t => t.MoveLinear(Arg<string>.Is.Anything, Arg<short>.Is.Anything, Arg<string>.Is.Anything, Arg<short>.Is.Equal(0)));
+        }
+
+        [Test]
+        public void getCurrentPosition_IsCalled_DLLGetCurrentPosition()
+        {
+
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.GetCurrentPosition(ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[2] {1,2}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[2] {1,2}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[2]{1,2}).Dummy)).Return(1);
+
+            // Test
+            wTestObj.getCurrentPosition();
+
+            // Verify
+            idllMock.AssertWasCalled(t => t.GetCurrentPosition(ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[]{1}).Dummy));
         }
         #endregion
         #region Gripper
@@ -1222,7 +1239,66 @@ namespace SIR.Tests
         }
         #endregion
         #region Vectors
-        // Not yet. Functions being edited.
+        
+        [Test]
+        public void defineVectorWrapped_isCalled_DLLdefineVector()
+        {
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            idllMock.Stub(t => t.DefineVector(Arg<byte>.Is.Anything, Arg<string>.Is.Anything, Arg<short>.Is.Anything)).Return(1);
+            
+            // Test
+            wTestObj.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ALL, "VectorOne", 100);
+
+            idllMock.AssertWasCalled(t => t.DefineVector(Arg<byte>.Is.Anything, Arg<string>.Is.Anything, Arg<short>.Is.Anything));
+        }
+
+
+        [Test]
+        public void teachWrapped_IsCalledTrue_DLLTeach()
+        {
+            //Initialize
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            //Make RelCoordSirVectors
+            RelCoordSirVector _relCoordSirVector = MockRepository.GenerateStub<RelCoordSirVector>("TestOne");
+            //Vecpoints
+            VecPoint _vecPoints = MockRepository.GenerateStub<VecPoint>(10, 10, 10, 10, 10);
+            //insert into RelCoordSirVector (Note add's 2 times, cause forloop counts from 1)
+            _relCoordSirVector.addPoint(_vecPoints);
+            _relCoordSirVector.addPoint(_vecPoints);
+            
+            idllMock.Stub(t => t.Teach(Arg<string>.Is.Anything, Arg<short>.Is.Anything, Arg<int[]>.Is.Anything, Arg<short>.Is.Anything, Arg<int>.Is.Anything)).Return(1);
+
+            wTestObj.teachWrapped(_relCoordSirVector);
+
+            idllMock.AssertWasCalled(t => t.Teach(Arg<string>.Is.Anything, Arg<short>.Is.Anything, Arg<int[]>.Is.Anything, Arg<short>.Is.Anything, Arg<int>.Is.Anything));
+
+        }
+
+        [Test]
+        public void teachWrapped_ReturnFalse_DLLTeach()
+        {
+            //Initialize
+            Wrapper wTestObj = Wrapper.getInstance();
+            IDLL idllMock = MockRepository.GenerateMock<IDLL>();
+            wTestObj.DLL = idllMock;
+            //Make RelCoordSirVectors
+            RelCoordSirVector _relCoordSirVector = MockRepository.GenerateStub<RelCoordSirVector>("TestOne");
+            //Vecpoints
+            VecPoint _vecPoints = MockRepository.GenerateStub<VecPoint>(10, 10, 10, 10, 10);
+            //insert into RelCoordSirVector (Note add's 2 times, cause forloop counts from 1)
+            _relCoordSirVector.addPoint(_vecPoints);
+            _relCoordSirVector.addPoint(_vecPoints);
+
+            idllMock.Stub(t => t.Teach(Arg<string>.Is.Anything, Arg<short>.Is.Anything, Arg<int[]>.Is.Anything, Arg<short>.Is.Anything, Arg<int>.Is.Anything)).Return(0);
+
+            Assert.IsFalse(wTestObj.teachWrapped(_relCoordSirVector));
+
+        }
+
         #endregion
     }
 }
