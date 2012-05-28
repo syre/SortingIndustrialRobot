@@ -15,8 +15,6 @@
                 <Label Content="Simulator" FontWeight="Bold" HorizontalAlignment="Center" FontSize="16"  Margin="5"/>
                 <TextBox Name="txtblockUIOutput" Text="{Binding UIText.Buffer, Mode=OneWay}" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Height="180" Margin="5" TextChanged="TxtblockUIOutput_TextChanged"/>
                 <Button Content="Clear" Click="Button_Click"/>
-                <Label Content="-- Position ( y , z ) --" HorizontalAlignment="Center" Margin="5"/>
-                <TextBox Name="txtbPosition" Text="{Binding CurrentPosition, Mode=OneWay}" Margin="5" />
             </StackPanel>
         </Border>
 

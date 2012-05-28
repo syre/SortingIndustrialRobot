@@ -172,7 +172,7 @@ namespace ControlSystem
 		/// </param>
         /// <param name="_mTime">Time in milliseconds</param>
         /// <returns>Returns true if time has been succesfully set, false otherwise.</returns>
-        bool timeWrapped(Wrapper.enumBGroup _bGroup, long _mTime);
+        bool timeWrapped(Wrapper.enumAxisSettings _bGroup, long _mTime);
 
 
         /// <summary>
@@ -188,6 +188,6 @@ namespace ControlSystem
 		/// </param>
         /// <param name="_mSpeed">Speed in percent of max speed</param>
         /// <returns>Returns true if the speed has been succesfully set, false otherwise..</returns>
-        bool speedWrapped(Wrapper.enumBGroup _bGroup, long _mSpeed);
+        bool speedWrapped(Wrapper.enumAxisSettings _bGroup, long _mSpeed);
     }
 }
