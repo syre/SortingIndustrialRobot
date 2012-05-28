@@ -127,5 +127,20 @@ namespace SIR.Tests
             mockrepo.VerifyAll();
         }
         #endregion
+        #region Others
+        [STAThread]
+        [Test]
+        public void CodeClear_IsCalled_CallsScriptRunnerclearOutputStream()
+        {
+            // Setup
+            idevmTestObj.ScriptExecuter = MockRepository.GenerateMock<IScriptRunner>();
+
+            // Test
+            idevmTestObj.CodeClear();
+
+            // Verify
+            idevmTestObj.ScriptExecuter.AssertWasCalled(t => t.clearOutputStream());
+        }
+        #endregion
     }
 }

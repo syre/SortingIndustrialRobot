@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="databaseLoggerTests.cs" />
+    <Compile Include="delegateCommandTests.cs" />
     <Compile Include="ideViewModelTests.cs" />
     <Compile Include="manualControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
