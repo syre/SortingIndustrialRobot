@@ -102,13 +102,15 @@ namespace ControlSystem
         /// <returns></returns>
         public bool moveByCoordinates(int _x, int _y, int _z, int _pitch, int _roll)
         {
-            iuiOutput.writeLine("The robot is moving to X: " + _x + "  Y: " + _y + "  Z: " + _z + "  Pitch: " +
+            iuiOutput.writeLine("Robot moving with relative coordinates X: " + _x + "  Y: " + _y + "  Z: " + _z + "  Pitch: " +
                               _pitch + " Roll: " + _roll);
-            Currentposition.iX = _x;
-            Currentposition.iY = _y;
-            Currentposition.iZ = _z;
-            Currentposition.iPitch = _pitch;
-            Currentposition.iRoll = _roll;
+            Currentposition.iX += _x;
+            Currentposition.iY += _y;
+            Currentposition.iZ += _z;
+            Currentposition.iPitch += _pitch;
+            Currentposition.iRoll += _roll;
+            iuiOutput.writeLine("New coordinates X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4}", Currentposition.iX, Currentposition.iY,
+                Currentposition.iZ,Currentposition.iPitch,Currentposition.iRoll);
             return true;
         }
 
@@ -260,12 +262,14 @@ namespace ControlSystem
         /// <returns>Always true.</returns>
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
-            iuiOutput.writeLine("Absolute Coordinate X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", _iX, _iY, _iZ, _iPitch, _iRoll);
+            iuiOutput.writeLine("Robot moving with relative coordinates X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", _iX, _iY, _iZ, _iPitch, _iRoll);
             Currentposition.iX += _iX;
             Currentposition.iY += _iY;
             Currentposition.iZ += _iZ;
             Currentposition.iPitch += _iPitch;
             Currentposition.iRoll += _iRoll;
+            iuiOutput.writeLine("New coordinates X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4}", Currentposition.iX, Currentposition.iY,
+                Currentposition.iZ, Currentposition.iPitch, Currentposition.iRoll);
             return true;
         }
 
@@ -276,8 +280,9 @@ namespace ControlSystem
         /// <returns>Always true.</returns>
         public bool moveByXCoordinate(int x)
         {
-            iuiOutput.writeLine("New Coordinate X: "+ x);
-            Currentposition.iX = x;
+            iuiOutput.writeLine("Move to relative coordinate X: "+ x);
+            Currentposition.iX += x;
+            iuiOutput.writeLine("New coordinate X: {0}", Currentposition.iX); 
             return true;
         }
 
@@ -288,8 +293,9 @@ namespace ControlSystem
         /// <returns>Always true.</returns>
         public bool moveByYCoordinate(int y)
         {
-            iuiOutput.writeLine("New Coordinate Y: " + y);
-            Currentposition.iY = y;
+            iuiOutput.writeLine("Move to relative coordinate Y: " + y);
+            Currentposition.iY += y;
+            iuiOutput.writeLine("New coordinate Y: {0}", Currentposition.iY);
             return true;
         }
         /// <summary>
@@ -299,8 +305,9 @@ namespace ControlSystem
         /// <returns>Always true.</returns>
         public bool moveByZCoordinate(int z)
         {
-            iuiOutput.writeLine("New Coordinate Y: " + z);
-            Currentposition.iZ = z;
+            iuiOutput.writeLine("Move to relative coordinate Z: " + z);
+            Currentposition.iZ += z;
+            iuiOutput.writeLine("New coordinate Z: {0}", Currentposition.iZ);
             return true;
         }
 
@@ -311,8 +318,9 @@ namespace ControlSystem
         /// <returns>Always true.</returns>
         public bool moveByPitch(int pitch)
         {
-            iuiOutput.writeLine("New Coordinate Pitch: " + pitch);
-            Currentposition.iPitch = pitch;
+            iuiOutput.writeLine("Move to relative coordinate Pitch: " + pitch);
+            Currentposition.iPitch += pitch;
+            iuiOutput.writeLine("New coordinate Pitch: {0}", Currentposition.iPitch);
             return true;
         }
 
@@ -323,8 +331,9 @@ namespace ControlSystem
         /// <returns>Always true.</returns>
         public bool moveByRoll(int roll)
         {
-            iuiOutput.writeLine("New Coordinate Roll: " + roll);
-            Currentposition.iRoll = roll;
+            iuiOutput.writeLine("Move to relative coordinate Roll: " + roll);
+            Currentposition.iRoll += roll;
+            iuiOutput.writeLine("New coordinate Roll: {0}", Currentposition.iRoll);
             return true;
         }
 
@@ -360,10 +369,11 @@ namespace ControlSystem
         /// <returns>Always true.</returns>
         public bool movebyCoordinates(int _iX, int _iY, int _iZ)
         {
-            iuiOutput.writeLine("New Coordinates X: "+_iX+"  Y: "+_iY+"  Z: "+_iZ);
-            Currentposition.iX = _iX;
-            Currentposition.iY = _iY;
-            Currentposition.iZ = _iZ;
+            iuiOutput.writeLine("Move robot to relative coordinates X: {0}, Y: {1}, Z: {2}", _iX, _iY, _iZ);
+            Currentposition.iX += _iX;
+            Currentposition.iY += _iY;
+            Currentposition.iZ += _iZ;
+            iuiOutput.writeLine("New coordinates X: {0}, Y: {1}, Z: {2}",Currentposition.iX,Currentposition.iY,Currentposition.iZ);
             return true;
         }
 
