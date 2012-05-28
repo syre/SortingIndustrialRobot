@@ -145,8 +145,8 @@
                                 <Label Content="DSL Output:"/>
                                 <Button Content="Clear" Click="Button_Click"/>
                             </StackPanel>
-                            <TextBox Name="DSLOutputBox" Text="{Binding CodeOutput}" MaxHeight="100" 
-                                     MinHeight="100" VerticalScrollBarVisibility="Auto" IsReadOnly="True" 
+                            <TextBox Name="DSLOutputBox" Text="{Binding CodeOutput}" MaxHeight="80" 
+                                     MinHeight="80" VerticalScrollBarVisibility="Auto" IsReadOnly="True" 
                                      TextChanged="DSLOutputBox_TextChanged" FontFamily="Lucida Console" FontSize="14"  />
                         </StackPanel>
                     </Canvas>

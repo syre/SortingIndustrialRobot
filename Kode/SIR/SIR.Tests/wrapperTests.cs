@@ -302,7 +302,7 @@ namespace SIR.Tests
                 .Return(1);
 
             // Test
-            wTestObj.timeWrapped(Wrapper.enumBGroup.Group4, 1000);
+            wTestObj.timeWrapped(Wrapper.enumAxisSettings.AXIS_4, 1000);
 
             // Verify
             idllMock.AssertWasCalled(t => t.Time(Arg<byte>.Is.Anything, Arg<long>.Is.Anything));
@@ -318,7 +318,7 @@ namespace SIR.Tests
                 .Return(0);
 
             // Test
-            bool bReturnValue = wTestObj.timeWrapped(Wrapper.enumBGroup.Group4, 1000);
+            bool bReturnValue = wTestObj.timeWrapped(Wrapper.enumAxisSettings.AXIS_4, 1000);
 
             // Verify
             Assert.IsFalse(bReturnValue);
@@ -334,7 +334,7 @@ namespace SIR.Tests
                 .Return(1);
 
             // Test
-            bool bReturnValue = wTestObj.timeWrapped(Wrapper.enumBGroup.Group4, 1000);
+            bool bReturnValue = wTestObj.timeWrapped(Wrapper.enumAxisSettings.AXIS_4, 1000);
 
             // Verify
             Assert.IsTrue(bReturnValue);
@@ -350,7 +350,7 @@ namespace SIR.Tests
                 .Return(1);
 
             // Test
-            wTestObj.timeWrapped(Wrapper.enumBGroup.Group4, 1000);
+            wTestObj.timeWrapped(Wrapper.enumAxisSettings.AXIS_4, 1000);
 
             // Verify
             idllMock.AssertWasCalled(t => t.Time(Arg<byte>.Is.Equal(5), Arg<long>.Is.Anything));
@@ -366,7 +366,7 @@ namespace SIR.Tests
                 .Return(1);
 
             // Test
-            wTestObj.timeWrapped(Wrapper.enumBGroup.Group4, 1000);
+            wTestObj.timeWrapped(Wrapper.enumAxisSettings.AXIS_4, 1000);
 
             // Verify
             idllMock.AssertWasCalled(t => t.Time(Arg<byte>.Is.Anything, Arg<long>.Is.Equal(1000)));
@@ -382,7 +382,7 @@ namespace SIR.Tests
                 .Return(1);
 
             // Test
-            wTestObj.speedWrapped(Wrapper.enumBGroup.Group4, 1000);
+            wTestObj.speedWrapped(Wrapper.enumAxisSettings.AXIS_4, 1000);
 
             // Verify
             idllMock.AssertWasCalled(t => t.Speed(Arg<byte>.Is.Anything, Arg<long>.Is.Anything));
@@ -398,7 +398,7 @@ namespace SIR.Tests
                 .Return(0);
 
             // Test
-            bool bReturnValue = wTestObj.speedWrapped(Wrapper.enumBGroup.Group4, 1000);
+            bool bReturnValue = wTestObj.speedWrapped(Wrapper.enumAxisSettings.AXIS_4, 1000);
 
             // Verify
             Assert.IsFalse(bReturnValue);
@@ -414,7 +414,7 @@ namespace SIR.Tests
                 .Return(1);
 
             // Test
-            bool bReturnValue = wTestObj.speedWrapped(Wrapper.enumBGroup.Group4, 1000);
+            bool bReturnValue = wTestObj.speedWrapped(Wrapper.enumAxisSettings.AXIS_4, 1000);
 
             // Verify
             Assert.IsTrue(bReturnValue);
@@ -430,7 +430,7 @@ namespace SIR.Tests
                 .Return(1);
 
             // Test
-            wTestObj.speedWrapped(Wrapper.enumBGroup.Group4, 1000);
+            wTestObj.speedWrapped(Wrapper.enumAxisSettings.AXIS_4, 50);
 
             // Verify
             idllMock.AssertWasCalled(t => t.Speed(Arg<byte>.Is.Equal(5), Arg<long>.Is.Anything));
@@ -446,7 +446,7 @@ namespace SIR.Tests
                 .Return(1);
 
             // Test
-            wTestObj.speedWrapped(Wrapper.enumBGroup.Group4, 1000);
+            wTestObj.speedWrapped(Wrapper.enumAxisSettings.AXIS_4, 1000);
 
             // Verify
             idllMock.AssertWasCalled(t => t.Speed(Arg<byte>.Is.Anything, Arg<long>.Is.Equal(1000)));
