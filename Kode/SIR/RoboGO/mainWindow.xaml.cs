@@ -43,7 +43,7 @@ namespace RoboGO
             InitializeComponent();
 
             // Init
-            idevmViewModelIDE = new IDEViewModel(IDETabs);
+            idevmViewModelIDE = new IDEViewModel();
             infoViewModel = new InfoViewModel(DatabaseTableValues);
             _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
             Sense = new IntellisenseViewModel();
