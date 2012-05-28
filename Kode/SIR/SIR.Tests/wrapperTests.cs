@@ -898,13 +898,13 @@ namespace SIR.Tests
             Wrapper wTestObj = Wrapper.getInstance();
             IDLL idllMock = MockRepository.GenerateMock<IDLL>();
             wTestObj.DLL = idllMock;
-            idllMock.Stub(t => t.GetCurrentPosition(ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[2] {1,2}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[2] {1,2}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[2]{1,2}).Dummy)).Return(1);
+            idllMock.Stub(t => t.GetCurrentPosition(ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }).Dummy)).Return(1);
 
             // Test
             wTestObj.getCurrentPosition();
 
             // Verify
-            idllMock.AssertWasCalled(t => t.GetCurrentPosition(ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] {1}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[]{1}).Dummy));
+            idllMock.AssertWasCalled(t => t.GetCurrentPosition(ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }).Dummy));
         }
         #endregion
         #region Gripper

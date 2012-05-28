@@ -89,43 +89,6 @@ namespace SIR.Tests
             // Verify
             isrRunner.AssertWasCalled(t => t.setScriptFromString(Arg<string>.Is.Anything));
         }
-        [Test]
-        [STAThread]
-        public void executeCode_CallsIt_CallsScriptRunnerExecuteScript()
-        {
-            // Setup
-            IScriptRunner isrRunner = MockRepository.GenerateMock<IScriptRunner>();
-            idevmTestObj.ScriptExecuter = isrRunner;
-
-            // Test
-            idevmTestObj.executeCode();
-
-            // Verify
-            isrRunner.AssertWasCalled(t => t.ExecuteScript());
-        }
-        [Test]
-        [STAThread]
-        public void executeCode_CallsIt_ScriptRunnersetScriptFromStringIsCalledBeforeExecuteScript()
-        {
-            // Setup
-            MockRepository mockrepo = new MockRepository();
-            IScriptRunner isrRunner = mockrepo.DynamicMock<IScriptRunner>();
-            idevmTestObj.ScriptExecuter = isrRunner;
-
-            // Record
-            using(mockrepo.Ordered())
-            {
-                isrRunner.Expect(t => t.setScriptFromString(Arg<string>.Is.Anything));
-                isrRunner.Expect(t => t.ExecuteScript());
-            }
-            isrRunner.Replay();
-
-            // Run
-            idevmTestObj.executeCode();
-
-            // Verify
-            mockrepo.VerifyAll();
-        }
         #endregion
         #region Others
         [STAThread]

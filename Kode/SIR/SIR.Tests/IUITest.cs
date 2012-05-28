@@ -20,17 +20,6 @@ namespace SIR.Tests
         }
 
         [Test]
-        public void StringUI_Write_BufferAreSame()
-        {
-            StringUI _stringUI = new StringUI();
-            object[] Array = new[] {"1", "2"};
-
-            _stringUI.write("Hello {0}", Array);
-
-            Assert.AreEqual("* Hello 1",_stringUI.Buffer);
-        }
-
-        [Test]
         public void StringUI_WriteLine_BufferAreSame()
         {
             StringUI _stringUI = new StringUI();
@@ -65,6 +54,12 @@ namespace SIR.Tests
             PropertyChangedEventHandler _propertyChanged = (sender, e) => Assert.AreEqual("Buffer", e.PropertyName);
 
             _stringUI.PropertyChanged += _propertyChanged;
+
+            object[] Array = new[] { "1", "2" };
+
+            _stringUI.writeLine("Hello {0}", Array);
+
+            Assert.AreEqual("* Hello 1", _stringUI.Buffer);
         }
 
     }
