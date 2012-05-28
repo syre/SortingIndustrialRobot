@@ -5,6 +5,7 @@ using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ControlSystem;
 using RoboGO.ViewModels;
 
 
@@ -94,6 +95,7 @@ namespace RoboGO
         // Clean up
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            Factory.getThreadHandlingInstance.abortAllAndWait();
         }
 
         // Show available commands
