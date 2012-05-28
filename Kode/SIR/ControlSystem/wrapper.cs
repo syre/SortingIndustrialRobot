@@ -443,7 +443,7 @@ namespace ControlSystem
         public bool teachWrapped(SIRVector vecTheSirVector)
         {
             int iReturn;
-            for (int i = 1; i <= vecTheSirVector.getSize(); i++)
+            for (int i = 0; i < vecTheSirVector.getSize(); i++)
             {
                 VecPoint pTmp = vecTheSirVector.getPoint(i);
                 int x, y, z, pitch, roll;

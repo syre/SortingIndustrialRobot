@@ -64,10 +64,12 @@
   <ItemGroup>
     <Compile Include="databaseLoggerTests.cs" />
     <Compile Include="ideViewModelTests.cs" />
+    <Compile Include="IUITest.cs" />
     <Compile Include="manualControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulatorTests.cs" />
     <Compile Include="sqlHandlerTests.cs" />
+    <Compile Include="UserTest.cs" />
     <Compile Include="viewModelManualSteeringTests.cs" />
     <Compile Include="wrapperTests.cs" />
     <Compile Include="wrapperVectorTest.cs" />

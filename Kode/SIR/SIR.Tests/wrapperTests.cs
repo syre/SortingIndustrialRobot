@@ -904,7 +904,7 @@ namespace SIR.Tests
             wTestObj.getCurrentPosition();
 
             // Verify
-            idllMock.AssertWasCalled(t => t.GetCurrentPosition(ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[]{1}).Dummy));
+            idllMock.AssertWasCalled(t => t.GetCurrentPosition(ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] {1}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[] { 1}).Dummy, ref Arg<int[]>.Ref(Rhino.Mocks.Constraints.Is.Anything(), new int[]{1}).Dummy));
         }
         #endregion
         #region Gripper
@@ -1266,14 +1266,16 @@ namespace SIR.Tests
             RelCoordSirVector _relCoordSirVector = MockRepository.GenerateStub<RelCoordSirVector>("TestOne");
             //Vecpoints
             VecPoint _vecPoints = MockRepository.GenerateStub<VecPoint>(10, 10, 10, 10, 10);
+
             //insert into RelCoordSirVector (Note add's 2 times, cause forloop counts from 1)
             _relCoordSirVector.addPoint(_vecPoints);
-            _relCoordSirVector.addPoint(_vecPoints);
+
             
             idllMock.Stub(t => t.Teach(Arg<string>.Is.Anything, Arg<short>.Is.Anything, Arg<int[]>.Is.Anything, Arg<short>.Is.Anything, Arg<int>.Is.Anything)).Return(1);
 
             wTestObj.teachWrapped(_relCoordSirVector);
 
+            
             idllMock.AssertWasCalled(t => t.Teach(Arg<string>.Is.Anything, Arg<short>.Is.Anything, Arg<int[]>.Is.Anything, Arg<short>.Is.Anything, Arg<int>.Is.Anything));
 
         }
