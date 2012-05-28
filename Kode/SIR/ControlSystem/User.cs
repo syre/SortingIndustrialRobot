@@ -36,7 +36,7 @@ namespace ControlSystem
             permissionDictionary.Add("Permissions", false);
             permissionDictionary.Add("Producers", false);
             permissionDictionary.Add("Components", false);
-            permissionDictionary.Add("Software", false);
+            permissionDictionary.Add("LogType", false);
             permissionDictionary.Add("Position", true);
             permissionDictionary.Add("BoxInfo", false);
             permissionDictionary.Add("Logs", false);
@@ -62,7 +62,7 @@ namespace ControlSystem
             permissionDictionary.Add("Permissions",true);
             permissionDictionary.Add("Producers", true);
             permissionDictionary.Add("Components", true);
-            permissionDictionary.Add("Software", true);
+            permissionDictionary.Add("LogType", true);
             permissionDictionary.Add("Position", true);
             permissionDictionary.Add("BoxInfo", true);
             permissionDictionary.Add("Logs", true);
