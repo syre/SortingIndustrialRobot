@@ -249,6 +249,17 @@ namespace SIR.Tests
             Assert.IsTrue(simTestObj.getCurrentPosition() != null);
         }
 
+        [Test]
+        public void getCurrentPosition_CallingIt_WritesToUI()
+        {
+           IUI iuiMock = MockRepository.GenerateMock<IUI>();
+	
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.getCurrentPosition();
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
         #endregion
     }
 }

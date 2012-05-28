@@ -373,6 +373,7 @@ namespace ControlSystem
         /// <returns>Currentposition</returns>
         public VecPoint getCurrentPosition()
         {
+            iuiOutput.writeLine("Current Position: {0}", Currentposition.ToString());
             return Currentposition;
         }
 
@@ -385,6 +386,7 @@ namespace ControlSystem
 
         public string getCurrentPositionAsString()
         {
+
             return Currentposition.ToString();
         }
 
