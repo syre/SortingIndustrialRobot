@@ -13,7 +13,7 @@
     </Window.Resources>
     
     <!-- Window content -->
-    <Viewbox Height="410"> <!-- By adding viewbox, all content will be proportionally fitting-->
+    <Viewbox Height="410"> <!-- By adding viewbox, all content will be proportionally fitting.-->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -118,7 +118,7 @@
                             </Menu>
                             
                             <!-- File tabs -->
-                            <TabControl Name="IDETabs" ItemsSource="{Binding obsCollectionTabs}" SelectedItem="{Binding currentlySelectedTab}">
+                            <TabControl Name="IDETabs" ItemsSource="{Binding obsCollectionTabs}" SelectedItem="{Binding currentlySelectedTab}" PreviewKeyDown="IDETabs_PreviewKeyDown">
                                 <TabControl.Resources>
                                     
                                     <!-- Style for code file -->

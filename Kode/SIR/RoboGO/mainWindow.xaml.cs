@@ -55,12 +55,15 @@ namespace RoboGO
         }
 
         #region Events
-        //Handle textbox IntelliSense
-        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        //Handle textbox IntelliSense.
+        private void IDETabs_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            txtbox = sender as TextBox;
-            if (txtbox != null)
-                Sense.showMethodsPopUP(txtbox.GetRectFromCharacterIndex(txtbox.CaretIndex), txtbox, popup, list, e);
+            if (sender.GetType() == typeof(TabControl))
+            {
+                txtbox = (TextBox)((TabItem)((TabControl)sender).SelectedItem).Content;
+                if (txtbox != null)
+                    Sense.showMethodsPopUP(txtbox.GetRectFromCharacterIndex(txtbox.CaretIndex), txtbox, popup, list, e);
+            }
         }
 
         //Choose a function from the list
