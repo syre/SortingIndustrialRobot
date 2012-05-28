@@ -287,7 +287,11 @@ namespace ControlSystem
 
         public bool stopAllMovement()
         {
-            return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
+            bool status = _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
+            // releasing semaphore here since movement functions wont release 
+            if (status)
+                movementlock.Release();
+            return status;
         }
 
         public bool isOnline()
