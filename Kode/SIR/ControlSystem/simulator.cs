@@ -334,7 +334,7 @@ namespace ControlSystem
         /// <param name="_bGroup">Part of the robot </param> 
         /// /// <param name="_mTime">Value for time</param>
         /// <returns>Always true.</returns>
-        public bool Time(Wrapper.enumBGroup _bGroup, long _mTime)
+        public bool Time(Wrapper.enumAxisSettings _bGroup, long _mTime)
         {
             iuiOutput.writeLine("New Time for future movements: " + _mTime + "Miliseconds");
             return true;
@@ -347,7 +347,7 @@ namespace ControlSystem
         /// <param name="_bGroup">Part of the robot </param> 
         /// /// <param name="_mSpeed">Value for speed</param>
         /// <returns>Always true.</returns>
-        public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
+        public bool Speed(Wrapper.enumAxisSettings _bGroup, long _mSpeed)
         {
             iuiOutput.writeLine("New Speed for future movements: " + _mSpeed + "%");
             return true;

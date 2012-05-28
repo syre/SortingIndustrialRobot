@@ -181,7 +181,7 @@ namespace ControlSystem
         ///       'G' for gripper movements
         /// <param name="_mTime">
         ///       Time in milliseconds</param>
-        bool Time(Wrapper.enumBGroup _bGroup, long _mTime);
+        bool Time(Wrapper.enumAxisSettings _bGroup, long _mTime);
 
         /// <summary>
         ///     Sets the speed future movement should take.
@@ -195,7 +195,7 @@ namespace ControlSystem
         ///       'G' for gripper movements
         /// <param name="_mSpeed">
         ///      Speed in percent of max speed</param>
-        bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed);
+        bool Speed(Wrapper.enumAxisSettings _bGroup, long _mSpeed);
 
 
         /// <summary>
@@ -259,7 +259,7 @@ namespace ControlSystem
             _wrapper = Wrapper.getInstance();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
-           Time(Wrapper.enumBGroup.GroupAnd, 60000);
+           Time(Wrapper.enumAxisSettings.AXIS_ALL, 60000);
             movementlock = new Semaphore(1,1);
             _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
         }
@@ -294,12 +294,12 @@ namespace ControlSystem
             return _wrapper.getCurrentPosition();
         }
 
-        public bool Time(Wrapper.enumBGroup _bGroup, long _mTime)
+        public bool Time(Wrapper.enumAxisSettings _bGroup, long _mTime)
         {
             return _wrapper.timeWrapped(_bGroup, _mTime);
         }
 
-        public bool Speed(Wrapper.enumBGroup _bGroup, long _mSpeed)
+        public bool Speed(Wrapper.enumAxisSettings _bGroup, long _mSpeed)
         {
             return _wrapper.speedWrapped(_bGroup, _mSpeed);
         }
