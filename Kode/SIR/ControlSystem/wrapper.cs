@@ -327,7 +327,7 @@ namespace ControlSystem
 
         public bool enterManualWrapped(enumManualType _enummanMoveType)
         {
-            short shrtTmp;
+            short shrtTmp = 0;
             int iReturnValue;
             switch(_enummanMoveType)
             {
@@ -337,8 +337,7 @@ namespace ControlSystem
                 case enumManualType.MANUAL_TYPE_COORD:
                     shrtTmp = 1;
                     break;
-                default:
-                    return (false);
+                   
             }
             iReturnValue = _dll.EnterManual(shrtTmp);
             return ((iReturnValue == 1) ? true : false);

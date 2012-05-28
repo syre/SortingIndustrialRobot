@@ -70,6 +70,7 @@
     <Compile Include="sqlHandlerTests.cs" />
     <Compile Include="viewModelManualSteeringTests.cs" />
     <Compile Include="wrapperTests.cs" />
+    <Compile Include="wrapperVectorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ControlSystem\ControlSystem.csproj">

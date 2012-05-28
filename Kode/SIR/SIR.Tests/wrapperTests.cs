@@ -604,6 +604,7 @@ namespace SIR.Tests
             // Verify
             idllMock.AssertWasCalled(t => t.EnterManual(1));
         }
+
         [Test]
         public void closeManualWrapped_IsCalled_CallsDllCloseManual()
         {
