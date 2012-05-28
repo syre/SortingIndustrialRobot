@@ -26,6 +26,8 @@ namespace ControlSystem
             Add("seekHome()");
             Add("stopAllMovement()");
             Add("removeBox(boxid)");
+            Add("time(group,sec)");
+            Add("speed(group,percent)");
         }
     }
 }
