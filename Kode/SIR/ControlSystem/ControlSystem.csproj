@@ -72,9 +72,9 @@
     <Compile Include="wrapper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DSLFiler\commands.html">
+    <Content Include="DSLFiler\commands.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="DSLFiler\methods.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
