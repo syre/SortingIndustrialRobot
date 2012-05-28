@@ -234,12 +234,18 @@ namespace ControlSystem
         {
             Console.WriteLine("Home Event: " + _bArg);
         }
-    
+        /// <summary>
+        /// method to be called when the robot starts its movement, implemented in each move-method instead (DUMMY)
+        /// </summary>
+        /// <param name="b"></param>
         private static void takeMovementLock(byte b)
         {
             
         }
-
+        /// <summary>
+        /// method to be called when the robot stops its movement
+        /// </summary>
+        /// <param name="b"></param>
         private static void releaseMovementLock(byte b)
         {
             movementlock.Release();
@@ -264,7 +270,7 @@ namespace ControlSystem
             _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
         }
 
-        private bool initialization() // implementing delegates
+        private bool initialization()
         {
             return _wrapper.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE,
                                                   Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT,
@@ -272,7 +278,7 @@ namespace ControlSystem
                                                   dgateEventHandlerError);
         }
 
-        public bool homeRobot() // implementing delegates
+        public bool homeRobot()
         {
             movementlock.WaitOne();
             return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);

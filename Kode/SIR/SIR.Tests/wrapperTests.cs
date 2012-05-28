@@ -350,7 +350,7 @@ namespace SIR.Tests
                 .Return(1);
 
             // Test
-            wTestObj.timeWrapped(Wrapper.enumAxisSettings.AXIS_4, 1000);
+            wTestObj.timeWrapped(Wrapper.enumAxisSettings.AXIS_5, 1000);
 
             // Verify
             idllMock.AssertWasCalled(t => t.Time(Arg<byte>.Is.Equal(5), Arg<long>.Is.Anything));
@@ -430,7 +430,7 @@ namespace SIR.Tests
                 .Return(1);
 
             // Test
-            wTestObj.speedWrapped(Wrapper.enumAxisSettings.AXIS_4, 50);
+            wTestObj.speedWrapped(Wrapper.enumAxisSettings.AXIS_5, 50);
 
             // Verify
             idllMock.AssertWasCalled(t => t.Speed(Arg<byte>.Is.Equal(5), Arg<long>.Is.Anything));
