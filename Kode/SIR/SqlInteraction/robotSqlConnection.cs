@@ -1,3 +1,5 @@
+/** \file robotSqlConnection.cs */
+/** \author Robotic Global Organization(RoboGO) */
 using System.Data;
 using System.Data.SqlClient;
 
@@ -12,16 +14,42 @@ namespace SqlInteraction
         /// Constructor that connects to a database with the information specified.
         /// </summary>
         /// <param name="connectionstring">Information for connection.</param>
-        public RobotSqlConnection(string connectionstring)
+        public RobotSqlConnection(string _sConnectionString)
         {
-            connection = new SqlConnection(connectionstring);
+            connection = new DatabaseSQLConnection(_sConnectionString);
         }
-        private SqlConnection connection;
+
+        /// <summary>
+        /// Constructor for testing when no database connection.
+        /// </summary>
+        /// <param name="_idscConnection">SQL connection.</param>
+        public RobotSqlConnection(IDatabaseSQLConnection _idscConnection)
+        {
+            connection = _idscConnection;
+        }
+
+        private IDatabaseSQLConnection connection;
+        /// <summary>
+        /// SQL connection used for operations.
+        /// </summary>
+        public IDatabaseSQLConnection Connection
+        {
+            get { return (connection); }
+            set { connection = value; }
+        }
+        /// <summary>
+        /// State of the connection.
+        /// </summary>
         public ConnectionState RobotConnectionState
         {
             get { return connection.State; }
         }
 
+        /// <summary>
+        /// String used for the connection.
+        /// 
+        /// Updates the connection when set.
+        /// </summary>
         public string Connectionstring
         {
             get { return connection.ConnectionString; }
@@ -30,22 +58,22 @@ namespace SqlInteraction
 
         public void ConnectionOpen()
         {
-            connection.Open();
+            connection.open();
         }
 
         public void ConnectionClose()
         {
-            connection.Close();
+            connection.close();
         }
 
         public SqlCommand CreateCommand()
         {
-            return connection.CreateCommand();
+            return connection.createCommand();
         }
 
         public int TimeOut
         {
-            get { return connection.ConnectionTimeout; }
+            get { return connection.connectionTimeout; }
         }
     }
 }
