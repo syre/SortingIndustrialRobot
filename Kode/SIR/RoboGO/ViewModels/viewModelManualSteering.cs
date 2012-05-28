@@ -266,6 +266,15 @@ namespace RoboGO.ViewModels
         {
             mcManualControl.stopAllMovement();
         }
+
+        /// <summary>
+        /// Set Timer
+        /// </summary>
+        public void setTimeSecond(int _sec)
+        {
+            mcManualControl.setTimeSecond(_sec);
+        }
+
         #endregion
         #region commands
         private DelegateCommand dcOpenGripper;

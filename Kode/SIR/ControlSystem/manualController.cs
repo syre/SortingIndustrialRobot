@@ -131,6 +131,11 @@ namespace ControlSystem
         /// Stops movement of all axes.
         /// </summary>
         void stopAllMovement();
+
+        /// <summary>
+        /// set Time
+        /// </summary>
+        bool setTimeSecond(int _sec);
     }
 
     /// <summary>
@@ -157,6 +162,11 @@ namespace ControlSystem
                 throw new Exception();
         }
 
+        public bool setTimeSecond(int _sec)
+        {
+            return robot.Time(Wrapper.enumAxisSettings.AXIS_ALL, (_sec*1000));
+        }
+
         // Properties
         public int Speed
         {
@@ -174,6 +184,7 @@ namespace ControlSystem
             get { return robot; }
             set { robot = value; }
         }
+
         #region Axis
         public void moveAxisBase(enumLeftRight _elrDirection)
         {
