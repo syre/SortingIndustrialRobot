@@ -164,7 +164,8 @@ namespace ControlSystem
 
         public bool setTimeSecond(int _sec)
         {
-            return robot.Time(Wrapper.enumAxisSettings.AXIS_ALL, (_sec*1000));
+            int temp = _sec*1000;
+            return robot.Time(Wrapper.enumAxisSettings.AXIS_ALL, temp);
         }
 
         // Properties

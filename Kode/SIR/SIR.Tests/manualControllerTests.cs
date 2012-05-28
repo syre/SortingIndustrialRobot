@@ -21,6 +21,7 @@ namespace SIR.Tests
             Factory.currentIRobotInstance = rob;
         }
 
+        
         // Tests
         #region Properties
         [Test]
@@ -172,6 +173,22 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveBase(-mcTestObj.Speed));
         }
+
+        [Test]
+        public void moveAxisBase_ReturnsFalse_CastExceptions()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveBase(Arg<int>.Is.Anything)).Return(false);
+
+            // Verify
+            Assert.Catch(() => mcTestObj.moveAxisBase(enumLeftRight.MANUAL_MOVE_LEFT));
+        }
+
+
+
         [Test]
         public void moveAxisBase_CalledWithArgRight_CallsRobotmoveBaseWithPositiveSpeedValue()
         {
@@ -219,6 +236,20 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveShoulder(-mcTestObj.Speed));
         }
+
+        [Test]
+        public void moveAxisShoulder_ReturnsFalse_CastExceptions()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveShoulder(Arg<int>.Is.Anything)).Return(false);
+
+            // Verify
+            Assert.Catch(() => mcTestObj.moveAxisShoulder(enumLeftRight.MANUAL_MOVE_LEFT));
+        }
+        
         [Test]
         public void moveAxisShoulder_CalledWithArgRight_CallsRobotmoveShoulderWithPositiveSpeedValue()
         {
@@ -266,6 +297,21 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveElbow(-mcTestObj.Speed));
         }
+
+        [Test]
+        public void moveAxisElbow_ReturnsFalse_CastExceptions()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveElbow(Arg<int>.Is.Anything)).Return(false);
+
+            // Verify
+            Assert.Catch(() => mcTestObj.moveAxisElbow(enumLeftRight.MANUAL_MOVE_LEFT));
+
+        }
+
         [Test]
         public void moveAxisElbow_CalledWithArgRight_CallsRobotmoveElbowWithPositiveSpeedValue()
         {
@@ -313,6 +359,20 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.closeGripper());
         }
+
+        [Test]
+        public void moveAxisGripper_ReturnsFalseOnCloseGripper_CastExceptions()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.closeGripper()).Return(false);
+
+            // Verify
+            Assert.Catch(() => mcTestObj.moveAxisGripper(enumCloseOpen.MANUAL_CLOSE));
+        }
+
         [Test]
         public void moveAxisPitch_CalledWithArgDown_CallsRobotmoveWristPitch()
         {
@@ -360,6 +420,20 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveWristPitch(mcTestObj.Speed));
         }
+
+        [Test]
+        public void moveAxisPitch_ReturnsFalse_CastExceptions()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveWristPitch(Arg<int>.Is.Anything)).Return(false);
+
+            // Verify
+            Assert.Catch(() => mcTestObj.moveAxisPitch(enumUpDown.MANUAL_MOVE_UP));
+        }
+
         [Test]
         public void moveAxisRoll_CalledWithArgLeft_CallsRobotmoveWristRoll()
         {
@@ -407,6 +481,20 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveWristRoll(mcTestObj.Speed));
         }
+
+        [Test]
+        public void moveAxisRoll_ReturnsFalse_CastExceptions()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveWristRoll(Arg<int>.Is.Anything)).Return(false);
+
+            // Verify
+            Assert.Catch(() => mcTestObj.moveAxisRoll(enumLeftRight.MANUAL_MOVE_RIGHT));
+        }
+        
         [Test]
         public void moveAxisConveyer_CalledWithArgLeft_CallsRobotmoveConveyerBelt()
         {
@@ -454,6 +542,20 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveConveyerBelt(mcTestObj.Speed));
         }
+
+        [Test]
+        public void moveAxisConveyer_ReturnsFalse_CastExceptions()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveConveyerBelt(Arg<int>.Is.Anything)).Return(false);
+
+            // Verify
+            Assert.Catch(() => mcTestObj.moveAxisConveyer(enumLeftRight.MANUAL_MOVE_RIGHT));
+        }
+
         #endregion
         #region Move Coordinates
         [Test]
@@ -471,6 +573,20 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveByXCoordinate(Arg<int>.Is.Anything));
         }
+
+        [Test]
+        public void moveCoordX_CalledWithArgDecreasing_CallsRobotmoveByXCoordinate_ReturnFalse_ExpectException()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByXCoordinate(Arg<int>.Is.Anything)).Return(false);
+
+            
+            Assert.Catch(() => mcTestObj.moveCoordX(enumIncDec.MANUAL_MOVE_DEC));
+        }
+
         [Test]
         public void moveCoordX_CalledWithArgIncreasing_CallsRobotmoveByXCoordinate()
         {
@@ -486,6 +602,7 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveByXCoordinate(Arg<int>.Is.Anything));
         }
+        
         [Test]
         public void moveCoordX_CalledWithArgDecreasing_CallsRobotmoveByXCoordinateWithNegativeSpeedValue()
         {
@@ -518,6 +635,21 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveByXCoordinate(mcTestObj.Speed));
         }
+
+
+        [Test]
+        public void moveCoordX_CalledWithArgDecreasing_CallsRobotmoveByXCoordinateWithNegativeSpeedValue_ExpectException()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByXCoordinate(Arg<int>.Is.Anything)).Return(false);
+
+
+            Assert.Catch(() => mcTestObj.moveCoordX(enumIncDec.MANUAL_MOVE_INC));
+        }
+
         [Test]
         public void moveCoordY_CalledWithArgDecreasing_CallsRobotmoveByYCoordinate()
         {
@@ -533,6 +665,20 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveByYCoordinate(Arg<int>.Is.Anything));
         }
+
+        [Test]
+        public void moveCoordY_CalledWithArgDecreasing_CallsRobotmoveByYCoordinate_ReturnFalse_ExpectException()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByYCoordinate(Arg<int>.Is.Anything)).Return(false);
+
+            // Test
+            Assert.Catch(() => mcTestObj.moveCoordY(enumIncDec.MANUAL_MOVE_DEC));
+        }
+
         [Test]
         public void moveCoordY_CalledWithArgIncreasing_CallsRobotmoveByYCoordinate()
         {
@@ -580,6 +726,21 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveByYCoordinate(mcTestObj.Speed));
         }
+
+        [Test]
+        public void moveCoordY_CalledWithArgIncreasing_CallsRobotmoveByYCoordinateWithPositiveSpeedValue_ReturnFalse_ExpectException()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByYCoordinate(Arg<int>.Is.Anything)).Return(false);
+
+            // Test
+            Assert.Catch(() => mcTestObj.moveCoordY(enumIncDec.MANUAL_MOVE_INC));
+        }
+
         [Test]
         public void moveCoordZ_CalledWithArgDecreasing_CallsRobotmoveByZCoordinate()
         {
@@ -610,6 +771,20 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveByZCoordinate(Arg<int>.Is.Anything));
         }
+
+        [Test]
+        public void moveCoordZ_CalledWithArgIncreasing_CallsRobotmoveByZCoordinate_ReturnFalse_ExpectException()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByZCoordinate(Arg<int>.Is.Anything)).Return(false);
+
+            // Test
+            Assert.Catch(() => mcTestObj.moveCoordZ(enumIncDec.MANUAL_MOVE_INC));
+        }
+
         [Test]
         public void moveCoordZ_CalledWithArgDecreasing_CallsRobotmoveByZCoordinateWithNegativeSpeedValue()
         {
@@ -642,6 +817,22 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveByZCoordinate(mcTestObj.Speed));
         }
+
+        [Test]
+        public void moveCoordZ_CalledWithArgDecreasing_CallsRobotmoveByZCoordinateWithPositiveSpeedValue_ReturnFalse_ExpectException()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByZCoordinate(Arg<int>.Is.Anything)).Return(false);
+
+            // Test
+            Assert.Catch(() => mcTestObj.moveCoordZ(enumIncDec.MANUAL_MOVE_DEC));
+
+        }
+
         [Test]
         public void moveCoordPitch_CalledWithArgDecreasing_CallsRobotmoveByPitch()
         {
@@ -672,6 +863,21 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveByPitch(Arg<int>.Is.Anything));
         }
+
+        [Test]
+        public void moveCoordPitch_CalledWithArgIncreasing_CallsRobotmoveByPitch_ReturnFalse_ExpectException()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByPitch(Arg<int>.Is.Anything)).Return(false);
+
+            // Test
+            Assert.Catch(() => mcTestObj.moveCoordPitch(enumIncDec.MANUAL_MOVE_INC));
+
+        }
+
         [Test]
         public void moveCoordPitch_CalledWithArgDecreasing_CallsRobotmoveByPitchWithNegativeSpeedValue()
         {
@@ -704,6 +910,22 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveByPitch(mcTestObj.Speed));
         }
+
+        [Test]
+        public void moveCoordPitch_CalledWithArgDecreasing_CallsRobotmoveByPitchWithPositiveSpeedValue_ReturnFalse_ExpectException()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByPitch(Arg<int>.Is.Anything)).Return(false);
+
+            // Test
+            Assert.Catch(() => mcTestObj.moveCoordPitch(enumIncDec.MANUAL_MOVE_DEC));
+
+        }
+
         [Test]
         public void moveCoordRoll_CalledWithArgDecreasing_CallsRobotmoveByRoll()
         {
@@ -734,6 +956,20 @@ namespace SIR.Tests
             // Verify
             irMock.AssertWasCalled(t => t.moveByRoll(Arg<int>.Is.Anything));
         }
+
+        [Test]
+        public void moveCoordRoll_CalledWithArgIncreasing_CallsRobotmoveByRoll_ReturnFalse_ExpectException()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.moveByRoll(Arg<int>.Is.Anything)).Return(false);
+
+            // Test
+            Assert.Catch(() => mcTestObj.moveCoordRoll(enumIncDec.MANUAL_MOVE_INC));
+        }
+
         [Test]
         public void moveCoordRoll_CalledWithArgDecreasing_CallsRobotmoveByRollWithNegativeSpeedValue()
         {
@@ -765,6 +1001,55 @@ namespace SIR.Tests
 
             // Verify
             irMock.AssertWasCalled(t => t.moveByRoll(mcTestObj.Speed));
+        }
+
+        [Test]
+        public void moveCoordRoll_CalledWithArgDecreasing_CallsRobotmoveByRollWithPositiveSpeedValue_ReturnFalse_ExpectException()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            mcTestObj.Speed = 50;
+            irMock.Stub(t => t.moveByRoll(Arg<int>.Is.Anything)).Return(false);
+
+            // Test
+            Assert.Catch(() => mcTestObj.moveCoordRoll(enumIncDec.MANUAL_MOVE_DEC));
+        }
+
+        #endregion
+
+        #region Other Functions
+        //Stop All movements
+        [Test]
+        public void stopAllMovement_CheckForWasCalled()
+        {
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.stopAllMovement()).Return(true);
+
+            mcTestObj.stopAllMovement();
+
+            irMock.AssertWasCalled(t => t.stopAllMovement());
+        }
+
+
+        //Time Test
+        [Test]
+        public void setTimeSecond_Checking_ForBeingCalled()
+        {
+            // Setup
+            IRobot irMock = MockRepository.GenerateMock<IRobot>();
+            mcTestObj = new ManualController();
+            mcTestObj.RobotConnection = irMock;
+            irMock.Stub(t => t.Time(Arg<Wrapper.enumAxisSettings>.Is.Anything, Arg<long>.Is.Anything)).Return(true);
+
+            // Test
+            mcTestObj.setTimeSecond(200);
+
+            // Verify
+            irMock.AssertWasCalled(t => t.Time(Arg<Wrapper.enumAxisSettings>.Is.Anything, Arg<long>.Is.Anything));
         }
         #endregion
     }
