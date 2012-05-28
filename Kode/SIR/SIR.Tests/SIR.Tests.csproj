@@ -62,6 +62,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="databaseLoggerTests.cs" />
     <Compile Include="ideViewModelTests.cs" />
     <Compile Include="manualControllerTests.cs" />
     <Compile Include="positionTest.cs" />
@@ -72,6 +73,10 @@
     <Compile Include="wrapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ControlSystem\ControlSystem.csproj">
+      <Project>{1B49DF99-175F-4DC5-9FD5-6ED464267C67}</Project>
+      <Name>ControlSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ControlSystem\ControlSystem.csproj">
       <Project>{1B49DF99-175F-4DC5-9FD5-6ED464267C67}</Project>
       <Name>ControlSystem</Name>
