@@ -41,7 +41,7 @@ namespace ControlSystem
                 if (!serialPort.IsOpen)
                     serialPort.Open();
 
-                if (!serialPort.IsOpen)
+                if (serialPort.IsOpen)
                     return true;
                 return false;
             }
