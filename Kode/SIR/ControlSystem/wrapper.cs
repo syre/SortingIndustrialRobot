@@ -244,26 +244,7 @@ namespace ControlSystem
         }
 
 
-        /// <summary>
-        /// For chosing what part to move when setting Time or Speed.
-        /// </summary>
-        public enum enumBGroup
-        {
-            GroupAnd,
-            Group0,  //axis movements
-            Group1,
-            Group2,
-            Group3,
-            Group4,
-            Group5,
-            Group6,
-            Group7,
-            GroupA, //for robot movements
-            GroupB, //for peripheral movements
-            GroupG  //for gripper movements
-        }
-
-        // Functions
+           // Functions
         // -Constructors and destructors
         private Wrapper()
         {
@@ -319,17 +300,17 @@ namespace ControlSystem
             return ((iReturnValue == 1) ? true : false);
         }
 
-        public bool timeWrapped(enumBGroup _bGroup, long _mTime)
+        public bool timeWrapped(enumAxisSettings _bGroup, long _mTime)
         {
             int iReturnValue;
-            iReturnValue = _dll.Time((byte)_bGroup, _mTime);
+            iReturnValue = _dll.Time(axisSettingsToByte(_bGroup), _mTime);
             return ((iReturnValue == 1) ? true : false);
         }
 
-        public bool speedWrapped(enumBGroup _bGroup, long _mSpeed)
+        public bool speedWrapped(enumAxisSettings _bGroup, long _mSpeed)
         {
             int iReturnValue;
-            iReturnValue = _dll.Speed((byte)_bGroup, _mSpeed);
+            iReturnValue = _dll.Speed(axisSettingsToByte(_bGroup), _mSpeed);
             return ((iReturnValue == 1) ? true : false);
         }
 
@@ -463,7 +444,7 @@ namespace ControlSystem
         public bool teachWrapped(SIRVector vecTheSirVector)
         {
             int iReturn;
-            for (int i = 0; i < vecTheSirVector.getSize(); i++)
+            for (int i = 1; i <= vecTheSirVector.getSize(); i++)
             {
                 VecPoint pTmp = vecTheSirVector.getPoint(i);
                 int x, y, z, pitch, roll;
@@ -472,9 +453,9 @@ namespace ControlSystem
                 z = pTmp.iZ;
                 pitch = pTmp.iPitch;
                 roll = pTmp.iRoll;
-                int[] iArray = new int[]{x, y, z, pitch, roll};
+                int[] iArray = new int[]{x, y, z, pitch, roll,0,0,0};
 
-                iReturn = _dll.Teach(vecTheSirVector.Name, (short) i, iArray, 5, vecTheSirVector.Type); // 5 because of 5 ints
+                iReturn = _dll.Teach(vecTheSirVector.Name, (short) i, iArray, 8, vecTheSirVector.Type); // 8 because of 8 axes
                 if (iReturn == 0)
                     return (false);
             }

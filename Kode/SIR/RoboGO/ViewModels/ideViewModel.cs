@@ -1,6 +1,7 @@
 ﻿/** \file ideViewModel.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Threading;
@@ -18,6 +19,26 @@ namespace RoboGO.ViewModels
     public class IDEViewModel : INotifyPropertyChanged
     {
         #region Properties
+
+        private TabItem currentlyselectedtab;
+        public TabItem currentlySelectedTab
+        {
+            get { return currentlyselectedtab; }
+            set 
+            { 
+                currentlyselectedtab = value;
+                notifyPropertyChanged("currentlySelectedTab");
+            }
+        }
+
+        private ObservableCollection<TabItem> obscollectiontabs;
+        public ObservableCollection<TabItem> obsCollectionTabs
+        {
+            get { return obscollectiontabs; }
+            set { obscollectiontabs = value; }
+
+        }
+
 		/// <summary>
 		/// Called when dependency properties changed.(Used in view.)
 		/// </summary>
@@ -28,16 +49,6 @@ namespace RoboGO.ViewModels
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
-        }
-
-        private TabControl ideTabs;
-        /// <summary>
-        /// TabControl for all the textboxes.
-        /// </summary>
-        public TabControl IdeTabs
-        {
-            get { return ideTabs; }
-            set { ideTabs = value; }
         }
 
         private string sDSLOutput;
@@ -109,10 +120,13 @@ namespace RoboGO.ViewModels
         /// TabControl so can add and remove tab content.
         /// </summary>
         /// <param name="_ideTabs">TabControl used in main program in the IDE.</param>
-        public IDEViewModel(TabControl _ideTabs)
+        public IDEViewModel()
         {
+            obsCollectionTabs = new ObservableCollection<TabItem>();
+            newTab_Executed();
+            currentlySelectedTab = obsCollectionTabs[0];
+
             // Members settings
-            ideTabs = _ideTabs;
             isrScriptRunner = Factory.getScriptRunnerInstance;
             Factory.getThreadHandlingInstance.addThread(executeCodeThread, "ExecuteScript");
 
@@ -147,25 +161,26 @@ namespace RoboGO.ViewModels
         {
         	try
         	{
-        	   isrScriptRunner.setScriptFromString(((TextBox)(ideTabs.SelectedContent)).Text);
+        	   isrScriptRunner.setScriptFromString(((TextBox)currentlySelectedTab.Content).Text);
+
+               if (Factory.getThreadHandlingInstance.find("ExecuteScript").threadPlaceHolder.IsAlive == true)
+               {
+                   if (UIService.showMessageBox("Another program already running, please wait for it to finish\n\nWould you like to abort it and continue?", "Build", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                   {
+                       Factory.getThreadHandlingInstance.abortAndWait("ExecuteScript");
+                   }
+                   else
+                   {
+                       return;
+                   }
+               }
+               Factory.getThreadHandlingInstance.start("ExecuteScript");
         	}
         	catch(Exception e)
         	{
         	    UIService.showMessageBox(e.Message, "ScriptRunner", MessageBoxButton.OK, MessageBoxImage.Error);
         	}
 
-            if (Factory.getThreadHandlingInstance.find("ExecuteScript").threadPlaceHolder.IsAlive == true)
-            {
-                if (UIService.showMessageBox("Another program already running, please wait for it to finish\n\nWould you like to abort it and continue?", "Build", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
-                {
-                    Factory.getThreadHandlingInstance.abortAndWait("ExecuteScript");
-                }
-                else
-                {
-                    return;
-                }
-            }
-            Factory.getThreadHandlingInstance.start("ExecuteScript");
         }
 
         private void executeCodeThread()
@@ -188,7 +203,7 @@ namespace RoboGO.ViewModels
 		/// <returns>True if tab selected./returns>
         protected bool saveAs_CanExecute
         {
-            get { return (ideTabs.SelectedIndex >= 0); }
+            get { return (obsCollectionTabs != null); }
         }
 
         private void saveAs_Executed()
@@ -199,14 +214,14 @@ namespace RoboGO.ViewModels
             if (saveDialog.ShowDialog() == true)
             {
                 writeFile(saveDialog);
-                ((TabItem) ideTabs.SelectedItem).Header = Path.GetFileName(saveDialog.FileName);
+                currentlySelectedTab.Header = Path.GetFileName(saveDialog.FileName);
             }
         }
 
         private void writeFile(SaveFileDialog saveDialog)
         {
             StreamWriter writer = new StreamWriter(saveDialog.OpenFile());
-            TextBox tempBox = (TextBox)(ideTabs.SelectedContent);
+            TextBox tempBox = (TextBox)(currentlySelectedTab.Content);
             writer.Write(tempBox.Text);
             writer.Close();
         }
@@ -224,7 +239,7 @@ namespace RoboGO.ViewModels
 		/// <returns>Returns true if number of tabs is below 9</returns>
         protected bool open_CanExecute
         {
-            get { return ideTabs.Items.Count < 9; }
+            get { return obsCollectionTabs.Count < 9; }
         }
 
         private void open_Executed()
@@ -254,7 +269,8 @@ namespace RoboGO.ViewModels
             newTab.Content = tempBox;
             FileInfo fi = new FileInfo(file);
             newTab.Header = fi.Name;
-            ideTabs.Items.Add(newTab);
+            obsCollectionTabs.Add(newTab);
+            currentlySelectedTab = newTab;
             tempReader.Close();
         }
 
@@ -271,15 +287,15 @@ namespace RoboGO.ViewModels
 		/// <returns>True if 1 or more tabs.</returns>
         protected bool closeTab_CanExecute
         {
-            get { return (ideTabs.SelectedIndex >= 0); }
+            get { return (currentlySelectedTab != null); }
         }
 
         private void closeTab_Executed()
         {
-            if(ideTabs.Items.Count == 1)
+            if(obsCollectionTabs.Count == 1)
                 newTab_Executed();
 
-            ideTabs.Items.Remove(ideTabs.SelectedItem);
+            obsCollectionTabs.Remove(currentlySelectedTab);
         }
 
 		/// <summary>
@@ -288,7 +304,7 @@ namespace RoboGO.ViewModels
 		/// <returns>Returns true if number of tabs is below 9 </returns>
         protected bool newTab_CanExecute
         {
-            get { return ideTabs.Items.Count < 9; }
+            get { return obsCollectionTabs.Count < 9; }
         }
 
         private void newTab_Executed()
@@ -297,7 +313,8 @@ namespace RoboGO.ViewModels
             TextBox tbBox = new TextBox();
             tiItem.Content = tbBox;
             tiItem.Header = "New file";
-            ideTabs.Items.Add((tiItem));
+            obsCollectionTabs.Add(tiItem);
+            currentlySelectedTab = tiItem;
         }
         #endregion
     }

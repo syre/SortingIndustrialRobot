@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -11,6 +12,7 @@ namespace RoboGO.ViewModels
 {
     public class IntellisenseViewModel
     {
+        bool isBig = false;
         private string know=string.Empty;
         private int i;
         private MethodList methodList;
@@ -34,17 +36,26 @@ namespace RoboGO.ViewModels
             set { methodList = value; }
         }
 
+        //Shiftproblems to be solved
         public void showMethodsPopUP(Rect rect, TextBox txtbox, Popup popup, ListBox list,KeyEventArgs e)
         {
             switch (e.Key)
             {
+                case Key.LeftShift:
+                case Key.RightShift:
+                    isBig = true;
+                    break;
+                case Key.Right:
+                case Key.Tab:
+                case Key.Up:
                 case Key.Left:
+                break;
                 case Key.Space:
                 case Key.Enter:
                     popup.IsOpen = false;
                     know = string.Empty;
                     break;
-                case Key.Right:
+                case Key.Down:
                     if (popup.IsOpen) list.Focus();
                     break;
                 case Key.Back:
@@ -57,8 +68,13 @@ namespace RoboGO.ViewModels
 
                     break;
                 default:
-                    know += e.Key.ToString();
-                    know = know.ToLower();
+                    if (isBig)
+                    {
+                        know += e.Key.ToString();
+                        isBig = false;
+                    }
+                    else know += e.Key.ToString().ToLower();
+                
  
                     if(RearrangeList())
                         ShowPopUpInRightPlace(rect, txtbox, popup);
@@ -80,7 +96,7 @@ namespace RoboGO.ViewModels
         {
             UpdatedCollection.Clear();
 
-            foreach (var s in MethodList.Where(s => s.ToLower().StartsWith(know.ToLower())))
+            foreach (var s in MethodList.Where(s=> s.StartsWith(know)))
             {
                 UpdatedCollection.Add(s);
             }
@@ -90,20 +106,23 @@ namespace RoboGO.ViewModels
 
         public void list_KeyDown(ListBox list, KeyEventArgs e, TextBox txtbox, Popup popup)
         {
+            i = txtbox.CaretIndex;
+
             switch (e.Key)
             {
                 case Key.Enter:
                     txtbox.Text = Regex.Replace(txtbox.Text, @"\b" + know + @"\b", UpdatedCollection[list.SelectedIndex]);
-                    i = txtbox.CaretIndex = MethodList[list.SelectedIndex].Length + @txtbox.Text.Length;
+                    txtbox.CaretIndex = i + UpdatedCollection[list.SelectedIndex].Length;
                     know = string.Empty;
                     popup.IsOpen = false;
+                    e.Handled = true;
                     txtbox.Focus();
                     break;
                 case Key.Left:
                     popup.IsOpen = false;
                     txtbox.CaretIndex = i;
+                    e.Handled = true;
                     txtbox.Focus();
-                    know = string.Empty;
                     break;
             }
         }

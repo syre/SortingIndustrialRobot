@@ -20,7 +20,7 @@ namespace SIR.Tests
         public void IDEViewModel_CallsIt_ScriptRunnerIsSetToFactoryScriptRunner()
         {
             // Test
-            idevmTestObj = new IDEViewModel(new TabControl());
+            idevmTestObj = new IDEViewModel();
 
             // Verify
             Assert.IsTrue(idevmTestObj.ScriptExecuter == Factory.getScriptRunnerInstance);
@@ -32,7 +32,7 @@ namespace SIR.Tests
         public void ScriptExecuter_SetsIt_ScriptExecutionerIsSaved()
         {
             // Setup
-            idevmTestObj = new IDEViewModel(new TabControl());
+            idevmTestObj = new IDEViewModel();
             IScriptRunner isrRunner = MockRepository.GenerateStub<IScriptRunner>();
 
             // Test
@@ -47,7 +47,7 @@ namespace SIR.Tests
         public void ScriptExecuter_SetsItToNull_ThrowsException()
         {
             // Setup
-            idevmTestObj = new IDEViewModel(new TabControl());
+            idevmTestObj = new IDEViewModel();
 
             // Test
             idevmTestObj.ScriptExecuter = null;
@@ -57,7 +57,7 @@ namespace SIR.Tests
         public void ExecuteComd_CallsIt_DoesNotReturnNull()
         {
             // Setup
-            idevmTestObj = new IDEViewModel(new TabControl());
+            idevmTestObj = new IDEViewModel();
             DelegateCommand ecHolder;
 
             // Test
@@ -74,16 +74,16 @@ namespace SIR.Tests
         public void executeCode_CallsIt_CallsScriptRunnersetScriptFromString()
         {
             // Setup
-            TabControl tcControlDummy = new TabControl();
-            idevmTestObj = new IDEViewModel(tcControlDummy);
+            //TabControl tcControlDummy = new TabControl();
+            idevmTestObj = new IDEViewModel();
             IScriptRunner isrRunner = MockRepository.GenerateMock<IScriptRunner>();
             idevmTestObj.ScriptExecuter = isrRunner;
             TextBox txtBoxDummy = new TextBox();
             TabItem tiItemDummy = new TabItem();
             tiItemDummy.Content = txtBoxDummy;
             txtBoxDummy.Text = "Test";
-            tcControlDummy.Items.Add(tiItemDummy);
-            tcControlDummy.SelectedItem = tiItemDummy;
+            //tcControlDummy.Items.Add(tiItemDummy);
+            //tcControlDummy.SelectedItem = tiItemDummy;
 
             // Test
             idevmTestObj.executeCode();
@@ -96,16 +96,16 @@ namespace SIR.Tests
         public void executeCode_CallsIt_CallsScriptRunnerExecuteScript()
         {
             // Setup
-            TabControl tcControlDummy = new TabControl();
-            idevmTestObj = new IDEViewModel(tcControlDummy);
+            //TabControl tcControlDummy = new TabControl();
+            idevmTestObj = new IDEViewModel();
             IScriptRunner isrRunner = MockRepository.GenerateMock<IScriptRunner>();
             idevmTestObj.ScriptExecuter = isrRunner;
             TextBox txtBoxDummy = new TextBox();
             TabItem tiItemDummy = new TabItem();
             tiItemDummy.Content = txtBoxDummy;
             txtBoxDummy.Text = "Test";
-            tcControlDummy.Items.Add(tiItemDummy);
-            tcControlDummy.SelectedItem = tiItemDummy;
+            //tcControlDummy.Items.Add(tiItemDummy);
+            //tcControlDummy.SelectedItem = tiItemDummy;
 
             // Test
             idevmTestObj.executeCode();
@@ -118,8 +118,8 @@ namespace SIR.Tests
         public void executeCode_CallsIt_ScriptRunnersetScriptFromStringIsCalledBeforeExecuteScript()
         {
             // Setup
-            TabControl tcControlDummy = new TabControl();
-            idevmTestObj = new IDEViewModel(tcControlDummy);
+            //TabControl tcControlDummy = new TabControl();
+            idevmTestObj = new IDEViewModel();
             MockRepository mockrepo = new MockRepository();
             IScriptRunner isrRunner = mockrepo.DynamicMock<IScriptRunner>();
             idevmTestObj.ScriptExecuter = isrRunner;
@@ -127,8 +127,8 @@ namespace SIR.Tests
             TabItem tiItemDummy = new TabItem();
             tiItemDummy.Content = txtBoxDummy;
             txtBoxDummy.Text = "Test";
-            tcControlDummy.Items.Add(tiItemDummy);
-            tcControlDummy.SelectedItem = tiItemDummy;
+            //tcControlDummy.Items.Add(tiItemDummy);
+            //tcControlDummy.SelectedItem = tiItemDummy;
 
             // Record
             using(mockrepo.Ordered())

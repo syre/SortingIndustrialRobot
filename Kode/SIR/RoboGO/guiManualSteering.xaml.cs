@@ -1,5 +1,6 @@
 ﻿/** \file guiManualSteering.xaml.cs */
 
+using System;
 using System.Windows;
 using System.Windows.Input;
 using RoboGO.ViewModels;
@@ -144,5 +145,20 @@ namespace RoboGO
             vmmsViewModel.moveCoordRollDecreasing();
         }
         #endregion
+
+        private void txbTime_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            int tempSec;
+            try
+            {
+                tempSec = Convert.ToInt32(e);
+                vmmsViewModel.setTimeSecond(tempSec);
+            }
+            catch (Exception exc)
+            {
+                
+            }
+            
+        }
     }
 }
