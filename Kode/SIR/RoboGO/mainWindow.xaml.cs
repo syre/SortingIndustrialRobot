@@ -77,6 +77,8 @@ namespace RoboGO
         // Displaying login screen on load
         private void WindowsLoaded(object sender, RoutedEventArgs e)
         {
+            Factory.getLogInstance.log("Program starting up!", eLogType.LOG_INFO);
+
             DisplayLoginScreen();
         }
 
@@ -96,6 +98,8 @@ namespace RoboGO
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Factory.getThreadHandlingInstance.abortAllAndWait();
+
+            Factory.getLogInstance.log("Program being shut down by user!", eLogType.LOG_INFO);
         }
 
         // Show available commands
