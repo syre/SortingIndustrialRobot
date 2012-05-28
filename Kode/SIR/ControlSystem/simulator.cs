@@ -31,7 +31,8 @@ namespace ControlSystem
             get { return _currentposition; }
             set { _currentposition = value; }
         }
-        private bool bGripperIsOpen;
+
+        public bool bGripperIsOpen { get; private set; }
         #endregion
 
         #region Methods
@@ -404,7 +405,7 @@ namespace ControlSystem
 
         public string getCurrentPositionAsString()
         {
-
+            iuiOutput.writeLine("The Current Position is: " + Currentposition.ToString());
             return Currentposition.ToString();
         }
 

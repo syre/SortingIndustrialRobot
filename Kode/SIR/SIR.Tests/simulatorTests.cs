@@ -206,6 +206,14 @@ namespace SIR.Tests
         {
             Assert.IsTrue(simTestObj.moveGripper(1));
         }
+
+        [Test]
+        public void moveGripper_CallingIt_bGripper_ReturnsTrue()
+        {
+            simTestObj.moveGripper(1);
+            Assert.IsTrue(simTestObj.bGripperIsOpen);
+        }
+
         [Test]
         public void moveGripper_CallingIt_WritesToUI()
         {
@@ -216,6 +224,14 @@ namespace SIR.Tests
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
+
+        [Test]
+        public void moveGripper_CallingItWithNegativeInt_bGripper__ReturnsFalse()
+        {
+            simTestObj.moveGripper(-1);
+            Assert.IsFalse(simTestObj.bGripperIsOpen);
+        }
+
         [Test]
         public void moveConveyerBelt_CallingIt_ReturnsTrue()
         {
@@ -232,7 +248,7 @@ namespace SIR.Tests
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
         [Test]
-        public void moveByCoordinates_CallingIt_WritesToUI()
+        public void moveByCoordinates_WithFiveArguments_CallingIt_WritesToUI()
         {
             IUI iuiMock = MockRepository.GenerateMock<IUI>();
             simTestObj.IUIOutput = iuiMock;
@@ -241,6 +257,156 @@ namespace SIR.Tests
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
+
+        [Test]
+        public void moveByCoordinates_WithThreeArguments_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.movebyCoordinates(1, 1, 1); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
+        [Test]
+        public void moveByXCoordinate_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.moveByXCoordinate(1); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
+        [Test]
+        public void moveByYCoordinate_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.moveByYCoordinate(1); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
+        [Test]
+        public void moveByZCoordinate_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.moveByZCoordinate(1); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
+        [Test]
+        public void moveByPitch_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.moveByPitch(1); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
+        [Test]
+        public void moveByRoll_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.moveByRoll(1); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
+        [Test]
+        public void Time_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.Time(Wrapper.enumAxisSettings.AXIS_ALL, 100); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
+        [Test]
+        public void Speed_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.Speed(Wrapper.enumAxisSettings.AXIS_ALL, 100); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+        
+        [Test]
+        public void moveToCubePosition_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.moveToCubePosition(100); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
+        [Test]
+        public void getCurrentPositionAsString_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.getCurrentPositionAsString(); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
+        [Test]
+        public void getWeightg_CallingIt_WritesToUI()
+        {
+            IUI iuiMock = MockRepository.GenerateMock<IUI>();
+            simTestObj.IUIOutput = iuiMock;
+
+            simTestObj.getWeight(); // Dummy values
+
+            iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
+        }
+
+        [Test]
+        public void getJawOpeningWidthMilimeters_bGripperIsOpen_Return200()
+        {
+            simTestObj.openGripper();
+            Assert.AreEqual(200, simTestObj.getJawOpeningWidthMilimeters());
+        }
+
+        [Test]
+        public void getJawOpeningWidthMilimeters_bGripperIsClosed_Return0()
+        {
+            simTestObj.closeGripper();
+            Assert.AreEqual(0, simTestObj.getJawOpeningWidthMilimeters());
+        }
+        
+        [Test]
+        public void getJawOpeningWidthPercentage_bGripperIsOpen_Return200()
+        {
+            simTestObj.openGripper();
+            Assert.AreEqual(100, simTestObj.getJawOpeningWidthPercentage());
+        }
+
+        [Test]
+        public void getJawOpeningWidthPercentage_bGripperIsClosed_Return0()
+        {
+            simTestObj.closeGripper();
+            Assert.AreEqual(0, simTestObj.getJawOpeningWidthPercentage());
+        }
+
         #endregion
         #region Revision V2 of IRobot
         [Test]
