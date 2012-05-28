@@ -64,6 +64,7 @@ namespace ControlSystem
         /// </summary>
         public DatabaseLogger()
         {
+            logQueue = new List<Tuple<string, string>>();
             SQLHandlerObj = SQLHandler.GetInstance;
 
             Factory.getThreadHandlingInstance.addThread(LogThreadFunction, "LogThread");
