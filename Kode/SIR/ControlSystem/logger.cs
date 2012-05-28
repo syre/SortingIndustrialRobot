@@ -1,9 +1,11 @@
 ﻿/** \file logger.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Threading;
 using SqlInteraction;
 
 namespace ControlSystem
@@ -36,6 +38,16 @@ namespace ControlSystem
     /// </summary>
     public class DatabaseLogger : ILogger
     {
+        /// <summary>
+        /// Event for making log thread wait for signal
+        /// </summary>
+        private static AutoResetEvent autoEvent = new AutoResetEvent(false);
+        
+        /// <summary>
+        /// List of tuples that hold info of logs that needs to be sent to database
+        /// </summary>
+        private List<Tuple<string, string>> logQueue;
+
         // Members and properties
         /// <summary>
         /// SQLHandler used for database operations.
@@ -52,7 +64,11 @@ namespace ControlSystem
         /// </summary>
         public DatabaseLogger()
         {
+            logQueue = new List<Tuple<string, string>>();
             SQLHandlerObj = SQLHandler.GetInstance;
+
+            Factory.getThreadHandlingInstance.addThread(LogThreadFunction, "LogThread");
+            Factory.getThreadHandlingInstance.start("LogThread");
         }
 
         /// <summary>
@@ -60,25 +76,54 @@ namespace ControlSystem
         /// </summary>
         /// <param name="sMsg">Message to be logged</param>
         /// <param name="_eltType">Type of log</param>
-        public void log(string sMsg, eLogType _eltType)
+        public void log(string _sMsg, eLogType _eltType)
         {
-            string sLogString;
+            Tuple<string, string> tupleTemp;
             switch (_eltType)
             {
                 case eLogType.LOG_INFO:
-                    sLogString = "Info";
-                    createLog(sLogString, sMsg);
+                    tupleTemp = new Tuple<string, string>("Info", _sMsg);
+                    addItemToQueue(tupleTemp);
                     break;
                 case eLogType.LOG_ERROR:
-                    sLogString = "Error";
-                    createLog(sLogString, sMsg);
+                    tupleTemp = new Tuple<string, string>("Error", _sMsg);
+                    addItemToQueue(tupleTemp);
                     break;
                 case eLogType.LOG_DEBUG:
-                    sLogString = "Debug";
-                    createLog(sLogString, sMsg);
+                    tupleTemp = new Tuple<string, string>("Debug", _sMsg);
+                    addItemToQueue(tupleTemp);
                     break;
             }
 
+        }
+
+         
+        /// <summary>
+        /// Function which adds a tuple to the queue, but at the same time sends event to log thread that another has been added
+        /// </summary>
+        /// <param name="_tubLog">Parameter of a tuble that holds data that needs to be added to queue</param>
+        private void addItemToQueue(Tuple<string, string> _tubLog)
+        {
+            logQueue.Add(_tubLog);
+            autoEvent.Set();
+        }
+
+        /// <summary>
+        /// Function which will be running in its own thread, continuesly adding logs to database
+        /// </summary>
+        private void LogThreadFunction()
+        {
+                while (true)
+                {
+                    if (logQueue.Count == 0)
+                    {
+                        autoEvent.WaitOne();
+                        autoEvent.Reset();
+                    }
+
+                    createLog(logQueue[0].Item1, logQueue[0].Item2);
+                    logQueue.RemoveAt(0);
+                }
         }
 
         /// <summary>
