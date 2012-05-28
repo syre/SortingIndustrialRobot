@@ -16,8 +16,6 @@ namespace RoboGO.ViewModels
     {
         // Members and properties
         private IRobot _sim;
-
-        private readonly ScaleTransform _04scale = new ScaleTransform(0.4,0.4);
         private StringUI suiSimulatorUI;
       
         /// <summary>
@@ -26,6 +24,14 @@ namespace RoboGO.ViewModels
         public StringUI UIText
         {
             get{return(suiSimulatorUI);}
+        }
+
+        /// <summary>
+        /// Simulator object used.
+        /// </summary>
+        public IRobot SimulatorObj
+        {
+            get { return (_sim); }
         }
         
        // Functions
@@ -40,8 +46,6 @@ namespace RoboGO.ViewModels
             suiSimulatorUI = new StringUI();
             Factory.getSimulatorInstance.IUIOutput = suiSimulatorUI;
             _sim = Factory.getSimulatorInstance;
-
         }
-    
     }
 }
