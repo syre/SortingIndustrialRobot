@@ -118,7 +118,7 @@
                             </Menu>
                             
                             <!-- File tabs -->
-                            <TabControl Name="IDETabs">
+                            <TabControl Name="IDETabs" ItemsSource="{Binding obsCollectionTabs}" SelectedItem="{Binding currentlySelectedTab}">
                                 <TabControl.Resources>
                                     
                                     <!-- Style for code file -->
@@ -138,9 +138,6 @@
                                         <Setter Property="FontSize" Value="14"/>
                                     </Style>
                                 </TabControl.Resources>
-                                <TabItem Header="New file">
-                                    <TextBox PreviewKeyDown="TextBox_KeyDown"/> <!-- Intellisense -->
-                                </TabItem>
                             </TabControl>
                             
                             <!-- DSL output -->
