@@ -11,8 +11,8 @@ namespace ControlSystem
     /// </summary>
     public class SerialSTK
     {
-        
-            private SerialPort sp;
+
+            public SerialPort serialPort { get; set; }
             /// <summary>
             /// Classconstructor
             /// </summary>
@@ -27,7 +27,7 @@ namespace ControlSystem
 
                 foreach (string port in ports)
                 {
-                    sp = new SerialPort(port, baud, parity, dataBits, stopBits);
+                    serialPort = new SerialPort(port, baud, parity, dataBits, stopBits);
                 }
             }
 
@@ -38,10 +38,10 @@ namespace ControlSystem
             /// <returns> True if opened, false otherwise </returns>
             public bool Open()
             {
-                if (!sp.IsOpen)
-                    sp.Open();
+                if (!serialPort.IsOpen)
+                    serialPort.Open();
 
-                if (!sp.IsOpen)
+                if (serialPort.IsOpen)
                     return true;
                 return false;
             }
@@ -52,10 +52,10 @@ namespace ControlSystem
             /// <returns> True if closed, false otherwise </returns>
             public bool Close()
             {
-                if (sp.IsOpen)
-                    sp.Close();
+                if (serialPort.IsOpen)
+                    serialPort.Close();
 
-                if (!sp.IsOpen)
+                if (!serialPort.IsOpen)
                     return true;
                 return false;
             }
@@ -67,11 +67,11 @@ namespace ControlSystem
             public double ReadADC()
             {
                 double temp;
-                sp.Open();
-                sp.Write("R\n");
-                temp = Convert.ToDouble(sp.ReadLine());
+                serialPort.Open();
+                serialPort.Write("R\n");
+                temp = Convert.ToDouble(serialPort.ReadLine());
                 temp = (double)950 / (double)1023 * Math.Round(temp, 2);
-                sp.Close();
+                serialPort.Close();
                 return temp;
             }
     }
