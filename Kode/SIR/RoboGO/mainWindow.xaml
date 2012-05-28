@@ -135,7 +135,7 @@
                                         <Setter Property="MaxHeight" Value="200" />
                                         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
                                         <Setter Property="FontFamily" Value="Lucida Console"/>
-                                        <Setter Property="FontSize" Value="30"/>
+                                        <Setter Property="FontSize" Value="14"/>
                                     </Style>
                                 </TabControl.Resources>
                             </TabControl>
