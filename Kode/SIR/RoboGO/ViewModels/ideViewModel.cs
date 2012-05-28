@@ -67,7 +67,10 @@ namespace RoboGO.ViewModels
         /// </summary>
         public IScriptRunner ScriptExecuter
         {
-            get { return (isrScriptRunner); }
+            get
+            {
+                return (isrScriptRunner);
+            }
             set
             {
                 if (value == null)
