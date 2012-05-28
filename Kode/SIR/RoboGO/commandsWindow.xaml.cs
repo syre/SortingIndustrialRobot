@@ -16,7 +16,7 @@ namespace RoboGO
 
         public void NavigateToHelp()
         {
-            helpbrowser.Navigate(new Uri(String.Format("file:///{0}/../../commands.html", Directory.GetCurrentDirectory())));
+            helpbrowser.Navigate(new Uri("commands.html"));
         }
     }
 }
