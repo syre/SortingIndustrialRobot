@@ -76,9 +76,14 @@ namespace RoboGO
             else if(Factory.currentIRobotInstance.isOnline())
             {
                 _pbar.Background = new SolidColorBrush(Colors.Green);
+                Factory.getLogInstance.log("Connectivity Successful!", eLogType.LOG_INFO);
             }
             else
+            {
                 _pbar.Background = new SolidColorBrush(Colors.Red);
+                Factory.getLogInstance.log("Connectivity Unsuccessful!", eLogType.LOG_INFO);
+            }
+                
         }
     }
 }

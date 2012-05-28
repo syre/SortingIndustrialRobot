@@ -16,6 +16,8 @@ namespace ControlSystem
         private static volatile IRobot iRobotInstance;
         private static volatile ScriptRunner scriptRunnerInstance;
         private static volatile IUser ICurrentUser;
+        private static volatile ILogger ILogInstance;
+
         // Static synchronization root object, for locking
         private static object objectThreadSync = new object();
         private static object objectRobotSync = new object();
@@ -23,7 +25,8 @@ namespace ControlSystem
         private static object objectIRobotSync = new object();
         private static object objectScriptRunnerSync = new object();
         private static object objectUserSync = new object();
-       
+        private static object objectILoggerSync = new object();
+
         /// <summary>
         /// Returns the instance of ThreadHandler or creates it if its not already
         /// </summary>
@@ -166,5 +169,33 @@ namespace ControlSystem
                 }
             }
         }
+
+        /// <summary>
+        /// Returns a static instance of DatabaseLogger
+        /// </summary>
+        public static ILogger getLogInstance
+        {
+            get
+            {
+                // Check that the instance is null
+                if (ILogInstance == null)
+                {
+                    // Lock the object
+                    lock (objectILoggerSync)
+                    {
+                        // Check to make sure its null
+                        if (ILogInstance == null)
+                        {
+                            ILogInstance = new DatabaseLogger();
+                        }
+                    }
+                }
+
+                // Return the non-null instance of Singleton
+                return ILogInstance;
+            }
+        }
+
+
     }
 }

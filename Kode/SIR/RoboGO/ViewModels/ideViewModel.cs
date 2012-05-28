@@ -167,6 +167,7 @@ namespace RoboGO.ViewModels
                {
                    if (UIService.showMessageBox("Another program already running, please wait for it to finish\n\nWould you like to abort it and continue?", "Build", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
                    {
+                       Factory.getLogInstance.log("Build thread aborted, new will be started!", eLogType.LOG_INFO);
                        Factory.getThreadHandlingInstance.abortAndWait("ExecuteScript");
                    }
                    else
@@ -185,8 +186,10 @@ namespace RoboGO.ViewModels
 
         private void executeCodeThread()
         {
+            Factory.getLogInstance.log("Build thread started!", eLogType.LOG_INFO);
             isrScriptRunner.ExecuteScript();
             CodeOutput = isrScriptRunner.readFromOutputStream();
+            Factory.getLogInstance.log("Build thread finished!", eLogType.LOG_INFO);
         }
         
         /// <summary>
