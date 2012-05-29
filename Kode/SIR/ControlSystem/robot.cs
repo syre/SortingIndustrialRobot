@@ -257,7 +257,7 @@ namespace ControlSystem
         /// <param name="b"></param>
         private static void takeMovementLock(ref byte b)
         {
-            
+      
         }
         /// <summary>
         /// method to be called when the robot stops its movement
@@ -297,7 +297,6 @@ namespace ControlSystem
 
         public bool homeRobot()
         {
-            movementlock.WaitOne();
             return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
         }
 
@@ -342,8 +341,7 @@ namespace ControlSystem
 
         public bool moveByAbsoluteCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
         {
-            // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
-            movementlock.WaitOne();
+
             SIRVector tempCordVector = new AbsCoordSirVector("absoluteVector");
             tempCordVector.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll));
             _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, "absoluteVector",5); // shrtlength??
@@ -353,8 +351,7 @@ namespace ControlSystem
 
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
-            // ONLY PARTIALLY IMPLEMENTED - NOT WORKING
-            movementlock.WaitOne();
+
             SIRVector tempRelVector = new RelCoordSirVector("relativeVector");
             tempRelVector.addPoint(new VecPoint(_iX, _iY, _iZ, _iPitch, _iRoll));
 
@@ -363,7 +360,6 @@ namespace ControlSystem
 
         public bool movebyCoordinates(int _iX, int _iY, int _iZ)
         {
-            movementlock.WaitOne();
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
                 return false;
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
@@ -381,7 +377,6 @@ namespace ControlSystem
             // element 0 is ID, so starts from element 1(X)
             if (lstCoordinates.Count != 0)
             {
-                movementlock.WaitOne();
                 movebyCoordinates((int)lstCoordinates[1], (int)lstCoordinates[2], (int)lstCoordinates[3]);
                 return true;
             }
@@ -393,7 +388,6 @@ namespace ControlSystem
         #region Axis movements
         public bool moveBase(int _iSpeed)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -402,7 +396,6 @@ namespace ControlSystem
 
         public bool moveShoulder(int _iSpeed)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -411,7 +404,6 @@ namespace ControlSystem
 
         public bool moveElbow(int _iSpeed)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -420,7 +412,6 @@ namespace ControlSystem
 
         public bool moveWristPitch(int _iSpeed)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -429,7 +420,6 @@ namespace ControlSystem
 
         public bool moveWristRoll(int _iSpeed)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -438,7 +428,6 @@ namespace ControlSystem
 
         public bool moveGripper(int _iSpeed)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -447,7 +436,6 @@ namespace ControlSystem
 
         public bool moveConveyerBelt(int _iSpeed)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -494,7 +482,7 @@ namespace ControlSystem
 
         public bool closeGripper()
         {
-            movementlock.WaitOne();
+            movementlock.WaitOne(); 
            return _wrapper.closeGripperWrapped();
         }
 
