@@ -306,7 +306,7 @@ namespace ControlSystem
             return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
         }
 
-        public bool MoveToAPosition(int[] iA)
+        public bool MoveToAPosition()
         {
             //skal placeres med income position
             int[] iArray = new int[] { 269030, 0, 504328, -63548, 0 };
