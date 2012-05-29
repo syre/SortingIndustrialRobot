@@ -247,6 +247,7 @@ namespace ControlSystem
         /// <param name="b"></param>
         private static void releaseMovementLock(ref byte b)
         {
+            Thread.Sleep(1000);
             movementlock.Release();
         }
 
@@ -283,18 +284,26 @@ namespace ControlSystem
             return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
         }
 
-        public void moveToAPosition(SIRVector vector)
+        public void moveToAPosition(SIRVector dummy)
         {
-            //Define navnet på en vector som har get.size() positioner i sig og 'A' for at sige det er robotten   
+            SIRVector vector = new SIRVector();
+
+            vector.LstPoints.Add(new VecPoint(1000, 20005, 3000, 4000, 5000));
+            vector.LstPoints.Add(new VecPoint(2000, 2000, 3000, 4000, 5000));
+            vector.LstPoints.Add(new VecPoint(3000, 2000, 3000, 4000, 5000));
+            vector.LstPoints.Add(new VecPoint(4000, 2000, 30003, 4000, 5000));
+            vector.LstPoints.Add(new VecPoint(5000, 2000, 3000, 40005, 5000));
+
+            DLLImport.WatchMotion(dgateMovementStarted, dgateMovementStopped);
+
             DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", Convert.ToInt16(vector.getSize()));
          
-            
-            //Teach robotton = gem positionerne i hukommelsen? troer jeg start fra position nummer 1. -32767 for at sige der skal køres 
-            //relative kordinates
+           
+            Int16 i = 1;
             foreach (VecPoint point in vector.LstPoints)
             {
                 int[] aInts = new int[]{point.iX,point.iY,point.iZ,point.iPitch,point.iRoll};
-                DLLImport.Teach("firstOne", 1, aInts, 5, -32766);
+                DLLImport.Teach("firstOne", i++, aInts, 5, -32766);
             }
     
             //Home robotten før vi kører den til den givne position
@@ -304,6 +313,7 @@ namespace ControlSystem
             //Flyt robotten til positionen
             foreach (VecPoint point in vector.LstPoints)
             {
+                movementlock.WaitOne();
                 DLLImport.MoveLinear("firstOne", y, null, 0);
                 y++;
             }

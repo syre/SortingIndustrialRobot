@@ -14,7 +14,7 @@ namespace ControlSystem
         #region Properties and members
         public bool moveToAPosition()
         { return false; }
-        public List<SIRVector> vectorlist {get;set;}
+        public SIRVector vectorlist {get;set;}
         private IUI iuiOutput;
         /// <summary>
         /// Output for writing robot operations.
