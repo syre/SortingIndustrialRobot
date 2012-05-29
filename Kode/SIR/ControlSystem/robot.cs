@@ -1,6 +1,7 @@
 ﻿/** \file robot.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Management.Instrumentation;
 using System.Threading;
@@ -13,6 +14,7 @@ namespace ControlSystem
     /// </summary>
     public interface IRobot
     {
+        List<SIRVector> vectorlist { get; set; } 
         /// <summary>
         ///  Closes gripper
         /// </summary>
@@ -233,6 +235,9 @@ namespace ControlSystem
         private DLL.DgateCallBackByteRefArg dgateMovementStopped = releaseMovementLock;
         private static Semaphore movementlock;
 
+        public List<SIRVector> vectorlist { get; set; }
+
+
         public Semaphore Sem
         {
             get { return movementlock; }
@@ -280,6 +285,7 @@ namespace ControlSystem
         {
             _serialStk = new SerialSTK();
             _wrapper = Wrapper.getInstance();
+            vectorlist = new List<SIRVector>();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
            Time(Wrapper.enumAxisSettings.AXIS_ALL, 60000);
@@ -347,6 +353,32 @@ namespace ControlSystem
             _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, "absoluteVector",5); // shrtlength??
             _wrapper.moveLinearWrapped("defaultVector", 5); // index?? 
             return false; 
+        }
+
+        public bool defineAbsoluteVector(string vectorname, int points)
+        {
+            bool status = _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ALL, vectorname, (short) points);
+            if (status)
+                vectorlist.Add(new AbsCoordSirVector(vectorname));
+            return status;
+        }
+
+        public bool defineRelativeVector(string vectorname, int points)
+        {
+            bool status = _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ALL, vectorname, (short)points);
+            if (status)
+                vectorlist.Add(new RelCoordSirVector(vectorname));
+            return status;
+        }
+
+        public bool teach(SIRVector vector)
+        {
+            return _wrapper.teachWrapped(vector);
+        }
+
+        private bool moveLinear(string vectorname, int pointindex)
+        {
+            return _wrapper.moveLinearWrapped(vectorname, pointindex);
         }
 
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)

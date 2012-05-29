@@ -156,3 +156,20 @@ def moveToCubePosition(cube_id):
         else:
                 print "moved unsuccessfully / could not find cube with cube_id"
                 return False
+
+
+vector = [(10,10,10,10,10),(20,20,20,20,20)]
+
+def moveByRelativeVector(name,vector):
+        if (_robot.defineRelativeVector(name,len(vector)) == True):
+                for element in vector:
+                        vec = VecPoint(element)
+                        _robot.vectorlist[_robot.vectorlist.Count].addPoint(vec)
+                        _robot.teach(vectorlist[_robot.vectorlist.Count])
+                _robot.moveLinear(name,len(vector))
+        
+
+def moveByAbsoluteVector(vector):
+        print "dummy"
+
+

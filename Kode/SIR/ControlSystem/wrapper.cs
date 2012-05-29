@@ -443,18 +443,18 @@ namespace ControlSystem
         public bool teachWrapped(SIRVector vecTheSirVector)
         {
             int iReturn;
-            for (int i = 0; i < vecTheSirVector.getSize(); i++)
+            for (int i = 1; i < vecTheSirVector.getSize(); i++)
             {
-                VecPoint pTmp = vecTheSirVector.getPoint(i);
+                VecPoint pTmp = vecTheSirVector.getPoint(i-1);
                 int x, y, z, pitch, roll;
                 x = pTmp.iX;
                 y = pTmp.iY;
                 z = pTmp.iZ;
                 pitch = pTmp.iPitch;
                 roll = pTmp.iRoll;
-                int[] iArray = new int[]{x, y, z, pitch, roll,0,0,0};
+                int[] iArray = new int[]{x, y, z, pitch, roll};
 
-                iReturn = _dll.Teach(vecTheSirVector.Name, (short) i, iArray, 8, vecTheSirVector.Type); // 8 because of 8 axes
+                iReturn = _dll.Teach(vecTheSirVector.Name, (short) i, iArray, 5, vecTheSirVector.Type); // 8 because of 8 axes
                 if (iReturn == 0)
                     return (false);
             }
