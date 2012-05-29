@@ -214,6 +214,18 @@ namespace ControlSystem
     {
         private IWrapper _wrapper;
         private SerialSTK _serialStk;
+        public IWrapper wrapper
+        {
+            get { return _wrapper; }
+            set { _wrapper = value; }
+        }
+
+        public SerialSTK STK
+        {
+            get { return _serialStk; }
+            set { _serialStk = value; }
+        }
+
         private DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
         private DLL.DgateCallBack dgateEventHandlerError = initError;
         private DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;

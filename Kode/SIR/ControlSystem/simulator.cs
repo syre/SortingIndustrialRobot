@@ -43,10 +43,11 @@ namespace ControlSystem
         /// </summary>
         public Simulator()
         {
-
+            
             Currentposition = new VecPoint(0,0,0,0,0);
             iuiOutput = new ConsoleUI(); // Don´t move location.
             iuiOutput.writeLine("Simulation is started!");
+            initialization();
             bGripperIsOpen = false;
         }
 
