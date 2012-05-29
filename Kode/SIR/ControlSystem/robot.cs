@@ -286,7 +286,7 @@ namespace ControlSystem
             _serialStk = new SerialSTK();
             //_wrapper = Wrapper.getInstance();
             vectorlist = new List<SIRVector>();
-            initialization();
+            //initialization();
             //_wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
            //Time(Wrapper.enumAxisSettings.AXIS_ALL, 60000);
             //movementlock = new Semaphore(1,1);
@@ -309,7 +309,7 @@ namespace ControlSystem
         public bool MoveToAPosition()
         {
             //skal placeres med income position
-            int[] iArray = new int[] { 269030, 0, 504328, -63548, 0 };
+            int[] iArray = new int[] { 200000, 200000, 100000, 100000, 1000000 };
 
             int check = DLLImport.initialization(1, 0, dgateEventHandlerSuccess, dgateEventHandlerError);
             if (check == 0) return false;
@@ -328,6 +328,9 @@ namespace ControlSystem
             //Home robotten før vi kører den til den givne position
             check = DLLImport.Home(Convert.ToByte('A'), dgateEventHandlerHoming);
             if (check == 0) return false;
+
+            //Close the manual movement
+            //DLLImport.CloseManual();
 
             //Flyt robotten til positionen
             check =DLLImport.MoveLinear("firstOne", 1, null, 0);
