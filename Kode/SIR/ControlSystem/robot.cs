@@ -284,18 +284,18 @@ namespace ControlSystem
         public Robot()
         {
             _serialStk = new SerialSTK();
-            _wrapper = Wrapper.getInstance();
+            //_wrapper = Wrapper.getInstance();
             vectorlist = new List<SIRVector>();
             initialization();
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
-           Time(Wrapper.enumAxisSettings.AXIS_ALL, 60000);
-            movementlock = new Semaphore(1,1);
-            _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
+            //_wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
+           //Time(Wrapper.enumAxisSettings.AXIS_ALL, 60000);
+            //movementlock = new Semaphore(1,1);
+           // _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
         }
 
-        private bool initialization()
+        private void initialization()
         {
-            return _wrapper.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE,
+            _wrapper.initializationWrapped(Wrapper.enumSystemModes.MODE_ONLINE,
                                                   Wrapper.enumSystemTypes.SYSTEM_TYPE_DEFAULT,
                                                   dgateEventHandlerSuccess,
                                                   dgateEventHandlerError);
@@ -311,8 +311,13 @@ namespace ControlSystem
             //skal placeres med income position
             int[] iArray = new int[] { 269030, 0, 504328, -63548, 0 };
 
+            int check = DLLImport.initialization(1, 0, dgateEventHandlerSuccess, dgateEventHandlerError);
+            if (check == 0) return false;
+
+            DLLImport.WatchMotion(dgateMovementStarted, dgateMovementStopped);
+
             //Define navnet på en vector som har KUN 1 position i sig og 'A' for at sige det er robotten
-            int check = DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", 1);
+            check = DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", 1);
             if (check == 0) return false;
             
             //Teach robotton = gem positionerne i hukommelsen? troer jeg start fra position nummer 1. -32767 for at sige der skal køres 
