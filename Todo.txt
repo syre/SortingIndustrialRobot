@@ -1,0 +1,19 @@
+Lavet så wrapper funktioner virker med nye implementation.(Tjek i Wrappertester projekt.)
+	Note: Vector index starter fra 1.
+		Commit når testet.
+
+Note: Der så ud til at mangle flere filer for USBC funktionerne i RoboGO folderen.(Par folder og ER4CONF fil vidst.) Dette skal fixes. Endte med at i test projektet at lægge det direkte i debug folderen for at kunne køre det.(Ændrede også i dllimport DLL fil placering så ikke tog fra DLLFiles folderen.)
+
+I kan komme i gang med script. Yah.
+
+Tjek Scrum board eller issuetracker for mere.
+	Dokumentation er en god idé at lave på.
+
+Husk at der er accepttest imorgen (er skrevet ind i kalenderen!).
+
+Btw....
+
+Hvor er min USB?!?!?!?!?!?!?!?!?!?!?!?!?!?
+Vi fik alle gode pizza...I skal komme på skype og vise video, så vi ved, I er der! Til en af os fire, der var her i nat.
+
+I skal være der i mindst 8 timer... 08:00 - 16:00.. og være produktive
