@@ -306,7 +306,7 @@ namespace ControlSystem
             return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
         }
 
-        public bool MoveToAPosition()
+        public bool moveToAPosition()
         {
             //skal placeres med income position
             int[] iArray = new int[] { 200000, 200000, 100000, 100000, 1000000 };
@@ -330,7 +330,7 @@ namespace ControlSystem
             if (check == 0) return false;
 
             //Close the manual movement
-            //DLLImport.CloseManual();
+            // DLLImport.CloseManual();
 
             //Flyt robotten til positionen
             check =DLLImport.MoveLinear("firstOne", 1, null, 0);
