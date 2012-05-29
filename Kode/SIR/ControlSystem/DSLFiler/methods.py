@@ -176,6 +176,8 @@ def moveByRelativeVector(name,vector):
         	print "didnt work"
         	return False
         
+def Yusuf():
+	_robot.moveToAPosition()	
 
 def moveByAbsoluteVector(vector):
         print "dummy"
