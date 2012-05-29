@@ -12,6 +12,8 @@ namespace ControlSystem
     public class Simulator : IRobot
     {
         #region Properties and members
+        public bool moveToAPosition()
+        { return false; }
         public List<SIRVector> vectorlist {get;set;}
         private IUI iuiOutput;
         /// <summary>

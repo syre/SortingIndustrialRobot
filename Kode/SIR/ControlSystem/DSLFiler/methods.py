@@ -160,24 +160,24 @@ def moveToCubePosition(cube_id):
 
 vector = [(10,10,10,10,10),(20,20,20,20,20)]
 
-def moveByRelativeVector(name,vector):
-		print "stay in school and remember to home the robot kids!"
-        if (_robot.defineRelativeVector(name,len(vector)) == True):
-                print "vector defined"
-                for element in vector:
-                        vec = ControlSystem.VecPoint(element[0],element[1],element[2],element[3],element[4])
-                        _robot.vectorlist[_robot.vectorlist.Count-1].addPoint(vec)
-                if (_robot.teach(_robot.vectorlist[_robot.vectorlist.Count-1]) == False):
-                	print "robot could not be taught"
-                if (_robot.moveLinear(name,1) == False):
-                	print "could not move robot linear"
-                return True
-        else:
-        	print "didnt work"
-        	return False
+#def moveByRelativeVector(name,vector):
+#		print "stay in school and remember to home the robot kids!"
+#        if (_robot.defineRelativeVector(name,len(vector)) == True):
+#                print "vector defined"
+#                for element in vector:
+#                        vec = ControlSystem.VecPoint(element[0],element[1],element[2],element[3],element[4])
+#                        _robot.vectorlist[_robot.vectorlist.Count-1].addPoint(vec)
+#                if (_robot.teach(_robot.vectorlist[_robot.vectorlist.Count-1]) == False):
+#                	print "robot could not be taught"
+#                if (_robot.moveLinear(name,1) == False):
+#                	print "could not move robot linear"
+#                return True
+#        else:
+#        	print "didnt work"
+#        	return False
         
 def Yusuf():
-	_robot.moveToAPosition()	
+	return _robot.moveToAPosition()	
 
 def moveByAbsoluteVector(vector):
         print "dummy"
