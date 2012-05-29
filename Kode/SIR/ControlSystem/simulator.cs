@@ -2,6 +2,7 @@
 /** \author Robotic Global Organization(RoboGO) */
 using System;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace ControlSystem
 {
@@ -11,7 +12,7 @@ namespace ControlSystem
     public class Simulator : IRobot
     {
         #region Properties and members
-
+        public List<SIRVector> vectorlist {get;set;}
         private IUI iuiOutput;
         /// <summary>
         /// Output for writing robot operations.

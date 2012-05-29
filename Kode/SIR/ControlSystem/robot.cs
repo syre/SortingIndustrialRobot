@@ -365,7 +365,7 @@ namespace ControlSystem
 
         public bool defineRelativeVector(string vectorname, int points)
         {
-            bool status = _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ALL, vectorname, (short)points);
+            bool status = _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, vectorname, (short)points);
             if (status)
                 vectorlist.Add(new RelCoordSirVector(vectorname));
             return status;
@@ -376,8 +376,9 @@ namespace ControlSystem
             return _wrapper.teachWrapped(vector);
         }
 
-        private bool moveLinear(string vectorname, int pointindex)
+        public bool moveLinear(string vectorname, int pointindex)
         {
+        	movementlock.WaitOne();
             return _wrapper.moveLinearWrapped(vectorname, pointindex);
         }
 
