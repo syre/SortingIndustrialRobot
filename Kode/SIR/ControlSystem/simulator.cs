@@ -31,7 +31,8 @@ namespace ControlSystem
             get { return _currentposition; }
             set { _currentposition = value; }
         }
-        private bool bGripperIsOpen;
+
+        public bool bGripperIsOpen { get; private set; }
         #endregion
 
         #region Methods
@@ -42,10 +43,11 @@ namespace ControlSystem
         /// </summary>
         public Simulator()
         {
-
+            
             Currentposition = new VecPoint(0,0,0,0,0);
             iuiOutput = new ConsoleUI(); // Don´t move location.
             iuiOutput.writeLine("Simulation is started!");
+            initialization();
             bGripperIsOpen = false;
         }
 
@@ -404,7 +406,7 @@ namespace ControlSystem
 
         public string getCurrentPositionAsString()
         {
-
+            iuiOutput.writeLine("The Current Position is: " + Currentposition.ToString());
             return Currentposition.ToString();
         }
 

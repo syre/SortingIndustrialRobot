@@ -59,8 +59,11 @@ namespace SIR.Tests
 
             _stringUI.writeLine("Hello {0}", Array);
 
-            Assert.AreEqual("* Hello 1", _stringUI.Buffer);
+            Assert.AreEqual("* Hello 1\r\n", _stringUI.Buffer);
         }
 
     }
 }
+
+
+

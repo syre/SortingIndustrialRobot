@@ -69,6 +69,7 @@
     <Compile Include="manualControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="robotSQLConnectionTests.cs" />
+    <Compile Include="robotTest.cs" />
     <Compile Include="simulatorTests.cs" />
     <Compile Include="simulatorViewModelTests.cs" />
     <Compile Include="sqlHandlerTests.cs" />

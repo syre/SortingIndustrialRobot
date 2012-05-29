@@ -214,12 +214,29 @@ namespace ControlSystem
     {
         private IWrapper _wrapper;
         private SerialSTK _serialStk;
+        public IWrapper wrapper
+        {
+            get { return _wrapper; }
+            set { _wrapper = value; }
+        }
+
+        public SerialSTK STK
+        {
+            get { return _serialStk; }
+            set { _serialStk = value; }
+        }
+
         private DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
         private DLL.DgateCallBack dgateEventHandlerError = initError;
         private DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
         private DLL.DgateCallBackByteRefArg dgateMovementStarted = takeMovementLock;
         private DLL.DgateCallBackByteRefArg dgateMovementStopped = releaseMovementLock;
         private static Semaphore movementlock;
+
+        public Semaphore Sem
+        {
+            get { return movementlock; }
+        }
 
         #region delegate functions
         static void initSuccess(IntPtr _iptrArg)
@@ -349,10 +366,8 @@ namespace ControlSystem
             movementlock.WaitOne();
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
                 return false;
-            movementlock.WaitOne();
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
                 return false;
-            movementlock.WaitOne();
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
                 return false;
             return true;
