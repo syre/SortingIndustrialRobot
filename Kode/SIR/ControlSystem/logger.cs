@@ -1,6 +1,7 @@
 ﻿/** \file logger.cs */
 /** \author Robotic Global Organization(RoboGO) */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -41,12 +42,17 @@ namespace ControlSystem
         /// <summary>
         /// Event for making log thread wait for signal
         /// </summary>
-        private static AutoResetEvent autoEvent = new AutoResetEvent(false);
+        private static ManualResetEvent manEvent = new ManualResetEvent(false);
         
         /// <summary>
         /// List of tuples that hold info of logs that needs to be sent to database
         /// </summary>
-        private List<Tuple<string, string>> logQueue;
+        private static ArrayList logQueue = new ArrayList();
+
+        /// <summary>
+        /// Wrapper which makes a syncronized interface to logqueue (thread safe)
+        /// </summary>
+        private ArrayList syncLogQueue = ArrayList.Synchronized(logQueue);
 
         // Members and properties
         /// <summary>
@@ -103,8 +109,8 @@ namespace ControlSystem
         /// <param name="_tubLog">Parameter of a tuble that holds data that needs to be added to queue</param>
         private void addItemToQueue(Tuple<string, string> _tubLog)
         {
-            logQueue.Add(_tubLog);
-            autoEvent.Set();
+            syncLogQueue.Add(_tubLog);
+            manEvent.Set();
         }
 
         /// <summary>
@@ -114,14 +120,15 @@ namespace ControlSystem
         {
                 while (true)
                 {
-                    if (logQueue.Count == 0)
+                    if (syncLogQueue.Count == 0)
                     {
-                        autoEvent.WaitOne();
-                        autoEvent.Reset();
+                        manEvent.WaitOne(Timeout.Infinite, true);
                     }
+                    manEvent.Reset();
 
-                    createLog(logQueue[0].Item1, logQueue[0].Item2);
-                    logQueue.RemoveAt(0);
+                    Tuple<string, string> tupleTemp = (Tuple<string, string>)syncLogQueue[0];
+                    createLog(tupleTemp.Item1 , tupleTemp.Item2);
+                    syncLogQueue.RemoveAt(0);
                 }
         }
 
