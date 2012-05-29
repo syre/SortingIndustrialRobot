@@ -229,8 +229,8 @@ namespace ControlSystem
         private DLL.DgateCallBack dgateEventHandlerSuccess = initSuccess;
         private DLL.DgateCallBack dgateEventHandlerError = initError;
         private DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
-        private DLL.DgateCallBackCharArg dgateMovementStarted = takeMovementLock;
-        private DLL.DgateCallBackCharArg dgateMovementStopped = releaseMovementLock;
+        private DLL.DgateCallBackByteRefArg dgateMovementStarted = takeMovementLock;
+        private DLL.DgateCallBackByteRefArg dgateMovementStopped = releaseMovementLock;
         private static Semaphore movementlock;
 
         public Semaphore Sem
@@ -255,7 +255,7 @@ namespace ControlSystem
         /// method to be called when the robot starts its movement, implemented in each move-method instead (DUMMY)
         /// </summary>
         /// <param name="b"></param>
-        private static void takeMovementLock(byte b)
+        private static void takeMovementLock(ref byte b)
         {
             
         }
@@ -263,7 +263,7 @@ namespace ControlSystem
         /// method to be called when the robot stops its movement
         /// </summary>
         /// <param name="b"></param>
-        private static void releaseMovementLock(byte b)
+        private static void releaseMovementLock(ref byte b)
         {
             movementlock.Release();
         }

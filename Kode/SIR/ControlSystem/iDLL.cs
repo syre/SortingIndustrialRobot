@@ -117,7 +117,7 @@ namespace ControlSystem
         /// </summary>
         /// <param name="_funcptrCallbackEnd">Function to be called when motion has ended.</param>
         /// <param name="_funcptrCallbackStart">Function to be called when motion has started.</param>
-        DLL.DgateCallBackCharArg WatchMotion(DLL.DgateCallBackCharArg _funcptrCallbackEnd, DLL.DgateCallBackCharArg _funcptrCallbackStart);
+        DLL.DgateCallBackByteRefArg WatchMotion(DLL.DgateCallBackByteRefArg _funcptrCallbackEnd, DLL.DgateCallBackByteRefArg _funcptrCallbackStart);
 
 
         /// <summary>
