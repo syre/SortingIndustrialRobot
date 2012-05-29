@@ -14,6 +14,7 @@ namespace ControlSystem
     /// </summary>
     public interface IRobot
     {
+        bool moveToAPosition();
         List<SIRVector> vectorlist { get; set; } 
         /// <summary>
         ///  Closes gripper
@@ -270,7 +271,7 @@ namespace ControlSystem
         /// <param name="b"></param>
         private static void releaseMovementLock(ref byte b)
         {
-            movementlock.Release();
+            //movementlock.Release();
         }
 
         #endregion
@@ -284,13 +285,13 @@ namespace ControlSystem
         public Robot()
         {
             _serialStk = new SerialSTK();
-            //_wrapper = Wrapper.getInstance();
+            _wrapper = Wrapper.getInstance();
             vectorlist = new List<SIRVector>();
             initialization();
-            //_wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
-           //Time(Wrapper.enumAxisSettings.AXIS_ALL, 60000);
-            //movementlock = new Semaphore(1,1);
-           // _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
+            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
+           Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 60000);
+            movementlock = new Semaphore(1,1);
+            _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
         }
 
         private void initialization()
@@ -306,18 +307,18 @@ namespace ControlSystem
             return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
         }
 
-        public bool MoveToAPosition()
+        public bool moveToAPosition()
         {
             //skal placeres med income position
-            int[] iArray = new int[] { 269030, 0, 504328, -63548, 0 };
+            int[] iArray = new int[] { 200000, 200000, 100000, 100000, 1000000 };
+            
+            //int check = DLLImport.initialization(1, 0, dgateEventHandlerSuccess, dgateEventHandlerError);
+            //if (check == 0) return false;
 
-            int check = DLLImport.initialization(1, 0, dgateEventHandlerSuccess, dgateEventHandlerError);
-            if (check == 0) return false;
-
-            DLLImport.WatchMotion(dgateMovementStarted, dgateMovementStopped);
+            //DLLImport.WatchMotion(dgateMovementStarted, dgateMovementStopped);
 
             //Define navnet på en vector som har KUN 1 position i sig og 'A' for at sige det er robotten
-            check = DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", 1);
+            int check = DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", 1);
             if (check == 0) return false;
             
             //Teach robotton = gem positionerne i hukommelsen? troer jeg start fra position nummer 1. -32767 for at sige der skal køres 
@@ -328,6 +329,9 @@ namespace ControlSystem
             //Home robotten før vi kører den til den givne position
             check = DLLImport.Home(Convert.ToByte('A'), dgateEventHandlerHoming);
             if (check == 0) return false;
+
+            //Close the manual movement
+            //DLLImport.CloseManual();
 
             //Flyt robotten til positionen
             check =DLLImport.MoveLinear("firstOne", 1, null, 0);
@@ -340,11 +344,8 @@ namespace ControlSystem
 
         public bool stopAllMovement()
         {
-            bool status = _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
-            // releasing semaphore here since movement functions wont release 
-            if (status)
-                movementlock.Release();
-            return status;
+            return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
+
         }
 
         public bool isOnline()
