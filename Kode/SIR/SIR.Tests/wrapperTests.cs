@@ -21,11 +21,11 @@ namespace SIR.Tests
         {
            
         }
-        static void watchStart(byte _bArg)
+        static void watchStart(ref byte _bArg)
         {
             
         }
-        static void watchEnd(byte _bArg)
+        static void watchEnd(ref byte _bArg)
         {
 
         }
@@ -1090,14 +1090,14 @@ namespace SIR.Tests
             Wrapper wTestObj = Wrapper.getInstance();
             IDLL idllMock = MockRepository.GenerateMock<IDLL>();
             wTestObj.DLL = idllMock;
-            DLL.DgateCallBackCharArg dgWatch = watchStart;
-            idllMock.Stub(t => t.WatchMotion(Arg<DLL.DgateCallBackCharArg>.Is.Anything, Arg<DLL.DgateCallBackCharArg>.Is.Anything)).Return(dgWatch);
+            DLL.DgateCallBackByteRefArg dgWatch = watchStart;
+            idllMock.Stub(t => t.WatchMotion(Arg<DLL.DgateCallBackByteRefArg>.Is.Anything, Arg<DLL.DgateCallBackByteRefArg>.Is.Anything)).Return(dgWatch);
 
             // Test
             wTestObj.watchMotionWrapped(watchEnd, watchStart);
 
             // Verify
-            idllMock.AssertWasCalled(t => t.WatchMotion(Arg<DLL.DgateCallBackCharArg>.Is.Anything, Arg<DLL.DgateCallBackCharArg>.Is.Anything));
+            idllMock.AssertWasCalled(t => t.WatchMotion(Arg<DLL.DgateCallBackByteRefArg>.Is.Anything, Arg<DLL.DgateCallBackByteRefArg>.Is.Anything));
         }
         [Test]
         public void watchMotionWrapped_IsCalled_CallsDllWatchMotionWitRightEndCallBack()
@@ -1106,14 +1106,14 @@ namespace SIR.Tests
             Wrapper wTestObj = Wrapper.getInstance();
             IDLL idllMock = MockRepository.GenerateMock<IDLL>();
             wTestObj.DLL = idllMock;
-            DLL.DgateCallBackCharArg dgWatch = watchEnd;
-            idllMock.Stub(t => t.WatchMotion(Arg<DLL.DgateCallBackCharArg>.Is.Anything, Arg<DLL.DgateCallBackCharArg>.Is.Anything)).Return(dgWatch);
+            DLL.DgateCallBackByteRefArg dgWatch = watchEnd;
+            idllMock.Stub(t => t.WatchMotion(Arg<DLL.DgateCallBackByteRefArg>.Is.Anything, Arg<DLL.DgateCallBackByteRefArg>.Is.Anything)).Return(dgWatch);
 
             // Test
             wTestObj.watchMotionWrapped(watchEnd, watchStart);
 
             // Verify
-            idllMock.AssertWasCalled(t => t.WatchMotion(Arg<DLL.DgateCallBackCharArg>.Is.Equal(dgWatch), Arg<DLL.DgateCallBackCharArg>.Is.Anything));
+            idllMock.AssertWasCalled(t => t.WatchMotion(Arg<DLL.DgateCallBackByteRefArg>.Is.Equal(dgWatch), Arg<DLL.DgateCallBackByteRefArg>.Is.Anything));
         }
         [Test]
         public void watchMotionWrapped_IsCalled_CallsDllWatchMotionWitRightStartCallBack()
@@ -1122,14 +1122,14 @@ namespace SIR.Tests
             Wrapper wTestObj = Wrapper.getInstance();
             IDLL idllMock = MockRepository.GenerateMock<IDLL>();
             wTestObj.DLL = idllMock;
-            DLL.DgateCallBackCharArg dgWatch = watchStart;
-            idllMock.Stub(t => t.WatchMotion(Arg<DLL.DgateCallBackCharArg>.Is.Anything, Arg<DLL.DgateCallBackCharArg>.Is.Anything)).Return(dgWatch);
+            DLL.DgateCallBackByteRefArg dgWatch = watchStart;
+            idllMock.Stub(t => t.WatchMotion(Arg<DLL.DgateCallBackByteRefArg>.Is.Anything, Arg<DLL.DgateCallBackByteRefArg>.Is.Anything)).Return(dgWatch);
 
             // Test
             wTestObj.watchMotionWrapped(watchEnd, watchStart);
 
             // Verify
-            idllMock.AssertWasCalled(t => t.WatchMotion(Arg<DLL.DgateCallBackCharArg>.Is.Anything, Arg<DLL.DgateCallBackCharArg>.Is.Equal(dgWatch)));
+            idllMock.AssertWasCalled(t => t.WatchMotion(Arg<DLL.DgateCallBackByteRefArg>.Is.Anything, Arg<DLL.DgateCallBackByteRefArg>.Is.Equal(dgWatch)));
         }
         [Test]
         public void watchDigitalInputWrapped_IsCalled_CallsDllWatchDigitalInput()

@@ -112,7 +112,7 @@ namespace ControlSystem
         /// </summary>
         /// <param name="_funcptrCallbackEnd">Function to be called when motion has ended.</param>
         /// <param name="_funcptrCallbackStart">Function to be called when motion has started.</param>
-        void watchMotionWrapped(DLL.DgateCallBackCharArg _funcptrCallbackEnd, DLL.DgateCallBackCharArg _funcptrCallbackStart);
+        void watchMotionWrapped(DLL.DgateCallBackByteRefArg _funcptrCallbackEnd, DLL.DgateCallBackByteRefArg _funcptrCallbackStart);
 
         /// <summary>
         /// Adds a function to be called when digital input changes.

@@ -19,9 +19,6 @@ namespace ControlSystem
         public delegate void DgateCallBack(IntPtr voidptrConfigData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        public delegate void DgateCallBackCharArg(Byte bArg);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public delegate void DgateCallBackLongArg(long lArg); /// \warning Using long.
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
@@ -77,7 +74,7 @@ namespace ControlSystem
             return DLLImport.Stop(_axis);
         }
         
-        public DgateCallBackCharArg WatchMotion(DgateCallBackCharArg _funcptrCallbackEnd, DgateCallBackCharArg _funcptrCallbackStart)
+        public DgateCallBackByteRefArg WatchMotion(DgateCallBackByteRefArg _funcptrCallbackEnd, DgateCallBackByteRefArg _funcptrCallbackStart)
         {
             return DLLImport.WatchMotion(_funcptrCallbackEnd, _funcptrCallbackStart);
         }
@@ -97,10 +94,9 @@ namespace ControlSystem
             return DLLImport.IsOnLineOk();
         }
        
-        public int MoveLinear([MarshalAs(UnmanagedType.LPStr)] string _sNameOfVectorThatGotPosition, short _shrtPointInVector, [MarshalAs(UnmanagedType.LPStr)] string _sSecondaryPos, short _shrtPointToMoveTo)
+        public int MoveLinear(string _sNameOfVectorThatGotPosition, short _shrtPointInVector, string _sSecondaryPos, short _shrtPointToMoveTo)
         {
-            return DLLImport.MoveLinear(_sNameOfVectorThatGotPosition, _shrtPointInVector, _sSecondaryPos,
-                                        _shrtPointToMoveTo);
+            return DLLImport.MoveLinear(_sNameOfVectorThatGotPosition, _shrtPointInVector, _sSecondaryPos, _shrtPointToMoveTo);
         }
     
         public int DefineVector(byte _bGroup, [MarshalAs(UnmanagedType.LPStr)] string _sVectorName, short _shrtSizeOfVector)
@@ -115,7 +111,7 @@ namespace ControlSystem
 
         public int GetCurrentPosition(ref int[] _ibufEnc, ref int[] _ibufJoint, ref int[] _ibufXYZ)
         {
-            return DLLImport.GetCurrentPosition(ref _ibufEnc, ref _ibufJoint, ref _ibufXYZ);
+            return DLLImport.GetCurrentPosition(_ibufEnc, _ibufJoint, _ibufXYZ);
         }
 
         public int Time(byte _bGroup, long _mTime)
@@ -138,7 +134,7 @@ namespace ControlSystem
     public class DLLImport
     {
         // Constants
-        private const string sDllFileLocation = @"DSLFiler\USBC.dll";
+        private const string sDllFileLocation = @"USBC.dll";
 
         // -Robot functions
         /// <summary>
@@ -234,7 +230,7 @@ namespace ControlSystem
         /// <param name="funcptrCallbackStart">Function to call when movement starts.</param>
         /// <returns>True on successfull call.</returns>
         [DllImport(sDllFileLocation, EntryPoint = "?WatchMotion@@YAP6AXPAX@ZP6AX0@Z1@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern DLL.DgateCallBackCharArg WatchMotion(DLL.DgateCallBackCharArg funcptrCallbackEnd, DLL.DgateCallBackCharArg funcptrCallbackStart);
+        public static extern DLL.DgateCallBackByteRefArg WatchMotion(DLL.DgateCallBackByteRefArg funcptrCallbackEnd, DLL.DgateCallBackByteRefArg funcptrCallbackStart);
 
         /// <summary>
         /// Adds callback for digital input signal.
@@ -299,7 +295,7 @@ namespace ControlSystem
         /// <param name="ibufXYZ">Buffer to save values.</param>
         /// <returns>True on successfull call.</returns>
         [DllImport(sDllFileLocation, EntryPoint = "?GetCurrentPosition@@YAHPAY07J00@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetCurrentPosition(ref int[] ibufEnc, ref int[] ibufJoint, ref int[] ibufXYZ);
+        public static extern int GetCurrentPosition( int[] ibufEnc, int[] ibufJoint, int[] ibufXYZ);
 
         /// <summary>
         /// Sets the value for how long movement should take place.(Manual steering.)
