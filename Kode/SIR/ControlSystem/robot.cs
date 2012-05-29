@@ -306,6 +306,32 @@ namespace ControlSystem
             return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
         }
 
+        public bool MoveToAPosition(int[] iA)
+        {
+            //skal placeres med income position
+            int[] iArray = new int[] { 269030, 0, 504328, -63548, 0 };
+
+            //Define navnet på en vector som har KUN 1 position i sig og 'A' for at sige det er robotten
+            int check = DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", 1);
+            if (check == 0) return false;
+            
+            //Teach robotton = gem positionerne i hukommelsen? troer jeg start fra position nummer 1. -32767 for at sige der skal køres 
+            //relative kordinates
+            check = DLLImport.Teach("firstOne", 1, iArray, 5, -32767);
+            if (check == 0) return false;
+
+            //Home robotten før vi kører den til den givne position
+            check = DLLImport.Home(Convert.ToByte('A'), dgateEventHandlerHoming);
+            if (check == 0) return false;
+
+            //Flyt robotten til positionen
+            check =DLLImport.MoveLinear("firstOne", 1, null, 0);
+            if (check == 0) return false;
+
+            return (check == 1);
+
+        }
+
 
         public bool stopAllMovement()
         {
