@@ -14,8 +14,7 @@ namespace ControlSystem
     /// </summary>
     public interface IRobot
     {
-        bool moveToAPosition();
-        List<SIRVector> vectorlist { get; set; } 
+        SIRVector vectorlist { get; set; } 
         /// <summary>
         ///  Closes gripper
         /// </summary>
@@ -63,14 +62,6 @@ namespace ControlSystem
         /// <returns></returns>
         bool moveByRoll(int roll);
         /// <summary>
-        /// moves by coordinates x, y and z
-        /// </summary>
-        /// <param name="_iX"></param>
-        /// <param name="_iY"></param>
-        /// <param name="_iZ"></param>
-        /// <returns></returns>
-        bool movebyCoordinates(int _iX, int _iY, int _iZ);
-        /// <summary>
         /// Function for moving by absolute coordinates
         /// </summary>
         /// <param name="_iX"> x-coordinate </param>
@@ -80,16 +71,7 @@ namespace ControlSystem
         /// <param name="roll"> roll of robot arm</param>
         /// <returns></returns>
         bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll);
-        /// <summary>
-        /// function for moving by relative coordinates
-        /// </summary>
-        /// <param name="_iX"></param>
-        /// <param name="_iY"></param>
-        /// <param name="_iZ"></param>
-        /// <param name="_iPitch"></param>
-        /// <param name="_iRoll"></param>
-        /// <returns></returns>
-        bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll);
+
         /// <summary>
         ///  Returns jaw opening in milimeters
         /// </summary>
@@ -167,12 +149,6 @@ namespace ControlSystem
         VecPoint getCurrentPosition();
 
         /// <summary>
-        /// Moves to position from Cube ID.(From Database.)
-        /// </summary>
-        /// <param name="_iCubeID">ID of Cube.</param>
-        bool moveToCubePosition(int _iCubeID);
-
-        /// <summary>
         /// Sets the time future movement should take.
         /// </summary>
         /// <param name="_bGroup">bool ucGroup
@@ -236,7 +212,7 @@ namespace ControlSystem
         private DLL.DgateCallBackByteRefArg dgateMovementStopped = releaseMovementLock;
         private static Semaphore movementlock;
 
-        public List<SIRVector> vectorlist { get; set; }
+        public SIRVector vectorlist { get; set; }
 
 
         public Semaphore Sem
@@ -271,7 +247,7 @@ namespace ControlSystem
         /// <param name="b"></param>
         private static void releaseMovementLock(ref byte b)
         {
-            //movementlock.Release();
+            movementlock.Release();
         }
 
         #endregion
@@ -286,12 +262,12 @@ namespace ControlSystem
         {
             _serialStk = new SerialSTK();
             _wrapper = Wrapper.getInstance();
-            vectorlist = new List<SIRVector>();
+            vectorlist = new SIRVector();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
-           Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 60000);
+            Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 60000);
             movementlock = new Semaphore(1,1);
-            _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
+           _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
         }
 
         private void initialization()
@@ -307,45 +283,40 @@ namespace ControlSystem
             return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
         }
 
-        public bool moveToAPosition()
+        public void moveToAPosition(SIRVector vector)
         {
-            //skal placeres med income position
-            int[] iArray = new int[] { 200000, 200000, 100000, 100000, 1000000 };
-            
-            //int check = DLLImport.initialization(1, 0, dgateEventHandlerSuccess, dgateEventHandlerError);
-            //if (check == 0) return false;
-
-            //DLLImport.WatchMotion(dgateMovementStarted, dgateMovementStopped);
-
-            //Define navnet på en vector som har KUN 1 position i sig og 'A' for at sige det er robotten
-            int check = DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", 1);
-            if (check == 0) return false;
+            //Define navnet på en vector som har get.size() positioner i sig og 'A' for at sige det er robotten   
+            DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", Convert.ToInt16(vector.getSize()));
+         
             
             //Teach robotton = gem positionerne i hukommelsen? troer jeg start fra position nummer 1. -32767 for at sige der skal køres 
             //relative kordinates
-            check = DLLImport.Teach("firstOne", 1, iArray, 5, -32767);
-            if (check == 0) return false;
-
+            foreach (VecPoint point in vector.LstPoints)
+            {
+                int[] aInts = new int[]{point.iX,point.iY,point.iZ,point.iPitch,point.iRoll};
+                DLLImport.Teach("firstOne", 1, aInts, 5, -32766);
+            }
+    
             //Home robotten før vi kører den til den givne position
-            check = DLLImport.Home(Convert.ToByte('A'), dgateEventHandlerHoming);
-            if (check == 0) return false;
+            DLLImport.Home(Convert.ToByte('A'), dgateEventHandlerHoming);
 
-            //Close the manual movement
-            //DLLImport.CloseManual();
-
+            Int16 y = 1;
             //Flyt robotten til positionen
-            check =DLLImport.MoveLinear("firstOne", 1, null, 0);
-            if (check == 0) return false;
-
-            return (check == 1);
+            foreach (VecPoint point in vector.LstPoints)
+            {
+                DLLImport.MoveLinear("firstOne", y, null, 0);
+                y++;
+            }
 
         }
 
-
         public bool stopAllMovement()
         {
-            return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
-
+            bool status = _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
+            // releasing semaphore here since movement functions wont release 
+            if (status)
+                movementlock.Release();
+            return status;
         }
 
         public bool isOnline()
@@ -390,16 +361,6 @@ namespace ControlSystem
         public bool defineAbsoluteVector(string vectorname, int points)
         {
             bool status = _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, vectorname, (short) points);
-            if (status)
-                vectorlist.Add(new AbsCoordSirVector(vectorname));
-            return status;
-        }
-
-        public bool defineRelativeVector(string vectorname, int points)
-        {
-            bool status = _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, vectorname, (short)points);
-            if (status)
-                vectorlist.Add(new RelCoordSirVector(vectorname));
             return status;
         }
 
@@ -414,40 +375,6 @@ namespace ControlSystem
             return _wrapper.moveLinearWrapped(vectorname, pointindex);
         }
 
-        public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
-        {
-
-            SIRVector tempRelVector = new RelCoordSirVector("relativeVector");
-            tempRelVector.addPoint(new VecPoint(_iX, _iY, _iZ, _iPitch, _iRoll));
-
-            return false;
-        }
-
-        public bool movebyCoordinates(int _iX, int _iY, int _iZ)
-        {
-            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
-                return false;
-            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
-                return false;
-            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
-                return false;
-            return true;
-        }
-
-        public bool moveToCubePosition(int _iCubeID)
-        {
-            var sqlcmdCommand = SQLHandler.GetInstance.makeCommand("SELECT ID FROM Position WHERE ID = " + _iCubeID);
-            var isqlrdrReader = SQLHandler.GetInstance.runQuery(sqlcmdCommand, "Read");
-            var lstCoordinates = isqlrdrReader.readRow();
-            // element 0 is ID, so starts from element 1(X)
-            if (lstCoordinates.Count != 0)
-            {
-                movebyCoordinates((int)lstCoordinates[1], (int)lstCoordinates[2], (int)lstCoordinates[3]);
-                return true;
-            }
-            else
-                return false;
-        }
         #endregion
 
         #region Axis movements
@@ -547,7 +474,7 @@ namespace ControlSystem
 
         public bool closeGripper()
         {
-            movementlock.WaitOne(); 
+           movementlock.WaitOne(); 
            return _wrapper.closeGripperWrapped();
         }
 

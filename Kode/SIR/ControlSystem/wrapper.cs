@@ -53,7 +53,9 @@ namespace ControlSystem
     {
         // Members
         protected string sName;
-        protected List<VecPoint> lstPoints;
+        private List<VecPoint> lstPoints;
+
+
 		/// <summary>
 		/// Type of vector.(Should be set in classes inheriting from this.)
 		/// </summary>
@@ -103,6 +105,12 @@ namespace ControlSystem
         {
             get { return iType; }
         }
+
+        public List<VecPoint> LstPoints
+        {
+            get { return lstPoints; }
+            set { lstPoints = value; }
+        }
     }
 
     /// <summary>
@@ -117,7 +125,7 @@ namespace ControlSystem
         public AbsCoordSirVector(string _sName)
         {
             sName = _sName;
-            lstPoints = new List<VecPoint>();
+            LstPoints = new List<VecPoint>();
             iType = -32766;
         }
     }
@@ -134,7 +142,7 @@ namespace ControlSystem
         public RelCoordSirVector(string _sName)
         {
             sName = _sName;
-            lstPoints = new List<VecPoint>();
+            LstPoints = new List<VecPoint>();
             iType = -32767;
         }
     }
