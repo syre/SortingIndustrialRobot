@@ -126,9 +126,12 @@ namespace ControlSystem
                     }
                     manEvent.Reset();
 
-                    Tuple<string, string> tupleTemp = (Tuple<string, string>)syncLogQueue[0];
-                    createLog(tupleTemp.Item1 , tupleTemp.Item2);
-                    syncLogQueue.RemoveAt(0);
+                    if(syncLogQueue.Count > 0)
+                    {
+                        Tuple<string, string> tupleTemp = (Tuple<string, string>)syncLogQueue[0];
+                        createLog(tupleTemp.Item1, tupleTemp.Item2);
+                        syncLogQueue.RemoveAt(0);
+                    }
                 }
         }
 
