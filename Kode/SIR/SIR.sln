@@ -11,8 +11,6 @@ Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "SIR_Diagram_Project", "SIR_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlInteraction", "SqlInteraction\SqlInteraction.csproj", "{AEAEF8D6-5791-41F8-B143-866502B90F25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WrapperTester", "WrapperTester\WrapperTester.csproj", "{A38C4A29-8BED-4931-B281-B1D851611104}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,16 +73,6 @@ Global
 		{AEAEF8D6-5791-41F8-B143-866502B90F25}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{AEAEF8D6-5791-41F8-B143-866502B90F25}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AEAEF8D6-5791-41F8-B143-866502B90F25}.Release|x86.ActiveCfg = Release|Any CPU
-		{A38C4A29-8BED-4931-B281-B1D851611104}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{A38C4A29-8BED-4931-B281-B1D851611104}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{A38C4A29-8BED-4931-B281-B1D851611104}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{A38C4A29-8BED-4931-B281-B1D851611104}.Debug|x86.ActiveCfg = Debug|x86
-		{A38C4A29-8BED-4931-B281-B1D851611104}.Debug|x86.Build.0 = Debug|x86
-		{A38C4A29-8BED-4931-B281-B1D851611104}.Release|Any CPU.ActiveCfg = Release|x86
-		{A38C4A29-8BED-4931-B281-B1D851611104}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{A38C4A29-8BED-4931-B281-B1D851611104}.Release|Mixed Platforms.Build.0 = Release|x86
-		{A38C4A29-8BED-4931-B281-B1D851611104}.Release|x86.ActiveCfg = Release|x86
-		{A38C4A29-8BED-4931-B281-B1D851611104}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
