@@ -357,7 +357,7 @@ namespace ControlSystem
 
         public bool defineAbsoluteVector(string vectorname, int points)
         {
-            bool status = _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ALL, vectorname, (short) points);
+            bool status = _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, vectorname, (short) points);
             if (status)
                 vectorlist.Add(new AbsCoordSirVector(vectorname));
             return status;
