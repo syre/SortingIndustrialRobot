@@ -32,6 +32,11 @@ namespace ControlSystem
         /// <param name="sMsg">Description/message.</param>
         /// <param name="_eltType">Type of log.</param>
         void log(string sMsg, eLogType _eltType);
+
+        /// <summary>
+        /// Preps logger for app shutdown
+        /// </summary>
+        void prepForShutdownApp();
     }
 
     /// <summary>
@@ -39,6 +44,11 @@ namespace ControlSystem
     /// </summary>
     public class DatabaseLogger : ILogger
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private volatile bool boolStop = false;
+
         /// <summary>
         /// Event for making log thread wait for signal
         /// </summary>
@@ -77,25 +87,34 @@ namespace ControlSystem
         }
 
         /// <summary>
+        /// Makes the log thread finish up and stop, making sure all logs have been sent to database
+        /// </summary>
+        public void prepForShutdownApp()
+        {
+            boolStop = true;
+            Factory.getThreadHandlingInstance.find("LogThread").threadPlaceHolder.Join();
+        }
+
+        /// <summary>
         /// Main function to be called when logging to database is needed.
         /// </summary>
         /// <param name="sMsg">Message to be logged</param>
         /// <param name="_eltType">Type of log</param>
         public void log(string _sMsg, eLogType _eltType)
         {
-            Tuple<string, string> tupleTemp;
+            Tuple<string, string, DateTime> tupleTemp;
             switch (_eltType)
             {
                 case eLogType.LOG_INFO:
-                    tupleTemp = new Tuple<string, string>("Info", _sMsg);
+                    tupleTemp = new Tuple<string, string, DateTime>("Info", _sMsg, DateTime.Now);
                     addItemToQueue(tupleTemp);
                     break;
                 case eLogType.LOG_ERROR:
-                    tupleTemp = new Tuple<string, string>("Error", _sMsg);
+                    tupleTemp = new Tuple<string, string, DateTime>("Error", _sMsg, DateTime.Now);
                     addItemToQueue(tupleTemp);
                     break;
                 case eLogType.LOG_DEBUG:
-                    tupleTemp = new Tuple<string, string>("Debug", _sMsg);
+                    tupleTemp = new Tuple<string, string, DateTime>("Debug", _sMsg, DateTime.Now);
                     addItemToQueue(tupleTemp);
                     break;
             }
@@ -107,7 +126,7 @@ namespace ControlSystem
         /// Function which adds a tuple to the queue, but at the same time sends event to log thread that another has been added
         /// </summary>
         /// <param name="_tubLog">Parameter of a tuble that holds data that needs to be added to queue</param>
-        private void addItemToQueue(Tuple<string, string> _tubLog)
+        private void addItemToQueue(Tuple<string, string, DateTime> _tubLog)
         {
             syncLogQueue.Add(_tubLog);
             manEvent.Set();
@@ -118,9 +137,9 @@ namespace ControlSystem
         /// </summary>
         private void LogThreadFunction()
         {
-                while (true)
+                while (boolStop == false || (boolStop == true && syncLogQueue.Count > 0))
                 {
-                    if (syncLogQueue.Count == 0)
+                    if (syncLogQueue.Count == 0 && boolStop == false)
                     {
                         manEvent.WaitOne(Timeout.Infinite, true);
                     }
@@ -128,8 +147,8 @@ namespace ControlSystem
 
                     if(syncLogQueue.Count > 0)
                     {
-                        Tuple<string, string> tupleTemp = (Tuple<string, string>)syncLogQueue[0];
-                        createLog(tupleTemp.Item1, tupleTemp.Item2);
+                        Tuple<string, string, DateTime> tupleTemp = (Tuple<string, string, DateTime>)syncLogQueue[0];
+                        createLog(tupleTemp.Item1, tupleTemp.Item2, tupleTemp.Item3);
                         syncLogQueue.RemoveAt(0);
                     }
                 }
@@ -140,12 +159,11 @@ namespace ControlSystem
         /// </summary>
         /// <param name="_sLog">Log level parameter</param>
         /// <param name="_sMsg">Description for log</param>
-        private void createLog(string _sLog, string _sMsg)
+        private void createLog(string _sLog, string _sMsg, DateTime _dTime)
         {
-            DateTime dtNow = DateTime.Now;
             SqlCommand sqlCmdTemp = SQLHandlerObj.makeCommand("INSERT INTO Logs VALUES (@pLog, @pDateTime, @pMsg)");
             SQLHandlerObj.addParameter(sqlCmdTemp, "@pLog", _sLog, SqlDbType.VarChar);
-            SQLHandlerObj.addParameter(sqlCmdTemp, "@pDateTime", dtNow, SqlDbType.DateTime);
+            SQLHandlerObj.addParameter(sqlCmdTemp, "@pDateTime", _dTime, SqlDbType.DateTime);
             SQLHandlerObj.addParameter(sqlCmdTemp, "@pMsg", _sMsg, SqlDbType.VarChar);
 
             SQLHandlerObj.runQuery(sqlCmdTemp, "write");

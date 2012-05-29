@@ -97,9 +97,10 @@ namespace RoboGO
         // Clean up
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Factory.getThreadHandlingInstance.abortAllAndWait();
-
             Factory.getLogInstance.log("Program being shut down by user!", eLogType.LOG_INFO);
+            Factory.getLogInstance.prepForShutdownApp();
+
+            Factory.getThreadHandlingInstance.abortAllAndWait();
         }
 
         // Show available commands
