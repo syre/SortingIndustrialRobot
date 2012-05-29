@@ -233,6 +233,11 @@ namespace ControlSystem
         private DLL.DgateCallBackCharArg dgateMovementStopped = releaseMovementLock;
         private static Semaphore movementlock;
 
+        public Semaphore Sem
+        {
+            get { return movementlock; }
+        }
+
         #region delegate functions
         static void initSuccess(IntPtr _iptrArg)
         {
@@ -361,10 +366,8 @@ namespace ControlSystem
             movementlock.WaitOne();
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
                 return false;
-            movementlock.WaitOne();
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
                 return false;
-            movementlock.WaitOne();
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
                 return false;
             return true;
