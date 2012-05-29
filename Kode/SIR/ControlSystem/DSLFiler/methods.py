@@ -161,6 +161,7 @@ def moveToCubePosition(cube_id):
 vector = [(10,10,10,10,10),(20,20,20,20,20)]
 
 def moveByRelativeVector(name,vector):
+		seekHome()
         if (_robot.defineRelativeVector(name,len(vector)) == True):
                 print "vector defined"
                 for element in vector:
