@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Microsoft.Win32;
 using SqlInteraction;
 using ControlSystem;
@@ -83,6 +84,7 @@ namespace RoboGO.ViewModels
             guiDatabaseValues = _databaseValues;
 
             Factory.getThreadHandlingInstance.addThread(_loadAllTables, "Tables");
+            Factory.getThreadHandlingInstance.addThread(_loadTableInfo, "TableInfo");
         }
 
 
@@ -122,6 +124,13 @@ namespace RoboGO.ViewModels
         /// <param name="_objTableName">Name of table.</param>
         public void getTableInfo(string _objTableName)
         {
+            Factory.getThreadHandlingInstance.abortAndWait("TableInfo");
+            Factory.getThreadHandlingInstance.start("TableInfo", _objTableName);
+        }
+        
+        // Real implementation
+        private void _loadTableInfo(object _objTableName)
+        {
             try
             {
                 string tableName = (string) _objTableName;
@@ -132,16 +141,19 @@ namespace RoboGO.ViewModels
 
                 sqlDATableValues.Fill(tempTable);
 
-                if(Factory.currentIUserInstance.permissionDictionary[_objTableName])
+                if(Factory.currentIUserInstance.permissionDictionary[tableName])
                 {
-                    guiDatabaseValues.IsReadOnly = false;
-                    guiDatabaseValues.IsEnabled = true;
+                    Dispatcher dispDataGrid = guiDatabaseValues.Dispatcher;
+                    Action aLoad = () => { guiDatabaseValues.IsReadOnly = false;
+                                             guiDatabaseValues.IsEnabled = true;
+                    };
+                    dispDataGrid.BeginInvoke(aLoad);
                 }
                 else
                 {
                     guiDatabaseValues.IsReadOnly = true;
                     guiDatabaseValues.IsEnabled = false;
-                    if(_objTableName == "Users")
+                    if(tableName == "Users")
                         tempTable.Clear();
                 }
 
