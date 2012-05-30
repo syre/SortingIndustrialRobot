@@ -275,7 +275,6 @@ namespace ControlSystem
         {
             _serialStk = new SerialSTK();
             _wrapper = Wrapper.getInstance();
-            vectorlist = new List<SIRVector>();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
            Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 60000);
