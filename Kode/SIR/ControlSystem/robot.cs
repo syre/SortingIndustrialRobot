@@ -529,7 +529,6 @@ namespace ControlSystem
         #region MovejustOneCordinate
         public bool moveByXCoordinate(int _iX)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -540,7 +539,6 @@ namespace ControlSystem
 
         public bool moveByYCoordinate(int _iY)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -552,7 +550,6 @@ namespace ControlSystem
 
         public bool moveByZCoordinate(int _iZ)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -563,7 +560,6 @@ namespace ControlSystem
 
         public bool moveByPitch(int _pitch)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -574,7 +570,6 @@ namespace ControlSystem
 
         public bool moveByRoll(int _roll)
         {
-            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);

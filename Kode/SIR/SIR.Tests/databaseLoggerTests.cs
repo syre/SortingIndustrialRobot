@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Rhino.Mocks;
 using NUnit.Framework;
 using ControlSystem;
@@ -10,20 +11,34 @@ namespace SIR.Tests
     [TestFixture]
     public class DatabaseLoggerTests
     {
+        private DatabaseLogger testObj;
+
+        [SetUp]
+        public void Setup()
+        {
+            testObj = new DatabaseLogger("TestThread");
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            testObj = null;
+            Factory.getThreadHandlingInstance.removeThread("TestThread");
+        }
+
         // Tests
         #region Properties
         [Test]
         public void SQLHandlerObj_SetsValue_GetsSaved()
         {
             // Setup
-            DatabaseLogger dlTestObj = new DatabaseLogger();
             ISQLHandler isqlhStub = MockRepository.GenerateStub<ISQLHandler>();
 
             // Test
-            dlTestObj.SQLHandlerObj = isqlhStub;
+            testObj.SQLHandlerObj = isqlhStub;
 
             // Verify
-            Assert.AreSame(dlTestObj.SQLHandlerObj, isqlhStub);
+            Assert.AreSame(testObj.SQLHandlerObj, isqlhStub);
         }
         #endregion
         #region Functions
@@ -31,23 +46,24 @@ namespace SIR.Tests
         public void DatabaseLogger_IsCalled_SQLHandlerObjIsNotNull()
         {
             // Setup
-            DatabaseLogger dlTestObj = new DatabaseLogger();
+            // Lavet i setup
 
             // Verify
-            Assert.IsNotNull(dlTestObj.SQLHandlerObj);
+            Assert.IsNotNull(testObj.SQLHandlerObj);
         }
         [Test]
         public void log_IsCalled_CallsSQLHandlerObjmakeCommand()
         {
             // Setup
-            DatabaseLogger dlTestObj = new DatabaseLogger();
             ISQLHandler isqlhMock = MockRepository.GenerateMock<ISQLHandler>();
             ISQLReader isqlrdrStub = MockRepository.GenerateStub<ISQLReader>();
             isqlhMock.Stub(t => t.makeCommand(Arg<string>.Is.Anything)).Return(new SqlCommand());
             isqlhMock.Stub(t => t.runQuery(Arg<SqlCommand>.Is.Anything, Arg<string>.Is.Anything)).Return(isqlrdrStub);
 
             // Test
-            dlTestObj.log("Hola", eLogType.LOG_DEBUG);
+            testObj.SQLHandlerObj = isqlhMock;
+            testObj.log("Hola", eLogType.LOG_DEBUG);
+            testObj.prepForShutdownApp();
 
             // Verify
             isqlhMock.AssertWasCalled(t => t.makeCommand(Arg<string>.Is.Anything));
@@ -56,14 +72,15 @@ namespace SIR.Tests
         public void log_IsCalled_CallsSQLHandlerObjrunQuery()
         {
             // Setup
-            DatabaseLogger dlTestObj = new DatabaseLogger();
             ISQLHandler isqlhMock = MockRepository.GenerateMock<ISQLHandler>();
             ISQLReader isqlrdrStub = MockRepository.GenerateStub<ISQLReader>();
             isqlhMock.Stub(t => t.makeCommand(Arg<string>.Is.Anything)).Return(new SqlCommand());
             isqlhMock.Stub(t => t.runQuery(Arg<SqlCommand>.Is.Anything, Arg<string>.Is.Anything)).Return(isqlrdrStub);
 
             // Test
-            dlTestObj.log("Hola", eLogType.LOG_DEBUG);
+            testObj.SQLHandlerObj = isqlhMock;
+            testObj.log("Hola", eLogType.LOG_DEBUG);
+            testObj.prepForShutdownApp();
 
             // Verify
             isqlhMock.AssertWasCalled(t => t.runQuery(Arg<SqlCommand>.Is.Anything, Arg<string>.Is.Anything));
@@ -72,49 +89,43 @@ namespace SIR.Tests
         public void log_IsCalledWithLogTypeLOG_INFO_CallsSQLHandlerObjmakeCommandWithCorrectText()
         {
             // Setup
-            DatabaseLogger dlTestObj = new DatabaseLogger();
             ISQLHandler isqlhMock = MockRepository.GenerateMock<ISQLHandler>();
-            ISQLReader isqlrdrStub = MockRepository.GenerateStub<ISQLReader>();
-            isqlhMock.Stub(t => t.makeCommand(Arg<string>.Is.Anything)).Return(new SqlCommand());
-            isqlhMock.Stub(t => t.runQuery(Arg<SqlCommand>.Is.Anything, Arg<string>.Is.Anything)).Return(isqlrdrStub);
 
             // Test
-            dlTestObj.log("Hola", eLogType.LOG_DEBUG);
+            testObj.SQLHandlerObj = isqlhMock;
+            testObj.log("Hola", eLogType.LOG_INFO);
+            testObj.prepForShutdownApp();
 
             // Verify
-            isqlhMock.AssertWasCalled(t => t.makeCommand(Arg<string>.Matches(Rhino.Mocks.Constraints.Text.Contains("Info"))));
+            isqlhMock.AssertWasCalled(t => t.addParameter(Arg<SqlCommand>.Is.Anything, Arg<string>.Is.Anything, Arg<string>.Matches(Rhino.Mocks.Constraints.Text.Contains("Info")), Arg<SqlDbType>.Is.Anything));
         }
         [Test]
         public void log_IsCalledWithLogTypeLOG_DEBUG_CallsSQLHandlerObjmakeCommandWithCorrectText()
         {
             // Setup
-            DatabaseLogger dlTestObj = new DatabaseLogger();
             ISQLHandler isqlhMock = MockRepository.GenerateMock<ISQLHandler>();
-            ISQLReader isqlrdrStub = MockRepository.GenerateStub<ISQLReader>();
-            isqlhMock.Stub(t => t.makeCommand(Arg<string>.Is.Anything)).Return(new SqlCommand());
-            isqlhMock.Stub(t => t.runQuery(Arg<SqlCommand>.Is.Anything, Arg<string>.Is.Anything)).Return(isqlrdrStub);
 
             // Test
-            dlTestObj.log("Hola", eLogType.LOG_DEBUG);
+            testObj.SQLHandlerObj = isqlhMock;
+            testObj.log("Hola", eLogType.LOG_DEBUG);
+            testObj.prepForShutdownApp();
 
             // Verify
-            isqlhMock.AssertWasCalled(t => t.makeCommand(Arg<string>.Matches(Rhino.Mocks.Constraints.Text.Contains("Debug"))));
+            isqlhMock.AssertWasCalled(t => t.addParameter(Arg<SqlCommand>.Is.Anything, Arg<string>.Is.Anything, Arg<string>.Matches(Rhino.Mocks.Constraints.Text.Contains("Debug")), Arg<SqlDbType>.Is.Anything));
         }
         [Test]
         public void log_IsCalledWithLogTypeLOG_ERROR_CallsSQLHandlerObjmakeCommandWithCorrectText()
         {
             // Setup
-            DatabaseLogger dlTestObj = new DatabaseLogger();
             ISQLHandler isqlhMock = MockRepository.GenerateMock<ISQLHandler>();
-            ISQLReader isqlrdrStub = MockRepository.GenerateStub<ISQLReader>();
-            isqlhMock.Stub(t => t.makeCommand(Arg<string>.Is.Anything)).Return(new SqlCommand());
-            isqlhMock.Stub(t => t.runQuery(Arg<SqlCommand>.Is.Anything, Arg<string>.Is.Anything)).Return(isqlrdrStub);
 
             // Test
-            dlTestObj.log("Hola", eLogType.LOG_DEBUG);
+            testObj.SQLHandlerObj = isqlhMock;
+            testObj.log("Hola", eLogType.LOG_ERROR);
+            testObj.prepForShutdownApp();
 
             // Verify
-            isqlhMock.AssertWasCalled(t => t.makeCommand(Arg<string>.Matches(Rhino.Mocks.Constraints.Text.Contains("Error"))));
+            isqlhMock.AssertWasCalled(t => t.addParameter(Arg<SqlCommand>.Is.Anything, Arg<string>.Is.Anything, Arg<string>.Matches(Rhino.Mocks.Constraints.Text.Contains("Error")), Arg<SqlDbType>.Is.Anything));
         }
         #endregion
     }
