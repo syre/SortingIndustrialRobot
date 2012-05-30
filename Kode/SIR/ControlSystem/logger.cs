@@ -92,6 +92,7 @@ namespace ControlSystem
         public void prepForShutdownApp()
         {
             boolStop = true;
+            manEvent.Set();
             Factory.getThreadHandlingInstance.find("LogThread").threadPlaceHolder.Join();
         }
 
