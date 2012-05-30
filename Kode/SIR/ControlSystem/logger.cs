@@ -74,16 +74,27 @@ namespace ControlSystem
             set;
         }
 
+        /// <summary>
+        /// String for holding thread name
+        /// </summary>
+        private string ThreadName
+        {
+            get; 
+            set;
+        }
+
         // Functions
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public DatabaseLogger()
+        public DatabaseLogger(string _threadName = "LogThread")
         {
+            ThreadName = _threadName;
+
             SQLHandlerObj = SQLHandler.GetInstance;
 
-            Factory.getThreadHandlingInstance.addThread(LogThreadFunction, "LogThread");
-            Factory.getThreadHandlingInstance.start("LogThread");
+            Factory.getThreadHandlingInstance.addThread(LogThreadFunction, ThreadName);
+            Factory.getThreadHandlingInstance.start(ThreadName);
         }
 
         /// <summary>
@@ -93,7 +104,7 @@ namespace ControlSystem
         {
             boolStop = true;
             manEvent.Set();
-            Factory.getThreadHandlingInstance.find("LogThread").threadPlaceHolder.Join();
+            Factory.getThreadHandlingInstance.find(ThreadName).threadPlaceHolder.Join();
         }
 
         /// <summary>
@@ -167,6 +178,7 @@ namespace ControlSystem
             SQLHandlerObj.addParameter(sqlCmdTemp, "@pDateTime", _dTime, SqlDbType.DateTime);
             SQLHandlerObj.addParameter(sqlCmdTemp, "@pMsg", _sMsg, SqlDbType.VarChar);
 
+            Console.WriteLine(sqlCmdTemp.CommandText);
             SQLHandlerObj.runQuery(sqlCmdTemp, "write");
         }
     }
