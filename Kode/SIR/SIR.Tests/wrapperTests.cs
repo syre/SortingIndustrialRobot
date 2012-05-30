@@ -1269,6 +1269,7 @@ namespace SIR.Tests
 
             //insert into RelCoordSirVector (Note add's 2 times, cause forloop counts from 1)
             _relCoordSirVector.addPoint(_vecPoints);
+            _relCoordSirVector.addPoint(_vecPoints);
 
             
             idllMock.Stub(t => t.Teach(Arg<string>.Is.Anything, Arg<short>.Is.Anything, Arg<int[]>.Is.Anything, Arg<short>.Is.Anything, Arg<int>.Is.Anything)).Return(1);
