@@ -206,6 +206,7 @@ namespace ControlSystem
     /// </summary>
     public class Robot : IRobot
     {
+        private bool hasHomed = false;
         private IWrapper _wrapper;
         private SerialSTK _serialStk;
         public IWrapper wrapper
@@ -292,7 +293,9 @@ namespace ControlSystem
 
         public bool homeRobot()
         {
-            return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
+            bool bTemp = _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
+            hasHomed = true;
+            return bTemp;
         }
 
         public bool moveToAPosition()
@@ -327,7 +330,6 @@ namespace ControlSystem
         public bool stopAllMovement()
         {
             return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
-
         }
 
         public bool isOnline()
@@ -400,8 +402,6 @@ namespace ControlSystem
 
             return false;
         }
-
-
 
         public bool moveToCubePosition(int _iCubeID)
         {
@@ -529,58 +529,78 @@ namespace ControlSystem
         #region MovejustOneCordinate
         public bool moveByXCoordinate(int _iX)
         {
-            movementlock.WaitOne();
-            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
-            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
-            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
-                return false;
-            return true;
+            if(hasHomed)
+            {
+                movementlock.WaitOne();
+                _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+                _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+                _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
+                if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
+                    return false;
+                return true;
+            }
+            return false;
         }
 
         public bool moveByYCoordinate(int _iY)
         {
-            movementlock.WaitOne();
+            if(hasHomed)
+            {
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
                 return false;
             return true;
+            }
+            return false;
         }
 
 
         public bool moveByZCoordinate(int _iZ)
         {
-            movementlock.WaitOne();
+            if(hasHomed)
+            {
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
                 return false;
             return true;
+            }
+            return false;
         }
 
         public bool moveByPitch(int _pitch)
         {
-            movementlock.WaitOne();
+            if(hasHomed)
+            {
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_PITCH, _pitch))
                 return false;
             return true;
+            }
+            return false;
         }
 
         public bool moveByRoll(int _roll)
         {
-            movementlock.WaitOne();
+            if(hasHomed)
+            {
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ROLL, _roll))
                 return false;
             return true;
+            }
+            return false;
         }
 
         #endregion

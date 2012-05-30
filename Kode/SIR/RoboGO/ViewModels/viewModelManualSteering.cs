@@ -24,13 +24,6 @@ namespace RoboGO.ViewModels
             set { mcManualControl = value; }
         }
 
-
-        /// <summary>
-        /// setting true if home has been called. prevent error for movebycordinate.
-        /// <summary>
-        private bool hasHomed { get; set; }
-
-
         /// <summary>
         /// Speed of the movements
         /// 
@@ -60,8 +53,6 @@ namespace RoboGO.ViewModels
             {
                 /// \warning Must be checked up later.
             }
-
-            hasHomed = false;
         }
 
         // -Steering: Made as simple interface as possible so minimum of logic required from View´s side.
@@ -184,7 +175,6 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordXIncreasing()
         {
-            if(hasHomed)
                 mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_INC);
         }
         
@@ -193,8 +183,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordXDecreasing()
         {
-            if(hasHomed)
-                mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_DEC);
+            mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_DEC);
         }
         
         /// <summary>
@@ -202,8 +191,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordYIncreasing()
         {
-            if(hasHomed)
-                mcManualControl.moveCoordY(enumIncDec.MANUAL_MOVE_INC);
+            mcManualControl.moveCoordY(enumIncDec.MANUAL_MOVE_INC);
         }
         
         /// <summary>
@@ -211,8 +199,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordYDecreasing()
         {
-            if(hasHomed)
-                mcManualControl.moveCoordY(enumIncDec.MANUAL_MOVE_DEC);
+            mcManualControl.moveCoordY(enumIncDec.MANUAL_MOVE_DEC);
         }
         
         /// <summary>
@@ -220,8 +207,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordZIncreasing()
         {
-            if(hasHomed)
-                mcManualControl.moveCoordZ(enumIncDec.MANUAL_MOVE_INC);
+            mcManualControl.moveCoordZ(enumIncDec.MANUAL_MOVE_INC);
         }
         
         /// <summary>
@@ -229,8 +215,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordZDecreasing()
         {
-            if(hasHomed)
-                mcManualControl.moveCoordZ(enumIncDec.MANUAL_MOVE_DEC);
+            mcManualControl.moveCoordZ(enumIncDec.MANUAL_MOVE_DEC);
         }
         
         /// <summary>
@@ -238,8 +223,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordPitchIncreasing()
         {
-            if(hasHomed)
-                mcManualControl.moveCoordPitch(enumIncDec.MANUAL_MOVE_INC);
+            mcManualControl.moveCoordPitch(enumIncDec.MANUAL_MOVE_INC);
         }
         
         /// <summary>
@@ -247,8 +231,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordPitchDecreasing()
         {
-            if(hasHomed)
-                mcManualControl.moveCoordPitch(enumIncDec.MANUAL_MOVE_DEC);
+            mcManualControl.moveCoordPitch(enumIncDec.MANUAL_MOVE_DEC);
         }
         
         /// <summary>
@@ -256,7 +239,6 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordRollIncreasing()
         {
-            if(hasHomed)
             mcManualControl.moveCoordRoll(enumIncDec.MANUAL_MOVE_INC);
         }
         
@@ -265,8 +247,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordRollDecreasing()
         {
-            if(hasHomed)
-                mcManualControl.moveCoordRoll(enumIncDec.MANUAL_MOVE_DEC);
+            mcManualControl.moveCoordRoll(enumIncDec.MANUAL_MOVE_DEC);
         }
         #endregion
         #region Other
@@ -276,7 +257,6 @@ namespace RoboGO.ViewModels
         public void seekHome()
         {
             mcManualControl.RobotConnection.homeRobot();
-            hasHomed = true;
         }
         
         /// <summary>

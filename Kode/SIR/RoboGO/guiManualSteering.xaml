@@ -90,10 +90,10 @@
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Conveyer:" />
                                 <Button Name="axisBtnConveyerLeft" PreviewMouseLeftButtonDown="AxisBtnConveyerLeft_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
-                                    <Image Source="Images/arrowLeft.png"/>
+                                    <Image Source="Images/arrowRight.png"/>
                                 </Button>
                                 <Button Name="axisBtnConveyerRight" PreviewMouseLeftButtonDown="AxisBtnConveyerRight_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
-                                    <Image Source="Images/arrowRight.png" />
+                                    <Image Source="Images/arrowLeft.png" />
                                 </Button>
                             </StackPanel>
                         </StackPanel>
