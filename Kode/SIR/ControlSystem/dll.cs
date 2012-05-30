@@ -262,9 +262,10 @@ namespace ControlSystem
         /// <param name="sSecondaryPos">Vector with second position</param>
         /// <param name="shrtPointToMoveTo">What point in the vector to move to.(Index.)</param>
         /// <returns>True on successfull call.</returns>
+        //[DllImport(sDllFileLocation, EntryPoint = "?MoveLinear@@YAHPADF0F@Z", CallingConvention = CallingConvention.Cdecl)]
+        //public static extern int MoveLinear([MarshalAs(UnmanagedType.LPStr)] string sNameOfVectorThatGotFirstPosition, short shrtPointInVector, [MarshalAs(UnmanagedType.LPStr)] string sNameOfVectorThatGotSecondPosition, short shrtPointToMoveTo);
         [DllImport(sDllFileLocation, EntryPoint = "?MoveLinear@@YAHPADF0F@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int MoveLinear([MarshalAs(UnmanagedType.LPStr)] string sNameOfVectorThatGotFirstPosition, short shrtPointInVector, [MarshalAs(UnmanagedType.LPStr)] string sNameOfVectorThatGotSecondPosition, short shrtPointToMoveTo);
-
+        public static extern int MoveLinear(string sNameOfVectorThatGotFirstPosition, short shrtPointInVector, string sNameOfVectorThatGotSecondPosition, short shrtPointToMoveTo);
         /// <summary>
         /// Define a new vector in the robot.
         /// </summary>
@@ -272,9 +273,10 @@ namespace ControlSystem
         /// <param name="sVectorName">Name of vector.</param>
         /// <param name="shrtSizeOfVector">Size of vector.(Number of points.)</param>
         /// <returns>True on successfull call.</returns>
+        //[DllImport(sDllFileLocation, EntryPoint = "?DefineVector@@YAHEPADF@Z", CallingConvention = CallingConvention.Cdecl)]
+        //public static extern int DefineVector(byte bGroup, [MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtSizeOfVector);
         [DllImport(sDllFileLocation, EntryPoint = "?DefineVector@@YAHEPADF@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int DefineVector(byte bGroup, [MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtSizeOfVector);
-
+        public static extern int DefineVector(byte bGroup, string sVectorName, short shrtSizeOfVector);
         /// <summary>
         /// Saves a point in the vector.
         /// </summary>
@@ -284,9 +286,10 @@ namespace ControlSystem
         /// <param name="shrtSizeOfArray">Size of point values.(How many values.)</param>
         /// <param name="iPointType">What kind of point.(Relative(-32767) or Absolute(-32766).)</param>
         /// <returns>True on successfull call.</returns>
+        //[DllImport(sDllFileLocation, EntryPoint = "?Teach@@YAHPADFPAJFJ@Z", CallingConvention = CallingConvention.Cdecl)]
+        //public static extern int Teach([MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtPoint, int[] iaPointInfo, short shrtSizeOfArray, int iPointType); // long types used in C++ functions.
         [DllImport(sDllFileLocation, EntryPoint = "?Teach@@YAHPADFPAJFJ@Z", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int Teach([MarshalAs(UnmanagedType.LPStr)] string sVectorName, short shrtPoint, int[] iaPointInfo, short shrtSizeOfArray, int iPointType); // long types used in C++ functions.
-
+        public static extern int Teach(string sVectorName, short shrtPoint, int[] iaPointInfo, short shrtSizeOfArray, long iPointType); // long types used in C++ functions.
         /// <summary>
         /// Get the current position.
         /// </summary>
