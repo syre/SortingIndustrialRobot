@@ -15,7 +15,6 @@ namespace ControlSystem
     public interface IRobot
     {
         bool moveToAPosition();
-        List<SIRVector> vectorlist { get; set; } 
         /// <summary>
         ///  Closes gripper
         /// </summary>
@@ -62,14 +61,6 @@ namespace ControlSystem
         /// <param name="roll"></param>
         /// <returns></returns>
         bool moveByRoll(int roll);
-        /// <summary>
-        /// moves by coordinates x, y and z
-        /// </summary>
-        /// <param name="_iX"></param>
-        /// <param name="_iY"></param>
-        /// <param name="_iZ"></param>
-        /// <returns></returns>
-        bool movebyCoordinates(int _iX, int _iY, int _iZ);
         /// <summary>
         /// Function for moving by absolute coordinates
         /// </summary>
@@ -215,6 +206,7 @@ namespace ControlSystem
     /// </summary>
     public class Robot : IRobot
     {
+        private bool hasHomed = false;
         private IWrapper _wrapper;
         private SerialSTK _serialStk;
         public IWrapper wrapper
@@ -235,9 +227,6 @@ namespace ControlSystem
         private DLL.DgateCallBackByteRefArg dgateMovementStarted = takeMovementLock;
         private DLL.DgateCallBackByteRefArg dgateMovementStopped = releaseMovementLock;
         private static Semaphore movementlock;
-
-        public List<SIRVector> vectorlist { get; set; }
-
 
         public Semaphore Sem
         {
@@ -271,7 +260,8 @@ namespace ControlSystem
         /// <param name="b"></param>
         private static void releaseMovementLock(ref byte b)
         {
-            //movementlock.Release();
+            movementlock.Release();
+            Thread.Sleep(1000);
         }
 
         #endregion
@@ -286,10 +276,9 @@ namespace ControlSystem
         {
             _serialStk = new SerialSTK();
             _wrapper = Wrapper.getInstance();
-            vectorlist = new List<SIRVector>();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
-           Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 60000);
+           Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 600000);
             movementlock = new Semaphore(1,1);
             _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
         }
@@ -304,48 +293,52 @@ namespace ControlSystem
 
         public bool homeRobot()
         {
-            return _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
+            bool bTemp = _wrapper.homeWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, dgateEventHandlerHoming);
+            hasHomed = true;
+            return bTemp;
         }
 
         public bool moveToAPosition()
         {
             //skal placeres med income position
             int[] iArray = new int[] { 200000, 200000, 100000, 100000, 1000000 };
-            
-            //int check = DLLImport.initialization(1, 0, dgateEventHandlerSuccess, dgateEventHandlerError);
-            //if (check == 0) return false;
-
-            //DLLImport.WatchMotion(dgateMovementStarted, dgateMovementStopped);
+            int[] iArray2 = new int[] { 20000, 20000, 10000, 10000, 10000 };
 
             //Define navnet på en vector som har KUN 1 position i sig og 'A' for at sige det er robotten
             int check = DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", 1);
+            if (check == 0) return false;
+            
+            check = DLLImport.DefineVector(Convert.ToByte('A'), "secondOne", 1);
             if (check == 0) return false;
             
             //Teach robotton = gem positionerne i hukommelsen? troer jeg start fra position nummer 1. -32767 for at sige der skal køres 
             //relative kordinates
             check = DLLImport.Teach("firstOne", 1, iArray, 5, -32767);
             if (check == 0) return false;
+            
+            check = DLLImport.Teach("secondOne", 1, iArray2, 5, -32767);
+            if (check == 0) return false;
 
             //Home robotten før vi kører den til den givne position
             check = DLLImport.Home(Convert.ToByte('A'), dgateEventHandlerHoming);
             if (check == 0) return false;
 
-            //Close the manual movement
-            //DLLImport.CloseManual();
-
             //Flyt robotten til positionen
-            check =DLLImport.MoveLinear("firstOne", 1, null, 0);
+            movementlock.WaitOne();
+            check =DLLImport.MoveLinear("firstOne", 1, null,0);
+            if (check == 0) return false;
+            
+            movementlock.WaitOne();
+            check = DLLImport.MoveLinear("secondOne",1,null,0);
             if (check == 0) return false;
 
             return (check == 1);
 
         }
 
-
         public bool stopAllMovement()
         {
             return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
-
         }
 
         public bool isOnline()
@@ -379,28 +372,25 @@ namespace ControlSystem
 
         public bool moveByAbsoluteCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
         {
-
-            SIRVector tempCordVector = new AbsCoordSirVector("absoluteVector");
-            tempCordVector.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll));
-            _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, "absoluteVector",5); // shrtlength??
-            _wrapper.moveLinearWrapped("defaultVector", 5); // index?? 
-            return false; 
+            if (!defineRelativeVector("yusuf", 1))
+                return false;
+            SIRVector temp = new AbsCoordSirVector("yusuf");
+            temp.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll));
+            if (!teach(temp))
+                return false;
+            if (!moveLinear("yusuf", 1))
+                return false;
+            return true;
         }
 
         public bool defineAbsoluteVector(string vectorname, int points)
         {
-            bool status = _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, vectorname, (short) points);
-            if (status)
-                vectorlist.Add(new AbsCoordSirVector(vectorname));
-            return status;
+            return _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, vectorname, (short) points);
         }
 
         public bool defineRelativeVector(string vectorname, int points)
         {
-            bool status = _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, vectorname, (short)points);
-            if (status)
-                vectorlist.Add(new RelCoordSirVector(vectorname));
-            return status;
+            return _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, vectorname, (short)points);
         }
 
         public bool teach(SIRVector vector)
@@ -416,22 +406,10 @@ namespace ControlSystem
 
         public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
-
             SIRVector tempRelVector = new RelCoordSirVector("relativeVector");
             tempRelVector.addPoint(new VecPoint(_iX, _iY, _iZ, _iPitch, _iRoll));
 
             return false;
-        }
-
-        public bool movebyCoordinates(int _iX, int _iY, int _iZ)
-        {
-            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
-                return false;
-            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
-                return false;
-            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
-                return false;
-            return true;
         }
 
         public bool moveToCubePosition(int _iCubeID)
@@ -442,7 +420,8 @@ namespace ControlSystem
             // element 0 is ID, so starts from element 1(X)
             if (lstCoordinates.Count != 0)
             {
-                movebyCoordinates((int)lstCoordinates[1], (int)lstCoordinates[2], (int)lstCoordinates[3]);
+                // needs implementation
+                //movebyCoordinates((int)lstCoordinates[1], (int)lstCoordinates[2], (int)lstCoordinates[3]);
                 return true;
             }
             else
@@ -511,12 +490,10 @@ namespace ControlSystem
 
         public string getCurrentPositionAsString()
         {
-            
             VecPoint _vect;
             _vect = _wrapper.getCurrentPosition();
       
             return (_vect.iX.ToString() + " " + _vect.iY.ToString() + " " + _vect.iZ.ToString() + " " + _vect.iPitch.ToString() + " " + _vect.iRoll.ToString());
-
         }
 
 
@@ -561,60 +538,81 @@ namespace ControlSystem
         #region MovejustOneCordinate
         public bool moveByXCoordinate(int _iX)
         {
-            movementlock.WaitOne();
-            _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
-            _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
-            if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
-                return false;
-            return true;
+            if(hasHomed)
+            {
+                movementlock.WaitOne();
+                _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
+                _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
+                _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
+                if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
+                    return false;
+                return true;
+            }
+            return false;
         }
 
         public bool moveByYCoordinate(int _iY)
         {
-            movementlock.WaitOne();
+            if(hasHomed)
+            {
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
                 return false;
             return true;
+            }
+            return false;
         }
 
 
         public bool moveByZCoordinate(int _iZ)
         {
-            movementlock.WaitOne();
+            if(hasHomed)
+            {
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
                 return false;
             return true;
+            }
+            return false;
         }
 
         public bool moveByPitch(int _pitch)
         {
-            movementlock.WaitOne();
+            if(hasHomed)
+            {
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_PITCH, _pitch))
                 return false;
             return true;
+            }
+            return false;
         }
 
         public bool moveByRoll(int _roll)
         {
-            movementlock.WaitOne();
+            if(hasHomed)
+            {
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ROLL, _roll))
                 return false;
             return true;
+            }
+            return false;
         }
 
         #endregion
+        
     }
 }

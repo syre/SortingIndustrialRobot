@@ -23,7 +23,7 @@ namespace RoboGO.ViewModels
             get { return (mcManualControl); }
             set { mcManualControl = value; }
         }
-        
+
         /// <summary>
         /// Speed of the movements
         /// 
@@ -175,7 +175,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordXIncreasing()
         {
-            mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_INC);
+                mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_INC);
         }
         
         /// <summary>

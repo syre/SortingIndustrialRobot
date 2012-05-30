@@ -78,20 +78,12 @@
     <Content Include="DSLFiler\methods.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DSLFiler\USBC.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SqlInteraction\SqlInteraction.csproj">
       <Project>{AEAEF8D6-5791-41F8-B143-866502B90F25}</Project>
       <Name>SqlInteraction</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DSLFiler\USBC.INI">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
