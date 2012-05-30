@@ -308,7 +308,7 @@ namespace ControlSystem
             int check = DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", 1);
             if (check == 0) return false;
             
-            int check = DLLImport.DefineVector(Convert.ToByte('A'), "secondOne", 1);
+            check = DLLImport.DefineVector(Convert.ToByte('A'), "secondOne", 1);
             if (check == 0) return false;
             
             //Teach robotton = gem positionerne i hukommelsen? troer jeg start fra position nummer 1. -32767 for at sige der skal køres 
