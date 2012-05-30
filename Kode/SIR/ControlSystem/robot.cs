@@ -400,7 +400,7 @@ namespace ControlSystem
 
         public bool moveLinear(string vectorname, int pointindex)
         {
-        	movementlock.WaitOne();
+            movementlock.WaitOne(10000, true);
             return _wrapper.moveLinearWrapped(vectorname, pointindex);
         }
 
@@ -524,13 +524,13 @@ namespace ControlSystem
 
         public bool closeGripper()
         {
-            movementlock.WaitOne(); 
+            movementlock.WaitOne(10000, true); 
            return _wrapper.closeGripperWrapped();
         }
 
         public bool openGripper()
         {
-            movementlock.WaitOne();
+            movementlock.WaitOne(10000, true);
             return _wrapper.openGripperWrapped();
         }
         #endregion
@@ -540,7 +540,7 @@ namespace ControlSystem
         {
             if(hasHomed)
             {
-                movementlock.WaitOne();
+                movementlock.WaitOne(10000, true);
                 _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
                 _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
                 _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -555,7 +555,7 @@ namespace ControlSystem
         {
             if(hasHomed)
             {
-                movementlock.WaitOne();
+                movementlock.WaitOne(10000, true);
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -571,7 +571,7 @@ namespace ControlSystem
         {
             if(hasHomed)
             {
-                movementlock.WaitOne();
+                movementlock.WaitOne(10000, true);
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -586,7 +586,7 @@ namespace ControlSystem
         {
             if(hasHomed)
             {
-                movementlock.WaitOne();
+                movementlock.WaitOne(10000,true);
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -601,7 +601,7 @@ namespace ControlSystem
         {
             if(hasHomed)
             {
-                movementlock.WaitOne();
+                movementlock.WaitOne(10000, true);
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
