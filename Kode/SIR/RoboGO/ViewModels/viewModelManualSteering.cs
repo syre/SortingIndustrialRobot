@@ -23,7 +23,14 @@ namespace RoboGO.ViewModels
             get { return (mcManualControl); }
             set { mcManualControl = value; }
         }
-        
+
+
+        /// <summary>
+        /// setting true if home has been called. prevent error for movebycordinate.
+        /// <summary>
+        private bool hasHomed { get; set; }
+
+
         /// <summary>
         /// Speed of the movements
         /// 
@@ -53,6 +60,8 @@ namespace RoboGO.ViewModels
             {
                 /// \warning Must be checked up later.
             }
+
+            hasHomed = false;
         }
 
         // -Steering: Made as simple interface as possible so minimum of logic required from View´s side.
@@ -175,7 +184,8 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordXIncreasing()
         {
-            mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_INC);
+            if(hasHomed)
+                mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_INC);
         }
         
         /// <summary>
@@ -183,7 +193,8 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordXDecreasing()
         {
-            mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_DEC);
+            if(hasHomed)
+                mcManualControl.moveCoordX(enumIncDec.MANUAL_MOVE_DEC);
         }
         
         /// <summary>
@@ -191,7 +202,8 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordYIncreasing()
         {
-            mcManualControl.moveCoordY(enumIncDec.MANUAL_MOVE_INC);
+            if(hasHomed)
+                mcManualControl.moveCoordY(enumIncDec.MANUAL_MOVE_INC);
         }
         
         /// <summary>
@@ -199,7 +211,8 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordYDecreasing()
         {
-            mcManualControl.moveCoordY(enumIncDec.MANUAL_MOVE_DEC);
+            if(hasHomed)
+                mcManualControl.moveCoordY(enumIncDec.MANUAL_MOVE_DEC);
         }
         
         /// <summary>
@@ -207,7 +220,8 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordZIncreasing()
         {
-            mcManualControl.moveCoordZ(enumIncDec.MANUAL_MOVE_INC);
+            if(hasHomed)
+                mcManualControl.moveCoordZ(enumIncDec.MANUAL_MOVE_INC);
         }
         
         /// <summary>
@@ -215,7 +229,8 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordZDecreasing()
         {
-            mcManualControl.moveCoordZ(enumIncDec.MANUAL_MOVE_DEC);
+            if(hasHomed)
+                mcManualControl.moveCoordZ(enumIncDec.MANUAL_MOVE_DEC);
         }
         
         /// <summary>
@@ -223,7 +238,8 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordPitchIncreasing()
         {
-            mcManualControl.moveCoordPitch(enumIncDec.MANUAL_MOVE_INC);
+            if(hasHomed)
+                mcManualControl.moveCoordPitch(enumIncDec.MANUAL_MOVE_INC);
         }
         
         /// <summary>
@@ -231,7 +247,8 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordPitchDecreasing()
         {
-            mcManualControl.moveCoordPitch(enumIncDec.MANUAL_MOVE_DEC);
+            if(hasHomed)
+                mcManualControl.moveCoordPitch(enumIncDec.MANUAL_MOVE_DEC);
         }
         
         /// <summary>
@@ -239,6 +256,7 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordRollIncreasing()
         {
+            if(hasHomed)
             mcManualControl.moveCoordRoll(enumIncDec.MANUAL_MOVE_INC);
         }
         
@@ -247,7 +265,8 @@ namespace RoboGO.ViewModels
         /// </summary>
         public void moveCoordRollDecreasing()
         {
-            mcManualControl.moveCoordRoll(enumIncDec.MANUAL_MOVE_DEC);
+            if(hasHomed)
+                mcManualControl.moveCoordRoll(enumIncDec.MANUAL_MOVE_DEC);
         }
         #endregion
         #region Other
@@ -257,6 +276,7 @@ namespace RoboGO.ViewModels
         public void seekHome()
         {
             mcManualControl.RobotConnection.homeRobot();
+            hasHomed = true;
         }
         
         /// <summary>
