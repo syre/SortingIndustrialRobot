@@ -167,7 +167,7 @@ namespace ControlSystem
 
                     tempThreadHolder.threadPlaceHolder.Start();
                 }
-                else
+                    else
                     throw new ArgumentException("Thread already started");
             }
 
@@ -192,11 +192,11 @@ namespace ControlSystem
                     {
                         remakeThread(tempThreadHolder);
                     }
-
+                    
                     tempThreadHolder.threadPlaceHolder.Start(_obj);                 
                 }
-
-                throw new ArgumentException("Thread already started");
+                else
+                    throw new ArgumentException("Thread already started");
             }
 
             if(tempThreadHolder == null)
