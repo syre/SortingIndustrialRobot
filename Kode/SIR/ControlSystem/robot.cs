@@ -260,8 +260,8 @@ namespace ControlSystem
         /// <param name="b"></param>
         private static void releaseMovementLock(ref byte b)
         {
-            Thread.Sleep(1000);
             movementlock.Release();
+            Thread.Sleep(1000);
         }
 
         #endregion
@@ -278,7 +278,7 @@ namespace ControlSystem
             _wrapper = Wrapper.getInstance();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
-           Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 60000);
+           Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 600000);
             movementlock = new Semaphore(1,1);
             _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
         }
@@ -302,25 +302,34 @@ namespace ControlSystem
         {
             //skal placeres med income position
             int[] iArray = new int[] { 200000, 200000, 100000, 100000, 1000000 };
+            int[] iArray2 = new int[] { 20000, 20000, 10000, 10000, 10000 };
 
             //Define navnet på en vector som har KUN 1 position i sig og 'A' for at sige det er robotten
             int check = DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", 1);
+            if (check == 0) return false;
+            
+            int check = DLLImport.DefineVector(Convert.ToByte('A'), "secondOne", 1);
             if (check == 0) return false;
             
             //Teach robotton = gem positionerne i hukommelsen? troer jeg start fra position nummer 1. -32767 for at sige der skal køres 
             //relative kordinates
             check = DLLImport.Teach("firstOne", 1, iArray, 5, -32767);
             if (check == 0) return false;
+            
+            check = DLLImport.Teach("secondOne", 1, iArray2, 5, -32767);
+            if (check == 0) return false;
 
             //Home robotten før vi kører den til den givne position
             check = DLLImport.Home(Convert.ToByte('A'), dgateEventHandlerHoming);
             if (check == 0) return false;
 
-            //Close the manual movement
-            //DLLImport.CloseManual();
-
             //Flyt robotten til positionen
-            check =DLLImport.MoveLinear("firstOne", 1, null, 0);
+            movementlock.WaitOne();
+            check =DLLImport.MoveLinear("firstOne", 1, null,0);
+            if (check == 0) return false;
+            
+            movementlock.WaitOne();
+            check = DLLImport.MoveLinear("secondOne",1,null,0);
             if (check == 0) return false;
 
             return (check == 1);
@@ -604,5 +613,6 @@ namespace ControlSystem
         }
 
         #endregion
+        
     }
 }
