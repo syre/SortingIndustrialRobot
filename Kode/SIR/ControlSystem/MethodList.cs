@@ -19,7 +19,6 @@ namespace ControlSystem
                 fs = new FileStream(@"DSLFiler\IntelliSenseKnows.txt", FileMode.Open, FileAccess.Read);
                 sr = new StreamReader(fs, Encoding.Default);
                 char[] separators = { ':' };
-                StringWriter swr = new StringWriter();
 
                 while (!sr.EndOfStream)
                 {
