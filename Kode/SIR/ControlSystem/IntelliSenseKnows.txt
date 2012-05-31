@@ -1,5 +1,3 @@
-Husk at indsætte nye funktionsnavne efter alfabetisk rækkefølge + ':' efter hver nyt funktion!!:
-
 closeGripper():
 defineAbsoluteVector(vector):
 defineAbsoluteVectorFromTuple(name,tuple): 
