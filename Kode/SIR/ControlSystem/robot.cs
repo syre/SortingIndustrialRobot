@@ -227,7 +227,9 @@ namespace ControlSystem
         private DLL.DgateCallBackByteRefArg dgateEventHandlerHoming = homeEvent;
         private DLL.DgateCallBackByteRefArg dgateMovementStarted = takeMovementLock;
         private DLL.DgateCallBackByteRefArg dgateMovementStopped = releaseMovementLock;
+        private DLL.DgateCallBackLongArg dgateWatchDigitalInput = digitalInputChanged;
         private static Semaphore movementlock;
+        public static bool cubeAtConveyorBelt { get; set; }
 
         public Semaphore Sem
         {
@@ -272,6 +274,14 @@ namespace ControlSystem
             }
         }
 
+        private static void digitalInputChanged(long l)
+        {
+            if (cubeAtConveyorBelt)
+                cubeAtConveyorBelt = false;
+            else
+                cubeAtConveyorBelt = true;
+        }
+
         #endregion
 
         #region general robot methods
@@ -288,7 +298,9 @@ namespace ControlSystem
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
            //Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 600000);
             movementlock = new Semaphore(1,1);
+            cubeAtConveyorBelt = true;
             _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
+            _wrapper.watchDigitalInputWrapped(dgateWatchDigitalInput);
         }
 
         private void initialization()
