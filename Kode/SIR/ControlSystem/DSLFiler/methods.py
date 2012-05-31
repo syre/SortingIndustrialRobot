@@ -214,3 +214,9 @@ def getCurrentPosition():
 
 def getWeight():
     return _robot.getWeight()
+
+def teach(vector):
+    return _robot.teach(vector)
+
+def moveLinear(vector, index):
+    return _robot.moveLinear(vector, index)

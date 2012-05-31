@@ -266,7 +266,7 @@ namespace ControlSystem
                 movementlock.Release();
 
             }
-            catch (SemaphoreFullException s)
+            catch (SemaphoreFullException)
             {
 
             }
@@ -359,7 +359,7 @@ namespace ControlSystem
             {
                 movementlock.Release();
             }
-            catch (SemaphoreFullException s)
+            catch (SemaphoreFullException)
             {
  
             }
@@ -553,7 +553,6 @@ namespace ControlSystem
       
             return (_vect.iX.ToString() + " " + _vect.iY.ToString() + " " + _vect.iZ.ToString() + " " + _vect.iPitch.ToString() + " " + _vect.iRoll.ToString());
         }
-
 
         #endregion
 
