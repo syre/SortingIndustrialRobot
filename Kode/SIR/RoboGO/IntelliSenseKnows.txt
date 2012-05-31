@@ -34,4 +34,3 @@ stopAllMovement():
 teach(vector):
 removeBox(box_id):
 Test():
-

@@ -253,7 +253,7 @@ namespace ControlSystem
         /// <param name="pitch">Parameter is of which pitch to use</param>
         /// <param name="roll">Parameter is of which roll to use</param>
         /// <returns>Always true</returns>
-        public bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll)
+        public bool moveByAbsoluteCoordinates(string name,int x, int y, int z, int pitch, int roll)
         {
             iuiOutput.writeLine("Absolute Coordinate X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", x,y,z,pitch,roll);
             Currentposition.iX = x;
@@ -273,7 +273,7 @@ namespace ControlSystem
         /// <param name="_iPitch">Parameter of which Pitch to use</param>
         /// <param name="_iRoll">Parameter of which Roll to use</param>
         /// <returns>Always true</returns>
-        public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
+        public bool moveByRelativeCoordinates(string name,int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
             iuiOutput.writeLine("Robot moving with relative coordinates X: {0}, Y: {1}, Z: {2}, Pitch: {3}, Roll: {4} ", _iX, _iY, _iZ, _iPitch, _iRoll);
             Currentposition.iX += _iX;
@@ -401,7 +401,7 @@ namespace ControlSystem
         }
 
         
-        public bool moveToCubePosition(int _iCubeID)
+        public bool moveToCubePosition(string name,int _iCubeID)
         {
             iuiOutput.writeLine("Moved to position with cube ID"+_iCubeID);
             return(true);

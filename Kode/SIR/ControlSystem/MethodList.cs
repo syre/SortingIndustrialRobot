@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace ControlSystem
 {
@@ -9,25 +11,40 @@ namespace ControlSystem
     {
         public MethodList()
         {
-            Add("closeGripper()");
-            Add("insertBox(positionid,length,width,depth,weight)");
-            Add("isOnline()");
-            Add("moveBase(speed)");
-            Add("moveByAbsoluteCoordinates(x,y,z,pitch,roll)");
-            Add("moveByCoordinates(x,y,z)");
-            Add("moveByRelativeCoordinates(x,y,z,pitch,roll)");
-            Add("moveConveyorBelt(speed)");
-            Add("moveElbow(speed)");
-            Add("moveGripper(speed)");
-            Add("moveShoulder(speed)");
-            Add("moveToCubePosition(cubeid)");
-            Add("moveWristRoll(speed)");
-            Add("openGripper()");
-            Add("seekHome()");
-            Add("stopAllMovement()");
-            Add("removeBox(boxid)");
-            Add("time(group,sec)");
-            Add("speed(group,percent)");
+            FileStream fs = null;
+            StreamReader sr = null;
+
+            try
+            {
+                fs = new FileStream(@"DSLFiler\IntelliSenseKnows.txt", FileMode.Open, FileAccess.Read);
+                sr = new StreamReader(fs, Encoding.Default);
+                char[] separators = { ':' };
+
+                while (!sr.EndOfStream)
+                {
+                    string str = sr.ReadLine();
+                    if (str != "")
+                    {
+                        string[] tokens = str.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+
+                        foreach (var token in tokens)
+                        {
+                            Add(token);    
+                        }
+                
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Intellisense is not working");
+            }
+            finally
+            {
+                sr.Close();
+                fs.Close();
+            }
         }
     }
 }

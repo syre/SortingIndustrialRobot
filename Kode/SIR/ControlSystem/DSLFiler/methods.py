@@ -149,8 +149,8 @@ def removeBox(box_id):
         print "box removed succesfully"
         return True
 
-def moveToCubePosition(cube_id):
-        if (_robot.moveToCubePosition == True):
+def moveToCubePosition(name,cube_id):
+        if (_robot.moveToCubePosition(name,cube_id) == True):
                 print "moved succesfully to cube position"
                 return True
         else:
@@ -163,7 +163,7 @@ def defineRelativeVectorFromTuple(name,tuple):
         for element in tuple:
                 vec = ControlSystem.VecPoint(element[0],element[1],element[2],element[3],element[4])
                 vector.addPoint(vec)
-        if (_robot.defineRelativeVector(vector) == True):
+        if (_robot.defineVector(vector) == True):
                 print "vector defined"
         else:
             print "vector could not be defined"
@@ -181,7 +181,7 @@ def defineAbsoluteVectorFromTuple(name,tuple):
         for element in tuple:
                 vec = ControlSystem.VecPoint(element[0],element[1],element[2],element[3],element[4])
                 vector.addPoint(vec)
-        if (_robot.defineAbsoluteVector(vector) == True):
+        if (_robot.defineVector(vector) == True):
                 print "vector defined"
         else:
                 print "vector could not be defined"
@@ -199,8 +199,8 @@ def Test():
 def moveByAbsoluteVector(vector):
     return _robot.moveByAbsoluteVector(vector)
 
-def defineAbsoluteVector(vector):
-    return _robot.defineAbsoluteVector(vector)
+def defineVector(vector):
+    return _robot.defineVector(vector)
 
 def moveByXCoordinate(x):
     return _robot.moveByXCoordinate(x)
@@ -219,9 +219,6 @@ def moveByRoll(roll):
 
 def getJawMilimeters():
     return _robot.getJawOpeningWidthMilimeters()
-
-def defineRelativeVector(vector):
-    return _robot.defineRelativeVector(vector)
 
 def moveByRelativeVector(vector):
         return _robot.moveByRelativeVector(vector)

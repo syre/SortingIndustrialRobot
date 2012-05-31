@@ -19,7 +19,6 @@ namespace SIR.Tests
             _user.userName = _str;
 
             Assert.AreEqual(_str, _user.userName);
-
         }
 
         [Test]
@@ -30,18 +29,6 @@ namespace SIR.Tests
             _user.userName = _str;
 
             Assert.AreEqual(_str, _user.userName);
-
-        }
-
-        [Test]
-        public void MethodList_Constructor_Test()
-        {
-            MethodList _methodList = new MethodList();
-            Assert.AreEqual(19,_methodList.Count());
         }
     }
-
-
-
-
 }

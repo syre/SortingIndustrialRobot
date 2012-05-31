@@ -76,6 +76,9 @@
     <Content Include="DSLFiler\commands.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DSLFiler\IntelliSenseKnows.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DSLFiler\methods.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
