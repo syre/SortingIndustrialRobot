@@ -1,4 +1,11 @@
 import time
+# DISABLE TIMER...!
+if (_robot.cubeAtConveyorBelt == False):
+	moveConveyorBelt(-50)
+while(_robot.cubeAtConveyorBelt == False):
+	time.sleep(0.1)		
+stopAllMovement()
+
 moveLinear("AutoSort", 1)
 openGripper()
 moveLinear("AutoSort", 2)
