@@ -425,6 +425,7 @@ namespace SIR.Tests
 
             robot.wrapper = wp;
             robot.STK = serialSTK;
+            robot.homeRobot();
 
             robot.moveByXCoordinate(10);
 
@@ -442,6 +443,7 @@ namespace SIR.Tests
 
             robot.wrapper = wp;
             robot.STK = serialSTK;
+            robot.homeRobot();
 
             Assert.IsFalse(robot.moveByXCoordinate(10));
         }
@@ -457,6 +459,7 @@ namespace SIR.Tests
 
             robot.wrapper = wp;
             robot.STK = serialSTK;
+            robot.homeRobot();
 
             robot.moveByYCoordinate(10);
 
@@ -474,6 +477,7 @@ namespace SIR.Tests
 
             robot.wrapper = wp;
             robot.STK = serialSTK;
+            robot.homeRobot();
 
             Assert.IsFalse(robot.moveByYCoordinate(10));
         }
@@ -489,6 +493,7 @@ namespace SIR.Tests
 
             robot.wrapper = wp;
             robot.STK = serialSTK;
+            robot.homeRobot();
 
             robot.moveByZCoordinate(10);
 
@@ -521,6 +526,7 @@ namespace SIR.Tests
 
             robot.wrapper = wp;
             robot.STK = serialSTK;
+            robot.homeRobot();
 
             robot.moveByPitch(10);
 
@@ -538,6 +544,7 @@ namespace SIR.Tests
 
             robot.wrapper = wp;
             robot.STK = serialSTK;
+            robot.homeRobot();
 
             Assert.IsFalse(robot.moveByPitch(10));
         }
@@ -553,6 +560,7 @@ namespace SIR.Tests
 
             robot.wrapper = wp;
             robot.STK = serialSTK;
+            robot.homeRobot();
 
             robot.moveByRoll(10);
 
