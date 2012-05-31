@@ -157,25 +157,42 @@ def moveToCubePosition(cube_id):
                 print "moved unsuccessfully / could not find cube with cube_id"
                 return False
 
-
-vector = [(10,10,10,10,10),(20,20,20,20,20)]
-
-#def moveByRelativeVector(name,vector):
-#        print "stay in school and remember to home the robot kids!"
-#        if (_robot.defineRelativeVector(name,len(vector)) == True):
-#                print "vector defined"
-#                for element in vector:
-#                        vec = ControlSystem.VecPoint(element[0],element[1],element[2],element[3],element[4])
-#                        _robot.vectorlist[_robot.vectorlist.Count-1].addPoint(vec)
-#                if (_robot.teach(_robot.vectorlist[_robot.vectorlist.Count-1]) == False):
-#                        print "robot could not be taught"
-#                if (_robot.moveLinear(name,1) == False):
-#                        print "could not move robot linear"
-#                return True
-#        else:
-#                print "relative vector didnt work"
-#                return False
-        
+def defineRelativeVectorFromTuple(name,tuple):
+        print "stay in school and remember to home the robot kids!"
+        vector = ControlSystem.RelCoordSirVector(name)
+        for element in tuple:
+                vec = ControlSystem.VecPoint(element[0],element[1],element[2],element[3],element[4])
+                vector.addPoint(vec)
+        if (_robot.defineRelativeVector(vector) == True):
+                print "vector defined"
+        else:
+            print "vector could not be defined"
+            return False
+        if (teach(vector) == True):
+                print "robot taught"
+                return True
+        else:
+                print "robot could not be taught"
+                return False
+            
+def defineAbsoluteVectorFromTuple(name,tuple):
+        print "stay in school and remember to home the robot kids!"
+        vector = ControlSystem.AbsCoordSirVector(name)
+        for element in tuple:
+                vec = ControlSystem.VecPoint(element[0],element[1],element[2],element[3],element[4])
+                vector.addPoint(vec)
+        if (_robot.defineAbsoluteVector(vector) == True):
+                print "vector defined"
+        else:
+                print "vector could not be defined"
+                return False
+        if (teach(vector) == True):
+                print "robot taught"
+                return True
+        else:
+                print "robot could not be taught"
+                return False
+                
 def Test():
 	return _robot.moveToAPosition()	
 
