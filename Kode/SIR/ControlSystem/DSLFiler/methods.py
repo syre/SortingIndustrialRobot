@@ -160,26 +160,57 @@ def moveToCubePosition(cube_id):
 
 vector = [(10,10,10,10,10),(20,20,20,20,20)]
 
-def moveByRelativeVector(name,vector):
-        print "stay in school and remember to home the robot kids!"
-        if (_robot.defineRelativeVector(name,len(vector)) == True):
-                print "vector defined"
-                for element in vector:
-                        vec = ControlSystem.VecPoint(element[0],element[1],element[2],element[3],element[4])
-                        _robot.vectorlist[_robot.vectorlist.Count-1].addPoint(vec)
-                if (_robot.teach(_robot.vectorlist[_robot.vectorlist.Count-1]) == False):
-                        print "robot could not be taught"
-                if (_robot.moveLinear(name,1) == False):
-                        print "could not move robot linear"
-                return True
-        else:
-                print "relative vector didnt work"
-                return False
+#def moveByRelativeVector(name,vector):
+#        print "stay in school and remember to home the robot kids!"
+#        if (_robot.defineRelativeVector(name,len(vector)) == True):
+#                print "vector defined"
+#                for element in vector:
+#                        vec = ControlSystem.VecPoint(element[0],element[1],element[2],element[3],element[4])
+#                        _robot.vectorlist[_robot.vectorlist.Count-1].addPoint(vec)
+#                if (_robot.teach(_robot.vectorlist[_robot.vectorlist.Count-1]) == False):
+#                        print "robot could not be taught"
+#                if (_robot.moveLinear(name,1) == False):
+#                        print "could not move robot linear"
+#                return True
+#        else:
+#                print "relative vector didnt work"
+#                return False
         
-def Yusuf():
+def Test():
 	return _robot.moveToAPosition()	
 
 def moveByAbsoluteVector(vector):
-        print "dummy"
+    return _robot.moveByAbsoluteVector(vector)
 
+def defineAbsoluteVector(vector):
+    return _robot.defineAbsoluteVector(vector)
 
+def moveByXCoordinate(x):
+    return _robot.moveByXCoordinate(x)
+
+def moveByYCoordinate(y):
+    return _robot.moveByYCoordinate(x)
+
+def moveByZCoordinate(z):
+    return _robot.moveByXCoordinate(z)
+
+def moveByPitch(pitch):
+    return _robot.moveByPitch(pitch)
+
+def moveByRoll(roll):
+    return _robot.moveByRoll(roll)
+
+def getJawMilimeters():
+    return _robot.getJawOpeningWidthMilimeters()
+
+def defineRelativeVector(vector):
+    return _robot.defineRelativeVector(vector)
+
+def moveByRelativeVector(vector):
+        return _robot.moveByRelativeVector(vector)
+    
+def getCurrentPosition():
+    return _robot.getCurrentPositionAsString()
+
+def getWeight():
+    return _robot.getWeight()

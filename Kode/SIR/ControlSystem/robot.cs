@@ -6,6 +6,7 @@ using System.Data;
 using System.Management.Instrumentation;
 using System.Threading;
 using SqlInteraction;
+using System.Windows.Forms;
 
 namespace ControlSystem
 {
@@ -260,8 +261,15 @@ namespace ControlSystem
         /// <param name="b"></param>
         private static void releaseMovementLock(ref byte b)
         {
-            movementlock.Release();
-            Thread.Sleep(1000);
+            try
+            {
+                movementlock.Release();
+
+            }
+            catch (SemaphoreFullException s)
+            {
+
+            }
         }
 
         #endregion
@@ -278,7 +286,7 @@ namespace ControlSystem
             _wrapper = Wrapper.getInstance();
             initialization();
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
-           Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 600000);
+           //Time(Wrapper.enumAxisSettings.AXIS_ROBOT, 600000);
             movementlock = new Semaphore(1,1);
             _wrapper.watchMotionWrapped(dgateMovementStopped, dgateMovementStarted);
         }
@@ -300,44 +308,61 @@ namespace ControlSystem
 
         public bool moveToAPosition()
         {
-            //skal placeres med income position
-            int[] iArray = new int[] { 200000, 200000, 100000, 100000, 1000000 };
-            int[] iArray2 = new int[] { 20000, 20000, 10000, 10000, 10000 };
+            ////skal placeres med income position
+            //int[] iArray = new int[] { 200000, 200000, 100000, 100000, 1000000 };
+            //int[] iArray2 = new int[] { -200000, -200000, -100000, -100000, -1000000 };
+            ////Define navnet på en vector som har KUN 1 position i sig og 'A' for at sige det er robotten
+            //int check = DLLImport.DefineVector((byte)'A', "firstOne", 2);
+            //if (check == 0) return false;
 
-            //Define navnet på en vector som har KUN 1 position i sig og 'A' for at sige det er robotten
-            int check = DLLImport.DefineVector(Convert.ToByte('A'), "firstOne", 1);
-            if (check == 0) return false;
+            ////Home robotten før vi kører den til den givne position
+            //check = DLLImport.Home((byte)'A', dgateEventHandlerHoming);
+            //if (check == 0) return false;
             
-            check = DLLImport.DefineVector(Convert.ToByte('A'), "secondOne", 1);
-            if (check == 0) return false;
+            //check = DLLImport.Teach("firstOne", 1, iArray, 5, -32767);
+            //if (check == 0) return false;
+
+            //check = DLLImport.Teach("firstOne", 2, iArray2, 5, -32767);
+            //if (check == 0) return false;
+
+            ////Flyt robotten til positionen
+            //movementlock.WaitOne();
+            //check =DLLImport.MoveLinear("firstOne", 1, null,0);
+            //if (check == 0) return false;
+
+            //MessageBox.Show("Moo", "Error", MessageBoxButtons.OK);
+            //movementlock.WaitOne();
+            //check = DLLImport.MoveLinear("firstOne",2,null,0);
+            //if (check == 0) return false;
+
+            //return (check == 1);
             
-            //Teach robotton = gem positionerne i hukommelsen? troer jeg start fra position nummer 1. -32767 for at sige der skal køres 
-            //relative kordinates
-            check = DLLImport.Teach("firstOne", 1, iArray, 5, -32767);
-            if (check == 0) return false;
+            SIRVector temp = new RelCoordSirVector("yusuf");
+            temp.addPoint(new VecPoint(10000,10000,70000,10000,10000));
             
-            check = DLLImport.Teach("secondOne", 1, iArray2, 5, -32767);
-            if (check == 0) return false;
-
-            //Home robotten før vi kører den til den givne position
-            check = DLLImport.Home(Convert.ToByte('A'), dgateEventHandlerHoming);
-            if (check == 0) return false;
-
-            //Flyt robotten til positionen
-            movementlock.WaitOne();
-            check =DLLImport.MoveLinear("firstOne", 1, null,0);
-            if (check == 0) return false;
-            
-            movementlock.WaitOne();
-            check = DLLImport.MoveLinear("secondOne",1,null,0);
-            if (check == 0) return false;
-
-            return (check == 1);
-
+            if (!_wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, temp.Name, (short)temp.getSize()))
+                return false;
+            if (!_wrapper.teachWrapped(temp))
+                return false;
+            for (int i = 0; i < temp.getSize(); i++)
+            {
+                movementlock.WaitOne();
+                if (!_wrapper.moveLinearWrapped(temp.Name,i+1))
+                    return false;
+            }
+            return true;
         }
 
         public bool stopAllMovement()
         {
+            try
+            {
+                movementlock.Release();
+            }
+            catch (SemaphoreFullException s)
+            {
+ 
+            }
             return _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT);
         }
 
@@ -372,8 +397,6 @@ namespace ControlSystem
 
         public bool moveByAbsoluteCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
         {
-            if (!defineRelativeVector("yusuf", 1))
-                return false;
             SIRVector temp = new AbsCoordSirVector("yusuf");
             temp.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll));
             if (!teach(temp))
@@ -383,14 +406,44 @@ namespace ControlSystem
             return true;
         }
 
-        public bool defineAbsoluteVector(string vectorname, int points)
+        public bool moveByRelativeVector(RelCoordSirVector rel)
         {
-            return _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, vectorname, (short) points);
+            if (!teach(rel))
+                return false;
+         
+            for (int i = 0; i < rel.getSize(); i++)
+            {
+                movementlock.WaitOne();
+
+                if (!_wrapper.moveLinearWrapped(rel.Name, (i+1)))
+                    return false;
+            }
+            return true;
         }
 
-        public bool defineRelativeVector(string vectorname, int points)
+        public bool defineRelativeVector(RelCoordSirVector rel)
         {
-            return _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, vectorname, (short)points);
+            return _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, rel.Name, (short)rel.getSize());
+        }
+
+        public bool moveByAbsoluteVector(AbsCoordSirVector abs)
+        {
+            if (!teach(abs))
+                return false;
+
+            for (int i = 0; i < abs.getSize(); i++)
+            {
+                movementlock.WaitOne();
+
+                if (!_wrapper.moveLinearWrapped(abs.Name, (i + 1)))
+                    return false;
+            }
+            return true;
+        }
+
+        public bool defineAbsoluteVector(AbsCoordSirVector abs)
+        {
+            return _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, abs.Name, (short) abs.getSize());
         }
 
         public bool teach(SIRVector vector)
@@ -400,7 +453,7 @@ namespace ControlSystem
 
         public bool moveLinear(string vectorname, int pointindex)
         {
-            movementlock.WaitOne(10000, true);
+            movementlock.WaitOne();
             return _wrapper.moveLinearWrapped(vectorname, pointindex);
         }
 
@@ -432,6 +485,7 @@ namespace ControlSystem
         #region Axis movements
         public bool moveBase(int _iSpeed)
         {
+            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -440,6 +494,7 @@ namespace ControlSystem
 
         public bool moveShoulder(int _iSpeed)
         {
+            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -448,6 +503,7 @@ namespace ControlSystem
 
         public bool moveElbow(int _iSpeed)
         {
+            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -456,6 +512,7 @@ namespace ControlSystem
 
         public bool moveWristPitch(int _iSpeed)
         {
+            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -464,6 +521,7 @@ namespace ControlSystem
 
         public bool moveWristRoll(int _iSpeed)
         {
+            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -472,6 +530,7 @@ namespace ControlSystem
 
         public bool moveGripper(int _iSpeed)
         {
+            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -480,13 +539,12 @@ namespace ControlSystem
 
         public bool moveConveyerBelt(int _iSpeed)
         {
+            movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, _iSpeed);
         }
-
-
 
         public string getCurrentPositionAsString()
         {
@@ -524,13 +582,13 @@ namespace ControlSystem
 
         public bool closeGripper()
         {
-            movementlock.WaitOne(10000, true); 
+            movementlock.WaitOne(); 
            return _wrapper.closeGripperWrapped();
         }
 
         public bool openGripper()
         {
-            movementlock.WaitOne(10000, true);
+            movementlock.WaitOne();
             return _wrapper.openGripperWrapped();
         }
         #endregion
@@ -540,7 +598,7 @@ namespace ControlSystem
         {
             if(hasHomed)
             {
-                movementlock.WaitOne(10000, true);
+                movementlock.WaitOne();
                 _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
                 _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
                 _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -555,7 +613,7 @@ namespace ControlSystem
         {
             if(hasHomed)
             {
-                movementlock.WaitOne(10000, true);
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -566,12 +624,11 @@ namespace ControlSystem
             return false;
         }
 
-
         public bool moveByZCoordinate(int _iZ)
         {
             if(hasHomed)
             {
-                movementlock.WaitOne(10000, true);
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -586,7 +643,7 @@ namespace ControlSystem
         {
             if(hasHomed)
             {
-                movementlock.WaitOne(10000,true);
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -601,7 +658,7 @@ namespace ControlSystem
         {
             if(hasHomed)
             {
-                movementlock.WaitOne(10000, true);
+                movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
             _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
@@ -612,7 +669,6 @@ namespace ControlSystem
             return false;
         }
 
-        #endregion
-        
+        #endregion       
     }
 }

@@ -53,7 +53,7 @@ namespace ControlSystem
     {
         // Members
         protected string sName;
-        protected List<VecPoint> lstPoints;
+        public List<VecPoint> lstPoints;
 		/// <summary>
 		/// Type of vector.(Should be set in classes inheriting from this.)
 		/// </summary>

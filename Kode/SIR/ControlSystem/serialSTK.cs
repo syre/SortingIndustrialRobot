@@ -70,7 +70,7 @@ namespace ControlSystem
                 serialPort.Open();
                 serialPort.Write("R\n");
                 temp = Convert.ToDouble(serialPort.ReadLine());
-                temp = (double)950 / (double)1023 * Math.Round(temp, 2);
+                temp = (double)1000 / (double)1023 * Math.Round(temp, 2)-76.7;
                 serialPort.Close();
                 return temp;
             }
