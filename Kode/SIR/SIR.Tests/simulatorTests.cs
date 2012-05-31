@@ -98,7 +98,7 @@ namespace SIR.Tests
         public void moveByAbsoluteCoordinates_CallingIt_ReturnsTrue()
         {
             Assert.IsTrue(simTestObj.homeRobot());
-            Assert.IsTrue(simTestObj.moveByAbsoluteCoordinates(1, 1, 1, 1, 1));
+            Assert.IsTrue(simTestObj.moveByAbsoluteCoordinates("test",1, 1, 1, 1, 1));
         }
         [Test]
         public void moveByAbsoluteCoordinates_CallingIt_WritesToUI()
@@ -106,7 +106,7 @@ namespace SIR.Tests
             IUI iuiMock = MockRepository.GenerateMock<IUI>();
             simTestObj.IUIOutput = iuiMock;
 
-            simTestObj.moveByAbsoluteCoordinates(1, 1, 1, 1, 1);
+            simTestObj.moveByAbsoluteCoordinates("test",1, 1, 1, 1, 1);
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
@@ -114,7 +114,7 @@ namespace SIR.Tests
         [Test]
         public void moveByRelativeCoordinates_CallingIt_ReturnsTrue()
         {
-            Assert.IsTrue(simTestObj.moveByRelativeCoordinates(1, 1, 1, 1, 1));
+            Assert.IsTrue(simTestObj.moveByRelativeCoordinates("test",1, 1, 1, 1, 1));
         }
         [Test]
         public void moveByRelativeCoordinates_CallingIt_WritesToUI()
@@ -122,7 +122,7 @@ namespace SIR.Tests
             IUI iuiMock = MockRepository.GenerateMock<IUI>();
             simTestObj.IUIOutput = iuiMock;
 
-            simTestObj.moveByRelativeCoordinates(1, 1, 1, 1, 1);
+            simTestObj.moveByRelativeCoordinates("test",1, 1, 1, 1, 1);
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
@@ -352,7 +352,7 @@ namespace SIR.Tests
             IUI iuiMock = MockRepository.GenerateMock<IUI>();
             simTestObj.IUIOutput = iuiMock;
 
-            simTestObj.moveToCubePosition(100); // Dummy values
+            simTestObj.moveToCubePosition("test",100); // Dummy values
 
             iuiMock.AssertWasCalled(t => t.writeLine(Arg<string>.Is.Anything, Arg<string>.Is.Anything));
         }
