@@ -149,8 +149,8 @@ def removeBox(box_id):
         print "box removed succesfully"
         return True
 
-def moveToCubePosition(cube_id):
-        if (_robot.moveToCubePosition == True):
+def moveToCubePosition(name,cube_id):
+        if (_robot.moveToCubePosition(name,cube_id) == True):
                 print "moved succesfully to cube position"
                 return True
         else:

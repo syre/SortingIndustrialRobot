@@ -71,7 +71,7 @@ namespace ControlSystem
         /// <param name="pitch"> pitch robot arm</param>
         /// <param name="roll"> roll of robot arm</param>
         /// <returns></returns>
-        bool moveByAbsoluteCoordinates(int x, int y, int z, int pitch, int roll);
+        bool moveByAbsoluteCoordinates(string vectorname,int x, int y, int z, int pitch, int roll);
         /// <summary>
         /// function for moving by relative coordinates
         /// </summary>
@@ -81,7 +81,7 @@ namespace ControlSystem
         /// <param name="_iPitch"></param>
         /// <param name="_iRoll"></param>
         /// <returns></returns>
-        bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll);
+        bool moveByRelativeCoordinates(string vectorname,int _iX, int _iY, int _iZ, int _iPitch, int _iRoll);
         /// <summary>
         ///  Returns jaw opening in milimeters
         /// </summary>
@@ -162,7 +162,7 @@ namespace ControlSystem
         /// Moves to position from Cube ID.(From Database.)
         /// </summary>
         /// <param name="_iCubeID">ID of Cube.</param>
-        bool moveToCubePosition(int _iCubeID);
+        bool moveToCubePosition(string name,int _iCubeID);
 
         /// <summary>
         /// Sets the time future movement should take.
@@ -407,13 +407,15 @@ namespace ControlSystem
 
         #region Coordinate movements
 
-        public bool moveByAbsoluteCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
+        public bool moveByAbsoluteCoordinates(string vectorname,int _iX, int _iY, int _iZ, int _iPitch, int _iRoll) // subject to change
         {
-            SIRVector temp = new AbsCoordSirVector("yusuf");
+            SIRVector temp = new AbsCoordSirVector(vectorname);
             temp.addPoint(new VecPoint(_iX,_iY,_iZ,_iPitch,_iRoll));
+            if (!defineVector(temp))
+                return false;
             if (!teach(temp))
                 return false;
-            if (!moveLinear("yusuf", 1))
+            if (!moveLinear(vectorname, 1))
                 return false;
             return true;
         }
@@ -453,9 +455,9 @@ namespace ControlSystem
             return true;
         }
 
-        public bool defineAbsoluteVector(AbsCoordSirVector abs)
+        public bool defineVector(SIRVector sir)
         {
-            return _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, abs.Name, (short) abs.getSize());
+            return _wrapper.defineVectorWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, sir.Name, (short) sir.getSize());
         }
 
         public bool teach(SIRVector vector)
@@ -469,25 +471,32 @@ namespace ControlSystem
             return _wrapper.moveLinearWrapped(vectorname, pointindex);
         }
 
-        public bool moveByRelativeCoordinates(int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
+        public bool moveByRelativeCoordinates(string vectorname,int _iX, int _iY, int _iZ, int _iPitch, int _iRoll)
         {
-            SIRVector tempRelVector = new RelCoordSirVector("relativeVector");
-            tempRelVector.addPoint(new VecPoint(_iX, _iY, _iZ, _iPitch, _iRoll));
-
-            return false;
+            SIRVector temp = new RelCoordSirVector(vectorname);
+            temp.addPoint(new VecPoint(_iX, _iY, _iZ, _iPitch, _iRoll));
+            if (!defineVector(temp))
+                return false;
+            if (!teach(temp))
+                return false;
+            if (!moveLinear(vectorname, 1))
+                return false;
+            return true;
         }
 
-        public bool moveToCubePosition(int _iCubeID)
+        public bool moveToCubePosition(string vectorname,int _iCubeID)
         {
-            var sqlcmdCommand = SQLHandler.GetInstance.makeCommand("SELECT ID FROM Position WHERE ID = " + _iCubeID);
+            var sqlcmdCommand = SQLHandler.GetInstance.makeCommand("SELECT * FROM Position WHERE PositionID = " + _iCubeID);
             var isqlrdrReader = SQLHandler.GetInstance.runQuery(sqlcmdCommand, "Read");
             var lstCoordinates = isqlrdrReader.readRow();
             // element 0 is ID, so starts from element 1(X)
             if (lstCoordinates.Count != 0)
             {
                 // needs implementation
-                //movebyCoordinates((int)lstCoordinates[1], (int)lstCoordinates[2], (int)lstCoordinates[3]);
-                return true;
+                if (moveByAbsoluteCoordinates(vectorname,(int)lstCoordinates[1], (int)lstCoordinates[2], (int)lstCoordinates[3], (int)lstCoordinates[4], (int)lstCoordinates[5]))
+                    return true;
+             
+                return false;
             }
             else
                 return false;
@@ -563,7 +572,7 @@ namespace ControlSystem
             VecPoint _vect;
             _vect = _wrapper.getCurrentPosition();
       
-            return (_vect.iX.ToString() + " " + _vect.iY.ToString() + " " + _vect.iZ.ToString() + " " + _vect.iPitch.ToString() + " " + _vect.iRoll.ToString());
+            return _vect.ToString();
         }
 
         #endregion
