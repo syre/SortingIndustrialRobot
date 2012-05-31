@@ -154,7 +154,7 @@ namespace RoboGO
                 tempSec = Convert.ToInt32(e);
                 vmmsViewModel.setTimeSecond(tempSec);
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 
             }
