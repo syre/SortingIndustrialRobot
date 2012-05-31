@@ -16,16 +16,16 @@ namespace RoboGO
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TextBox txtbox;
         // Members and properties
         private IDEViewModel idevmViewModelIDE;
         private MainWindowViewModel _mainwindowviewmodel;
-        private IntellisenseViewModel sense;
+        private IntellisenseViewModel ivmIntellisenseLogic;
+        private TextBox txtboxCurrentIDECode;
 
-        public IntellisenseViewModel Sense
+        public IntellisenseViewModel ViewModelIntellisense
         {
-            get { return sense; }
-            set { sense = value; }
+            get { return ivmIntellisenseLogic; }
+            set { ivmIntellisenseLogic = value; }
         }
 
         public IDEViewModel ViewModelIDE
@@ -47,12 +47,12 @@ namespace RoboGO
             idevmViewModelIDE = new IDEViewModel();
             infoViewModel = new InfoViewModel(DatabaseTableValues);
             _mainwindowviewmodel = new MainWindowViewModel(pgbStyresystem);
-            Sense = new IntellisenseViewModel();
+            ViewModelIntellisense = new IntellisenseViewModel();
             // Data context
             tabIDE.DataContext = idevmViewModelIDE;
             tabInfo.DataContext = infoViewModel;
             pgbStyresystem.DataContext = _mainwindowviewmodel;
-            list.DataContext = Sense.UpdatedCollection;
+            list.DataContext = ViewModelIntellisense.UpdatedCollection;
         }
 
         #region Events
@@ -61,9 +61,9 @@ namespace RoboGO
         {
             if (sender.GetType() == typeof(TabControl))
             {
-                txtbox = (TextBox)((TabItem)((TabControl)sender).SelectedItem).Content;
-                if (txtbox != null)
-                    Sense.showMethodsPopUP(txtbox.GetRectFromCharacterIndex(txtbox.CaretIndex), txtbox, popup, list, e);
+                txtboxCurrentIDECode = (TextBox)((TabItem)((TabControl)sender).SelectedItem).Content;
+                if (txtboxCurrentIDECode != null)
+                    ViewModelIntellisense.showMethodsPopUP(txtboxCurrentIDECode.GetRectFromCharacterIndex(txtboxCurrentIDECode.CaretIndex), txtboxCurrentIDECode, popup, list, e);
             }
         }
 
@@ -71,7 +71,7 @@ namespace RoboGO
         private void list_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             ListBox listBox = sender as ListBox;
-            Sense.list_KeyDown(listBox, e, txtbox, popup);
+            ViewModelIntellisense.list_KeyDown(listBox, e, txtboxCurrentIDECode, popup);
         }
 
         // Displaying login screen on load
