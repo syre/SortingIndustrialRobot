@@ -489,6 +489,7 @@ namespace ControlSystem
             var sqlcmdCommand = SQLHandler.GetInstance.makeCommand("SELECT * FROM Position WHERE PositionID = " + _iCubeID);
             var isqlrdrReader = SQLHandler.GetInstance.runQuery(sqlcmdCommand, "Read");
             var lstCoordinates = isqlrdrReader.readRow();
+            isqlrdrReader.close();
             // element 0 is ID, so starts from element 1(X)
             if (lstCoordinates.Count != 0)
             {
