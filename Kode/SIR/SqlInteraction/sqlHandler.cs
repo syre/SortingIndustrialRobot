@@ -80,7 +80,7 @@ namespace SqlInteraction
             command.CommandTimeout = Connection.TimeOut;
             command.CommandType = CommandType.Text;
             command.CommandText = _commandText;
-            
+
             return command;
         }
 
