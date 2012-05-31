@@ -53,10 +53,10 @@
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="Shoulder:" />
-                                <Button Name="axisBtnShoulderLeft" PreviewMouseLeftButtonDown="AxisBtnShoulderLeft_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
+                                <Button Name="axisBtnShoulderLeft" PreviewMouseLeftButtonDown="AxisBtnShoulderRight_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowUp.png"/>
                                 </Button>
-                                <Button Name="axisBtnShoulderRight" PreviewMouseLeftButtonDown="AxisBtnShoulderRight_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
+                                <Button Name="axisBtnShoulderRight" PreviewMouseLeftButtonDown="AxisBtnShoulderLeft_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="StopMovement">
                                     <Image Source="Images/arrowDown.png" />
                                 </Button>
                             </StackPanel>
