@@ -3,6 +3,8 @@ clr.AddReference("ControlSystem")
 import ControlSystem
 clr.AddReference("System.Data")
 import System.Data.SqlClient
+clr.AddReference("SqlInteraction")
+import SqlInteraction
 
 # coordinates movement function
 def moveByCoordinates(x,y,z):
@@ -139,6 +141,18 @@ def insertBox(position_id,length,width,depth,weight):
         print "box inserted succesfully"
         return True
 
+def getPositionIDFromMeasurements(volume,weight):
+		volumeDifference = 2
+		weightDifference = 1
+		command = _sqlhandler.makeCommand("SELECT PositionID FROM BoxInfo WHERE Volume <= "+str(volume+volumeDifference).replace(',','.')+"AND Volume >="+str(volume-volumeDifference).replace(',','.')+"AND Weight <= "+str(weight+weightDifference).replace(',','.')+"AND Weight >="+str(weight-weightDifference).replace(',','.'))
+		reader = _sqlhandler.runQuery(command, 'read')
+		list = reader.readRow()
+		reader.close()
+		if (len(list) != 0):
+			return list[0]
+		else:
+			return -1
+    
 def removeBox(box_id):
         try:
                 command = _sqlhandler.makeCommand("DELETE FROM BoxInfo WHERE BoxID = "+str(boxid))
