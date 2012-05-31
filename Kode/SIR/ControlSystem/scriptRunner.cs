@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 using SqlInteraction;
@@ -158,7 +159,15 @@ namespace ControlSystem
         {
             if (_source != null)
             {
-                _source.Execute(_scope);
+                try
+                {
+                    _source.Execute(_scope);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Script error:\n" + e.Message, "Script Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                }
+                
             }
             else
                throw new Exception();
