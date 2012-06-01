@@ -10,9 +10,9 @@
 
 <p><h2> Gripper functions </h2></p> 
 
-<p><h3> OpenGripper() </h3></p>
+<p><h3> openGripper() </h3></p>
 <p>opens the gripper</p>
-<p><h3>CloseGripper() </h3></p>
+<p><h3>closeGripper() </h3></p>
 <p>closes the gripper around a subject</p>
 
 <p><h2>Standard robot functions</h2></p>
@@ -49,8 +49,39 @@
 <p><h3>moveToCubePosition(cubeid)</h3></p>
 <p>moves robot to position of cube with given id</p>
 
+<p><h2>Misc. functions</h2></p>
+
 <p><h3>insertBox(positionid,length,width,depth,weight)</h3></p>
 <p>inserts box into database with given position ID, length, width, depth, weight</p>
 
 <p><h3>removeBox(boxid)</h3></p>
 <p>removes box from database with given Box ID</p>
+
+<p><h3>moveToCubePosition(id)</h3></p>
+<p> moves robot to the cube-spot with given id</p>
+
+
+<p><h3>moveByRelativeVector(vectorname,vector)</h3></p>
+<p></p>
+
+<p><h3>teach(vector)</h3></p>
+<p>directly calls the teach function of the wrapper</p>
+
+
+<p><h3>moveLinear(vector,index)</h3></p>
+<p>directly calls the moveLinear function of the wrapper</p>
+
+
+<p><h3>getWeight()</h3></p>
+<p>returns the weight from the weighing-cell</p>
+
+
+<p><h3>getJawMilimeters()</h3></p>
+<p>returns current jaw width in milimeters</p>
+<p><h3>getPositionIDFromMeasurements(volume,weight)</h3></p>
+<p><h3>finds position id from volume and weight via database</h3></p>
+
+<p><h3>defineRelativeVectorFromTuple(name,tuple)</h3></p>
+<p>defines an relative vector from a python tuple datastructure ex. tuple = [(1000,1000,1000,1000,1000),(2000,2000,2000,2000,2000)]</p>
+<p><h3>defineAbsoluteVectorFromTuple(name,tuple)</h3></p>
+<p>defines an absolute vector from a python tuple datastructure ex. tuple = [(1000,1000,1000,1000,1000),(2000,2000,2000,2000,2000)]</p>
