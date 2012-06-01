@@ -190,6 +190,7 @@ namespace ControlSystem
         public void moveAxisBase(enumLeftRight _elrDirection)
         {
             bool ifEverythingOk = false;
+            Wrapper.getInstance().controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
 
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
                 ifEverythingOk = robot.moveBase(speed);
@@ -205,6 +206,7 @@ namespace ControlSystem
         public void moveAxisShoulder(enumLeftRight _elrDirection)
         {
             bool ifEverythingOk = false;
+            Wrapper.getInstance().controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
 
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
                 ifEverythingOk = robot.moveShoulder(speed);
@@ -219,6 +221,7 @@ namespace ControlSystem
         public void moveAxisElbow(enumLeftRight _elrDirection)
         {
             bool ifEverythingOk = false;
+            Wrapper.getInstance().controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
 
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
                 ifEverythingOk = robot.moveElbow(speed);
@@ -233,6 +236,7 @@ namespace ControlSystem
         public void moveAxisGripper(enumCloseOpen _ecoGripper)
         {
             bool ifEverythingOk = false;
+            Wrapper.getInstance().controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
 
             if (_ecoGripper == enumCloseOpen.MANUAL_OPEN)
                 ifEverythingOk = robot.openGripper();
@@ -247,6 +251,7 @@ namespace ControlSystem
         public void moveAxisPitch(enumUpDown _eudDirection)
         {
             bool ifEverythingOk = false;
+            Wrapper.getInstance().controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
 
             if (_eudDirection == enumUpDown.MANUAL_MOVE_UP)
                 ifEverythingOk = robot.moveWristPitch(speed);
@@ -261,6 +266,7 @@ namespace ControlSystem
         public void moveAxisRoll(enumLeftRight _elrDirection)
         {
             bool ifEverythingOk = false;
+            Wrapper.getInstance().controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
 
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
                 ifEverythingOk = robot.moveWristRoll(speed);
@@ -275,6 +281,7 @@ namespace ControlSystem
         public void moveAxisConveyer(enumLeftRight _elrDirection)
         {
             bool ifEverythingOk = false;
+            Wrapper.getInstance().controlWrapped(Wrapper.enumAxisSettings.AXIS_ROBOT, true);
 
             if (_elrDirection == enumLeftRight.MANUAL_MOVE_RIGHT)
                 ifEverythingOk = robot.moveConveyerBelt(speed);
@@ -289,6 +296,7 @@ namespace ControlSystem
         #region Coordinates
         public void moveCoordX(enumIncDec _eidIncOrDec)
         {
+
             if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
             {
                 if (!robot.moveByXCoordinate(Speed))
@@ -303,6 +311,7 @@ namespace ControlSystem
 
         public void moveCoordY(enumIncDec _eidIncOrDec)
         {
+
             if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
             {
                 if (!robot.moveByYCoordinate(Speed))
@@ -317,6 +326,7 @@ namespace ControlSystem
 
         public void moveCoordZ(enumIncDec _eidIncOrDec)
         {
+
             if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
             {
                 if (!robot.moveByZCoordinate(Speed))
@@ -345,6 +355,7 @@ namespace ControlSystem
 
         public void moveCoordRoll(enumIncDec _eidIncOrDec)
         {
+
             if (_eidIncOrDec == enumIncDec.MANUAL_MOVE_INC)
             {
                 if (!robot.moveByRoll(Speed))

@@ -276,10 +276,7 @@ namespace ControlSystem
 
         private static void digitalInputChanged(long l)
         {
-            if (cubeAtConveyorBelt)
-                cubeAtConveyorBelt = false;
-            else
-                cubeAtConveyorBelt = true;
+            cubeAtConveyorBelt = !cubeAtConveyorBelt;
         }
 
         #endregion
@@ -511,7 +508,6 @@ namespace ControlSystem
             movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return  _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_BASE, _iSpeed);
         }
 
@@ -520,7 +516,6 @@ namespace ControlSystem
             movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_SHOULDER, _iSpeed);
         }
 
@@ -529,7 +524,6 @@ namespace ControlSystem
             movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ELBOW, _iSpeed);
         }
 
@@ -538,7 +532,6 @@ namespace ControlSystem
             movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTPITCH, _iSpeed);
         }
 
@@ -547,7 +540,6 @@ namespace ControlSystem
             movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_WRISTROLL, _iSpeed);
         }
 
@@ -556,7 +548,6 @@ namespace ControlSystem
             movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_GRIPPER, _iSpeed);
         }
 
@@ -565,7 +556,6 @@ namespace ControlSystem
             movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_AXES);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             return _wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_CONVEYERBELT, _iSpeed);
         }
 
@@ -623,7 +613,6 @@ namespace ControlSystem
                 movementlock.WaitOne();
                 _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
                 _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
-                _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
                 if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_X, _iX))
                     return false;
                 return true;
@@ -638,7 +627,6 @@ namespace ControlSystem
                 movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Y, _iY))
                 return false;
             return true;
@@ -653,7 +641,6 @@ namespace ControlSystem
                 movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_Z, _iZ))
                 return false;
             return true;
@@ -668,7 +655,6 @@ namespace ControlSystem
                 movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_PITCH, _pitch))
                 return false;
             return true;
@@ -683,7 +669,6 @@ namespace ControlSystem
                 movementlock.WaitOne();
             _wrapper.stopWrapped(Wrapper.enumAxisSettings.AXIS_ALL);
             _wrapper.enterManualWrapped(Wrapper.enumManualType.MANUAL_TYPE_COORD);
-            _wrapper.controlWrapped(Wrapper.enumAxisSettings.AXIS_ALL, true);
             if (!_wrapper.moveManualWrapped(Wrapper.enumManualModeWhat.MANUAL_MOVE_ROLL, _roll))
                 return false;
             return true;

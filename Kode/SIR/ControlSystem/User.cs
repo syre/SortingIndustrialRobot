@@ -41,6 +41,7 @@ namespace ControlSystem
             permissionDictionary.Add("BoxInfo", false);
             permissionDictionary.Add("Logs", false);
             permissionDictionary.Add("Users", false);
+            permissionDictionary.Add("Category", false);
         }
     }
     
@@ -67,6 +68,7 @@ namespace ControlSystem
             permissionDictionary.Add("BoxInfo", true);
             permissionDictionary.Add("Logs", true);
             permissionDictionary.Add("Users", true);
+            permissionDictionary.Add("Category", true);
         }
     }
 }

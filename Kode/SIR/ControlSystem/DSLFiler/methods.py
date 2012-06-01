@@ -132,6 +132,9 @@ def isOnline():
                 return False
 
 def insertBox(position_id,length,width,depth,weight):
+        if (position_id == -1):
+                print "box could not be found and therefore not inserted"
+                return False
         try:
                 command = _sqlhandler.makeCommand("INSERT INTO BoxInfo VALUES ("+str(position_id)+","+str(length)+","+str(width)+","+str(depth)+","+str(weight)+")")
                 _sqlhandler.runQuery(command,"write")
@@ -142,9 +145,8 @@ def insertBox(position_id,length,width,depth,weight):
         return True
 
 def getPositionIDFromMeasurements(volume,weight):
-		volumeDifference = 2
-		weightDifference = 1
-		command = _sqlhandler.makeCommand("SELECT PositionID FROM BoxInfo WHERE Volume <= "+str(volume+volumeDifference).replace(',','.')+"AND Volume >="+str(volume-volumeDifference).replace(',','.')+"AND Weight <= "+str(weight+weightDifference).replace(',','.')+"AND Weight >="+str(weight-weightDifference).replace(',','.'))
+		density = weight/(volume/1000)
+		command = _sqlhandler.makeCommand("SELECT PositionID FROM Position Inner Join Category ON Position.CategoryID = Category.ID WHERE Position.Occupied = 'False' AND Category.MaxDensity >= " + str(density).replace(',','.') + " AND Category.MinDensity <= " + str(density).replace(',','.'));
 		reader = _sqlhandler.runQuery(command, 'read')
 		list = reader.readRow()
 		reader.close()
@@ -152,7 +154,7 @@ def getPositionIDFromMeasurements(volume,weight):
 			return list[0]
 		else:
 			return -1
-    
+
 def removeBox(box_id):
         try:
                 command = _sqlhandler.makeCommand("DELETE FROM BoxInfo WHERE BoxID = "+str(boxid))
@@ -164,12 +166,14 @@ def removeBox(box_id):
         return True
 
 def moveToCubePosition(name,cube_id):
-        if (_robot.moveToCubePosition(name,cube_id) == True):
-                print "moved succesfully to cube position"
-                return True
-        else:
-                print "moved unsuccessfully / could not find cube with cube_id"
-                return False
+	if (_robot.moveToCubePosition(name,cube_id) == True):
+		print "moved succesfully to cube position"
+		command = _sqlhandler.makeCommand("UPDATE Position SET Position.Occupied='True' WHERE Position.PositionID=" + str(cube_id))
+		_sqlhandler.runQuery(command,"write")
+		return True
+	else:
+		print "moved unsuccessfully / could not find cube with cube_id"
+		return False
 
 def defineRelativeVectorFromTuple(name,tuple):
         print "stay in school and remember to home the robot kids!"
